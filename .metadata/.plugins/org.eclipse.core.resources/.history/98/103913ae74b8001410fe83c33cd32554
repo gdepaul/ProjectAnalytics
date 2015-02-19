@@ -1,0 +1,10 @@
+package dispatchObject;
+
+public class InitialCashBox extends DispatchObject
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7373109302488497709L;<DispatchObject>{
+
+}

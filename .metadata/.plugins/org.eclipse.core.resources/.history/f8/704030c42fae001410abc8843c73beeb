@@ -1,0 +1,51 @@
+package controller;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+import model.Command;
+import View.Window_dispatch;
+
+
+public class Dispatch {
+	
+	private String clientName;
+	
+	private Window_dispatch window;
+	
+	private Socket server;
+	private ObjectOutputStream output_stream;
+	private ObjectInputStream input_stream;
+	
+	/************* Server Handler Private Class *****************/
+	// Reads commands from the server and executes them 
+	
+	private class ServerHandler implements Runnable {
+		
+		public void run() {
+			//Implement the ServerHandler
+			while(true) {
+				try {
+					Object obj = input_stream.readObject();
+					if(obj instanceof Command<?>) { // See if we have a valid command
+						Command<Dispatch> command = (Command<Dispatch>)obj;
+						command.execute(Dispatch.this);
+					}	
+				} catch (Exception e) {
+					e.printStackTrace();
+				} //this will block if no object written
+			}
+		}
+	}
+	
+	/*************************************************************/
+	
+	
+	
+	
+	public Dispatch(){
+		
+	}
+
+}

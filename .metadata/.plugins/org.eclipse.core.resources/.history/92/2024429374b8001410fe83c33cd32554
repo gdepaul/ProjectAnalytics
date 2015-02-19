@@ -1,0 +1,5 @@
+package dispatchObject;
+
+public class InitialCashBox extends DispatchObject<DispatchObject>{
+
+}

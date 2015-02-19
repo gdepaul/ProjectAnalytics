@@ -1,0 +1,14 @@
+package dispatchObject;
+
+public class CashDrop extends DispatchObject<DispatchObject>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5773002521425641776L;
+	
+	public CashDrop(){
+	}
+	
+
+}

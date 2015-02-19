@@ -1,0 +1,10 @@
+package controller;
+
+import View.Window_dispatch;
+
+
+public class Dispatch {
+	
+	private Window_dispatch window;
+
+}

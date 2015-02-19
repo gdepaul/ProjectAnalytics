@@ -5,13 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JSpinner;
+
 import java.awt.Font;
+import java.io.ObjectOutputStream;
+
 import javax.swing.JScrollPane;
 
-public class window_dispatch {
+public class Window_dispatch {
 
 	private JFrame frmDispatchWindow;
 	private JTextField txtFieldSupervisor;
@@ -30,7 +35,7 @@ public class window_dispatch {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					window_dispatch window = new window_dispatch();
+					Window_dispatch window = new Window_dispatch();
 					window.frmDispatchWindow.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +47,12 @@ public class window_dispatch {
 	/**
 	 * Create the application.
 	 */
-	public window_dispatch() {
+	public Window_dispatch() {
+		initialize();
+	}
+
+	public Window_dispatch(String clientName, ObjectOutputStream output_stream) {
+		// TODO Auto-generated constructor stub
 		initialize();
 	}
 

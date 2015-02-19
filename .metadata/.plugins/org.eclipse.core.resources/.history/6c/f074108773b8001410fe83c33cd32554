@@ -1,0 +1,16 @@
+package dispatch;
+
+public class UndoLastDispatch extends Dispatch<Dispatch>{
+
+	public UndoLastDispatch(String source) {
+		super(source);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void execute(Dispatch executeOn) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

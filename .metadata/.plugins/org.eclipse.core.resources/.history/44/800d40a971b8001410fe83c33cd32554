@@ -1,0 +1,16 @@
+package model;
+
+public class UndoLastDispatch extends Command<Command>{
+
+	public UndoLastDispatch(String source) {
+		super(source);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void execute(Command executeOn) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

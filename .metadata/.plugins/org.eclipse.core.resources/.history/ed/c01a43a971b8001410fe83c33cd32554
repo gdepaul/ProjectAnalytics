@@ -1,0 +1,16 @@
+package model;
+
+public class AddObjectDispatch extends Command<Command>{
+
+	public AddObjectDispatch(String source) {
+		super(source);
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void execute(Command executeOn) {
+		//TODO
+		
+	}
+
+}

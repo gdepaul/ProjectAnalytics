@@ -1,0 +1,6 @@
+1423246759778	Rename resource 'model_README'
+1423247511123	Rename type 'disconnect_command'
+1423247517225	Rename type 'dispatch_command'
+1423247525724	Rename type 'undo_last_command'
+1423247532383	Rename type 'update_command'
+1423247587728	Rename type 'window_dispatch'
