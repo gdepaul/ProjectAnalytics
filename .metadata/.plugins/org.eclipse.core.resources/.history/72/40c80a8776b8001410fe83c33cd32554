@@ -1,6 +1,0 @@
-The model package holds the types of COMMANDS that dispatch will use.
-These are used to communicate with the server.
-
-Should contain:
-TO BE IMPLEMENTED: dispatch_command, undo_last_command, 
-					update_command, disconnect_command

@@ -3,6 +3,7 @@ package View;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -16,8 +17,12 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.JScrollPane;
 
-public class Window_dispatch {
+public class Window_dispatch extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9191866542683478317L;
 	private JFrame frmDispatchWindow;
 	private JTextField txtFieldSupervisor;
 	private JTextField txtClub;

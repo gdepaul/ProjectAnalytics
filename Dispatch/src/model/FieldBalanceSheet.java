@@ -9,6 +9,12 @@
  * 
  */
 
+/*
+ * CHANGE: Added model package declaration for compilation. 
+ * -Kris Cabulong 3/5/2015 1:55 pm
+ */
+package model;
+
 
 public class FieldBalanceSheet {
 
