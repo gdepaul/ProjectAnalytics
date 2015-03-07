@@ -11,20 +11,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import controller.DispatchClient;
+import model.Club;
 import model.dispatch.Dispatch;
 import model.dispatch.UndoLastDispatch;
 import model.dispatch.UpdateDispatch;
+import model.dispatchObject.DispatchObject;
+import controller.DispatchClient;
 
 
 /**
@@ -40,7 +42,8 @@ import model.dispatch.UpdateDispatch;
 
 public class DispatchServer {
 	private ServerSocket socket;
-	//private List<PaintObject> objects;
+	private List<String> list_clubs;
+	private HashMap<String, Club> hash_clubs;
 	
 	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private Map<String, ObjectInputStream> inputs;
@@ -75,6 +78,7 @@ public class DispatchServer {
 				try{
 					Object ob = input.readObject();
 					if (ob instanceof Dispatch<?>){
+						@SuppressWarnings("unchecked")
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
 						dispatch.execute(DispatchServer.this); // execute the command on the server
 					
@@ -149,8 +153,10 @@ public class DispatchServer {
 			inputs = new ConcurrentHashMap<String, ObjectInputStream>();
 			outputs = new ConcurrentHashMap<String, ObjectOutputStream>();
 			
-//			// create the list of PaintObjects
-//			objects = Collections.synchronizedList(new LinkedList<PaintObject>());
+			// setup lists for clubs, field supervisors
+			list_clubs = new ArrayList<String>();
+			
+			hash_clubs = new HashMap<String, Club>();
 			
 			System.out.println("Server started on port " + port);
 			
@@ -165,7 +171,7 @@ public class DispatchServer {
 	/**
 	 * This method undoes the last command of a client
 	 * 
-	 * @param clientName 	name of the client whose command should be undone
+	 * @param clientName name of the client whose command should be undone
 	 */
 	public void undoLast(String clientName) {
 		Deque<Dispatch<DispatchServer>> commands = histories.get(clientName);
@@ -190,30 +196,6 @@ public class DispatchServer {
 			}
 	}
 
-	/**
-	 * Adds a PaintObject to the canvas
-	 * @param object	a PaintObject to add to the canvas
-	 */
-//	public void addObject(PaintObject object) {
-//		System.out.println(objects.size());
-//		System.out.println("Adding new Object" + object.getClass().toString());
-//		objects.add(object);
-//		System.out.println(objects.size());
-//		updateClients();
-//	}
-	
-	/**
-	 * Removes a PaintObject from the canvas
-	 * @param object	a PaintObject to be removed
-	 */
-//	public void removeObject(PaintObject object) {
-//		objects.remove(object);
-//		updateClients();
-//	}
-//	
-//	public List<PaintObject> getObjects() {
-//		return objects;
-//	}
 
 	/**
 	 *  Disconnects a connected user
@@ -232,4 +214,80 @@ public class DispatchServer {
 	{
 		new DispatchServer(9001);
 	}
+	
+	/*
+	 * So hey, this addObject() handles all the different kinds of objects that can be added.
+	 * It isn't elegant, I guess I could've used an enum, but this work, eh? Right now, the 
+	 * functionality is barebones. Replace the SYSO comments as needed.
+	 */
+
+	public void addObject(DispatchObject<?> object) {
+		
+		String task = object.getObjectType();
+		
+		String clubName = object.getClub();
+		int cash = object.getCash();
+		int change = object.getChange();
+		int tickets = object.getTickets();
+		Club club = new Club(clubName);
+		
+		long now = System.currentTimeMillis();
+
+		java.util.Date date = new java.util.Date(now);
+		
+		if (task.compareTo("CashDrop")==0){
+			System.out.println("" + date.toString()+  ": \nThis task is a CashDrop. \n" +
+								clubName + " " + cash + " " + change + " " + tickets + "\n");
+		}
+		if (task.compareTo("ChangeDrop")==0){
+			System.out.println("" + date.toString()+  ": \nThis task is a ChangeDrop\n"+
+					clubName + " " + cash + " " + change + " " + tickets + "\n");
+		}
+		if (task.compareTo("InitialCashBox")==0){
+			System.out.println("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
+					clubName + " " + cash + " " + change + " " + tickets + "\n");
+		}
+		if (task.compareTo("TicketDrop")==0){
+			System.out.println("" + date.toString()+  ": \nThis task is a TicketDrop\n"+
+					clubName + " " + cash + " " + change + " " + tickets + "\n");
+			hash_clubs.get(clubName).addTickets(tickets);	// Assumes a ticket drop increases tickets
+			
+		}
+		
+		
+		if (task.compareTo("AddActiveClub")==0){
+			
+			System.out.println("" + date.toString()+  ": \nThis task is an AddActiveClub\n"+
+					clubName + " " + cash + " " + change + " " + tickets + "\n");
+			
+			list_clubs.add(clubName);
+			hash_clubs.put(clubName, club);		
+			
+			System.out.println("Current clubs: \n");
+			
+			for (String current : list_clubs){
+				System.out.println("Club: " + hash_clubs.get(current).getClubName() + "\n");
+				System.out.println("   Money: " + hash_clubs.get(current).getMoney() + "\n");
+				System.out.println("   Tickets: " + hash_clubs.get(current).getTickets() + "\n");
+			}
+		}
+		if (task.compareTo("RemoveActiveClub")==0){
+			
+			System.out.println("" + date.toString()+  ": \nThis task is a RemoveActiveClub\n"+
+					clubName + " " + cash + " " + change + " " + tickets + "\n");
+			
+					list_clubs.remove(clubName);
+					hash_clubs.remove(clubName);
+			
+					System.out.println("Current clubs: \n");
+					
+					for (String current : list_clubs){
+						System.out.println("Club: " + hash_clubs.get(current).getClubName() + "\n");
+						System.out.println("   Money: " + hash_clubs.get(current).getMoney() + "\n");
+						System.out.println("   Tickets: " + hash_clubs.get(current).getTickets() + "\n");
+					}
+		}
+		
+	}
+
 }

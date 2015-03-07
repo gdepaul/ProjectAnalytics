@@ -6,6 +6,11 @@ public class ChangeDrop extends DispatchObject<DispatchObject>{
 		super(club, cash, tickets, change);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public String getObjectType(){
+		return "ChangeDrop";
+	}
 
 	/**
 	 * 

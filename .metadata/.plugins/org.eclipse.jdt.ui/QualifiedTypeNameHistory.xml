@@ -3,4 +3,15 @@
 <fullyQualifiedTypeName name="controller.Dispatch"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="dispatchObject.DispatchObject"/>
+<fullyQualifiedTypeName name="model.dispatchObject.DispatchObject"/>
+<fullyQualifiedTypeName name="View.Window_dispatch"/>
+<fullyQualifiedTypeName name="model.dispatch.DisconnectDispatch"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="model.dispatch.UndoLastDispatch"/>
+<fullyQualifiedTypeName name="server.DispatchServer"/>
+<fullyQualifiedTypeName name="controller.DispatchClient"/>
+<fullyQualifiedTypeName name="model.dispatch.UpdateDispatch"/>
+<fullyQualifiedTypeName name="model.dispatch.Dispatch"/>
+<fullyQualifiedTypeName name="View.Panel_dispatch"/>
 </qualifiedTypeNameHistroy>

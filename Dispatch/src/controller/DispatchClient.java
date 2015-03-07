@@ -17,23 +17,32 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
+import model.dispatch.AddObjectDispatch;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
-import View.Window_dispatch;
+import model.dispatchObject.AddActiveClub;
+import model.dispatchObject.CashDrop;
+import model.dispatchObject.ChangeDrop;
+import model.dispatchObject.InitialCashBox;
+import model.dispatchObject.RemoveActiveClub;
+import model.dispatchObject.TicketDrop;
+import View.DispatchPanel;
 
 
-
-public class DispatchClient extends JFrame {
+public class DispatchClient extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9046456846310614397L;
+
 	private String clientName; // user name of the client
 	
-	private Window_dispatch window_dispatch;
+	private DispatchPanel dispatchPanel;
 	
 	private Socket server; // connection to server
 	private ObjectOutputStream out; // output stream
@@ -46,7 +55,6 @@ public class DispatchClient extends JFrame {
 		
 		public void run() {
 			//Implement the ServerHandler
-			//TODO:
 			while(true) {
 				try {
 					Object obj = in.readObject();
@@ -64,13 +72,19 @@ public class DispatchClient extends JFrame {
 	/*************************************************************/
 	
 	public DispatchClient(){
-		// ask the user for a host, port, and user name
+//		// ask the user for a host, port, and user name
 		String host = JOptionPane.showInputDialog("Host address:");
 		String port = JOptionPane.showInputDialog("Host port:");
 		clientName = JOptionPane.showInputDialog("User name:");
 		
-		if (host == null || port == null || clientName == null)
+		System.out.println("host: " + host + "\n" + 
+							"port: " + port + "\n" +
+							"clientName: " + clientName + "\n");
+//		
+		if (host == null || port == null || clientName == null){
+			//JOptionPane.showMessageDialog(null, "Please fill all fields.");
 			return;
+		} else
 		
 		try{
 			//Open a connection to the server
@@ -104,6 +118,15 @@ public class DispatchClient extends JFrame {
 			
 			setupGUI();
 			
+			out.writeObject(new AddObjectDispatch(clientName, new CashDrop("Hairclub for Men", 101, 202, 303)));
+			out.writeObject(new AddObjectDispatch(clientName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
+			out.writeObject(new AddObjectDispatch(clientName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
+			out.writeObject(new AddObjectDispatch(clientName, new AddActiveClub("Club of Clubs", 1430, 2430, 343)));
+			out.writeObject(new AddObjectDispatch(clientName, new AddActiveClub("Faraway Horizons", 1430, 2430, 343)));
+			out.writeObject(new AddObjectDispatch(clientName, new TicketDrop("Faraway Horizons", 132, 220, 3042)));
+			
+			out.writeObject(new AddObjectDispatch(clientName, new RemoveActiveClub("Club of Clubs", 1034, 234, 234)));
+			
 			new Thread(new ServerHandler()).start();
 			
 			
@@ -114,14 +137,17 @@ public class DispatchClient extends JFrame {
 	
 	// Create the gui in the client once signed in
 	private void setupGUI() {
+		
 		this.setSize(800, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// add a Drawing Panel
-		window_dispatch = new Window_dispatch();
-		this.add(window_dispatch);
+		dispatchPanel = new DispatchPanel(clientName, out);
+		this.add(dispatchPanel);
 		
 		this.setVisible(true);
+		
+		
 	}
 
 //	/**

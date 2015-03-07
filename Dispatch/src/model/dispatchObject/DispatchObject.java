@@ -26,6 +26,7 @@ public abstract class DispatchObject<T> implements Serializable {
 	
 	public void updateClub(String clubName){
 		
+		
 	}
 	
 	public Club returnClubStatus(String clubName){
@@ -35,6 +36,31 @@ public abstract class DispatchObject<T> implements Serializable {
 	
 	public void addClub(Club newClub){
 		
+	}
+	
+	public String getObjectType(){
+		return "not implemented for this class";
+		
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getClub() {
+		return club;
+	}
+
+	public int getCash() {
+		return cash;
+	}
+
+	public int getTickets() {
+		return tickets;
+	}
+
+	public int getChange() {
+		return change;
 	}
 	
 	

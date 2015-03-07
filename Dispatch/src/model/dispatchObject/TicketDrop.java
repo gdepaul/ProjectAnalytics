@@ -4,7 +4,11 @@ public class TicketDrop extends DispatchObject<DispatchObject> {
 
 	public TicketDrop(String club, int cash, int tickets, int change) {
 		super(club, cash, tickets, change);
-		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public String getObjectType(){
+		return "TicketDrop";
 	}
 
 	/**

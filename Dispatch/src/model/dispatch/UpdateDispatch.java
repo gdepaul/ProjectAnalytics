@@ -1,19 +1,27 @@
 package model.dispatch;
 
+import model.Club;
+import model.dispatchObject.DispatchObject;
 import controller.DispatchClient;
 
 public class UpdateDispatch extends Dispatch<DispatchClient> {
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6956919293952269369L;
+
+
 	public UpdateDispatch(String source) {
 		super(source);
-		// TODO Auto-generated constructor stub
+
 	}
 
 
 	@Override
 	public void execute(DispatchClient executeOn) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

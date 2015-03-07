@@ -1,0 +1,5 @@
+package model.dispatchObject;
+
+public class AddActiveClub {
+
+}

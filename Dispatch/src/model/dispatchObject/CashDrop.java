@@ -7,6 +7,11 @@ public class CashDrop extends DispatchObject<DispatchObject>{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String getObjectType(){
+		return "CashDrop";
+	}
+	
 	/**
 	 * 
 	 */

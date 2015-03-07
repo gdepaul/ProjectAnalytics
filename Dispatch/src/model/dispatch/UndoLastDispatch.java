@@ -11,12 +11,11 @@ public class UndoLastDispatch extends Dispatch<DispatchServer> {
 
 	public UndoLastDispatch(String source) {
 		super(source);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void execute(DispatchServer executeOn) {
-		// TODO Auto-generated method stub
+		executeOn.undoLast(getSource());
 		
 	}
 

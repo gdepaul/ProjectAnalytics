@@ -1,0 +1,134 @@
+package View;
+
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
+import model.*;
+
+
+
+public class Panel_dispatch extends JPanel{
+	private static final long serialVersionUID = 8568633961499977471L;
+	private JPanel frmDispatchWindow;
+	private JTextField txtFieldSupervisor;
+	private JTextField txtClub;
+	private JTextField txtAction;
+	private JTextField txtTimeIn;
+	private JSpinner spinner_field_supervisor;
+	private JSpinner spinner_club;
+	private JSpinner spinner_action;
+	private JSpinner spinner_time_in;
+	private String clientName;
+	private ObjectOutputStream output;
+	
+	
+	/**
+	 * DrawingPanel constructor
+	 * 
+	 * @param name		the client's name
+	 * @param output	the output stream to the server
+	 */
+	public Panel_dispatch(String name, ObjectOutputStream output) {
+		clientName = name;
+		this.output = output;
+		
+		frmDispatchWindow = new JPanel();
+		frmDispatchWindow.setName("Dispatch Panel");
+		frmDispatchWindow.setBounds(100, 100, 741, 565);
+		//frmDispatchWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmDispatchWindow.getRootPane().setLayout(null);
+		
+		txtFieldSupervisor = new JTextField();
+		txtFieldSupervisor.setText("Field Supervisor :");
+		txtFieldSupervisor.setBounds(34, 81, 108, 20);
+		frmDispatchWindow.getRootPane().add(txtFieldSupervisor);
+		txtFieldSupervisor.setColumns(10);
+		txtFieldSupervisor.setEditable(false);
+		
+		txtClub = new JTextField();
+		txtClub.setText("Club                   :");
+		txtClub.setBounds(34, 121, 108, 20);
+		frmDispatchWindow.getRootPane().add(txtClub);
+		txtClub.setColumns(10);
+		txtClub.setEditable(false);
+		
+		txtAction = new JTextField();
+		txtAction.setText("Action                :");
+		txtAction.setBounds(34, 165, 108, 20);
+		frmDispatchWindow.getRootPane().add(txtAction);
+		txtAction.setColumns(10);
+		txtAction.setEditable(false);
+		
+		txtTimeIn = new JTextField();
+		txtTimeIn.setText("Time In              :");
+		txtTimeIn.setBounds(34, 209, 108, 20);
+		frmDispatchWindow.getRootPane().add(txtTimeIn);
+		txtTimeIn.setColumns(10);
+		txtTimeIn.setEditable(false);
+		
+		JButton btn_dispatch = new JButton("DISPATCH");
+		btn_dispatch.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn_dispatch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btn_dispatch.setBounds(34, 255, 162, 106);
+		frmDispatchWindow.getRootPane().add(btn_dispatch);
+		
+		spinner_field_supervisor = new JSpinner();
+		spinner_field_supervisor.setBounds(152, 81, 93, 20);
+		frmDispatchWindow.getRootPane().add(spinner_field_supervisor);
+		
+		spinner_club = new JSpinner();
+		spinner_club.setBounds(152, 121, 93, 20);
+		frmDispatchWindow.getRootPane().add(spinner_club);
+		
+		spinner_action = new JSpinner();
+		spinner_action.setBounds(152, 165, 93, 20);
+		frmDispatchWindow.getRootPane().add(spinner_action);
+		
+		spinner_time_in = new JSpinner();
+		spinner_time_in.setBounds(152, 209, 93, 20);
+		frmDispatchWindow.getRootPane().add(spinner_time_in);
+		
+	}
+	
+	/**
+	 * This method is called by a UpdateClientCommand executed on
+	 * a NetpaintClient
+	 * 
+	 * @param objects	the PaintObjects in the world
+	 */
+//	public void update(List<PaintObject> objects){
+//		this.objects = objects;
+//		repaint();
+//	}
+}
+

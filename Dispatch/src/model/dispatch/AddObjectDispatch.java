@@ -1,5 +1,6 @@
 package model.dispatch;
 
+import model.dispatchObject.DispatchObject;
 import server.DispatchServer;
 
 public class AddObjectDispatch extends Dispatch<DispatchServer> {
@@ -9,15 +10,18 @@ public class AddObjectDispatch extends Dispatch<DispatchServer> {
 	 */
 	private static final long serialVersionUID = 640029361107769297L;
 
-	public AddObjectDispatch(String source) {
+	private DispatchObject object;
+	
+	public AddObjectDispatch(String source, DispatchObject object) {
 		super(source);
-		// TODO Auto-generated constructor stub
+		this.object = object;
 	}
 
 	@Override
 	public void execute(DispatchServer executeOn) {
-		// TODO Auto-generated method stub
+		executeOn.addObject(object);
 		
 	}
+	
 
 }
