@@ -32,7 +32,7 @@ import model.dispatchObject.ChangeDrop;
 import model.dispatchObject.InitialCashBox;
 import model.dispatchObject.RemoveActiveClub;
 import model.dispatchObject.TicketDrop;
-import View.DispatchPanel;
+import View.Panel_Dispatch;
 
 
 public class DispatchClient extends JFrame{
@@ -46,7 +46,7 @@ public class DispatchClient extends JFrame{
 	
 	private String clientName; // user name of the client
 	
-	private DispatchPanel dispatchPanel;
+	private Panel_Dispatch dispatchPanel;
 	
 	private Socket server; // connection to server
 	private ObjectOutputStream out; // output stream
@@ -146,7 +146,7 @@ public class DispatchClient extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// add a Drawing Panel
-		dispatchPanel = new DispatchPanel(clientName, out);
+		dispatchPanel = new Panel_Dispatch(clientName, out);
 		this.add(dispatchPanel);
 		
 		this.setVisible(true);		
