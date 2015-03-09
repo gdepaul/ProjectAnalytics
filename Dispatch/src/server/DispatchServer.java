@@ -43,6 +43,7 @@ import controller.DispatchClient;
  */
 
 public class DispatchServer {
+	private Logger Out;
 	private ServerSocket socket;
 	private List<String> list_clubs;
 	private HashMap<String, Club> hash_clubs;
@@ -72,14 +73,15 @@ public class DispatchServer {
 			SER = new Serializer("backups");
 			while(true) {
 				try {
-					//TimeUnit.SECONDS.sleep(3);
-					TimeUnit.MINUTES.sleep(15);
-					System.out.println("Saving clubs to disk!");			
+					TimeUnit.SECONDS.sleep(3);
+					//TimeUnit.MINUTES.sleep(15);
+					System.out.println("Save");
+					Out.print("Saving clubs to disk!");			
 					List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
 					for(Club club : clubs) {
 						SER.saveClub(club);
 					}
-				} catch(InterruptedException ie) { } 
+				} catch(InterruptedException ie) { Out.error(ie.getMessage());} 
 			}
 		}
 	}
@@ -103,7 +105,7 @@ public class DispatchServer {
 			this.history=history;
 			input = inputs.get(id);
 			
-			System.out.println("New Client " + id + " connected");
+			Out.print("New Client " + id + " connected");
 			
 			updateClients();
 		}
@@ -171,7 +173,6 @@ public class DispatchServer {
 					new Thread(new ClientHandler(name, histories.get(name))).start();
 				}
 				catch(Exception e){
-					System.err.println("In Client Accepter:");
 					e.printStackTrace();
 					break;
 				}
@@ -180,7 +181,7 @@ public class DispatchServer {
 	}
 	
 	public DispatchServer(int port){
-
+		Out = new Logger("server.log","server.err");
 		try{
 			socket = new ServerSocket(port); // create a new server
 			
@@ -194,13 +195,15 @@ public class DispatchServer {
 			
 			hash_clubs = new HashMap<String, Club>();
 			
-			System.out.println("Server started on port " + port);
+			Out.print("Server started on port " + port);
+			//System.out.println("Server started on port " + port);
 			
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
 			new Thread(new AutoSaver()).start();
 		}catch(Exception e){
-			System.err.println("Error creating server:");
+			Out.error("Error creating server:");
+			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
 	}
@@ -230,7 +233,8 @@ public class DispatchServer {
 			try{
 				out.writeObject(update);
 			}catch(Exception e){
-				System.err.println("Error updating clients");
+				Out.error("Error updating clients");
+				//System.err.println("Error updating clients");
 				//e.printStackTrace();
 				outputs.remove(out);
 			}
@@ -242,7 +246,8 @@ public class DispatchServer {
 	 * @param source	user to disconnect
 	 */
 	public void disconnect(String source) {
-		System.out.printf("Client \'%s\' disconnecting\n", source);
+		Out.print("Client " + source + " disconnecting");
+		//System.out.printf("Client \'%s\' disconnecting\n", source);
 		try{
 			inputs.remove(source).close();
 			outputs.remove(source).close();
