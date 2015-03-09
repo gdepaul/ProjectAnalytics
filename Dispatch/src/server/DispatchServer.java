@@ -207,7 +207,8 @@ public class DispatchServer {
 			inputs.remove(source).close();
 			outputs.remove(source).close();
 			histories.remove(source);
-		} catch(Exception e){e.printStackTrace();}
+		}
+		catch(Exception e){ e.printStackTrace();}
 	}
 	
 	public static void main(String[] args)

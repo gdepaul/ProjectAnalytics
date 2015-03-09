@@ -18,6 +18,7 @@ public class DisconnectDispatch extends Dispatch<DispatchServer> {
 	@Override
 	public void execute(DispatchServer executeOn) {
 		// TODO Auto-generated method stub
+		executeOn.disconnect(this.getSource());
 		
 	}
 
