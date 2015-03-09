@@ -7,6 +7,7 @@ package server;
  */
 
 
+import java.io.File;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
 
 import model.Club;
 import model.dispatch.Dispatch;
@@ -48,6 +50,39 @@ public class DispatchServer {
 	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private Map<String, ObjectInputStream> inputs;
 	private Map<String, ObjectOutputStream> outputs;
+	
+	/**
+	 * AutoSaver
+	 * 
+	 * This class handles auto saving all active clubs.  This is achieved by sleeping for 15 Minutes then saving each club.
+	 * @author N R Callahan
+	 * 
+	 */
+	private class AutoSaver implements Runnable {
+
+		private Serializer SER;
+		
+		@Override
+		public void run() {
+			//--Create Backups directory
+			File backups_dir = new File("backups");
+			if(!backups_dir.exists()) {
+				backups_dir.mkdirs();
+			}
+			SER = new Serializer("backups");
+			while(true) {
+				try {
+					//TimeUnit.SECONDS.sleep(3);
+					TimeUnit.MINUTES.sleep(15);
+					System.out.println("Saving clubs to disk!");			
+					List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
+					for(Club club : clubs) {
+						SER.saveClub(club);
+					}
+				} catch(InterruptedException ie) { } 
+			}
+		}
+	}
 	
 	/**
 	 *	ClientHandler
@@ -145,6 +180,7 @@ public class DispatchServer {
 	}
 	
 	public DispatchServer(int port){
+
 		try{
 			socket = new ServerSocket(port); // create a new server
 			
@@ -162,6 +198,7 @@ public class DispatchServer {
 			
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
+			new Thread(new AutoSaver()).start();
 		}catch(Exception e){
 			System.err.println("Error creating server:");
 			e.printStackTrace();
@@ -185,12 +222,15 @@ public class DispatchServer {
 	 *	PaintObjects in the world
 	 */
 	public void updateClients(){
-		Dispatch<DispatchClient> update = new UpdateDispatch("server");
+		System.err.println("Updating Clients");
+//		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
+		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
+		Dispatch<DispatchClient> update = new UpdateDispatch("server", clubs);
 		for (ObjectOutputStream out: outputs.values())
 			try{
 				out.writeObject(update);
 			}catch(Exception e){
-				//System.err.println("Error updating clients");
+				System.err.println("Error updating clients");
 				//e.printStackTrace();
 				outputs.remove(out);
 			}
@@ -210,6 +250,8 @@ public class DispatchServer {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
+	
+	
 	
 	public static void main(String[] args)
 	{
@@ -238,19 +280,19 @@ public class DispatchServer {
 		
 		if (task.compareTo("CashDrop")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is a CashDrop. \n" +
-								clubName + " " + cash + " " + change + " " + tickets + "\n");
+								clubName + " " + cash + " " + change + " " + tickets);
 		}
 		if (task.compareTo("ChangeDrop")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is a ChangeDrop\n"+
-					clubName + " " + cash + " " + change + " " + tickets + "\n");
+					clubName + " " + cash + " " + change + " " + tickets);
 		}
 		if (task.compareTo("InitialCashBox")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
-					clubName + " " + cash + " " + change + " " + tickets + "\n");
+					clubName + " " + cash + " " + change + " " + tickets);
 		}
 		if (task.compareTo("TicketDrop")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is a TicketDrop\n"+
-					clubName + " " + cash + " " + change + " " + tickets + "\n");
+					clubName + " " + cash + " " + change + " " + tickets);
 			hash_clubs.get(clubName).addTickets(tickets);	// Assumes a ticket drop increases tickets
 			
 		}
@@ -259,7 +301,7 @@ public class DispatchServer {
 		if (task.compareTo("AddActiveClub")==0){
 			
 			System.out.println("" + date.toString()+  ": \nThis task is an AddActiveClub\n"+
-					clubName + " " + cash + " " + change + " " + tickets + "\n");
+					clubName + " " + cash + " " + change + " " + tickets);
 			
 			list_clubs.add(clubName);
 			hash_clubs.put(clubName, club);		
@@ -267,15 +309,15 @@ public class DispatchServer {
 			System.out.println("Current clubs: \n");
 			
 			for (String current : list_clubs){
-				System.out.println("Club: " + hash_clubs.get(current).getClubName() + "\n");
-				System.out.println("   Money: " + hash_clubs.get(current).getMoney() + "\n");
-				System.out.println("   Tickets: " + hash_clubs.get(current).getTickets() + "\n");
+				System.out.println("Club: " + hash_clubs.get(current).getClubName());
+				System.out.println("   Money: " + hash_clubs.get(current).getMoney());
+				System.out.println("   Tickets: " + hash_clubs.get(current).getTickets());
 			}
 		}
 		if (task.compareTo("RemoveActiveClub")==0){
 			
 			System.out.println("" + date.toString()+  ": \nThis task is a RemoveActiveClub\n"+
-					clubName + " " + cash + " " + change + " " + tickets + "\n");
+					clubName + " " + cash + " " + change + " " + tickets);
 			
 					list_clubs.remove(clubName);
 					hash_clubs.remove(clubName);
@@ -283,12 +325,11 @@ public class DispatchServer {
 					System.out.println("Current clubs: \n");
 					
 					for (String current : list_clubs){
-						System.out.println("Club: " + hash_clubs.get(current).getClubName() + "\n");
-						System.out.println("   Money: " + hash_clubs.get(current).getMoney() + "\n");
-						System.out.println("   Tickets: " + hash_clubs.get(current).getTickets() + "\n");
+						System.out.println("Club: " + hash_clubs.get(current).getClubName());
+						System.out.println("   Money: " + hash_clubs.get(current).getMoney());
+						System.out.println("   Tickets: " + hash_clubs.get(current).getTickets());
 					}
 		}
-		
+		updateClients();
 	}
-
 }
