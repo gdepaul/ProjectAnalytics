@@ -185,12 +185,15 @@ public class DispatchServer {
 	 *	PaintObjects in the world
 	 */
 	public void updateClients(){
-		Dispatch<DispatchClient> update = new UpdateDispatch("server");
+		System.err.println("Updating Clients");
+//		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
+		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
+		Dispatch<DispatchClient> update = new UpdateDispatch("server", clubs);
 		for (ObjectOutputStream out: outputs.values())
 			try{
 				out.writeObject(update);
 			}catch(Exception e){
-				//System.err.println("Error updating clients");
+				System.err.println("Error updating clients");
 				//e.printStackTrace();
 				outputs.remove(out);
 			}
@@ -210,6 +213,8 @@ public class DispatchServer {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
+	
+	
 	
 	public static void main(String[] args)
 	{
@@ -288,7 +293,7 @@ public class DispatchServer {
 						System.out.println("   Tickets: " + hash_clubs.get(current).getTickets() + "\n");
 					}
 		}
-		
+		updateClients();
 	}
 
 }

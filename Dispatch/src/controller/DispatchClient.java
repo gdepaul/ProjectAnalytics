@@ -11,6 +11,7 @@ package controller;
  */
 
 
+import java.util.List;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.net.Socket;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import model.Club;
 import model.dispatch.AddObjectDispatch;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
@@ -40,6 +42,8 @@ public class DispatchClient extends JFrame{
 	 */
 	private static final long serialVersionUID = -9046456846310614397L;
 
+	private List<Club> activeClubs;
+	
 	private String clientName; // user name of the client
 	
 	private DispatchPanel dispatchPanel;
@@ -145,9 +149,7 @@ public class DispatchClient extends JFrame{
 		dispatchPanel = new DispatchPanel(clientName, out);
 		this.add(dispatchPanel);
 		
-		this.setVisible(true);
-		
-		
+		this.setVisible(true);		
 	}
 
 //	/**
@@ -159,6 +161,13 @@ public class DispatchClient extends JFrame{
 //		// TODO Auto-generated method stub
 //		window_dispatch.update(objects);
 //	}
+	public void update(List<Club> clubs) {
+		this.activeClubs = clubs;
+		System.out.println("From Server: Update. Currently Active Clubs: ");
+		for(Club club : clubs) {
+			System.out.println("\t" + club.getClubName());
+		}
+	}
 	
 	// Main method in order to run the client
 	public static void main(String[] args){

@@ -1,15 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.dispatchObject.DispatchObject;
 
 
-public class Club {
+public class Club implements Serializable {
 	
-
-
+	private static final long serialVersionUID = -1802530257610968136L;
 	String clubName;
 	float money;
 	int tickets;
