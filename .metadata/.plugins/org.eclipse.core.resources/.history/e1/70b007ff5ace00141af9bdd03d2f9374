@@ -1,0 +1,19 @@
+package View;
+
+import javax.swing.JPanel;
+
+public class Panel_CICO extends JPanel{
+	public Panel_CICO() {
+	}
+	
+	/**
+	 * This method is called by a UpdateClientCommand executed on
+	 * a Client
+	 * 
+	 * @param objects	the PaintObjects in the world
+	 */
+	public void update(){
+		repaint();
+	}
+
+}

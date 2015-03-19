@@ -9,8 +9,12 @@ import javax.swing.SpinnerListModel;
 import javax.swing.JList;
 
 public class Panel_Scheduler extends JPanel{
-	private JTextField textField;
-	private JTextField textField_1;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5973410696147468360L;
+	private JTextField textField_name;
+	private JTextField textField_timeOut;
 	public Panel_Scheduler() {
 		setLayout(null);
 		
@@ -58,7 +62,7 @@ public class Panel_Scheduler extends JPanel{
 				"Alysia Ertel", }; 
 		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
 		
-		String[] RoleArray = {"Field Supervisor", "Software Engineer", "Operations Manager", "Some Other Role"};
+		String[] RoleArray = {"Field Supervisor", "Cashier"};
 		SpinnerListModel RoleModel = new SpinnerListModel(RoleArray);	//~LOL~
 		JSpinner spinner_roles = new JSpinner(RoleModel);
 		spinner_roles.setBounds(190, 175, 120, 20);
@@ -74,15 +78,15 @@ public class Panel_Scheduler extends JPanel{
 		btnDispatch.setBounds(70, 330, 240, 70);
 		add(btnDispatch);
 		
-		textField = new JTextField();
-		textField.setBounds(190, 133, 120, 20);
-		add(textField);
-		textField.setColumns(10);
+		textField_name = new JTextField();
+		textField_name.setBounds(190, 133, 120, 20);
+		add(textField_name);
+		textField_name.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(190, 221, 120, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		textField_timeOut = new JTextField();
+		textField_timeOut.setBounds(190, 221, 120, 20);
+		add(textField_timeOut);
+		textField_timeOut.setColumns(10);
 		
 		JList<String> list = new JList<String>();
 		list.setBounds(328, 92, 337, 402);

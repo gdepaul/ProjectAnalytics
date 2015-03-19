@@ -44,7 +44,7 @@ public class DispatchClient extends JFrame{
 
 	private List<Club> activeClubs;
 	
-	private String clientName; // user name of the client
+	private String userName; // user name of the client
 	
 	private Panel_Dispatch dispatchPanel;
 	
@@ -79,13 +79,13 @@ public class DispatchClient extends JFrame{
 //		// ask the user for a host, port, and user name
 		String host = JOptionPane.showInputDialog("Host address:");
 		String port = JOptionPane.showInputDialog("Host port:");
-		clientName = JOptionPane.showInputDialog("User name:");
+		userName = JOptionPane.showInputDialog("User name:");
 		
 		System.out.println("host: " + host + "\n" + 
 							"port: " + port + "\n" +
-							"clientName: " + clientName + "\n");
+							"clientName: " + userName + "\n");
 //		
-		if (host == null || port == null || clientName == null){
+		if (host == null || port == null || userName == null){
 			//JOptionPane.showMessageDialog(null, "Please fill all fields.");
 			return;
 		} else
@@ -100,18 +100,18 @@ public class DispatchClient extends JFrame{
 			
 			do {
 			// write out the name of this client
-			out.writeObject(clientName);
+			out.writeObject(userName);
 			// Check to see if the client is accepted
 			check = (String)in.readObject();
 			if(check.equals("reject"))
-				clientName = JOptionPane.showInputDialog("User name:");
+				userName = JOptionPane.showInputDialog("User name:");
 			} while(check.equals("reject"));
 			
 			// add a listener that sends a disconnect command to the server when closing
 			this.addWindowListener(new WindowAdapter(){
 				public void windowClosing(WindowEvent arg0) {
 					try {
-						out.writeObject(new DisconnectDispatch(clientName));
+						out.writeObject(new DisconnectDispatch(userName));
 						out.close();
 						in.close();
 					} catch (IOException e) {
@@ -122,14 +122,14 @@ public class DispatchClient extends JFrame{
 			
 			setupGUI();
 			
-			out.writeObject(new AddObjectDispatch(clientName, new CashDrop("Hairclub for Men", 101, 202, 303)));
-			out.writeObject(new AddObjectDispatch(clientName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
-			out.writeObject(new AddObjectDispatch(clientName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
-			out.writeObject(new AddObjectDispatch(clientName, new AddActiveClub("Club of Clubs", 1430, 2430, 343)));
-			out.writeObject(new AddObjectDispatch(clientName, new AddActiveClub("Faraway Horizons", 1430, 2430, 343)));
-			out.writeObject(new AddObjectDispatch(clientName, new TicketDrop("Faraway Horizons", 132, 220, 3042)));
-			
-			out.writeObject(new AddObjectDispatch(clientName, new RemoveActiveClub("Club of Clubs", 1034, 234, 234)));
+//			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
+//			out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
+//			out.writeObject(new AddObjectDispatch(userName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
+//			out.writeObject(new AddObjectDispatch(userName, new AddActiveClub("Club of Clubs", 1430, 2430, 343)));
+//			out.writeObject(new AddObjectDispatch(userName, new AddActiveClub("Faraway Horizons", 1430, 2430, 343)));
+//			out.writeObject(new AddObjectDispatch(userName, new TicketDrop("Faraway Horizons", 132, 220, 3042)));
+//			
+//			out.writeObject(new AddObjectDispatch(userName, new RemoveActiveClub("Club of Clubs", 1034, 234, 234)));
 			
 			new Thread(new ServerHandler()).start();
 			
@@ -146,7 +146,7 @@ public class DispatchClient extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// add a Drawing Panel
-		dispatchPanel = new Panel_Dispatch(clientName, out);
+		dispatchPanel = new Panel_Dispatch(userName, out);
 		this.add(dispatchPanel);
 		
 		this.setVisible(true);		

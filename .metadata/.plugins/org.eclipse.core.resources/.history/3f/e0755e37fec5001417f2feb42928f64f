@@ -1,0 +1,64 @@
+package View;
+
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.SpinnerListModel;
+
+public class Panel_Dispatch extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4719929453960671801L;
+
+	public Panel_Dispatch() {
+		setLayout(null);
+		
+		JTextArea textArea_fieldSupe = new JTextArea();
+		textArea_fieldSupe.setBounds(71, 131, 100, 22);
+		textArea_fieldSupe.setText("Field supe:");
+		add(textArea_fieldSupe);
+		
+		JTextArea textArea_club = new JTextArea();
+		textArea_club.setBounds(71, 175, 100, 22);
+		textArea_club.setText("      Club:");
+		add(textArea_club);
+		
+		JTextArea textArea_action = new JTextArea();
+		textArea_action.setBounds(71, 219, 100, 22);
+		textArea_action.setText("    Action:");
+		add(textArea_action);
+		
+		JTextArea textArea_timeIn = new JTextArea();
+		textArea_timeIn.setBounds(71, 264, 100, 22);
+		textArea_timeIn.setText("   Time in:");
+		add(textArea_timeIn);
+		
+		
+		String[] fieldSupesArray = {//ENTER FIELD SUPERVISORS HERE
+				"Valrie Vanfleet",
+				"Loralee Eckert",
+				"Romona Seats",
+				"Danita Mormon",
+				"Shelton Kleiman",
+				"Ty Kovacich",
+				"Lourie Wake",
+				"Diane Toto",
+				"Trudy Blount",
+				"Claude Ferrel",
+				"Santos Thrall",
+				"Lavonda Nanney",
+				"Tanner Laduke",
+				"Oliver Heyden",
+				"Edward Dunson",
+				"Prince Holsey",
+				"Annita Ragsdale",
+				"Carla Lopinto",
+				"Amber Covey",
+				"Alysia Ertel", }; 
+		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
+		JSpinner spinner_fieldSupes = new JSpinner(fieldSupeModel);
+		spinner_fieldSupes.setBounds(187, 131, 106, 22);
+		add(spinner_fieldSupes);
+	}
+}
