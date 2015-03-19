@@ -1,0 +1,54 @@
+package controller;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.List;
+
+import javax.swing.JFrame;
+
+import model.Club;
+import model.dispatch.Dispatch;
+import View.Panel_Dispatch;
+
+public class CICOClient extends JFrame{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5563847155664858821L;
+	
+	private List<Club> activeClubs;
+	
+	private String userName; // user name of the client
+	
+	private Panel_Dispatch dispatchPanel;
+	
+	private Socket server; // connection to server
+	private ObjectOutputStream out; // output stream
+	private ObjectInputStream in; // input stream
+	
+	/************* Server Handler Private Class *****************/
+	// Reads commands from the server and executes them 
+	
+	private class ServerHandler implements Runnable {
+		
+		public void run() {
+			//Implement the ServerHandler
+			while(true) {
+				try {
+					Object obj = in.readObject();
+					if(obj instanceof Dispatch<?>) { // See if we have a valid command
+						Dispatch<CICOClient> command = (Dispatch<CICOClient>)obj;
+						command.execute(CICOClient.this);
+					}	
+				} catch (Exception e) {
+					e.printStackTrace();
+				} //this will block if no object written
+			}
+		}
+	}
+	
+	/*************************************************************/
+
+}

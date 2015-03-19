@@ -1,0 +1,14 @@
+package View;
+
+import javax.swing.JPanel;
+
+public class Panel_Dispatch extends JPanel {
+	public Panel_Dispatch() {
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4719929453960671801L;
+
+}
