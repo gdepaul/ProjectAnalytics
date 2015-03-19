@@ -13,6 +13,11 @@ public class Club implements Serializable {
 	String clubName;
 	float money;
 	int tickets;
+	int cashdrops;
+	int fullsheets;
+	int halfsheets;
+	int singletickets;
+	int wristbands;
 	
 	public Club(String clubName){
 		this.clubName = clubName;
@@ -59,6 +64,11 @@ public class Club implements Serializable {
 	public int getTickets() {
 		return tickets;
 	}
+	
+	public void putCashDrop() { this.cashdrops++; }
+	public void putFullSheet(int amount) { this.fullsheets += amount; }
+	public void putHalfSheet(int amount) { this.halfsheets += amount; }
+	public void putSingleTickets(int amount) { this.singletickets += amount; }
 
 	public List<DispatchObject> getTransactions() {
 		return transactions;
