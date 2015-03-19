@@ -282,19 +282,25 @@ public class DispatchServer {
 		long now = System.currentTimeMillis();
 
 		java.util.Date date = new java.util.Date(now);
-		
+		//Clubs need cash drop var
+		//	incremend # of cash drops by 1, decriment amount of money by 800
 		if (task.compareTo("CashDrop")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is a CashDrop. \n" +
 								clubName + " " + cash + " " + change + " " + tickets);
 		}
+		//Change drop var
+		//	100$
 		if (task.compareTo("ChangeDrop")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is a ChangeDrop\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
 		}
+		//
 		if (task.compareTo("InitialCashBox")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
 		}
+		//Ticket drop var
+		// Keep track of how many half sheets and full sheets we give them
 		if (task.compareTo("TicketDrop")==0){
 			System.out.println("" + date.toString()+  ": \nThis task is a TicketDrop\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
