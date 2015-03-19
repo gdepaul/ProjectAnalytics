@@ -148,10 +148,8 @@ public class CompleteClient extends JFrame{
 		panel_dispatch = new Panel_Dispatch(userName, out);
 		
 		// Create the tabbed pane
-		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Scheduler", panel_scheduler);
-		tabbedPane.addTab("Cash In/Cash Out", panel_CICO);
-		tabbedPane.addTab("Dispatch", panel_dispatch);
+		
+		
 		
 		this.setVisible(true);		
 	}	
