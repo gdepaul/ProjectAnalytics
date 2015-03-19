@@ -285,33 +285,34 @@ public class DispatchServer {
 		//Clubs need cash drop var
 		//	incremend # of cash drops by 1, decriment amount of money by 800
 		if (task.compareTo("CashDrop")==0){
-			System.out.println("" + date.toString()+  ": \nThis task is a CashDrop. \n" +
+			Out.print("" + date.toString()+  ": \nThis task is a CashDrop. \n" +
 								clubName + " " + cash + " " + change + " " + tickets);
 		}
 		//Change drop var
 		//	100$
 		if (task.compareTo("ChangeDrop")==0){
-			System.out.println("" + date.toString()+  ": \nThis task is a ChangeDrop\n"+
+			Out.print("" + date.toString()+  ": \nThis task is a ChangeDrop\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
+			hash_clubs.get(clubName).putCashDrop();
+			Out.print(clubName + " had a cash drop");
 		}
 		//
 		if (task.compareTo("InitialCashBox")==0){
-			System.out.println("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
+			Out.print("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
 		}
 		//Ticket drop var
 		// Keep track of how many half sheets and full sheets we give them
 		if (task.compareTo("TicketDrop")==0){
-			System.out.println("" + date.toString()+  ": \nThis task is a TicketDrop\n"+
+			Out.print("" + date.toString()+  ": \nThis task is a TicketDrop\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
 			hash_clubs.get(clubName).addTickets(tickets);	// Assumes a ticket drop increases tickets
 			
 		}
 		
 		
-		if (task.compareTo("AddActiveClub")==0){
-			
-			System.out.println("" + date.toString()+  ": \nThis task is an AddActiveClub\n"+
+		if (task.compareTo("AddActiveClub")==0){			
+			Out.print("" + date.toString()+  ": \nThis task is an AddActiveClub\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
 			
 			list_clubs.add(clubName);
@@ -320,14 +321,13 @@ public class DispatchServer {
 			System.out.println("Current clubs: \n");
 			
 			for (String current : list_clubs){
-				System.out.println("Club: " + hash_clubs.get(current).getClubName());
-				System.out.println("   Money: " + hash_clubs.get(current).getMoney());
-				System.out.println("   Tickets: " + hash_clubs.get(current).getTickets());
+				Out.print("Club: " + hash_clubs.get(current).getClubName());
+				Out.print("   Money: " + hash_clubs.get(current).getMoney());
+				Out.print("   Tickets: " + hash_clubs.get(current).getTickets());
 			}
 		}
-		if (task.compareTo("RemoveActiveClub")==0){
-			
-			System.out.println("" + date.toString()+  ": \nThis task is a RemoveActiveClub\n"+
+		if (task.compareTo("RemoveActiveClub")==0){			
+			Out.print("" + date.toString()+  ": \nThis task is a RemoveActiveClub\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
 			
 					list_clubs.remove(clubName);
@@ -336,9 +336,9 @@ public class DispatchServer {
 					System.out.println("Current clubs: \n");
 					
 					for (String current : list_clubs){
-						System.out.println("Club: " + hash_clubs.get(current).getClubName());
-						System.out.println("   Money: " + hash_clubs.get(current).getMoney());
-						System.out.println("   Tickets: " + hash_clubs.get(current).getTickets());
+						Out.print("Club: " + hash_clubs.get(current).getClubName());
+						Out.print("   Money: " + hash_clubs.get(current).getMoney());
+						Out.print("   Tickets: " + hash_clubs.get(current).getTickets());
 					}
 		}
 		updateClients();
