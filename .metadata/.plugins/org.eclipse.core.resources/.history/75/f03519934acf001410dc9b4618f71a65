@@ -27,7 +27,7 @@ public class UpdateDispatch extends Dispatch<DispatchClient> {
 
 	@Override
 	public void execute(DispatchClient executeOn) {
-		executeOn.update(clubs, availableFS, dispatchedFS);
+		executeOn.update(clubs);
 	}
 
 }

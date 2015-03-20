@@ -161,7 +161,7 @@ public class DispatchClient extends JFrame{
 //		// TODO Auto-generated method stub
 //		window_dispatch.update(objects);
 //	}
-	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
+	public void update(List<Club> clubs) {
 		this.activeClubs = clubs;
 		System.out.println("From Server: Update. Currently Active Clubs: ");
 		for(Club club : clubs) {
