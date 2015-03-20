@@ -2,9 +2,8 @@ package model.dispatchObject;
 
 public class CashDrop extends DispatchObject<DispatchObject>{
 
-	public CashDrop(String club, int cash, int tickets, int change) {
-		super(club, cash, tickets, change);
-		// TODO Auto-generated constructor stub
+	public CashDrop(String club) {
+		this.club=club;
 	}
 
 	@Override
