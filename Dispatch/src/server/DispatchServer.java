@@ -24,10 +24,8 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 import model.Club;
-import model.dispatch.Dispatch;
-import model.dispatch.UndoLastDispatch;
-import model.dispatch.UpdateDispatch;
-import model.dispatchObject.DispatchObject;
+import model.dispatch.*;
+import model.dispatchObject.*;
 import controller.DispatchClient;
 
 
@@ -285,29 +283,31 @@ public class DispatchServer {
 		//Clubs need cash drop var
 		//	incremend # of cash drops by 1, decriment amount of money by 800
 		if (task.compareTo("CashDrop")==0){
-			Out.print("" + date.toString()+  ": \nThis task is a CashDrop. \n" +
-								clubName + " " + cash + " " + change + " " + tickets);
+			hash_clubs.get(clubName).putCashDrop();
+			Out.print(clubName + " had a cash drop");
 		}
 		//Change drop var
 		//	100$
 		if (task.compareTo("ChangeDrop")==0){
-			Out.print("" + date.toString()+  ": \nThis task is a ChangeDrop\n"+
-					clubName + " " + cash + " " + change + " " + tickets);
-			hash_clubs.get(clubName).putCashDrop();
-			Out.print(clubName + " had a cash drop");
+			hash_clubs.get(clubName).putChangeDrop();
+			Out.print(clubName + " had a change drop");
 		}
 		//
 		if (task.compareTo("InitialCashBox")==0){
 			Out.print("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
 					clubName + " " + cash + " " + change + " " + tickets);
+			//hash_clubs.get(clubName).addMoney(more_money);
 		}
 		//Ticket drop var
 		// Keep track of how many half sheets and full sheets we give them
 		if (task.compareTo("TicketDrop")==0){
-			Out.print("" + date.toString()+  ": \nThis task is a TicketDrop\n"+
-					clubName + " " + cash + " " + change + " " + tickets);
-			hash_clubs.get(clubName).addTickets(tickets);	// Assumes a ticket drop increases tickets
-			
+			int fulls = ((TicketDrop)object).getFullSheets();
+			int halves = ((TicketDrop)object).getHalfSheets();
+			int singles = ((TicketDrop)object).getSingleTickets();
+			hash_clubs.get(clubName).putFullSheet(fulls);
+			hash_clubs.get(clubName).putHalfSheet(halves);
+			hash_clubs.get(clubName).putSingleTickets(singles);
+			Out.print(clubName + " had a ticket drop of " + fulls + " full sheets, " + halves + " half sheets, and  " + singles + " single tickets.");
 		}
 		
 		
