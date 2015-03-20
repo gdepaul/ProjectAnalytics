@@ -134,7 +134,7 @@ public class Panel_Dispatch extends JPanel {
 
 	private ArrayList<String> getAvailableFieldSupes() {
 		// TODO NEEDS TO GET LIST OF AVAILABLE FIELD SUPES FROM SERVER OR LOCAL
-		ArrayList<String> availableFieldSupes = (ArrayList<String>) availableFS;
+		ArrayList<String> availableFieldSupes = new ArrayList<>();
 		String[] availFS =	
 			{//ENTER FIELD SUPERVISORS HERE
 				"Valrie Vanfleet",

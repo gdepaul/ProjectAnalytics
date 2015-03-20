@@ -68,7 +68,7 @@ public class Panel_Dispatch extends JPanel {
 		textArea_timeIn.setText("   Time in:");
 		add(textArea_timeIn);
 		
-		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
+		List<String> fieldSupesArray = getAvailableFieldSupes();
 		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
 		JSpinner spinner_fieldSupes = new JSpinner(fieldSupeModel);
 		spinner_fieldSupes.setBounds(163, 47, 157, 20);
@@ -132,9 +132,9 @@ public class Panel_Dispatch extends JPanel {
 		
 	}
 
-	private ArrayList<String> getAvailableFieldSupes() {
+	private List<String> getAvailableFieldSupes() {
 		// TODO NEEDS TO GET LIST OF AVAILABLE FIELD SUPES FROM SERVER OR LOCAL
-		ArrayList<String> availableFieldSupes = (ArrayList<String>) availableFS;
+		List<String> availableFieldSupes = availableFS;
 		String[] availFS =	
 			{//ENTER FIELD SUPERVISORS HERE
 				"Valrie Vanfleet",
