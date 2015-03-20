@@ -1,5 +1,8 @@
 package View;
 
+import java.io.ObjectOutputStream;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -8,14 +11,29 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.JList;
 
+import model.Club;
+
 public class Panel_Scheduler extends JPanel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5973410696147468360L;
+	private String clientName;
+	private ObjectOutputStream output;
+	private List<Club> activeClubs;
+	private List<String> availableFS;
+	private	List<String> dispatchedFS;
+	
 	private JTextField textField_name;
 	private JTextField textField_timeOut;
-	public Panel_Scheduler() {
+	public Panel_Scheduler(String userName, ObjectOutputStream out, List<Club> activeClubs2, List<String> availableFS2, List<String> dispatchedFS2) {
+		
+		clientName = userName;
+		output = out;
+		activeClubs = activeClubs2;
+		availableFS = availableFS2;
+		dispatchedFS = dispatchedFS2;
+		
 		setLayout(null);
 		
 		JTextArea textArea_name = new JTextArea();

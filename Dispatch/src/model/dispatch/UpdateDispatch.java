@@ -3,10 +3,9 @@ package model.dispatch;
 import java.util.List;
 
 import model.Club;
-import model.dispatchObject.DispatchObject;
-import controller.DispatchClient;
+import controller.CompleteClient;
 
-public class UpdateDispatch extends Dispatch<DispatchClient> {
+public class UpdateDispatch extends Dispatch<CompleteClient> {
 
 	
 	/**
@@ -26,7 +25,7 @@ public class UpdateDispatch extends Dispatch<DispatchClient> {
 
 
 	@Override
-	public void execute(DispatchClient executeOn) {
+	public void execute(CompleteClient executeOn) {
 		executeOn.update(clubs, availableFS, dispatchedFS);
 	}
 

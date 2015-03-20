@@ -134,7 +134,7 @@ public class CompleteClient extends JFrame{
 	// Create the gui in the client once signed in
 	private void setupGUI() {
 		
-		setTitle("SpringFlingSoft (2015)- Client");
+		setTitle("SpringFlingSoft 2015 - Client");
 		setSize(800,800);
 		setBackground(Color.gray);
 		
@@ -143,9 +143,9 @@ public class CompleteClient extends JFrame{
 		getContentPane().add(topPanel);
 		
 		// Create tab pages here
-		panel_scheduler = new Panel_Scheduler();
-		panel_CICO = new Panel_CICO();
-		panel_dispatch = new Panel_Dispatch(userName, out);
+		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_dispatch = new Panel_Dispatch(userName, out, activeClubs, availableFS, dispatchedFS);
 		
 		// Create the tabbed pane
 		tabbedPane = new JTabbedPane();
@@ -166,14 +166,17 @@ public class CompleteClient extends JFrame{
 //		// TODO Auto-generated method stub
 //		window_dispatch.update(objects);
 //	}
-	public void update(List<Club> clubs) {
+	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.activeClubs = clubs;
 		System.out.println("From Server: Update. Currently Active Clubs: ");
 		for(Club club : clubs) {
 			System.out.println("\t" + club.getClubName());
 		}
 		
+		this.availableFS = availableFS;
+		this.dispatchedFS = dispatchedFS;
 		
+		this.repaint();
 		
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;

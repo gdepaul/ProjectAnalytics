@@ -2,6 +2,7 @@ package View;
 
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 
+import model.Club;
+
 public class Panel_Dispatch extends JPanel {
 	/**
 	 * 
@@ -20,18 +23,27 @@ public class Panel_Dispatch extends JPanel {
 	private static final long serialVersionUID = -4719929453960671801L;
 	private String clientName;
 	private ObjectOutputStream output;
+	private List<Club> activeClubs;
+	private List<String> availableFS;
+	private	List<String> dispatchedFS;
 	
 
 	/**
 	 * Panel_Dispatch constructor
+	 * @param dispatchedFS2 
+	 * @param availableFS2 
+	 * @param activeClubs2 
 	 * 
 	 * @param name		the client's name
 	 * @param output	the output stream to the server
 	 */
-	public Panel_Dispatch(String clientName, ObjectOutputStream out) {
+	public Panel_Dispatch(String clientName, ObjectOutputStream out, List<Club> activeClubs2, List<String> availableFS2, List<String> dispatchedFS2) {
 		
 		this.clientName = clientName;
 		this.output = out;
+		activeClubs = activeClubs2;
+		availableFS = availableFS2;
+		dispatchedFS = dispatchedFS2;
 		
 		
 		setLayout(null);

@@ -27,7 +27,7 @@ import model.dispatch.UndoLastDispatch;
 import model.dispatch.UpdateDispatch;
 import model.dispatchObject.DispatchObject;
 import model.dispatchObject.TicketDrop;
-import controller.DispatchClient;
+import controller.CompleteClient;
 
 
 /**
@@ -229,7 +229,7 @@ public class DispatchServer {
 		System.err.println("Updating Clients");
 //		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		Dispatch<DispatchClient> update = new UpdateDispatch("server", clubs, availableFS, dispatchedFS);
+		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, availableFS, dispatchedFS);
 		for (ObjectOutputStream out: outputs.values())
 			try{
 				out.writeObject(update);
