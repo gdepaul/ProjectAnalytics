@@ -1,9 +1,0 @@
-package View;
-
-import javax.swing.JPanel;
-
-public class Panel_Scheduler extends JPanel{
-	public Panel_Scheduler() {
-		setLayout(null);
-	}
-}

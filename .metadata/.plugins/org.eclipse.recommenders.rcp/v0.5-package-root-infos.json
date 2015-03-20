@@ -26,6 +26,19 @@
     "javaRuntime": true
   },
   {
+    "symbolicName": "forms-1.3.0",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "16a13056429fe1549076d25c7e5359b3f99b805f",
+    "jarFileModificationDate": "2015-03-19T16:00:52.477-07:00",
+    "location": "C:\\Users\\1nc09_000\\Documents\\ProjectAnalytics\\Dispatch\\forms-1.3.0.jar",
+    "javaRuntime": false
+  },
+  {
     "symbolicName": "jre",
     "version": {
       "major": 1,

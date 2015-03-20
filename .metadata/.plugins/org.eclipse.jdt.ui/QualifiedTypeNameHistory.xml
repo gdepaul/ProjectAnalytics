@@ -15,4 +15,8 @@
 <fullyQualifiedTypeName name="View.Panel_dispatch"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="View.Panel_Dispatch"/>
+<fullyQualifiedTypeName name="controller.SchedulerClient"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="View.Panel_Scheduler"/>
+<fullyQualifiedTypeName name="View.Panel_CICO"/>
 </qualifiedTypeNameHistroy>

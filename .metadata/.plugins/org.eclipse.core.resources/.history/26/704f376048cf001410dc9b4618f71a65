@@ -32,6 +32,8 @@ public class CompleteClient extends JFrame{
 	
 	private String userName; // user name of the client
 	
+	private Panel_Dispatch dispatchPanel;
+	
 	private Socket server; // connection to server
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
@@ -174,7 +176,7 @@ public class CompleteClient extends JFrame{
 	
 	// Main method in order to run the client
 	public static void main(String[] args){
-		new CompleteClient();
+		new DispatchClient();
 	}	
 	
 	

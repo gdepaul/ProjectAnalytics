@@ -174,7 +174,7 @@ public class CompleteClient extends JFrame{
 	
 	// Main method in order to run the client
 	public static void main(String[] args){
-		new CompleteClient();
+		new DispatchClient();
 	}	
 	
 	

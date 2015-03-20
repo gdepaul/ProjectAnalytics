@@ -18,22 +18,8 @@ public class Panel_Dispatch extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -4719929453960671801L;
-	private String clientName;
-	private ObjectOutputStream output;
-	
 
-	/**
-	 * Panel_Dispatch constructor
-	 * 
-	 * @param name		the client's name
-	 * @param output	the output stream to the server
-	 */
 	public Panel_Dispatch(String clientName, ObjectOutputStream out) {
-		
-		this.clientName = clientName;
-		this.output = out;
-		
-		
 		setLayout(null);
 		
 		JTextArea textArea_fieldSupe = new JTextArea();
@@ -59,53 +45,46 @@ public class Panel_Dispatch extends JPanel {
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
 		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
 		JSpinner spinner_fieldSupes = new JSpinner(fieldSupeModel);
-		spinner_fieldSupes.setBounds(163, 47, 157, 20);
+		spinner_fieldSupes.setBounds(163, 47, 120, 20);
 		add(spinner_fieldSupes);
 		
 		ArrayList<String> clubsArray = getClubs();	//THE METHOD getClubs() IS NOT FULLY IMPLEMENTED, SEE BELOW
 		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
 		JSpinner spinner_clubs = new JSpinner(clubsModel);
-		spinner_clubs.setBounds(163, 80, 157, 20);
+		spinner_clubs.setBounds(163, 80, 120, 20);
 		add(spinner_clubs);
 		
 		String[] actionArray = {"CashDrop", "ChangeDrop", "InitialCashBox", "TicketDrop"};
 		SpinnerListModel actionModel = new SpinnerListModel(actionArray);		
 		JSpinner spinner_action = new JSpinner(actionModel);
-		spinner_action.setBounds(163, 113, 157, 20);
+		spinner_action.setBounds(163, 113, 120, 20);
 		add(spinner_action);
 		
 		JTextField textField_timeIn = new JTextField();
-		textField_timeIn.setBounds(163, 146, 157, 20);
+		textField_timeIn.setBounds(163, 146, 120, 20);
 		add(textField_timeIn);
 		textField_timeIn.setColumns(10);
 		
 		JButton btnDispatch = new JButton("DISPATCH");
-		btnDispatch.setBounds(43, 200, 277, 70);
+		btnDispatch.setBounds(43, 200, 240, 70);
 		add(btnDispatch);
 		
+		DefaultListModel<String> list = new DefaultListModel<String>();
 		
-		//Available Field Supes list
-		DefaultListModel<String> availFS = new DefaultListModel<String>();
 		for (String supe: getAvailableFieldSupes()){
-			availFS.addElement(supe);
+			list.addElement(supe);
 		}
-		JList<String> availableFSList = new JList<String>(availFS);
+		JList<String> availableFSList = new JList<String>(list);
 		JScrollPane scrollPane_availableFS = new JScrollPane(availableFSList);
 		scrollPane_availableFS.setBounds(342, 94, 309, 176);
 		add(scrollPane_availableFS);
 		
-		//Dispatched Field Supes list
-		DefaultListModel<String> dispatchedFS = new DefaultListModel<String>();
-		for (String supe: getDispatchedFieldSupes()){
-			dispatchedFS.addElement(supe);
-		}
-		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
-		JScrollPane scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
+		JScrollPane scrollPane_dispatchedFS = new JScrollPane();
 		scrollPane_dispatchedFS.setBounds(342, 335, 309, 156);
 		add(scrollPane_dispatchedFS);
 		
 		JButton btnMakeAvailable = new JButton("Make Available");
-		btnMakeAvailable.setBounds(43, 388, 277, 44);
+		btnMakeAvailable.setBounds(43, 388, 240, 44);
 		add(btnMakeAvailable);
 		
 		JTextArea txtrAvailableFS = new JTextArea();
@@ -151,7 +130,7 @@ public class Panel_Dispatch extends JPanel {
 		return availableFieldSupes;
 	}
 
-	private ArrayList<String> getDispatchedFieldSupes() {
+	private ArrayList<String> getDispatched() {
 		// TODO NEEDS TO GET LIST OF DISPATCHED FIELD SUPES FROM SERVER OR LOCAL
 		ArrayList<String> dispatched = new ArrayList<>();
 		String[] dispatchedArray = {"Some Dude", "Another dude", "Yetanother Dude"};

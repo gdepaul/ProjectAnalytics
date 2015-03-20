@@ -3,3 +3,7 @@
 1426784743817	Rename field 'clientName'
 1426804855359	Rename field 'panel_cashInCashOut'
 1426810835964	Infer generic type arguments
+1426886156430	Rename local variable 'list'
+1426886253578	Rename local variable '_availFS'
+1426886324410	Rename method 'getDispatched'
+1426887238683	Delete element
