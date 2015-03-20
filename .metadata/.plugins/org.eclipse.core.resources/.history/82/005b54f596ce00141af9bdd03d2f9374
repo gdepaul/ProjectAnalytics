@@ -3,15 +3,14 @@ package View;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
+import javax.swing.JScrollPane;
 
 public class Panel_Dispatch extends JPanel {
 	/**
@@ -69,13 +68,7 @@ public class Panel_Dispatch extends JPanel {
 		btnDispatch.setBounds(43, 200, 240, 70);
 		add(btnDispatch);
 		
-		DefaultListModel<String> list = new DefaultListModel<String>();
-		
-		for (String supe: getAvailableFieldSupes()){
-			list.addElement(supe);
-		}
-		JList<String> availableFSList = new JList<String>(list);
-		JScrollPane scrollPane_availableFS = new JScrollPane(availableFSList);
+		JScrollPane scrollPane_availableFS = new JScrollPane();
 		scrollPane_availableFS.setBounds(342, 94, 309, 176);
 		add(scrollPane_availableFS);
 		

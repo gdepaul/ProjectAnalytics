@@ -1,14 +1,28 @@
 package View;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class Panel_CICO extends JPanel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3778947721922456207L;
+	private JTextArea TA_StartHere;
 
 	public Panel_CICO() {
+		setLayout(null);
+		
+		TA_StartHere = new JTextArea();
+		TA_StartHere.setText("Start Here: ");
+		TA_StartHere.setBounds(10, 73, 100, 22);
+		add(TA_StartHere);
+		TA_StartHere.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(122, 55, 183, 227);
+		add(scrollPane);
 	}
 	
 	/**
@@ -20,5 +34,4 @@ public class Panel_CICO extends JPanel{
 	public void update(){
 		repaint();
 	}
-
 }
