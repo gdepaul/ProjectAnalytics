@@ -114,7 +114,6 @@ public class CompleteClient extends JFrame{
 			});
 			setupGUI();
 
-			
 			new Thread(new ServerHandler()).start();
 			
 			
