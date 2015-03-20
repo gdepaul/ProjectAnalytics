@@ -11,12 +11,13 @@ public abstract class DispatchObject<T> implements Serializable {
 	 */
 	private static final long serialVersionUID = 1674881261061250454L;
 	
-	private String club;
-	private int cash;
-	private int tickets;
+	protected String club;
+	protected int cash;
+	protected int tickets;
 	
 	private int change;
-		public DispatchObject(String club, int cash, int tickets, int change) {
+	public DispatchObject() { }
+	public DispatchObject(String club, int cash, int tickets, int change) {
 		super();
 		this.club = club;
 		this.cash = cash;
