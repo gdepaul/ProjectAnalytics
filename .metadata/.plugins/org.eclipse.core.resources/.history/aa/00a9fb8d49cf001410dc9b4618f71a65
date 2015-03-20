@@ -29,8 +29,6 @@ public class CompleteClient extends JFrame{
 	private JPanel panel_CICO;
 	private JPanel panel_dispatch;
 	private List<Club> activeClubs;
-	private List<String> availableFS;
-	private	List<String> dispatchedFS;
 	
 	private String userName; // user name of the client
 	
@@ -172,14 +170,6 @@ public class CompleteClient extends JFrame{
 		for(Club club : clubs) {
 			System.out.println("\t" + club.getClubName());
 		}
-		
-		
-		
-//		private List<Club> activeClubs;
-//		private List<String> availableFS;
-//		private	List<String> dispatchedFS;
-		
-		
 	}
 	
 	// Main method in order to run the client
