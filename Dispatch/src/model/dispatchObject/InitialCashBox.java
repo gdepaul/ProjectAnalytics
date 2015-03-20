@@ -2,8 +2,9 @@ package model.dispatchObject;
 
 public class InitialCashBox extends DispatchObject<DispatchObject>{
 
-	public InitialCashBox(String club, int cash, int tickets, int change) {
-		super(club, cash, tickets, change);
+	public InitialCashBox(String club, int cash) {
+		this.club = club;
+		this.cash = cash;
 		// TODO Auto-generated constructor stub
 	}
 	
