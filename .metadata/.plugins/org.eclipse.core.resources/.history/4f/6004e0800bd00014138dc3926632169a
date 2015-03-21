@@ -173,13 +173,13 @@ public class CompleteClient extends JFrame{
 		this.dispatchedFS = dispatchedFS;
 		
 		System.out.println("From Server: Update. Currently Active Clubs: ");
-		for(Club club : clubs) {
+		for(Club club : activeClubs) {
 			System.out.println("\t" + club.getClubName());
 		}
-		for(String supe : availableFS){
+		for(String supe : this.availableFS){
 			System.out.println("available: \t" + supe);
 		}
-		for(String supe : dispatchedFS){
+		for(String supe : this.dispatchedFS){
 			System.out.println("dispatched: \t" + supe);
 		}
 		

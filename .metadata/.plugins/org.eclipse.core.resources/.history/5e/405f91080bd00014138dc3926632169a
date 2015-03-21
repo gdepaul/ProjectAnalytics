@@ -169,9 +169,6 @@ public class CompleteClient extends JFrame{
 //	}
 	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.activeClubs = clubs;
-		this.availableFS = availableFS;
-		this.dispatchedFS = dispatchedFS;
-		
 		System.out.println("From Server: Update. Currently Active Clubs: ");
 		for(Club club : clubs) {
 			System.out.println("\t" + club.getClubName());
@@ -182,6 +179,9 @@ public class CompleteClient extends JFrame{
 		for(String supe : dispatchedFS){
 			System.out.println("dispatched: \t" + supe);
 		}
+		
+		this.availableFS = availableFS;
+		this.dispatchedFS = dispatchedFS;
 		
 		this.repaint();
 		

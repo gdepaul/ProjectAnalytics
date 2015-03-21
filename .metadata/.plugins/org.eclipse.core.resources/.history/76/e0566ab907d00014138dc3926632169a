@@ -319,7 +319,6 @@ public class DispatchServer {
 			throw new DuplicateFieldSupeException(fs + " is already a field supe!");
 		}
 		availableFS.add(fs);
-		updateClients();
 	}
 	public void removeFieldSupe(String fs) throws DeployedException {
 		if(dispatchedFS.contains(fs)) {
@@ -393,7 +392,7 @@ public class DispatchServer {
 
 	/**
 	 *	This method updates all connected clients with the current list of
-	 *	clubs, available field supervisors, and dispatched field supervisors
+	 *	PaintObjects in the world
 	 */
 	public void updateClients(){
 		System.err.println("Updating Clients");

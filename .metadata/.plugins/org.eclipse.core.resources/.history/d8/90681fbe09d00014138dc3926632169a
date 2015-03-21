@@ -139,28 +139,24 @@ public class Panel_Scheduler extends JPanel{
 		textArea_name.setBackground(SystemColor.control);
 		textArea_name.setBounds(71, 131, 100, 22);
 		textArea_name.setText("      Name:");
-		textArea_name.setEditable(false);
 		add(textArea_name);
 		
 		JTextArea textArea_role = new JTextArea();
 		textArea_role.setBackground(SystemColor.control);
 		textArea_role.setBounds(71, 175, 100, 22);
 		textArea_role.setText("      Role:");
-		textArea_role.setEditable(false);
 		add(textArea_role);
 		
 		JTextArea textArea_timeIn = new JTextArea();
 		textArea_timeIn.setBackground(SystemColor.control);
 		textArea_timeIn.setBounds(71, 219, 100, 22);
 		textArea_timeIn.setText("  Time out:");
-		textArea_timeIn.setEditable(false);
 		add(textArea_timeIn);
 		
 		JTextArea textArea_timeOut = new JTextArea();
 		textArea_timeOut.setBackground(SystemColor.control);
 		textArea_timeOut.setBounds(71, 264, 100, 22);
 		textArea_timeOut.setText("   Time in:");
-		textArea_timeOut.setEditable(false);
 		add(textArea_timeOut);
 		
 		String[] RoleArray = {"Field Supervisor", "Cashier"};
@@ -194,21 +190,18 @@ public class Panel_Scheduler extends JPanel{
 		textArea_IDList.setBackground(SystemColor.control);
 		textArea_IDList.setBounds(372, 59, 46, 22);
 		textArea_IDList.setText("ID");
-		textArea_IDList.setEditable(false);
 		add(textArea_IDList);
 		
 		JTextArea textArea_timeInList = new JTextArea();
 		textArea_timeInList.setBackground(SystemColor.control);
 		textArea_timeInList.setBounds(503, 59, 86, 22);
 		textArea_timeInList.setText("Time In");
-		textArea_timeInList.setEditable(false);
 		add(textArea_timeInList);
 		
 		JTextArea textArea_timeOutList = new JTextArea();
 		textArea_timeOutList.setBackground(SystemColor.control);
 		textArea_timeOutList.setBounds(599, 59, 86, 22);
 		textArea_timeOutList.setText("Time Out");
-		textArea_timeOutList.setEditable(false);
 		add(textArea_timeOutList);
 		
 		DefaultListModel<String> currentEmployees = new DefaultListModel<String>();
@@ -238,11 +231,6 @@ public class Panel_Scheduler extends JPanel{
 		for (String emp : fullEmployeeList){
 			removeEmpArray.add(emp);
 		}
-		if (removeEmpArray.size()==0){
-			removeEmpArray.add("(No current employees)");
-		} else{
-			currentEmployees.removeElement("(No current employees)");
-		}
 		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
 		spinner_removeEmp = new JSpinner(removeEmpModel);
 		spinner_removeEmp.setBounds(190, 463, 154, 27);
@@ -253,7 +241,6 @@ public class Panel_Scheduler extends JPanel{
 		txtrName.setBackground(SystemColor.control);
 		txtrName.setText("     Name:");
 		txtrName.setBounds(71, 464, 100, 22);
-		txtrName.setEditable(false);
 		add(txtrName);
 		
 	}
