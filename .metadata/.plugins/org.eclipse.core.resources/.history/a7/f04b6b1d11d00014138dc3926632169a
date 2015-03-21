@@ -399,15 +399,9 @@ public class DispatchServer {
 		System.err.println("Updating Clients");
 //		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		
-		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, this.availableFS, dispatchedFS);
-
+		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, availableFS, dispatchedFS);
 		for (ObjectOutputStream out: outputs.values())
 			try{
-				System.out.println(out.toString());
-				for(String supe : this.availableFS){
-					System.out.println("available: \t" + supe);
-				}
 				out.writeObject(update);
 			}catch(Exception e){
 				Out.error("Error updating clients");

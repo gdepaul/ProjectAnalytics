@@ -174,19 +174,31 @@ public class CompleteClient extends JFrame{
 		this.dispatchedFS = dispatchedFS;
 		
 		System.out.println("From Server: Update ");
-		System.out.println(clubs.toString());
-		System.out.println(availableFS.toString());
-		System.out.println(dispatchedFS.toString());
+		for(Club club : clubs) {
+			System.out.println("\t" + club.getClubName());
+		}
+		for(String supe : availableFS){
+			System.out.println("available: \t" + supe);
+		}
+		for(String supe : dispatchedFS){
+			System.out.println("dispatched: \t" + supe);
+		}
+		System.out.println("Client data: \n");
+		for(Club club : this.activeClubs) {
+			System.out.println("\t" + club.getClubName());
+		}
+		for(String supe : this.availableFS){
+			System.out.println("available: \t" + supe);
+		}
+		for(String supe : this.dispatchedFS){
+			System.out.println("dispatched: \t" + supe);
+		}
 		
-		System.out.println(userName + " client data: \n");
-		this.activeClubs.toString();
-		this.availableFS.toString();
-		this.dispatchedFS.toString();
 		
 		
 		this.repaint();
 
-		((Panel_Scheduler) panel_scheduler).updateLists(this.activeClubs, this.availableFS, this.dispatchedFS);
+		((Panel_Scheduler) panel_scheduler).updateLists(this.activeClubs, this.availableFS, this.availableFS);
 //		panel_CICO.repaint();
 //		panel_dispatch.repaint();
 		

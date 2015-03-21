@@ -82,18 +82,12 @@ public class Panel_Scheduler extends JPanel{
 	
 	public void updateLists(List<Club> clubs, List<String> availFS, List<String> dispFS){
 		
-		System.out.println("Trying to add " + availFS.toString() + "+" + dispFS.toString());
+		System.out.println("Trying to add" + availFS.toString());
 		
-		remove(scrollPane_empList);	//Remove to replace
-		
-		//set lists to match server data
+		remove(scrollPane_empList);
 		activeClubs = clubs;
 		availableFS = availFS;
 		dispatchedFS = dispFS;
-		
-		//Debug, check variables
-//		System.out.println(availFS.toString());
-//		System.out.println(dispFS.toString());
 		
 		//Re-populate fullEmployeeList;
 				fullEmployeeList.clear();
@@ -108,7 +102,7 @@ public class Panel_Scheduler extends JPanel{
 					}
 				}
 				//sort
-				//Collections.sort(fullEmployeeList);
+				Collections.sort(fullEmployeeList);
 		
 		
 		///////////////
@@ -130,8 +124,8 @@ public class Panel_Scheduler extends JPanel{
 		/////////////////
 		
 		
-//		this.repaint();
-//		System.out.println("Trying to add" + fullEmployeeList.toString());
+		this.repaint();
+
 	}
 	
 	
@@ -156,7 +150,7 @@ public class Panel_Scheduler extends JPanel{
 			}
 		}
 		//sort
-		//Collections.sort(fullEmployeeList);
+		Collections.sort(fullEmployeeList);
 		
 //		//FOR TESTING ONLY /////////////////////////////////////////////
 //		String[] fieldSupesArray = {//ENTER FIELD SUPERVISORS HERE

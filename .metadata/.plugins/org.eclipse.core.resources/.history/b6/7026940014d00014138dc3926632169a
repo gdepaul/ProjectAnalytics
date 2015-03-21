@@ -44,7 +44,6 @@ public class Panel_Scheduler extends JPanel{
 	//initialize some values for scope
 	private String addEmployee;
 	private String removeEmployee;
-	private JList<String> empList;
 	
 	/**
 	 *	Add Employee Button Listener
@@ -81,22 +80,11 @@ public class Panel_Scheduler extends JPanel{
 	}
 	
 	public void updateLists(List<Club> clubs, List<String> availFS, List<String> dispFS){
-		
-		System.out.println("Trying to add " + availFS.toString() + "+" + dispFS.toString());
-		
-		remove(scrollPane_empList);	//Remove to replace
-		
-		//set lists to match server data
 		activeClubs = clubs;
 		availableFS = availFS;
 		dispatchedFS = dispFS;
 		
-		//Debug, check variables
-//		System.out.println(availFS.toString());
-//		System.out.println(dispFS.toString());
-		
 		//Re-populate fullEmployeeList;
-				fullEmployeeList.clear();
 				if (availableFS!=null){
 					for (String emp : availableFS){
 						fullEmployeeList.add(emp);
@@ -108,30 +96,31 @@ public class Panel_Scheduler extends JPanel{
 					}
 				}
 				//sort
-				//Collections.sort(fullEmployeeList);
+				Collections.sort(fullEmployeeList);
 		
 		
 		///////////////
-				DefaultListModel<String> currentEmployees = new DefaultListModel<String>();
-				for (String emp: fullEmployeeList){
-					currentEmployees.addElement(emp);
-				}
-				
-				if (currentEmployees.size()==0){
-					currentEmployees.addElement("(No current employees)");
-				} else{
-					currentEmployees.removeElement("(No current employees)");
-				}
-				
-				JList<String> empList = new JList<String>(currentEmployees);
-				scrollPane_empList = new JScrollPane(empList);
-				scrollPane_empList.setBounds(372, 105, 313, 488);
-				add(scrollPane_empList);
+		DefaultListModel<String> currentEmployees = new DefaultListModel<String>();
+		for (String emp: fullEmployeeList){
+			currentEmployees.addElement(emp);
+		}
+		
+		if (currentEmployees.size()==0){
+			currentEmployees.addElement("(No current employees)");
+		} else{
+			currentEmployees.removeElement("(No current employees)");
+		}
+		
+		JList<String> empList = new JList<String>(currentEmployees);
+
+		scrollPane_empList = new JScrollPane(empList);
+		scrollPane_empList.setBounds(372, 105, 313, 488);
+		add(scrollPane_empList);
 		/////////////////
 		
 		
-//		this.repaint();
-//		System.out.println("Trying to add" + fullEmployeeList.toString());
+		this.repaint();
+		System.out.println("Did this repaint?");
 	}
 	
 	
@@ -156,7 +145,7 @@ public class Panel_Scheduler extends JPanel{
 			}
 		}
 		//sort
-		//Collections.sort(fullEmployeeList);
+		Collections.sort(fullEmployeeList);
 		
 //		//FOR TESTING ONLY /////////////////////////////////////////////
 //		String[] fieldSupesArray = {//ENTER FIELD SUPERVISORS HERE
