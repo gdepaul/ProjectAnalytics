@@ -50,6 +50,7 @@ public class CompleteClient extends JFrame{
 					Object obj = in.readObject();
 					if(obj instanceof Dispatch<?>) { // See if we have a valid command
 						Dispatch<CompleteClient> command = (Dispatch<CompleteClient>)obj;
+						System.out.println("Update from server: " + command.getSource());
 						command.execute(CompleteClient.this);
 					}	
 				} catch (Exception e) {
@@ -113,7 +114,15 @@ public class CompleteClient extends JFrame{
 				}
 			});
 			setupGUI();
-
+			
+//			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
+//			out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
+//			out.writeObject(new AddObjectDispatch(userName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
+//			out.writeObject(new AddObjectDispatch(userName, new AddActiveClub("Club of Clubs", 1430, 2430, 343)));
+//			out.writeObject(new AddObjectDispatch(userName, new AddActiveClub("Faraway Horizons", 1430, 2430, 343)));
+//			out.writeObject(new AddObjectDispatch(userName, new TicketDrop("Faraway Horizons", 132, 220, 3042)));
+//			
+//			out.writeObject(new AddObjectDispatch(userName, new RemoveActiveClub("Club of Clubs", 1034, 234, 234)));
 			
 			new Thread(new ServerHandler()).start();
 			
