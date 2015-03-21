@@ -38,7 +38,6 @@ public class Panel_Scheduler extends JPanel{
 	//widgets
 	private JTextField textField_name;
 	private JTextField textField_timeOut;
-	JSpinner spinner_removeEmp;
 	
 	//initialize some values for scope
 	private String addEmployee;
@@ -65,7 +64,6 @@ public class Panel_Scheduler extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			removeEmployee = spinner_removeEmp.getValue().toString();
 			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
 														"removeEmployee: " + removeEmployee);
 		}
@@ -122,7 +120,6 @@ public class Panel_Scheduler extends JPanel{
 		for (String supe : fieldSupesArray){
 			fullEmployeeList.add(supe);
 		}
-		Collections.sort(fullEmployeeList);
 		//////////////////////////////////////////////////////////////////
 		
 		
@@ -226,7 +223,7 @@ public class Panel_Scheduler extends JPanel{
 			removeEmpArray.add(emp);
 		}
 		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
-		spinner_removeEmp = new JSpinner(removeEmpModel);
+		JSpinner spinner_removeEmp = new JSpinner(removeEmpModel);
 		spinner_removeEmp.setBounds(190, 463, 154, 27);
 		add(spinner_removeEmp);
 		

@@ -1,8 +1,8 @@
 package server;
 
-/**
+/*
  * 
- * @authors Kristoffer Cabulong & Nick Callahan
+ * Kristoffer Cabulong
  * 
  */
 
@@ -12,10 +12,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.channels.OverlappingFileLockException;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -27,26 +33,19 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 import model.Club;
-import model.dispatch.Dispatch;
-import model.dispatch.UndoLastDispatch;
-import model.dispatch.UpdateDispatch;
+import model.dispatch.*;
 import controller.CompleteClient;
-import exceptions.DeployedException;
-import exceptions.DuplicateClubException;
-import exceptions.DuplicateFieldSupeException;
-import exceptions.IllegalTicketOperation;
-import exceptions.NotDispatchedException;
-import exceptions.NullClubException;
-import exceptions.NullFieldSupeException;
+import exceptions.*;
 
 
 /**
- * DispatchServer
+ * Netpaint Server
  * 
- * <p> This class is the server side of Spring Fling Analytics. It is responsible for
- * managing connections to clients and sending and executing dispatches.
+ * <p> This class is the server side of Netpaint. It is responsible for
+ * managing connections to clients, sending and executing commands, and
+ * holds the list of all PaintObjects on the shared canvas. <P>
  * 
- * The Rosetta stone for this class was NetPaint Server, authored by Gabriel Kishi
+ * @author Gabriel Kishi
  *
  */
 

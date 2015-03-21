@@ -15,7 +15,6 @@ public class Club implements Serializable {
 	private static final long serialVersionUID = -1802530257610968136L;
 	private String clubName;
 	private float balance;
-	private float initialCashDrop;
 	private int tickets;
 	private int changedrops=0;
 	private int cashdrops=0;
@@ -37,16 +36,6 @@ public class Club implements Serializable {
 		this.balance = money;
 		this.tickets = tickets;
 		transactions = new ArrayList<DispatchObject>();
-	}
-	
-	//Initial Cash Drop can be different for each club, but should not be
-	//changed after it was made except to fix an administrative error.
-	public float getInitialCashDrop(){
-		return initialCashDrop;
-	}
-	
-	public void setInitialCashDrop(float drop){
-		initialCashDrop = drop;
 	}
 	
 	public int getChangedrops() {
@@ -74,24 +63,18 @@ public class Club implements Serializable {
 	}
 
 	// This will later be used to return a list of all transactions for this club
-	// Currently, this pulls from transactions, but that variable isn't being populated yet in the server. 3/21/2015
+	// Currently, this pulls from transactions, but that variable isn't being populated yet.
 	public String totalTransactions(){
 		String printTransactions = "";
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //2014/08/06 15:59:48\
-		if (transactions.size()!=0){
-			for (DispatchObject transaction : transactions){
-				Date date = new Date();
-				printTransactions += dateFormat.format(date) + transaction.getObjectType() + "\n";
-			}
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //2014/08/06 15:59:48
+		for (DispatchObject transaction : transactions){
+			Date date = new Date();
+			printTransactions += dateFormat.format(date) + transaction.getObjectType() + "\n";
 		}
 		if (printTransactions.compareTo("")==0){
 			return "No transactions in this history!";
 		} else
 		return printTransactions;
-	}
-	
-	public void addTransaction(DispatchObject dispatchObject){
-		transactions.add(dispatchObject);
 	}
 	
 	public void addMoney(int more_money){

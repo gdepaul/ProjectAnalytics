@@ -2,7 +2,6 @@ package View;
 
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -38,7 +37,6 @@ public class Panel_Scheduler extends JPanel{
 	//widgets
 	private JTextField textField_name;
 	private JTextField textField_timeOut;
-	JSpinner spinner_removeEmp;
 	
 	//initialize some values for scope
 	private String addEmployee;
@@ -65,7 +63,6 @@ public class Panel_Scheduler extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			removeEmployee = spinner_removeEmp.getValue().toString();
 			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
 														"removeEmployee: " + removeEmployee);
 		}
@@ -80,51 +77,14 @@ public class Panel_Scheduler extends JPanel{
 		activeClubs = activeClubs2;
 		availableFS = availableFS2;
 		dispatchedFS = dispatchedFS2;
-		fullEmployeeList = new ArrayList<String>();
 		
 		//populate fullEmployeeList;
-		if (availableFS!=null){
-			for (String emp : availableFS){
-				fullEmployeeList.add(emp);
-			}
+		for (String emp : availableFS){
+			fullEmployeeList.add(emp);
 		}
-		if (dispatchedFS!=null){
-			for (String emp : dispatchedFS){
-				fullEmployeeList.add(emp);
-			}
+		for (String emp : dispatchedFS){
+			fullEmployeeList.add(emp);
 		}
-		//sort
-		Collections.sort(fullEmployeeList);
-		
-		//FOR TESTING ONLY /////////////////////////////////////////////
-		String[] fieldSupesArray = {//ENTER FIELD SUPERVISORS HERE
-				"Valrie Vanfleet",
-				"Loralee Eckert",
-				"Romona Seats",
-				"Danita Mormon",
-				"Shelton Kleiman",
-				"Ty Kovacich",
-				"Lourie Wake",
-				"Diane Toto",
-				"Trudy Blount",
-				"Claude Ferrel",
-				"Santos Thrall",
-				"Lavonda Nanney",
-				"Tanner Laduke",
-				"Oliver Heyden",
-				"Edward Dunson",
-				"Prince Holsey",
-				"Annita Ragsdale",
-				"Carla Lopinto",
-				"Amber Covey",
-				"Alysia Ertel", }; 
-		
-		for (String supe : fieldSupesArray){
-			fullEmployeeList.add(supe);
-		}
-		Collections.sort(fullEmployeeList);
-		//////////////////////////////////////////////////////////////////
-		
 		
 		
 		setLayout(null);
@@ -152,6 +112,30 @@ public class Panel_Scheduler extends JPanel{
 		textArea_timeOut.setBounds(71, 264, 100, 22);
 		textArea_timeOut.setText("   Time in:");
 		add(textArea_timeOut);
+		
+		
+		String[] fieldSupesArray = {//ENTER FIELD SUPERVISORS HERE
+				"Valrie Vanfleet",
+				"Loralee Eckert",
+				"Romona Seats",
+				"Danita Mormon",
+				"Shelton Kleiman",
+				"Ty Kovacich",
+				"Lourie Wake",
+				"Diane Toto",
+				"Trudy Blount",
+				"Claude Ferrel",
+				"Santos Thrall",
+				"Lavonda Nanney",
+				"Tanner Laduke",
+				"Oliver Heyden",
+				"Edward Dunson",
+				"Prince Holsey",
+				"Annita Ragsdale",
+				"Carla Lopinto",
+				"Amber Covey",
+				"Alysia Ertel", }; 
+		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
 		
 		String[] RoleArray = {"Field Supervisor", "Cashier"};
 		SpinnerListModel RoleModel = new SpinnerListModel(RoleArray);	//~LOL~
@@ -202,13 +186,6 @@ public class Panel_Scheduler extends JPanel{
 		for (String emp: fullEmployeeList){
 			currentEmployees.addElement(emp);
 		}
-		
-		if (currentEmployees.size()==0){
-			currentEmployees.addElement("(No current employees)");
-		} else{
-			currentEmployees.removeElement("(No current employees)");
-		}
-		
 		JList<String> empList = new JList<String>(currentEmployees);
 		JScrollPane scrollPane_empList = new JScrollPane(empList);
 		scrollPane_empList.setBounds(372, 105, 313, 488);
@@ -226,7 +203,7 @@ public class Panel_Scheduler extends JPanel{
 			removeEmpArray.add(emp);
 		}
 		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
-		spinner_removeEmp = new JSpinner(removeEmpModel);
+		JSpinner spinner_removeEmp = new JSpinner(removeEmpModel);
 		spinner_removeEmp.setBounds(190, 463, 154, 27);
 		add(spinner_removeEmp);
 		
