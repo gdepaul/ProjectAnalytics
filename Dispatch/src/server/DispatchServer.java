@@ -22,12 +22,9 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 import model.Club;
-import model.dispatch.Dispatch;
-import model.dispatch.UndoLastDispatch;
-import model.dispatch.UpdateDispatch;
-import model.dispatchObject.DispatchObject;
-import model.dispatchObject.TicketDrop;
+import model.dispatch.*;
 import controller.CompleteClient;
+import exceptions.*;
 
 
 /**
@@ -76,7 +73,7 @@ public class DispatchServer {
 				try {
 					TimeUnit.SECONDS.sleep(3);
 					//TimeUnit.MINUTES.sleep(15);
-					System.out.println("Save");
+					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
 					List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
 					for(Club club : clubs) {
@@ -115,18 +112,46 @@ public class DispatchServer {
 			while(true){
 				try{
 					Object ob = input.readObject();
+					System.out.println(ob.getClass());
 					if (ob instanceof Dispatch<?>){
 						@SuppressWarnings("unchecked")
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
-						dispatch.execute(DispatchServer.this); // execute the command on the server
-					
+						try {
+							dispatch.execute(DispatchServer.this); // execute the command on the server
+						} catch(DuplicateClubException dce) {
+							Out.error("Client " + dispatch.getSource() + " tried to add a duplicate club");
+							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
+							clientOut.writeObject(dce);
+						} catch(DuplicateFieldSupeException dfse) {
+							Out.error("Client " + dispatch.getSource() + " tried to add a duplicate Field Supervior");
+							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
+							clientOut.writeObject(dfse);
+						} catch(DeployedException de) {
+							Out.error("Client " + dispatch.getSource() + " tried to remove a Field Supe currently dispatched.");
+							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
+							clientOut.writeObject(de);
+						} catch(NullFieldSupeException nfse) {
+							Out.error("Client " + dispatch.getSource() + " tried to dispatch a Field Supe that does not exist.");
+							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
+							clientOut.writeObject(nfse);
+						} catch(NotDispatchedException nde) {
+							Out.error("Client " + dispatch.getSource() + " tried to free Field Supe that is not dispatched");
+							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
+							clientOut.writeObject(nde);
+						} catch(NullClubException nce) {
+							Out.error("Client " + dispatch.getSource() + " tried to operate on Club " + nce.getClubName() + " which does not exist");
+							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
+							clientOut.writeObject(nce);
+						} finally {
+							updateClients();
+						}
 					if (!(dispatch instanceof UndoLastDispatch)) // undo commands can't be undone
 							history.push(dispatch);
 					}
 				}
 				catch(Exception e){
-					//System.err.println("In Client Handler:");
-					//e.printStackTrace();
+					System.err.println("In Client Handler:");
+					e.printStackTrace();
 					break;
 				}
 			}
@@ -209,6 +234,88 @@ public class DispatchServer {
 		}
 	}
 	
+//--These are all the methods called by server commands
+	public void addClub(Club newClub) throws DuplicateClubException {
+		System.err.println("ADD CLUB");
+		if(hash_clubs.containsKey(newClub.getClubName())) {
+			throw new DuplicateClubException(newClub.getClubName() + " already exists! Cannot add " + newClub.getClubName());
+		} 
+		list_clubs.add(newClub.getClubName());
+		hash_clubs.put(newClub.getClubName(), newClub);	
+		for(Club b : hash_clubs.values()) {
+			System.out.println(b.getClubName());
+		}
+	}
+	public void removeClub(String name) {
+		if(hash_clubs.containsKey(name)) {
+			list_clubs.remove(name);
+			hash_clubs.remove(name);
+		}
+	}
+	public void addFieldSupe(String fs) throws DuplicateFieldSupeException {
+		if(availableFS.contains(fs) || dispatchedFS.contains(fs)) {
+			throw new DuplicateFieldSupeException(fs + " is already a field supe!");
+		}
+		availableFS.add(fs);
+	}
+	public void removeFieldSupe(String fs) throws DeployedException {
+		if(dispatchedFS.contains(fs)) {
+			throw new DeployedException(fs + " is currently dispatched and cannot be removed.");
+		}
+		availableFS.remove(fs);
+	}
+	public void dispatchFieldSupe(String fs) throws NullFieldSupeException {
+		if(availableFS.contains(fs)) {
+			availableFS.remove(fs);
+			dispatchedFS.remove(fs);
+		}
+		else
+			throw new NullFieldSupeException(fs + " does not exist");
+	}
+	public void freeFieldSupe(String fs) throws NotDispatchedException {
+		if(dispatchedFS.contains(fs)) {
+			dispatchedFS.remove(fs);
+			availableFS.add(fs);
+		}
+		else
+			throw new NotDispatchedException(fs + "is not currently dispatched!");
+	}
+	public void cashDrop(String club) throws NullClubException {
+		if(hash_clubs.containsKey(club)) {
+			hash_clubs.get(club).putCashDrop();
+		}
+		else
+			throw new NullClubException(club + "does not exist");
+	}
+	public void changeDrop(String club) throws NullClubException {
+		if(hash_clubs.containsKey(club)) {
+			hash_clubs.get(club).putChangeDrop();
+		}
+		else
+			throw new NullClubException(club + "does not exist");
+	}
+	public void ticketDrop(String club, String type, int amount) throws NullClubException, IllegalTicketOperation {
+		if(hash_clubs.containsKey(club)) {
+			if(amount <= 0)
+				throw new IllegalTicketOperation("Must be a nonzero positive amount of tickets");
+			if(type.compareTo("FULL") == 0) {
+				hash_clubs.get(club).putFullSheet(amount);
+			}
+			else if(type.compareTo("HALF") == 0) {
+				hash_clubs.get(club).putHalfSheet(amount);
+			}
+			else if(type.compareTo("SINGLE") == 0) {
+				hash_clubs.get(club).putSingleTickets(amount);
+			}
+			else
+				throw new IllegalTicketOperation("TicketDrop must be FULL, HALF, or SINGLE");
+			hash_clubs.get(club).putChangeDrop();
+		}
+		else
+			throw new NullClubException(club + "does not exist");
+	}
+	
+	
 	/**
 	 * This method undoes the last command of a client
 	 * 
@@ -262,88 +369,5 @@ public class DispatchServer {
 	public static void main(String[] args)
 	{
 		new DispatchServer(9001);
-	}
-	
-	/*
-	 * So hey, this addObject() handles all the different kinds of objects that can be added.
-	 * It isn't elegant, I guess I could've used an enum, but this work, eh? Right now, the 
-	 * functionality is barebones. Replace the SYSO comments as needed.
-	 */
-
-	public void addObject(DispatchObject<?> object) {
-		
-		String task = object.getObjectType();
-		
-		String clubName = object.getClub();
-		int cash = object.getCash();
-		int change = object.getChange();
-		int tickets = object.getTickets();
-		Club club = new Club(clubName);
-		
-		long now = System.currentTimeMillis();
-
-		java.util.Date date = new java.util.Date(now);
-		//Clubs need cash drop var
-		//	incremend # of cash drops by 1, decriment amount of money by 800
-		if (task.compareTo("CashDrop")==0){
-			hash_clubs.get(clubName).putCashDrop();
-			Out.print(clubName + " had a cash drop");
-		}
-		//Change drop var
-		//	100$
-		if (task.compareTo("ChangeDrop")==0){
-			hash_clubs.get(clubName).putChangeDrop();
-			Out.print(clubName + " had a change drop");
-		}
-		//
-		if (task.compareTo("InitialCashBox")==0){
-			Out.print("" + date.toString()+  ": \nThis task is an InitialCashBox\n"+
-					clubName + " " + cash + " " + change + " " + tickets);
-			//hash_clubs.get(clubName).addMoney(more_money);
-		}
-		//Ticket drop var
-		// Keep track of how many half sheets and full sheets we give them
-		if (task.compareTo("TicketDrop")==0){
-			int fulls = ((TicketDrop)object).getFullSheets();
-			int halves = ((TicketDrop)object).getHalfSheets();
-			int singles = ((TicketDrop)object).getSingleTickets();
-			hash_clubs.get(clubName).putFullSheet(fulls);
-			hash_clubs.get(clubName).putHalfSheet(halves);
-			hash_clubs.get(clubName).putSingleTickets(singles);
-			Out.print(clubName + " had a ticket drop of " + fulls + " full sheets, " + halves + " half sheets, and  " + singles + " single tickets.");
-		}
-		
-		
-		if (task.compareTo("AddActiveClub")==0){			
-			Out.print("" + date.toString()+  ": \nThis task is an AddActiveClub\n"+
-					clubName + " " + cash + " " + change + " " + tickets);
-			
-			list_clubs.add(clubName);
-			hash_clubs.put(clubName, club);		
-			
-			System.out.println("Current clubs: \n");
-			
-			for (String current : list_clubs){
-				Out.print("Club: " + hash_clubs.get(current).getClubName());
-				Out.print("   Money: " + hash_clubs.get(current).getMoney());
-				Out.print("   Tickets: " + hash_clubs.get(current).getTickets());
-			}
-		}
-		if (task.compareTo("RemoveActiveClub")==0){			
-			Out.print("" + date.toString()+  ": \nThis task is a RemoveActiveClub\n"+
-					clubName + " " + cash + " " + change + " " + tickets);
-			
-					list_clubs.remove(clubName);
-					hash_clubs.remove(clubName);
-			
-					System.out.println("Current clubs: \n");
-					
-					for (String current : list_clubs){
-						Out.print("Club: " + hash_clubs.get(current).getClubName());
-						Out.print("   Money: " + hash_clubs.get(current).getMoney());
-						Out.print("   Tickets: " + hash_clubs.get(current).getTickets());
-					}
-		}
-		updateClients();
 	}
 }

@@ -2,6 +2,14 @@ package model.dispatch;
 
 import java.io.Serializable;
 
+import exceptions.DeployedException;
+import exceptions.DuplicateClubException;
+import exceptions.DuplicateFieldSupeException;
+import exceptions.IllegalTicketOperation;
+import exceptions.NotDispatchedException;
+import exceptions.NullClubException;
+import exceptions.NullFieldSupeException;
+
 /*
  * Thank you, Mr. Kishi
  * 
@@ -30,7 +38,7 @@ public abstract class Dispatch<T> implements Serializable {
 		this.source = source;
 	}
 
-	public abstract void execute(T executeOn);
+	public abstract void execute(T executeOn) throws DuplicateFieldSupeException, DuplicateClubException, DeployedException, NullFieldSupeException, NotDispatchedException, NullClubException, IllegalTicketOperation;
 
 	public void undo(T undoOn) {
 		// TO BE IMPLEMENTED

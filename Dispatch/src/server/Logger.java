@@ -11,6 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Logger {
+	
+	private Boolean DEBUG = false;
+	
 	private BufferedWriter FOUT;
 	private BufferedWriter FERR;
 	private DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
@@ -30,6 +33,7 @@ public class Logger {
 	}
 
 	public void error(String out) {
+		if(DEBUG) { System.err.println(out); }
 		Date date = new Date();
 		try {
 			FERR.write(format.format(date) + ": ");
@@ -42,6 +46,7 @@ public class Logger {
 	}
 
 	public void print(String out) {
+		if(DEBUG) { System.out.println(out); }
 		Date date = new Date();
 		try {
 			FOUT.write(format.format(date) + ": ");

@@ -19,6 +19,6 @@ public class AddObjectDispatch extends Dispatch<DispatchServer> {
 
 	@Override
 	public void execute(DispatchServer executeOn) {
-		executeOn.addObject(object);		
+		//executeOn.addObject(object);		
 	}
 }

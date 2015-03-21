@@ -66,7 +66,7 @@ public class Club implements Serializable {
 		return tickets;
 	}
 	
-	public void putChangeDrop() { this.changedrops++; }
+	public void putChangeDrop() { System.err.println("PUTTING CASH DROP"); this.changedrops++; }
 	public void putCashDrop() { this.cashdrops++; }
 	public void putFullSheet(int amount) { this.fullsheets += amount; }
 	public void putHalfSheet(int amount) { this.halfsheets += amount; }
