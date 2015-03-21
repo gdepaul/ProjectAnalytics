@@ -19,6 +19,10 @@ import java.net.Socket;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
@@ -233,7 +237,7 @@ public class DispatchServer {
 			
 			Out.print("Server started on port " + port);
 			//System.out.println("Server started on port " + port);
-			
+
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
 			new Thread(new AutoSaver()).start();
@@ -250,7 +254,6 @@ public class DispatchServer {
 		Out = new Logger("server.log","server.err");
 		try{
 			socket = new ServerSocket(port); // create a new server
-		
 		//--Load saved objects
 			hash_clubs = save.getClubs();
 			list_clubs = new ArrayList<String>(hash_clubs.keySet());
@@ -276,8 +279,23 @@ public class DispatchServer {
 			e.printStackTrace();
 		}
 	}
-	
-//--These are all the methods called by server commands
+
+	public static void attachShutDownHook() {
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				System.out.println("Inside Add Shutdown Hook");
+				try {
+					Files.deleteIfExists(Paths.get("server.lock"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//SERVER COMMANDS
+////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void addClub(Club newClub) throws DuplicateClubException {
 		System.err.println("ADD CLUB");
 		if(hash_clubs.containsKey(newClub.getClubName())) {
@@ -411,6 +429,7 @@ public class DispatchServer {
 	
 	public static void main(String[] args) {
 		int port = 9001;
+		attachShutDownHook();
 	//--Check if Server is already running
 		boolean available;
 		try {
