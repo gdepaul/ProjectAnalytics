@@ -8,10 +8,17 @@ package server;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
+import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.channels.OverlappingFileLockException;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
@@ -77,7 +84,7 @@ public class DispatchServer {
 					Out.print("Saving clubs to disk!");			
 					List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
 					for(Club club : clubs) {
-						SER.saveClub(club);
+						SER.backup(new SaveFile(hash_clubs,availableFS,dispatchedFS,histories));
 					}
 				} catch(InterruptedException ie) { Out.error(ie.getMessage());} 
 			}
@@ -218,6 +225,9 @@ public class DispatchServer {
 			
 			// setup lists for clubs, field supervisors
 			list_clubs = new ArrayList<String>();
+			availableFS = new ArrayList<String>();
+			dispatchedFS = new ArrayList<String>();
+			
 			
 			hash_clubs = new HashMap<String, Club>();
 			
@@ -227,7 +237,40 @@ public class DispatchServer {
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
 			new Thread(new AutoSaver()).start();
-		}catch(Exception e){
+		} catch(BindException be) {
+			System.err.println("A server is already using that port.  Try another port");
+		} catch(Exception e){
+			Out.error("Error creating server:");
+			//System.err.println("Error creating server:");
+			e.printStackTrace();
+		}
+	}
+	
+	public DispatchServer(int port, SaveFile save) {
+		Out = new Logger("server.log","server.err");
+		try{
+			socket = new ServerSocket(port); // create a new server
+		
+		//--Load saved objects
+			hash_clubs = save.getClubs();
+			list_clubs = new ArrayList<String>(hash_clubs.keySet());
+			availableFS = save.getAvailableFS();
+			dispatchedFS = save.getDispatchedFS();
+
+		//--Set up ins/outs
+			inputs = new ConcurrentHashMap<String, ObjectInputStream>();
+			outputs = new ConcurrentHashMap<String, ObjectOutputStream>();
+			
+			
+			Out.print("Server started on port " + port);
+			//System.out.println("Server started on port " + port);
+			
+			// begin accepting clients
+			new Thread(new ClientAccepter()).start();
+			new Thread(new AutoSaver()).start();
+		} catch(BindException be) {
+			System.err.println("A server is already using that port.  Try another port");
+		} catch(Exception e){
 			Out.error("Error creating server:");
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
@@ -248,7 +291,7 @@ public class DispatchServer {
 	}
 	public void removeClub(String name) {
 		if(hash_clubs.containsKey(name)) {
-			list_clubs.remove(name);
+			list_clubs.remove(name); 
 			hash_clubs.remove(name);
 		}
 	}
@@ -366,8 +409,35 @@ public class DispatchServer {
 	
 	
 	
-	public static void main(String[] args)
-	{
-		new DispatchServer(9001);
+	public static void main(String[] args) {
+		int port = 9001;
+	//--Check if Server is already running
+		boolean available;
+		try {
+			ServerSocket ignored = new ServerSocket(port);
+			available = true;
+			ignored.close();
+		} catch(Exception ioe) {
+			System.err.println("Socket is in use. Try another port");
+			System.exit(1);
+		}
+	//--If not, check to make sure lock file is gone
+		File file = new File("server.lock");
+		if(file.exists()) { 
+			System.err.println("We have detected a server crash. Loading from save file");
+			Serializer SER = new Serializer("backups");
+			SaveFile save = SER.loadMostRecent();
+			new DispatchServer(port,save);
+		}
+		else {
+			try {
+				FileOutputStream FOUT = new FileOutputStream("server.lock");
+				FOUT.write("Server started".getBytes());
+			} catch (IOException e) {
+				System.err.println("Could not create server lock file.");
+				e.printStackTrace();
+			}
+			new DispatchServer(port);
+		}
 	}
 }
