@@ -145,9 +145,18 @@ public class DispatchClient extends JFrame{
 		this.setSize(800, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// add a Drawing Panel
-		//dispatchPanel = new Panel_Dispatch(userName, out);
-		this.add(dispatchPanel);
+	
+		// Create tab pages here
+		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_dispatch = new Panel_Dispatch(userName, out, activeClubs, availableFS, dispatchedFS);
+		
+		// Create the tabbed pane
+		tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("Scheduler", panel_scheduler);
+		tabbedPane.addTab("Cash In/Cash Out", panel_CICO);
+		tabbedPane.addTab("Dispatch", panel_dispatch);
+		topPanel.add( tabbedPane, BorderLayout.CENTER);
 		
 		this.setVisible(true);		
 	}
@@ -163,10 +172,32 @@ public class DispatchClient extends JFrame{
 //	}
 	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.activeClubs = clubs;
-		System.out.println("From Server: Update. Currently Active Clubs: ");
-		for(Club club : clubs) {
-			System.out.println("\t" + club.getClubName());
-		}
+
+		this.availableFS = availableFS;
+		this.dispatchedFS = dispatchedFS;
+		
+		System.out.println("From Server: Update ");
+		System.out.println(clubs.toString());
+		System.out.println(availableFS.toString());
+		System.out.println(dispatchedFS.toString());
+		
+		System.out.println(userName + " client data: \n");
+		this.activeClubs.toString();
+		this.availableFS.toString();
+		this.dispatchedFS.toString();
+		
+		
+		this.repaint();
+
+		((Panel_Scheduler) panel_scheduler).updateLists(this.activeClubs, this.availableFS, this.dispatchedFS);
+//		panel_CICO.repaint();
+//		panel_dispatch.repaint();
+		
+//		private List<Club> activeClubs;
+//		private List<String> availableFS;
+//		private	List<String> dispatchedFS;
+		
+		
 	}
 	
 	// Main method in order to run the client

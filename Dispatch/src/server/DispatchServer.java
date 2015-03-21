@@ -1,8 +1,8 @@
 package server;
 
-/*
+/**
  * 
- * Kristoffer Cabulong
+ * @authors Kristoffer Cabulong & Nick Callahan
  * 
  */
 
@@ -12,16 +12,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.RandomAccessFile;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
-import java.nio.channels.OverlappingFileLockException;
-import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -33,19 +27,26 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 import model.Club;
-import model.dispatch.*;
+import model.dispatch.Dispatch;
+import model.dispatch.UndoLastDispatch;
+import model.dispatch.UpdateDispatch;
 import controller.CompleteClient;
-import exceptions.*;
+import exceptions.DeployedException;
+import exceptions.DuplicateClubException;
+import exceptions.DuplicateFieldSupeException;
+import exceptions.IllegalTicketOperation;
+import exceptions.NotDispatchedException;
+import exceptions.NullClubException;
+import exceptions.NullFieldSupeException;
 
 
 /**
- * Netpaint Server
+ * DispatchServer
  * 
- * <p> This class is the server side of Netpaint. It is responsible for
- * managing connections to clients, sending and executing commands, and
- * holds the list of all PaintObjects on the shared canvas. <P>
+ * <p> This class is the server side of Spring Fling Analytics. It is responsible for
+ * managing connections to clients and sending and executing dispatches.
  * 
- * @author Gabriel Kishi
+ * The Rosetta stone for this class was NetPaint Server, authored by Gabriel Kishi
  *
  */
 
@@ -82,7 +83,7 @@ public class DispatchServer {
 			SER = new Serializer("backups");
 			while(true) {
 				try {
-					TimeUnit.SECONDS.sleep(3);
+					TimeUnit.SECONDS.sleep(20);
 					//TimeUnit.MINUTES.sleep(15);
 					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
@@ -318,6 +319,7 @@ public class DispatchServer {
 			throw new DuplicateFieldSupeException(fs + " is already a field supe!");
 		}
 		availableFS.add(fs);
+		updateClients();
 	}
 	public void removeFieldSupe(String fs) throws DeployedException {
 		if(dispatchedFS.contains(fs)) {
@@ -391,15 +393,21 @@ public class DispatchServer {
 
 	/**
 	 *	This method updates all connected clients with the current list of
-	 *	PaintObjects in the world
+	 *	clubs, available field supervisors, and dispatched field supervisors
 	 */
 	public void updateClients(){
 		System.err.println("Updating Clients");
 //		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, availableFS, dispatchedFS);
+		
+		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, this.availableFS, dispatchedFS);
+
 		for (ObjectOutputStream out: outputs.values())
 			try{
+				System.out.println(out.toString());
+				for(String supe : this.availableFS){
+					System.out.println("available: \t" + supe);
+				}
 				out.writeObject(update);
 			}catch(Exception e){
 				Out.error("Error updating clients");
