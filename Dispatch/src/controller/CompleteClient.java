@@ -126,16 +126,16 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new AddFieldSupe(userName, "User2"));
 //			out.writeObject(new AddFieldSupe(userName, "User3"));
 //			out.writeObject(new AddFieldSupe(userName, "User4"));
-//			out.writeObject(new AddActiveClub(userName,"club0",0,0));
-//			out.writeObject(new AddActiveClub(userName,"club1",0,0));
-//			out.writeObject(new AddActiveClub(userName,"club2",0,0));
-//			out.writeObject(new AddActiveClub(userName,"AAA",0,0));
+			out.writeObject(new AddActiveClub(userName,"club0",0,0));
+			out.writeObject(new AddActiveClub(userName,"club1",0,0));
+			out.writeObject(new AddActiveClub(userName,"club2",0,0));
+			out.writeObject(new AddActiveClub(userName,"AAA",0,0));
 //			out.writeObject(new InitialCashDrop(userName, "AAA", (float) 800.00));			
-//			out.writeObject(new AddActiveClub(userName,"Arendale",0,0));
-//			out.writeObject(new AddActiveClub(userName,"Blue Sky",0,0));
+			out.writeObject(new AddActiveClub(userName,"Arendale",0,0));
+			out.writeObject(new AddActiveClub(userName,"Blue Sky",0,0));
 //			out.writeObject(new CashDrop(userName, "Blue Sky"));
 //			out.writeObject(new InitialCashDrop(userName, "Arendale", (float) 800.00));
-//			out.writeObject(new AddActiveClub(userName,"Traveling Pants",0,0));
+			out.writeObject(new AddActiveClub(userName,"Traveling Pants",0,0));
 //			out.writeObject(new DispatchFieldSupe(userName,"User0"));
 //			out.writeObject(new DispatchFieldSupe(userName,"User2"));
 
@@ -205,7 +205,10 @@ public class CompleteClient extends JFrame{
 		System.out.println(dispatchedFS);
 		
 		for(Club c: clubs) {
-			System.out.println(c.getClubName());
+			System.out.println(c.getClubName() + "\n" +
+					"InitialCashDrop: "+ c.getInitialCashDrop()+
+					"CashDrops: " + c.getCashdrops() +
+					"ChangeDrops: " + c.getChangedrops());
 		}
 		System.out.println("========================");
 		

@@ -345,6 +345,7 @@ public class DispatchServer {
 	public void initialCashDrop(String club, float drop) throws NullClubException{
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).setInitialCashDrop(drop);
+			System.out.println("\nInitial cash drop for " + club + ":" + hash_clubs.get(club).getInitialCashDrop());
 		}
 		else
 			throw new NullClubException(club + "does not exist");
