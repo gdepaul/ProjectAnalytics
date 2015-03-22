@@ -102,7 +102,6 @@ public class Panel_Scheduler extends JPanel{
 		spinner_removeEmp = new JSpinner(removeEmpModel);
 		spinner_removeEmp.setBounds(190, 463, 154, 27);
 		add(spinner_removeEmp);
-
 	}
 	
 	

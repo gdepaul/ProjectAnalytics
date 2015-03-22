@@ -203,6 +203,8 @@ public class CompleteClient extends JFrame{
 		this.repaint();
 		
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
+		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
+		
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;
 //		private	List<String> dispatchedFS;

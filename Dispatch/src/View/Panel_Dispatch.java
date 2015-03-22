@@ -1,5 +1,6 @@
 package View;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +20,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.Club;
+import model.dispatch.CashDrop;
+import model.dispatch.ChangeDrop;
+import model.dispatch.DispatchFieldSupe;
+import model.dispatch.FreeFieldSupe;
+import model.dispatch.TicketDrop;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,10 +43,12 @@ public class Panel_Dispatch extends JPanel {
 	private	List<String> dispatchedFS;
 	
 	//Widgets
-	JSpinner spinner_fieldSupes;
-	JSpinner spinner_clubs;
-	JSpinner spinner_action;
-	JSpinner spinner_freeUp;
+	private JSpinner spinner_fieldSupes;
+	private JSpinner spinner_clubs;
+	private JSpinner spinner_action;
+	private JSpinner spinner_freeUp;
+	private JScrollPane scrollPane_availableFS;
+	private JScrollPane scrollPane_dispatchedFS;
 	
 
 	//for spinner values
@@ -50,6 +58,69 @@ public class Panel_Dispatch extends JPanel {
 	private String dispatchedSelected;
 	
 	//for available selected
+	
+	/**
+	 *  UpdateLists method
+	 */
+	public void UpdateLists(List<Club> clubs, List<String> availableFS2,
+			List<String> dispatchedFS2) {
+		this.activeClubs = clubs;
+		this.availableFS = availableFS2;
+		this.dispatchedFS = dispatchedFS2;
+		
+		//Remove, update, replace spinner_fieldSupes
+		remove(spinner_fieldSupes);
+		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
+		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
+		spinner_fieldSupes = new JSpinner(fieldSupeModel);
+		spinner_fieldSupes.setBounds(163, 96, 157, 20);
+		spinner_fieldSupes.addChangeListener(new AFSSpinnerListener());
+		add(spinner_fieldSupes);
+		DFSSelected = spinner_fieldSupes.getValue().toString();
+		
+		//Remove, update, replace spinner_clubs
+		remove(spinner_clubs);
+		ArrayList<String> clubsArray = getClubs();
+		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
+		spinner_clubs = new JSpinner(clubsModel);
+		spinner_clubs.setBounds(163, 127, 157, 20);
+		spinner_clubs.addChangeListener(new ClubSpinnerListener());
+		add(spinner_clubs);
+		clubSelected = spinner_clubs.getValue().toString();
+		
+		//Remove, update, replace spinner_freeUp
+		remove(spinner_freeUp);
+		ArrayList<String> dispatchedArray = getDispatchedFieldSupes();
+		SpinnerListModel dispatchedModel = new SpinnerListModel(dispatchedArray);
+		spinner_freeUp = new JSpinner(dispatchedModel);
+		spinner_freeUp.setBounds(163, 446, 147, 22);
+		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
+		add(spinner_freeUp);
+		dispatchedSelected = spinner_freeUp.getValue().toString();
+		
+		//Remove, update, replace scrollPane_availableFS
+		remove(scrollPane_availableFS);
+		DefaultListModel<String> availFS = new DefaultListModel<String>();
+		for (String supe: getAvailableFieldSupes()){
+			availFS.addElement(supe);
+		}
+		JList<String> availableFSList = new JList<String>(availFS);
+		scrollPane_availableFS = new JScrollPane(availableFSList);
+		scrollPane_availableFS.setBounds(342, 94, 309, 236);
+		add(scrollPane_availableFS);
+		
+		//Remove, update, replace scrollPane_dispatchedFS
+		remove(scrollPane_dispatchedFS);
+		DefaultListModel<String> dispatchedFS = new DefaultListModel<String>();
+		for (String supe: getDispatchedFieldSupes()){
+			dispatchedFS.addElement(supe);
+		}
+		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
+		scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
+		scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
+		add(scrollPane_dispatchedFS);
+		
+	}
 	
 	/**
 	 * DispatchedSpinner Listener
@@ -114,6 +185,40 @@ public class Panel_Dispatch extends JPanel {
 														"Field Supe: " + DFSSelected + "\n" +
 														"Club: " + clubSelected + "\n" +
 														"ActionSelected: " + actionSelected);
+			//Dispatch field supe
+			try {
+				output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			// Process actionSelected on Club
+			String[] actionArray = {"CashDrop", "ChangeDrop", "InitialCashBox", "TicketDrop"};
+			
+			if (actionSelected.compareTo("CashDrop")==0){
+				try {
+					output.writeObject(new CashDrop(clientName, clubSelected));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else if (actionSelected.compareTo("ChangeDrop")==0){
+				try {
+					output.writeObject(new ChangeDrop(clientName, clubSelected));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else if (actionSelected.compareTo("TicketDrop")==0){
+				try {
+					output.writeObject(new TicketDrop(clientName, clubSelected, "SINGLE", 50));	//Right now, drops 50 single tickets. Ask about implementation.
+																								//Ebitie said they're worth $.50 cents
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -126,8 +231,12 @@ public class Panel_Dispatch extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			JOptionPane.showMessageDialog(getParent(), "Make FS Available Button!\n" +
 														"dispatchedSelected: " + dispatchedSelected);
+			try {
+				output.writeObject(new FreeFieldSupe(clientName, dispatchedSelected));
+			}catch(IOException e){
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	
 
@@ -226,7 +335,7 @@ public class Panel_Dispatch extends JPanel {
 			availFS.addElement(supe);
 		}
 		JList<String> availableFSList = new JList<String>(availFS);
-		JScrollPane scrollPane_availableFS = new JScrollPane(availableFSList);
+		scrollPane_availableFS = new JScrollPane(availableFSList);
 		scrollPane_availableFS.setBounds(342, 94, 309, 236);
 		add(scrollPane_availableFS);
 		
@@ -236,7 +345,7 @@ public class Panel_Dispatch extends JPanel {
 			dispatchedFS.addElement(supe);
 		}
 		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
-		JScrollPane scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
+		scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
 		scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
 		add(scrollPane_dispatchedFS);
 		
@@ -280,33 +389,6 @@ public class Panel_Dispatch extends JPanel {
 
 	private ArrayList<String> getAvailableFieldSupes() {
 		ArrayList<String> availableFieldSupes = new ArrayList<String>();
-//		String[] availFS =	
-//			{//ENTER FIELD SUPERVISORS HERE
-//				"Valrie Vanfleet",
-//				"Loralee Eckert",
-//				"Romona Seats",
-//				"Danita Mormon",
-//				"Shelton Kleiman",
-//				"Ty Kovacich",
-//				"Lourie Wake",
-//				"Diane Toto",
-//				"Trudy Blount",
-//				"Claude Ferrel",
-//				"Santos Thrall",
-//				"Lavonda Nanney",
-//				"Tanner Laduke",
-//				"Oliver Heyden",
-//				"Edward Dunson",
-//				"Prince Holsey",
-//				"Annita Ragsdale",
-//				"Carla Lopinto",
-//				"Amber Covey",
-//				"Alysia Ertel", }; 
-		
-		availableFS = new ArrayList<String>();
-		availableFS.add("Mary McDougal");
-		availableFS.add("Lenny Celt");
-		availableFS.add("Seven McCallister");
 		
 		if (availableFS!=null){
 			for (String supe : availableFS){
@@ -327,12 +409,6 @@ public class Panel_Dispatch extends JPanel {
 
 	private ArrayList<String> getDispatchedFieldSupes() {
 		ArrayList<String> dispatched = new ArrayList<>();
-//		String[] dispatchedArray = {"Some Dude", "Another dude", "Yetanother Dude"};
-		
-		dispatchedFS = new ArrayList<String>();
-		dispatchedFS.add("Bobby Bob");
-		dispatchedFS.add("Sally Mae");
-		dispatchedFS.add("Green Lantern");
 		
 		
 		if (dispatchedFS!=null){
@@ -367,11 +443,11 @@ public class Panel_Dispatch extends JPanel {
 			}
 		}
 		
-		/////TEST DATA////////////////
-		clubs.add("The Mickey Mouse");
-		clubs.add("Cliffhangers");
-		clubs.add("The Non-Club");
-		/////////////////////////////
+//		/////TEST DATA////////////////
+//		clubs.add("The Mickey Mouse");
+//		clubs.add("Cliffhangers");
+//		clubs.add("The Non-Club");
+//		/////////////////////////////
 		
 		if (clubs.size()==0){
 			clubs.add("(No clubs!)");
@@ -382,4 +458,6 @@ public class Panel_Dispatch extends JPanel {
 		
 		return clubs;
 	}
+
+
 }
