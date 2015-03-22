@@ -29,4 +29,23 @@ Mar 21 2015 13:48:00: Error updating clients
 Mar 21 2015 13:48:00: Error updating clients
 Mar 21 2015 13:50:37: Error updating clients
 Mar 21 2015 13:50:37: Error updating clients
-Mar 21 2015 17:49:51: Error creating server:
+<<<<<<< HEAD
+Mar 21 2015 13:55:17: Error creating server:
+Mar 21 2015 14:20:26: Error creating server:
+Mar 21 2015 14:27:54: Error creating server:
+Mar 21 2015 14:30:56: Error creating server:
+Mar 21 2015 14:44:32: Error creating server:
+Mar 21 2015 14:51:20: Error creating server:
+Mar 21 2015 14:54:39: Error creating server:
+Mar 21 2015 14:57:53: Client Peter tried to add a duplicate Field Supervior
+Mar 21 2015 15:01:32: Error creating server:
+Mar 21 2015 15:16:18: Error creating server:
+Mar 21 2015 15:17:36: Error creating server:
+Mar 21 2015 15:18:44: Error creating server:
+Mar 21 2015 15:24:37: Error creating server:
+Mar 21 2015 15:35:23: Error creating server:
+Mar 21 2015 15:52:05: Error creating server:
+Mar 21 2015 15:53:36: Error creating server:
+Mar 21 2015 17:30:01: Error creating server:
+=======
+>>>>>>> 1737587156277e2e2cf60a03429d96485834c9ff

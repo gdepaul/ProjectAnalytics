@@ -319,6 +319,7 @@ public class DispatchServer {
 			throw new DuplicateFieldSupeException(fs + " is already a field supe!");
 		}
 		availableFS.add(fs);
+		updateClients();
 	}
 	public void removeFieldSupe(String fs) throws DeployedException {
 		if(dispatchedFS.contains(fs)) {
@@ -398,9 +399,15 @@ public class DispatchServer {
 		System.err.println("Updating Clients");
 //		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, availableFS, dispatchedFS);
+		
+		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, this.availableFS, dispatchedFS);
+
 		for (ObjectOutputStream out: outputs.values())
 			try{
+				System.out.println(out.toString());
+				for(String supe : this.availableFS){
+					System.out.println("available: \t" + supe);
+				}
 				out.writeObject(update);
 			}catch(Exception e){
 				Out.error("Error updating clients");
