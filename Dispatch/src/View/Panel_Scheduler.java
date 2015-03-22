@@ -22,6 +22,7 @@ import javax.swing.SpinnerListModel;
 
 import model.Club;
 import model.dispatch.AddFieldSupe;
+import model.dispatch.RemoveFieldSupe;
 
 public class Panel_Scheduler extends JPanel{
 	/**
@@ -136,7 +137,7 @@ public class Panel_Scheduler extends JPanel{
 			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
 														"removeEmployee: " + removeEmployee);
 			try {
-				output.writeObject(new AddFieldSupe(clientName, addEmployee));
+				output.writeObject(new RemoveFieldSupe(clientName, removeEmployee));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
