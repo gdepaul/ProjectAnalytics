@@ -437,7 +437,9 @@ public class DispatchServer {
 			System.err.println("We have detected a server crash. Loading from save file");
 			Serializer SER = new Serializer("backups");
 			SaveFile save = SER.loadMostRecent();
-			new DispatchServer(port,save);
+			if(save != null)
+				new DispatchServer(port,save);
+			new DispatchServer(port);
 		}
 		else {
 			try {
