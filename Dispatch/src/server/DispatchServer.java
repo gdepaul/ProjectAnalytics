@@ -342,6 +342,13 @@ public class DispatchServer {
 		else
 			throw new NullClubException(club + "does not exist");
 	}
+	public void initialCashDrop(String club, float drop) throws NullClubException{
+		if(hash_clubs.containsKey(club)) {
+			hash_clubs.get(club).setInitialCashDrop(drop);
+		}
+		else
+			throw new NullClubException(club + "does not exist");
+	}
 	public void changeDrop(String club) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putChangeDrop();

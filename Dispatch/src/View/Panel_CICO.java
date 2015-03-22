@@ -1,27 +1,26 @@
 package View;
 
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-import javax.swing.SpinnerListModel;
-
-import model.Club;
-
-import javax.swing.JTextField;
-
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerListModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import model.Club;
+import model.dispatch.InitialCashDrop;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -87,14 +86,37 @@ public class Panel_CICO extends JPanel{
 	
 	private JSpinner spinner_clubSelection;
 	
+	JButton btn_initialCashDrop;
+	
 	//Listeners
 	private StartValsChangedListener startValsChangedListener;
 	private EndValsChangedListener endValsChangedListener;
+	private ConfirmInitialDropListener confirmInitialDropListener;
 	
 	//Initial values
 	private String clubSelected;
 	private Club actualClub;
+	
+	/**
+	 * Listener for the initial cash drop button
+	 */
+	public class ConfirmInitialDropListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				String startTotal = textArea_startTotal.getText().substring(1);
+				output.writeObject(new InitialCashDrop(clientName, actualClub.getClubName(), (float) Float.parseFloat(startTotal)));
+				JOptionPane.showMessageDialog(getParent(), "Initial Cash Drop logged for " + actualClub.getClubName()+ " for " + Float.parseFloat(startTotal));
+			} catch (NumberFormatException | IOException e) {
+				JOptionPane.showMessageDialog(getParent(), "Number format exception from ConfirmInitialDropListener");
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+	
 	/**
 	 * Start Values Changed Listener, automatically updates totals when values entered
 	 */
@@ -108,6 +130,7 @@ public class Panel_CICO extends JPanel{
 			//Let's start adding this up...
 			 	if(textField_penniesIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_penniesIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float penniesValue = (float) (Float.parseFloat(textField_penniesIn.getText())*.01); 
@@ -120,6 +143,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_nickelsIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_nickelsIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float nickelsValue = (float) (Float.parseFloat(textField_nickelsIn.getText())*.05); 
@@ -132,6 +156,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_dimesIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_dimesIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float dimesValue = (float) (Float.parseFloat(textField_dimesIn.getText())*.10); 
@@ -144,6 +169,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_quartersIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_quartersIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float quartersValue = (float) (Float.parseFloat(textField_quartersIn.getText())*.25); 
@@ -156,6 +182,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_dollarsIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_dollarsIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float dollarsValue = (float) (Float.parseFloat(textField_dollarsIn.getText())*1.00); 
@@ -168,6 +195,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_twosIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_twosIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float twosValue = (float) (Float.parseFloat(textField_twosIn.getText())*2.00); 
@@ -180,6 +208,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_fivesIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_fivesIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float fivesValue = (float) (Float.parseFloat(textField_fivesIn.getText())*5.00); 
@@ -192,6 +221,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_tensIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_tensIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float tensValue = (float) (Float.parseFloat(textField_tensIn.getText())*10.00); 
@@ -204,6 +234,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_twentiesIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_twentiesIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float twentiesValue = (float) (Float.parseFloat(textField_twentiesIn.getText())*20.00); 
@@ -216,6 +247,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_fiftiesIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_fiftiesIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float fiftiesValue = (float) (Float.parseFloat(textField_fiftiesIn.getText())*50.00); 
@@ -228,6 +260,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_hundredsIn.getText().compareTo("")==0){
 			 		startTotal += 0;
+			 		textArea_hundredsIn.setText("$0.00");
 			 	}else{
 					try { 
 				        float hundredsValue = (float) (Float.parseFloat(textField_hundredsIn.getText())*100.00); 
@@ -264,6 +297,7 @@ public class Panel_CICO extends JPanel{
 			//Let's start adding this up...
 			 	if(textField_penniesOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_penniesOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float penniesValue = (float) (Float.parseFloat(textField_penniesOut.getText())*.01); 
@@ -276,6 +310,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_nickelsOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_nickelsOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float nickelsValue = (float) (Float.parseFloat(textField_nickelsOut.getText())*.05); 
@@ -288,6 +323,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_dimesOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_dimesOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float dimesValue = (float) (Float.parseFloat(textField_dimesOut.getText())*.10); 
@@ -300,6 +336,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_quartersOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_quartersOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float quartersValue = (float) (Float.parseFloat(textField_quartersOut.getText())*.25); 
@@ -312,6 +349,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_dollarsOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_dollarsOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float dollarsValue = (float) (Float.parseFloat(textField_dollarsOut.getText())*1.00); 
@@ -324,6 +362,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_twosOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_twosOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float twosValue = (float) (Float.parseFloat(textField_twosOut.getText())*2.00); 
@@ -336,6 +375,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_fivesOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_fivesOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float fivesValue = (float) (Float.parseFloat(textField_fivesOut.getText())*5.00); 
@@ -348,6 +388,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_tensOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_tensOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float tensValue = (float) (Float.parseFloat(textField_tensOut.getText())*10.00); 
@@ -360,6 +401,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_twentiesOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_twentiesOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float twentiesValue = (float) (Float.parseFloat(textField_twentiesOut.getText())*20.00); 
@@ -372,6 +414,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_fiftiesOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_fiftiesOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float fiftiesValue = (float) (Float.parseFloat(textField_fiftiesOut.getText())*50.00); 
@@ -384,6 +427,7 @@ public class Panel_CICO extends JPanel{
 			 	
 			 	if(textField_hundredsOut.getText().compareTo("")==0){
 			 		endTotal += 0;
+			 		textArea_hundredsOut.setText("$0.00");
 			 	}else{
 					try { 
 				        float hundredsValue = (float) (Float.parseFloat(textField_hundredsOut.getText())*100.00); 
@@ -417,14 +461,45 @@ public class Panel_CICO extends JPanel{
 		clubSelected = spinner_clubSelection.getValue().toString();
 		actualClub = findActualClub(clubSelected);
 		
+		//if the club already has an initial cashdrop, turn off button and text fields...
+		
+		if (actualClub.getInitialCashDrop()!=0.0){
+			btn_initialCashDrop.setEnabled(false);
+			btn_initialCashDrop.setText("INITIAL CASH DROP DELIVERED!");
+			textField_penniesIn.setEnabled(false);
+			textField_nickelsIn.setEnabled(false);
+			textField_dimesIn.setEnabled(false);
+			textField_quartersIn.setEnabled(false);
+			textField_dollarsIn.setEnabled(false);
+			textField_twosIn.setEnabled(false);
+			textField_fivesIn.setEnabled(false);
+			textField_tensIn.setEnabled(false);
+			textField_twentiesIn.setEnabled(false);
+			textField_fiftiesIn.setEnabled(false);
+			textField_hundredsIn.setEnabled(false);
+			
+		} else{ // else, make sure, they're on...
+			btn_initialCashDrop.setEnabled(true);
+			btn_initialCashDrop.setText("CONFIRM INITIAL CASH DROP");
+			textField_penniesIn.setEnabled(true);
+			textField_nickelsIn.setEnabled(true);
+			textField_dimesIn.setEnabled(true);
+			textField_quartersIn.setEnabled(true);
+			textField_dollarsIn.setEnabled(true);
+			textField_twosIn.setEnabled(true);
+			textField_fivesIn.setEnabled(true);
+			textField_tensIn.setEnabled(true);
+			textField_twentiesIn.setEnabled(true);
+			textField_fiftiesIn.setEnabled(true);
+			textField_hundredsIn.setEnabled(true);
+		}
+		
+		// ...if it's there, show that value as startTotal
+		textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+		
 		//Update textAreas
-		remove(textArea_cashDrops);
-		textArea_cashDrops = new JTextArea();
-		textArea_cashDrops.setBackground(SystemColor.control);
-		textArea_cashDrops.setEditable(false);
+		
 		textArea_cashDrops.setText(actualClub.getCashdrops() + "");
-		textArea_cashDrops.setBounds(492, 403, 41, 27);
-		add(textArea_cashDrops);
 	}
 	private Club findActualClub(String clubSelected2) {
 		for(Club club : activeClubs){
@@ -462,15 +537,49 @@ public class Panel_CICO extends JPanel{
 		public void stateChanged(ChangeEvent arg0) {
 			clubSelected = spinner_clubSelection.getValue().toString();
 			actualClub = findActualClub(clubSelected);
+			//if the club already has an initial cashdrop, turn off button and text fields...
+			
+			JOptionPane.showMessageDialog(getParent(), "SpinnerChanged!\n"+
+					"actualClub = " + actualClub.getClubName() + "\n"+
+					"Initial Cash Drop = " + actualClub.getInitialCashDrop());
+			
+			if (actualClub.getInitialCashDrop()!=0.0){
+				btn_initialCashDrop.setEnabled(false);
+				btn_initialCashDrop.setText("INITIAL CASH DROP DELIVERED!");
+				textField_penniesIn.setEnabled(false);
+				textField_nickelsIn.setEnabled(false);
+				textField_dimesIn.setEnabled(false);
+				textField_quartersIn.setEnabled(false);
+				textField_dollarsIn.setEnabled(false);
+				textField_twosIn.setEnabled(false);
+				textField_fivesIn.setEnabled(false);
+				textField_tensIn.setEnabled(false);
+				textField_twentiesIn.setEnabled(false);
+				textField_fiftiesIn.setEnabled(false);
+				textField_hundredsIn.setEnabled(false);
+				
+			} else{ // else, make sure, they're on...
+				btn_initialCashDrop.setEnabled(true);
+				btn_initialCashDrop.setText("CONFIRM INITIAL CASH DROP");
+				textField_penniesIn.setEnabled(true);
+				textField_nickelsIn.setEnabled(true);
+				textField_dimesIn.setEnabled(true);
+				textField_quartersIn.setEnabled(true);
+				textField_dollarsIn.setEnabled(true);
+				textField_twosIn.setEnabled(true);
+				textField_fivesIn.setEnabled(true);
+				textField_tensIn.setEnabled(true);
+				textField_twentiesIn.setEnabled(true);
+				textField_fiftiesIn.setEnabled(true);
+				textField_hundredsIn.setEnabled(true);
+			}
+			
+			// ...if it's there, show that value as startTotal
+			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
 			//Update textAreas
-			remove(textArea_cashDrops);
-			textArea_cashDrops = new JTextArea();
-			textArea_cashDrops.setBackground(SystemColor.control);
-			textArea_cashDrops.setEditable(false);
+			
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
-			textArea_cashDrops.setBounds(492, 403, 41, 27);
-			add(textArea_cashDrops);
 			
 		}
 		
@@ -486,6 +595,7 @@ public class Panel_CICO extends JPanel{
 		
 		startValsChangedListener = new StartValsChangedListener();
 		endValsChangedListener = new EndValsChangedListener();
+		confirmInitialDropListener = new ConfirmInitialDropListener();
 		
 		setLayout(null);
 		
@@ -760,9 +870,10 @@ public class Panel_CICO extends JPanel{
 		txtrEnd.setBounds(263, 502, 67, 27);
 		add(txtrEnd);
 		
-		JButton btnNewButton = new JButton("CONFIRM INITIAL CASH DROP");
-		btnNewButton.setBounds(10, 536, 252, 40);
-		add(btnNewButton);
+		btn_initialCashDrop = new JButton("CONFIRM INITIAL CASH DROP");
+		btn_initialCashDrop.setBounds(10, 536, 252, 40);
+		btn_initialCashDrop.addActionListener(confirmInitialDropListener);
+		add(btn_initialCashDrop);
 		
 		JTextArea textArea_12 = new JTextArea();
 		textArea_12.setBackground(SystemColor.control);
