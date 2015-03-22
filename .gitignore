@@ -1,5 +1,5 @@
 # Compiled Source #
 Dispatch/bin/
 *.class
-
+*.metadata/
 
