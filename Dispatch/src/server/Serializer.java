@@ -59,9 +59,13 @@ public class Serializer {
 				sf = (SaveFile)OIN.readObject();
 				OIN.close();
 				
-			} catch(Exception e) {
+			} catch(NullPointerException npe) {
+				System.err.println("Could not load savefile!");
+				return null;
+			}
+			catch(Exception e) {
 				System.err.println("Error saving");
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			return sf;
 	}
