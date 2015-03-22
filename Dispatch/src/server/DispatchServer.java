@@ -83,8 +83,8 @@ public class DispatchServer {
 			SER = new Serializer("backups");
 			while(true) {
 				try {
-					TimeUnit.SECONDS.sleep(3);
-					//TimeUnit.MINUTES.sleep(15);
+					//TimeUnit.SECONDS.sleep(3);
+					TimeUnit.MINUTES.sleep(15);
 					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
 					SER.backup(new SaveFile(hash_clubs,availableFS,dispatchedFS,histories));
