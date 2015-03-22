@@ -119,16 +119,16 @@ public class CompleteClient extends JFrame{
 			});
 			setupGUI();
 			
-			out.writeObject(new AddFieldSupe(userName, "User0"));
-			out.writeObject(new AddFieldSupe(userName, "User1"));
-			out.writeObject(new AddFieldSupe(userName, "User2"));
-			out.writeObject(new AddFieldSupe(userName, "User3"));
-			out.writeObject(new AddFieldSupe(userName, "User4"));
-			out.writeObject(new AddActiveClub(userName,"club0",0,0));
-			out.writeObject(new AddActiveClub(userName,"club1",0,0));
-			out.writeObject(new AddActiveClub(userName,"club2",0,0));
-			out.writeObject(new DispatchFieldSupe(userName,"User0"));
-			out.writeObject(new DispatchFieldSupe(userName,"User2"));
+//			out.writeObject(new AddFieldSupe(userName, "User0"));
+//			out.writeObject(new AddFieldSupe(userName, "User1"));
+//			out.writeObject(new AddFieldSupe(userName, "User2"));
+//			out.writeObject(new AddFieldSupe(userName, "User3"));
+//			out.writeObject(new AddFieldSupe(userName, "User4"));
+//			out.writeObject(new AddActiveClub(userName,"club0",0,0));
+//			out.writeObject(new AddActiveClub(userName,"club1",0,0));
+//			out.writeObject(new AddActiveClub(userName,"club2",0,0));
+//			out.writeObject(new DispatchFieldSupe(userName,"User0"));
+//			out.writeObject(new DispatchFieldSupe(userName,"User2"));
 
 			
 
@@ -156,6 +156,7 @@ public class CompleteClient extends JFrame{
 		setTitle("SpringFlingSoft 2015 - Client");
 		setSize(800,800);
 		setBackground(Color.gray);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout() );
@@ -201,6 +202,7 @@ public class CompleteClient extends JFrame{
 		
 		this.repaint();
 		
+		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;
 //		private	List<String> dispatchedFS;
