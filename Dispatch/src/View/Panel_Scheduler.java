@@ -39,10 +39,71 @@ public class Panel_Scheduler extends JPanel{
 	private JTextField textField_name;
 	private JTextField textField_timeOut;
 	JSpinner spinner_removeEmp;
+	JScrollPane scrollPane_empList;
 	
 	//initialize some values for scope
 	private String addEmployee;
 	private String removeEmployee;
+	
+	/**
+	 * UpdateList
+	 */
+	public void UpdateLists(List<Club> clubs, List<String> available,
+			List<String> dispatched) {
+		this.activeClubs = clubs;
+		this.availableFS = available;
+		this.dispatchedFS = dispatched;
+
+		fullEmployeeList.clear();
+		// repopulate fullEmployeeList;
+		if (availableFS != null) {
+			for (String emp : availableFS) {
+				fullEmployeeList.add(emp);
+			}
+		}
+		if (dispatchedFS != null) {
+			for (String emp : dispatchedFS) {
+				fullEmployeeList.add(emp);
+			}
+		}
+		// sort
+		Collections.sort(fullEmployeeList);
+
+		// Cheesy remove, reset, and replace ScrollPane
+		remove(scrollPane_empList);
+		DefaultListModel<String> currentEmployees = new DefaultListModel<String>();
+		for (String emp : fullEmployeeList) {
+			currentEmployees.addElement(emp);
+		}
+		if (currentEmployees.size() == 0) {
+			currentEmployees.addElement("(No current employees)");
+		} else {
+			currentEmployees.removeElement("(No current employees)");
+		}
+
+		JList<String> empList = new JList<String>(currentEmployees);
+		scrollPane_empList = new JScrollPane(empList);
+		scrollPane_empList.setBounds(372, 105, 313, 488);
+		add(scrollPane_empList);
+		
+		// Cheesy remove, reset, and replace Spinner
+		remove(spinner_removeEmp);
+		ArrayList<String> removeEmpArray = new ArrayList<String>();
+		for (String emp : fullEmployeeList){
+			removeEmpArray.add(emp);
+		}
+		if (removeEmpArray.size()==0){
+			removeEmpArray.add("(No current employees)");
+		} else{
+			currentEmployees.removeElement("(No current employees)");
+		}
+		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
+		spinner_removeEmp = new JSpinner(removeEmpModel);
+		spinner_removeEmp.setBounds(190, 463, 154, 27);
+		add(spinner_removeEmp);
+
+	}
+	
 	
 	/**
 	 *	Add Employee Button Listener
@@ -74,8 +135,13 @@ public class Panel_Scheduler extends JPanel{
 			removeEmployee = spinner_removeEmp.getValue().toString();
 			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
 														"removeEmployee: " + removeEmployee);
+			try {
+				output.writeObject(new AddFieldSupe(clientName, addEmployee));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	
 	
@@ -101,6 +167,7 @@ public class Panel_Scheduler extends JPanel{
 		}
 		//sort
 		Collections.sort(fullEmployeeList);
+		
 		
 //		//FOR TESTING ONLY /////////////////////////////////////////////
 //		String[] fieldSupesArray = {//ENTER FIELD SUPERVISORS HERE
@@ -215,7 +282,6 @@ public class Panel_Scheduler extends JPanel{
 		for (String emp: fullEmployeeList){
 			currentEmployees.addElement(emp);
 		}
-		
 		if (currentEmployees.size()==0){
 			currentEmployees.addElement("(No current employees)");
 		} else{
@@ -223,7 +289,7 @@ public class Panel_Scheduler extends JPanel{
 		}
 		
 		JList<String> empList = new JList<String>(currentEmployees);
-		JScrollPane scrollPane_empList = new JScrollPane(empList);
+		scrollPane_empList = new JScrollPane(empList);
 		scrollPane_empList.setBounds(372, 105, 313, 488);
 		add(scrollPane_empList);
 		
