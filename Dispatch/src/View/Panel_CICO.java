@@ -89,6 +89,7 @@ public class Panel_CICO extends JPanel{
 	
 	//Listeners
 	private StartValsChangedListener startValsChangedListener;
+	private EndValsChangedListener endValsChangedListener;
 	
 	//Initial values
 	private String clubSelected;
@@ -248,8 +249,154 @@ public class Panel_CICO extends JPanel{
 		  } else {
 		     return String.format("%10.2f", number); // dj_segfault
 		  }
-		}
+	}
 	
+	/**
+	 * End Values Changed Listener, automatically updates totals when values entered
+	 */
+	private class EndValsChangedListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			float endTotal = 0;
+			
+			//Let's start adding this up...
+			 	if(textField_penniesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float penniesValue = (float) (Float.parseFloat(textField_penniesOut.getText())*.01); 
+				        endTotal += penniesValue;
+				        textArea_penniesOut.setText("$" +formatDecimal(penniesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of pennies!");
+				    }
+			 	}
+			 	
+			 	if(textField_nickelsOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float nickelsValue = (float) (Float.parseFloat(textField_nickelsOut.getText())*.05); 
+				        endTotal += nickelsValue;
+				        textArea_nickelsOut.setText("$" +formatDecimal(nickelsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of nickels!");
+				    }
+			 	}
+			 	
+			 	if(textField_dimesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float dimesValue = (float) (Float.parseFloat(textField_dimesOut.getText())*.10); 
+				        endTotal += dimesValue;
+				        textArea_dimesOut.setText("$" +formatDecimal(dimesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of dimes!");
+				    }
+			 	}
+			 	
+			 	if(textField_quartersOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float quartersValue = (float) (Float.parseFloat(textField_quartersOut.getText())*.25); 
+				        endTotal += quartersValue;
+				        textArea_quartersOut.setText("$" +formatDecimal(quartersValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of quarters!");
+				    }
+			 	}
+			 	
+			 	if(textField_dollarsOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float dollarsValue = (float) (Float.parseFloat(textField_dollarsOut.getText())*1.00); 
+				        endTotal += dollarsValue;
+				        textArea_dollarsOut.setText("$" +formatDecimal(dollarsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of single dollars!");
+				    }
+			 	}
+			 	
+			 	if(textField_twosOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float twosValue = (float) (Float.parseFloat(textField_twosOut.getText())*2.00); 
+				        endTotal += twosValue;
+				        textArea_twosOut.setText("$" +formatDecimal(twosValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of twos!");
+				    }
+			 	}
+			 	
+			 	if(textField_fivesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float fivesValue = (float) (Float.parseFloat(textField_fivesOut.getText())*5.00); 
+				        endTotal += fivesValue;
+				        textArea_fivesOut.setText("$" +formatDecimal(fivesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of fives!");
+				    }
+			 	}
+			 	
+			 	if(textField_tensOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float tensValue = (float) (Float.parseFloat(textField_tensOut.getText())*10.00); 
+				        endTotal += tensValue;
+				        textArea_tensOut.setText("$" +formatDecimal(tensValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of tens!");
+				    }
+			 	}
+			 	
+			 	if(textField_twentiesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float twentiesValue = (float) (Float.parseFloat(textField_twentiesOut.getText())*20.00); 
+				        endTotal += twentiesValue;
+				        textArea_twentiesOut.setText("$" +formatDecimal(twentiesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of twenties!");
+				    }
+			 	}
+			 	
+			 	if(textField_fiftiesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float fiftiesValue = (float) (Float.parseFloat(textField_fiftiesOut.getText())*50.00); 
+				        endTotal += fiftiesValue;
+				        textArea_fiftiesOut.setText("$" +formatDecimal(fiftiesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of fifties!");
+				    }
+			 	}
+			 	
+			 	if(textField_hundredsOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 	}else{
+					try { 
+				        float hundredsValue = (float) (Float.parseFloat(textField_hundredsOut.getText())*100.00); 
+				        endTotal += hundredsValue;
+				        textArea_hundredsOut.setText("$" +formatDecimal(hundredsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of hundreds!");
+				    }
+			 	}
+			 	
+			textArea_endTotal.setText("$" + formatDecimal(endTotal));
+		}
+	}
 	
 	/**
 	 * UpdateLists method
@@ -338,6 +485,7 @@ public class Panel_CICO extends JPanel{
 		dispatchedFS = dispatchedFS2;
 		
 		startValsChangedListener = new StartValsChangedListener();
+		endValsChangedListener = new EndValsChangedListener();
 		
 		setLayout(null);
 		
@@ -773,56 +921,67 @@ public class Panel_CICO extends JPanel{
 		textField_penniesOut = new JTextField();
 		textField_penniesOut.setColumns(10);
 		textField_penniesOut.setBounds(336, 139, 41, 22);
+		textField_penniesOut.addActionListener(endValsChangedListener);
 		add(textField_penniesOut);
 		
 		textField_nickelsOut = new JTextField();
 		textField_nickelsOut.setColumns(10);
 		textField_nickelsOut.setBounds(336, 172, 41, 22);
+		textField_nickelsOut.addActionListener(endValsChangedListener);
 		add(textField_nickelsOut);
 		
 		textField_dimesOut = new JTextField();
 		textField_dimesOut.setColumns(10);
 		textField_dimesOut.setBounds(336, 205, 41, 22);
+		textField_dimesOut.addActionListener(endValsChangedListener);
 		add(textField_dimesOut);
 		
 		textField_quartersOut = new JTextField();
 		textField_quartersOut.setColumns(10);
 		textField_quartersOut.setBounds(336, 238, 41, 22);
+		textField_quartersOut.addActionListener(endValsChangedListener);
 		add(textField_quartersOut);
 		
 		textField_dollarsOut = new JTextField();
 		textField_dollarsOut.setColumns(10);
 		textField_dollarsOut.setBounds(336, 271, 41, 22);
+		textField_dollarsOut.addActionListener(endValsChangedListener);
 		add(textField_dollarsOut);
 		
 		textField_twosOut = new JTextField();
 		textField_twosOut.setColumns(10);
 		textField_twosOut.setBounds(336, 304, 41, 22);
+		textField_twosOut.addActionListener(endValsChangedListener);
 		add(textField_twosOut);
 		
 		textField_fivesOut = new JTextField();
 		textField_fivesOut.setColumns(10);
 		textField_fivesOut.setBounds(336, 337, 41, 22);
+		textField_fivesOut.addActionListener(endValsChangedListener);
 		add(textField_fivesOut);
 		
 		textField_tensOut = new JTextField();
 		textField_tensOut.setColumns(10);
 		textField_tensOut.setBounds(336, 370, 41, 22);
+		textField_tensOut.addActionListener(endValsChangedListener);
 		add(textField_tensOut);
 		
 		textField_twentiesOut = new JTextField();
 		textField_twentiesOut.setColumns(10);
 		textField_twentiesOut.setBounds(336, 403, 41, 22);
+		textField_twentiesOut.addActionListener(endValsChangedListener);
 		add(textField_twentiesOut);
 		
 		textField_fiftiesOut = new JTextField();
 		textField_fiftiesOut.setColumns(10);
 		textField_fiftiesOut.setBounds(336, 436, 41, 22);
+		textField_fiftiesOut.addActionListener(endValsChangedListener);
 		add(textField_fiftiesOut);
 		
 		textField_hundredsOut = new JTextField();
 		textField_hundredsOut.setColumns(10);
 		textField_hundredsOut.setBounds(336, 469, 41, 22);
+		textField_hundredsOut.addActionListener(endValsChangedListener);
 		add(textField_hundredsOut);
 		
 		JTextArea textArea = new JTextArea();
