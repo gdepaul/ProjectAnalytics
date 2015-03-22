@@ -1,52 +1,38 @@
 package controller;
 
-/*
- * 
- * Kristoffer Cabulong
- * 
- * Client in order to:
- *  - connect to server by asking for host, port, and username
- *  - display the drawing panel to the user
- *  
- */
-
-
-import java.util.List;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import model.Club;
-import model.dispatch.AddObjectDispatch;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
-import model.dispatchObject.AddActiveClub;
-import model.dispatchObject.CashDrop;
-import model.dispatchObject.ChangeDrop;
-import model.dispatchObject.InitialCashBox;
-import model.dispatchObject.RemoveActiveClub;
-import model.dispatchObject.TicketDrop;
+import View.Panel_CICO;
 import View.Panel_Dispatch;
+import View.Panel_Scheduler;
 
-
-public class DispatchClient extends JFrame{
+public class CompleteClient extends JFrame{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -9046456846310614397L;
-
+	private JTabbedPane tabbedPane;
+	private JPanel panel_scheduler;
+	private JPanel panel_CICO;
+	private JPanel panel_dispatch;
 	private List<Club> activeClubs;
+	private List<String> availableFS;
+	private	List<String> dispatchedFS;
 	
 	private String userName; // user name of the client
-	
-	private Panel_Dispatch dispatchPanel;
 	
 	private Socket server; // connection to server
 	private ObjectOutputStream out; // output stream
@@ -63,8 +49,9 @@ public class DispatchClient extends JFrame{
 				try {
 					Object obj = in.readObject();
 					if(obj instanceof Dispatch<?>) { // See if we have a valid command
-						Dispatch<DispatchClient> command = (Dispatch<DispatchClient>)obj;
-						command.execute(DispatchClient.this);
+						Dispatch<CompleteClient> command = (Dispatch<CompleteClient>)obj;
+						System.out.println("Update from server: " + command.getSource());
+						command.execute(CompleteClient.this);
 					}	
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -74,8 +61,15 @@ public class DispatchClient extends JFrame{
 	}
 	
 	/*************************************************************/
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4326297992047795976L;
 	
-	public DispatchClient(){
+	public CompleteClient(){
+		
+		// Open connection to server
 //		// ask the user for a host, port, and user name
 		String host = JOptionPane.showInputDialog("Host address:");
 		String port = JOptionPane.showInputDialog("Host port:");
@@ -119,12 +113,11 @@ public class DispatchClient extends JFrame{
 					}
 				}
 			});
+			setupGUI();
 			
-			//setupGUI();
-		//	c
-		//	out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men")));
-		//	out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
-	//		out.writeObject(new AddObjectDispatch(userName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
+//			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
+//			out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
+//			out.writeObject(new AddObjectDispatch(userName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
 //			out.writeObject(new AddObjectDispatch(userName, new AddActiveClub("Club of Clubs", 1430, 2430, 343)));
 //			out.writeObject(new AddObjectDispatch(userName, new AddActiveClub("Faraway Horizons", 1430, 2430, 343)));
 //			out.writeObject(new AddObjectDispatch(userName, new TicketDrop("Faraway Horizons", 132, 220, 3042)));
@@ -142,10 +135,14 @@ public class DispatchClient extends JFrame{
 	// Create the gui in the client once signed in
 	private void setupGUI() {
 		
-		this.setSize(800, 600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("SpringFlingSoft 2015 - Client");
+		setSize(800,800);
+		setBackground(Color.gray);
 		
-	
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new BorderLayout() );
+		getContentPane().add(topPanel);
+		
 		// Create tab pages here
 		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
@@ -159,8 +156,8 @@ public class DispatchClient extends JFrame{
 		topPanel.add( tabbedPane, BorderLayout.CENTER);
 		
 		this.setVisible(true);		
-	}
-
+	}	
+		
 //	/**
 //	 * Updates the chat log. Called by UpdateClientCommands
 //	 * 
@@ -172,26 +169,21 @@ public class DispatchClient extends JFrame{
 //	}
 	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.activeClubs = clubs;
-
 		this.availableFS = availableFS;
 		this.dispatchedFS = dispatchedFS;
 		
-		System.out.println("From Server: Update ");
-		System.out.println(clubs.toString());
-		System.out.println(availableFS.toString());
-		System.out.println(dispatchedFS.toString());
-		
-		System.out.println(userName + " client data: \n");
-		this.activeClubs.toString();
-		this.availableFS.toString();
-		this.dispatchedFS.toString();
-		
+		System.out.println("From Server: Update. Currently Active Clubs: ");
+		for(Club club : clubs) {
+			System.out.println("\t" + club.getClubName());
+		}
+		for(String supe : availableFS){
+			System.out.println("available: \t" + supe);
+		}
+		for(String supe : dispatchedFS){
+			System.out.println("dispatched: \t" + supe);
+		}
 		
 		this.repaint();
-
-		((Panel_Scheduler) panel_scheduler).updateLists(this.activeClubs, this.availableFS, this.dispatchedFS);
-//		panel_CICO.repaint();
-//		panel_dispatch.repaint();
 		
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;
@@ -202,7 +194,9 @@ public class DispatchClient extends JFrame{
 	
 	// Main method in order to run the client
 	public static void main(String[] args){
-		new DispatchClient();
-	}
+		new CompleteClient();
+	}	
+	
+	
 
 }
