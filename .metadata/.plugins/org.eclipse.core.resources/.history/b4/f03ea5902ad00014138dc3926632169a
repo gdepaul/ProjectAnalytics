@@ -319,6 +319,7 @@ public class DispatchServer {
 			throw new DuplicateFieldSupeException(fs + " is already a field supe!");
 		}
 		availableFS.add(fs);
+		updateClients();
 	}
 	public void removeFieldSupe(String fs) throws DeployedException {
 		if(dispatchedFS.contains(fs)) {
