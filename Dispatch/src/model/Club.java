@@ -7,36 +7,37 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.dispatch.Dispatch;
 import model.dispatchObject.DispatchObject;
 
 
 public class Club implements Serializable {
-	
-	private static final long serialVersionUID = -1802530257610968136L;
+
+	private static final long serialVersionUID = 6552795683175716091L;
 	private String clubName;
 	private float balance;
 	private float initialCashDrop;
 	private int tickets;
-	private int changedrops=0;
-	private int cashdrops=0;
+	private int changedrops;
+	private int cashdrops;
 	private int fullsheets;
 	private int halfsheets;
 	private int singletickets;
 	private int wristbands;
-	private List<DispatchObject> transactions;
+	private List<Dispatch<?>> transactions;
 	
 	public Club(String clubName){
 		this.clubName = clubName;
 		this.balance = 0;
 		this.tickets = 0;
-		transactions = new ArrayList<DispatchObject>();
+		transactions = new ArrayList<Dispatch<?>>();
 	}
 	
 	public Club(String clubName, int money, int tickets){
 		this.clubName = clubName;
 		this.balance = money;
 		this.tickets = tickets;
-		transactions = new ArrayList<DispatchObject>();
+		transactions = new ArrayList<Dispatch<?>>();
 	}
 	
 	//Initial Cash Drop can be different for each club, but should not be
@@ -79,9 +80,9 @@ public class Club implements Serializable {
 		String printTransactions = "";
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //2014/08/06 15:59:48\
 		if (transactions.size()!=0){
-			for (DispatchObject transaction : transactions){
+			for (Dispatch<?> transaction : transactions){
 				Date date = new Date();
-				printTransactions += dateFormat.format(date) + transaction.getObjectType() + "\n";
+				printTransactions += dateFormat.format(date) + transaction.getClass() + "\n";
 			}
 		}
 		if (printTransactions.compareTo("")==0){
@@ -90,8 +91,8 @@ public class Club implements Serializable {
 		return printTransactions;
 	}
 	
-	public void addTransaction(DispatchObject dispatchObject){
-		transactions.add(dispatchObject);
+	public void addTransaction(Dispatch<?> dispatch){
+		transactions.add(dispatch);
 	}
 	
 	public void addMoney(int more_money){
@@ -122,11 +123,9 @@ public class Club implements Serializable {
 		return tickets;
 	}
 	
-	public void putChangeDrop() { System.err.println("PUTTING CASH DROP"); this.changedrops++; }
-	public void putCashDrop() { this.cashdrops++; }
+	public void putChangeDrop() { changedrops++; }
+	public void putCashDrop() { cashdrops++; }
 	public void putFullSheet(int amount) { this.fullsheets += amount; }
 	public void putHalfSheet(int amount) { this.halfsheets += amount; }
-	public void putSingleTickets(int amount) { this.singletickets += amount; }
-
-	
+	public void putSingleTickets(int amount) { this.singletickets += amount; }	
 }

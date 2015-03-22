@@ -158,9 +158,10 @@ public class DispatchServer {
 					}
 				}
 				catch(Exception e){
-					System.err.println("In Client Handler:");
-					if(!(e instanceof java.net.SocketException))
+					if(!(e instanceof java.net.SocketException)) {
 						e.printStackTrace();
+						System.err.println("In Client Handler:");
+					}
 					break;
 				}
 			}
@@ -338,6 +339,7 @@ public class DispatchServer {
 	public void cashDrop(String club) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putCashDrop();
+			System.out.println("CashDrop for " + club + ". This is its " + hash_clubs.get(club).getCashdrops() + " drop" );
 		}
 		else
 			throw new NullClubException(club + "does not exist");
@@ -398,9 +400,11 @@ public class DispatchServer {
 	public void updateClients(){
 		System.err.println("Updating Clients");
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		Dispatch<CompleteClient> update = new UpdateDispatch("wtf", clubs, new ArrayList<String>(availableFS), new ArrayList<String>(dispatchedFS));
-		for (ObjectOutputStream out: outputs.values())
+		Dispatch<CompleteClient> update = new UpdateDispatch("server", new ArrayList<Club>(clubs), new ArrayList<String>(availableFS), new ArrayList<String>(dispatchedFS));
+		for (ObjectOutputStream out: outputs.values()) {
+			
 			try{
+				out.reset();
 				out.writeObject(update);
 			}catch(Exception e){
 				Out.error("Error updating clients");
@@ -408,6 +412,7 @@ public class DispatchServer {
 			//	e.printStackTrace();
 				outputs.remove(out);
 			}
+		}
 	}
 
 

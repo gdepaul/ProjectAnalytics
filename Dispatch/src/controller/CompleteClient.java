@@ -204,11 +204,8 @@ public class CompleteClient extends JFrame{
 		System.out.println(availableFS);
 		System.out.println(dispatchedFS);
 		
-		for(Club c: clubs) {
-			System.out.println(c.getClubName() + "\n" +
-					"InitialCashDrop: "+ c.getInitialCashDrop()+
-					"CashDrops: " + c.getCashdrops() +
-					"ChangeDrops: " + c.getChangedrops());
+		for( Club club : clubs) {
+			System.err.println(club.getClubName() + "  " + club.getCashdrops());
 		}
 		System.out.println("========================");
 		
