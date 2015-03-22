@@ -18,6 +18,7 @@ import javax.swing.JTabbedPane;
 import model.Club;
 import model.dispatch.AddActiveClub;
 import model.dispatch.AddFieldSupe;
+import model.dispatch.CashDrop;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchFieldSupe;
@@ -127,6 +128,11 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new AddActiveClub(userName,"club0",0,0));
 //			out.writeObject(new AddActiveClub(userName,"club1",0,0));
 //			out.writeObject(new AddActiveClub(userName,"club2",0,0));
+//			out.writeObject(new AddActiveClub(userName,"AAA",0,0));
+//			out.writeObject(new AddActiveClub(userName,"Arendale",0,0));
+//			out.writeObject(new AddActiveClub(userName,"Blue Sky",0,0));
+//			out.writeObject(new CashDrop(userName, "Blue Sky"));
+//			out.writeObject(new AddActiveClub(userName,"Traveling Pants",0,0));
 //			out.writeObject(new DispatchFieldSupe(userName,"User0"));
 //			out.writeObject(new DispatchFieldSupe(userName,"User2"));
 
@@ -204,7 +210,7 @@ public class CompleteClient extends JFrame{
 		
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
-		((Panel_CICO) panel_CICO).updateLists(clubs, availableFS, dispatchedFS);
+		((Panel_CICO) panel_CICO).UpdateLists(clubs, availableFS, dispatchedFS);
 		
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;

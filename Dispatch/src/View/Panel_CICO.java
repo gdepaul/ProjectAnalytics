@@ -4,6 +4,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -14,6 +15,8 @@ import model.Club;
 import javax.swing.JTextField;
 
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JSpinner;
@@ -55,18 +58,203 @@ public class Panel_CICO extends JPanel{
 	private JTextField textField_twentiesOut;
 	private JTextField textField_fiftiesOut;
 	private JTextField textField_hundredsOut;
-	private JTextField textField_cashDrops;
+	
+	private JTextArea textArea_cashDrops;
+	private JTextArea textArea_startTotal;
+	private JTextArea textArea_endTotal;
+	private JTextArea textArea_penniesIn;
+	private JTextArea textArea_nickelsIn;
+	private JTextArea textArea_dimesIn;
+	private JTextArea textArea_quartersIn;
+	private JTextArea textArea_dollarsIn;
+	private JTextArea textArea_twosIn;
+	private JTextArea textArea_fivesIn;
+	private JTextArea textArea_tensIn;
+	private JTextArea textArea_twentiesIn;
+	private JTextArea textArea_fiftiesIn;
+	private JTextArea textArea_hundredsIn;
+	private JTextArea textArea_penniesOut;
+	private JTextArea textArea_nickelsOut;
+	private JTextArea textArea_dimesOut;
+	private JTextArea textArea_quartersOut;
+	private JTextArea textArea_dollarsOut;
+	private JTextArea textArea_twosOut;
+	private JTextArea textArea_fivesOut;
+	private JTextArea textArea_tensOut;
+	private JTextArea textArea_twentiesOut;
+	private JTextArea textArea_fiftiesOut;
+	private JTextArea textArea_hundredsOut;
 	
 	private JSpinner spinner_clubSelection;
 	
+	//Listeners
+	private StartValsChangedListener startValsChangedListener;
+	
 	//Initial values
 	private String clubSelected;
+	private Club actualClub;
 
+	/**
+	 * Start Values Changed Listener, automatically updates totals when values entered
+	 */
+	private class StartValsChangedListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			float startTotal = 0;
+			
+			//Let's start adding this up...
+			 	if(textField_penniesIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float penniesValue = (float) (Float.parseFloat(textField_penniesIn.getText())*.01); 
+						startTotal += penniesValue;
+				        textArea_penniesIn.setText("$" +formatDecimal(penniesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of pennies!");
+				    }
+			 	}
+			 	
+			 	if(textField_nickelsIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float nickelsValue = (float) (Float.parseFloat(textField_nickelsIn.getText())*.05); 
+						startTotal += nickelsValue;
+				        textArea_nickelsIn.setText("$" +formatDecimal(nickelsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of nickels!");
+				    }
+			 	}
+			 	
+			 	if(textField_dimesIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float dimesValue = (float) (Float.parseFloat(textField_dimesIn.getText())*.10); 
+						startTotal += dimesValue;
+				        textArea_dimesIn.setText("$" +formatDecimal(dimesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of dimes!");
+				    }
+			 	}
+			 	
+			 	if(textField_quartersIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float quartersValue = (float) (Float.parseFloat(textField_quartersIn.getText())*.25); 
+						startTotal += quartersValue;
+				        textArea_quartersIn.setText("$" +formatDecimal(quartersValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of quarters!");
+				    }
+			 	}
+			 	
+			 	if(textField_dollarsIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float dollarsValue = (float) (Float.parseFloat(textField_dollarsIn.getText())*1.00); 
+						startTotal += dollarsValue;
+				        textArea_dollarsIn.setText("$" +formatDecimal(dollarsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of single dollars!");
+				    }
+			 	}
+			 	
+			 	if(textField_twosIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float twosValue = (float) (Float.parseFloat(textField_twosIn.getText())*2.00); 
+						startTotal += twosValue;
+				        textArea_twosIn.setText("$" +formatDecimal(twosValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of twos!");
+				    }
+			 	}
+			 	
+			 	if(textField_fivesIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float fivesValue = (float) (Float.parseFloat(textField_fivesIn.getText())*5.00); 
+						startTotal += fivesValue;
+				        textArea_fivesIn.setText("$" +formatDecimal(fivesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of fives!");
+				    }
+			 	}
+			 	
+			 	if(textField_tensIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float tensValue = (float) (Float.parseFloat(textField_tensIn.getText())*10.00); 
+						startTotal += tensValue;
+				        textArea_tensIn.setText("$" +formatDecimal(tensValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of tens!");
+				    }
+			 	}
+			 	
+			 	if(textField_twentiesIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float twentiesValue = (float) (Float.parseFloat(textField_twentiesIn.getText())*20.00); 
+						startTotal += twentiesValue;
+				        textArea_twentiesIn.setText("$" +formatDecimal(twentiesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of twenties!");
+				    }
+			 	}
+			 	
+			 	if(textField_fiftiesIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float fiftiesValue = (float) (Float.parseFloat(textField_fiftiesIn.getText())*50.00); 
+						startTotal += fiftiesValue;
+				        textArea_fiftiesIn.setText("$" +formatDecimal(fiftiesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of fifties!");
+				    }
+			 	}
+			 	
+			 	if(textField_hundredsIn.getText().compareTo("")==0){
+			 		startTotal += 0;
+			 	}else{
+					try { 
+				        float hundredsValue = (float) (Float.parseFloat(textField_hundredsIn.getText())*100.00); 
+						startTotal += hundredsValue;
+				        textArea_hundredsIn.setText("$" +formatDecimal(hundredsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of hundreds!");
+				    }
+			 	}
+			 	
+			textArea_startTotal.setText("$" + formatDecimal(startTotal));
+		}
+		
+	}
+	public String formatDecimal(float number) {
+		  float epsilon = 0.004f; // 4 tenths of a cent
+		  if (Math.abs(Math.round(number) - number) < epsilon) {
+		     return String.format("%10.0f", number); // sdb
+		  } else {
+		     return String.format("%10.2f", number); // dj_segfault
+		  }
+		}
+	
 	
 	/**
 	 * UpdateLists method
 	 */
-	public void updateLists(List<Club> clubs, List<String> available, List<String> dispatched){
+	public void UpdateLists(List<Club> clubs, List<String> available, List<String> dispatched){
 		this.activeClubs = clubs;
 		this.availableFS = available;
 		this.dispatchedFS = dispatched;
@@ -80,6 +268,24 @@ public class Panel_CICO extends JPanel{
 		spinner_clubSelection.addChangeListener(new ClubSpinnerListener());
 		add(spinner_clubSelection);
 		clubSelected = spinner_clubSelection.getValue().toString();
+		actualClub = findActualClub(clubSelected);
+		
+		//Update textAreas
+		remove(textArea_cashDrops);
+		textArea_cashDrops = new JTextArea();
+		textArea_cashDrops.setBackground(SystemColor.control);
+		textArea_cashDrops.setEditable(false);
+		textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+		textArea_cashDrops.setBounds(492, 403, 41, 27);
+		add(textArea_cashDrops);
+	}
+	private Club findActualClub(String clubSelected2) {
+		for(Club club : activeClubs){
+			if (clubSelected.compareTo(club.getClubName())==0){
+				return club;
+			}
+		}
+		return null;
 	}
 	/**
 	 *  Creates an ArrayList<String> from the activeClubs list
@@ -108,6 +314,17 @@ public class Panel_CICO extends JPanel{
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
 			clubSelected = spinner_clubSelection.getValue().toString();
+			actualClub = findActualClub(clubSelected);
+			
+			//Update textAreas
+			remove(textArea_cashDrops);
+			textArea_cashDrops = new JTextArea();
+			textArea_cashDrops.setBackground(SystemColor.control);
+			textArea_cashDrops.setEditable(false);
+			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+			textArea_cashDrops.setBounds(492, 403, 41, 27);
+			add(textArea_cashDrops);
+			
 		}
 		
 	}
@@ -119,6 +336,8 @@ public class Panel_CICO extends JPanel{
 		activeClubs = activeClubs2;
 		availableFS = availableFS2;
 		dispatchedFS = dispatchedFS2;
+		
+		startValsChangedListener = new StartValsChangedListener();
 		
 		setLayout(null);
 		
@@ -216,57 +435,68 @@ public class Panel_CICO extends JPanel{
 		
 		textField_penniesIn = new JTextField();
 		textField_penniesIn.setBounds(87, 140, 41, 22);
+		textField_penniesIn.addActionListener(startValsChangedListener);
 		add(textField_penniesIn);
 		textField_penniesIn.setColumns(10);
 		
 		textField_nickelsIn = new JTextField();
 		textField_nickelsIn.setColumns(10);
+		textField_nickelsIn.addActionListener(startValsChangedListener);
 		textField_nickelsIn.setBounds(87, 173, 41, 22);
 		add(textField_nickelsIn);
 		
 		textField_dimesIn = new JTextField();
 		textField_dimesIn.setColumns(10);
 		textField_dimesIn.setBounds(87, 206, 41, 22);
+		textField_dimesIn.addActionListener(startValsChangedListener);
 		add(textField_dimesIn);
 		
 		textField_quartersIn = new JTextField();
 		textField_quartersIn.setColumns(10);
 		textField_quartersIn.setBounds(87, 239, 41, 22);
+		textField_quartersIn.addActionListener(startValsChangedListener);
 		add(textField_quartersIn);
 		
 		textField_dollarsIn = new JTextField();
 		textField_dollarsIn.setColumns(10);
 		textField_dollarsIn.setBounds(87, 272, 41, 22);
+		textField_dollarsIn.addActionListener(startValsChangedListener);
 		add(textField_dollarsIn);
 		
 		textField_twosIn = new JTextField();
 		textField_twosIn.setColumns(10);
 		textField_twosIn.setBounds(87, 305, 41, 22);
+		textField_twosIn.addActionListener(startValsChangedListener);
 		add(textField_twosIn);
 		
 		textField_fivesIn = new JTextField();
 		textField_fivesIn.setColumns(10);
 		textField_fivesIn.setBounds(87, 338, 41, 22);
+		textField_fivesIn.addActionListener(startValsChangedListener);
 		add(textField_fivesIn);
 		
 		textField_tensIn = new JTextField();
 		textField_tensIn.setColumns(10);
 		textField_tensIn.setBounds(87, 371, 41, 22);
+		textField_tensIn.addActionListener(startValsChangedListener);
 		add(textField_tensIn);
 		
 		textField_twentiesIn = new JTextField();
 		textField_twentiesIn.setColumns(10);
 		textField_twentiesIn.setBounds(87, 404, 41, 22);
+		textField_twentiesIn.addActionListener(startValsChangedListener);
 		add(textField_twentiesIn);
 		
 		textField_fiftiesIn = new JTextField();
 		textField_fiftiesIn.setColumns(10);
 		textField_fiftiesIn.setBounds(87, 437, 41, 22);
+		textField_fiftiesIn.addActionListener(startValsChangedListener);
 		add(textField_fiftiesIn);
 		
 		textField_hundredsIn = new JTextField();
 		textField_hundredsIn.setColumns(10);
 		textField_hundredsIn.setBounds(87, 470, 41, 22);
+		textField_hundredsIn.addActionListener(startValsChangedListener);
 		add(textField_hundredsIn);
 		
 		JTextArea txtrStartTotal = new JTextArea();
@@ -277,7 +507,7 @@ public class Panel_CICO extends JPanel{
 		txtrStartTotal.setBounds(10, 502, 67, 27);
 		add(txtrStartTotal);
 		
-		JTextArea textArea_startTotal = new JTextArea();
+		textArea_startTotal = new JTextArea();
 		textArea_startTotal.setBackground(SystemColor.control);
 		textArea_startTotal.setBounds(87, 503, 91, 27);
 		add(textArea_startTotal);
@@ -463,77 +693,77 @@ public class Panel_CICO extends JPanel{
 		textArea_22.setBounds(138, 469, 12, 22);
 		add(textArea_22);
 		
-		JTextArea textArea_penniesIn = new JTextArea();
+		textArea_penniesIn = new JTextArea();
 		textArea_penniesIn.setText("$0.00");
 		textArea_penniesIn.setEditable(false);
 		textArea_penniesIn.setBackground(SystemColor.menu);
 		textArea_penniesIn.setBounds(160, 139, 67, 22);
 		add(textArea_penniesIn);
 		
-		JTextArea textArea_nickelsIn = new JTextArea();
+		textArea_nickelsIn = new JTextArea();
 		textArea_nickelsIn.setText("$0.00");
 		textArea_nickelsIn.setEditable(false);
 		textArea_nickelsIn.setBackground(SystemColor.menu);
 		textArea_nickelsIn.setBounds(160, 172, 67, 22);
 		add(textArea_nickelsIn);
 		
-		JTextArea textArea_dimesIn = new JTextArea();
+		textArea_dimesIn = new JTextArea();
 		textArea_dimesIn.setText("$0.00");
 		textArea_dimesIn.setEditable(false);
 		textArea_dimesIn.setBackground(SystemColor.menu);
 		textArea_dimesIn.setBounds(160, 205, 67, 22);
 		add(textArea_dimesIn);
 		
-		JTextArea textArea_quartersIn = new JTextArea();
+		textArea_quartersIn = new JTextArea();
 		textArea_quartersIn.setText("$0.00");
 		textArea_quartersIn.setEditable(false);
 		textArea_quartersIn.setBackground(SystemColor.menu);
 		textArea_quartersIn.setBounds(160, 238, 67, 22);
 		add(textArea_quartersIn);
 		
-		JTextArea textArea_dollarsIn = new JTextArea();
+		textArea_dollarsIn = new JTextArea();
 		textArea_dollarsIn.setText("$0.00");
 		textArea_dollarsIn.setEditable(false);
 		textArea_dollarsIn.setBackground(SystemColor.menu);
 		textArea_dollarsIn.setBounds(160, 271, 67, 22);
 		add(textArea_dollarsIn);
 		
-		JTextArea textArea_twosIn = new JTextArea();
+		textArea_twosIn = new JTextArea();
 		textArea_twosIn.setText("$0.00");
 		textArea_twosIn.setEditable(false);
 		textArea_twosIn.setBackground(SystemColor.menu);
 		textArea_twosIn.setBounds(160, 304, 67, 22);
 		add(textArea_twosIn);
 		
-		JTextArea textArea_fivesIn = new JTextArea();
+		textArea_fivesIn = new JTextArea();
 		textArea_fivesIn.setText("$0.00");
 		textArea_fivesIn.setEditable(false);
 		textArea_fivesIn.setBackground(SystemColor.menu);
 		textArea_fivesIn.setBounds(160, 337, 67, 22);
 		add(textArea_fivesIn);
 		
-		JTextArea textArea_tensIn = new JTextArea();
+		textArea_tensIn = new JTextArea();
 		textArea_tensIn.setText("$0.00");
 		textArea_tensIn.setEditable(false);
 		textArea_tensIn.setBackground(SystemColor.menu);
 		textArea_tensIn.setBounds(160, 370, 67, 22);
 		add(textArea_tensIn);
 		
-		JTextArea textArea_twentiesIn = new JTextArea();
+		textArea_twentiesIn = new JTextArea();
 		textArea_twentiesIn.setText("$0.00");
 		textArea_twentiesIn.setEditable(false);
 		textArea_twentiesIn.setBackground(SystemColor.menu);
 		textArea_twentiesIn.setBounds(160, 403, 67, 22);
 		add(textArea_twentiesIn);
 		
-		JTextArea textArea_fiftiesIn = new JTextArea();
+		textArea_fiftiesIn = new JTextArea();
 		textArea_fiftiesIn.setText("$0.00");
 		textArea_fiftiesIn.setEditable(false);
 		textArea_fiftiesIn.setBackground(SystemColor.menu);
 		textArea_fiftiesIn.setBounds(160, 436, 67, 22);
 		add(textArea_fiftiesIn);
 		
-		JTextArea textArea_hundredsIn = new JTextArea();
+		textArea_hundredsIn = new JTextArea();
 		textArea_hundredsIn.setText("$0.00");
 		textArea_hundredsIn.setEditable(false);
 		textArea_hundredsIn.setBackground(SystemColor.menu);
@@ -672,84 +902,84 @@ public class Panel_CICO extends JPanel{
 		textArea_32.setBounds(387, 469, 12, 22);
 		add(textArea_32);
 		
-		JTextArea textArea_penniesOut = new JTextArea();
+		textArea_penniesOut = new JTextArea();
 		textArea_penniesOut.setText("$0.00");
 		textArea_penniesOut.setEditable(false);
 		textArea_penniesOut.setBackground(SystemColor.menu);
 		textArea_penniesOut.setBounds(409, 139, 67, 22);
 		add(textArea_penniesOut);
 		
-		JTextArea textArea_nickelsOut = new JTextArea();
+		textArea_nickelsOut = new JTextArea();
 		textArea_nickelsOut.setText("$0.00");
 		textArea_nickelsOut.setEditable(false);
 		textArea_nickelsOut.setBackground(SystemColor.menu);
 		textArea_nickelsOut.setBounds(409, 173, 67, 22);
 		add(textArea_nickelsOut);
 		
-		JTextArea textArea_dimesOut = new JTextArea();
+		textArea_dimesOut = new JTextArea();
 		textArea_dimesOut.setText("$0.00");
 		textArea_dimesOut.setEditable(false);
 		textArea_dimesOut.setBackground(SystemColor.menu);
 		textArea_dimesOut.setBounds(409, 205, 67, 22);
 		add(textArea_dimesOut);
 		
-		JTextArea textArea_quartersOut = new JTextArea();
+		textArea_quartersOut = new JTextArea();
 		textArea_quartersOut.setText("$0.00");
 		textArea_quartersOut.setEditable(false);
 		textArea_quartersOut.setBackground(SystemColor.menu);
 		textArea_quartersOut.setBounds(409, 237, 67, 22);
 		add(textArea_quartersOut);
 		
-		JTextArea textArea_onesOut = new JTextArea();
-		textArea_onesOut.setText("$0.00");
-		textArea_onesOut.setEditable(false);
-		textArea_onesOut.setBackground(SystemColor.menu);
-		textArea_onesOut.setBounds(409, 271, 67, 22);
-		add(textArea_onesOut);
+		textArea_dollarsOut = new JTextArea();
+		textArea_dollarsOut.setText("$0.00");
+		textArea_dollarsOut.setEditable(false);
+		textArea_dollarsOut.setBackground(SystemColor.menu);
+		textArea_dollarsOut.setBounds(409, 271, 67, 22);
+		add(textArea_dollarsOut);
 		
-		JTextArea textArea_twosOut = new JTextArea();
+		textArea_twosOut = new JTextArea();
 		textArea_twosOut.setText("$0.00");
 		textArea_twosOut.setEditable(false);
 		textArea_twosOut.setBackground(SystemColor.menu);
 		textArea_twosOut.setBounds(409, 304, 67, 22);
 		add(textArea_twosOut);
 		
-		JTextArea textArea_fivesOut = new JTextArea();
+		textArea_fivesOut = new JTextArea();
 		textArea_fivesOut.setText("$0.00");
 		textArea_fivesOut.setEditable(false);
 		textArea_fivesOut.setBackground(SystemColor.menu);
 		textArea_fivesOut.setBounds(409, 337, 67, 22);
 		add(textArea_fivesOut);
 		
-		JTextArea textArea_tensOut = new JTextArea();
+		textArea_tensOut = new JTextArea();
 		textArea_tensOut.setText("$0.00");
 		textArea_tensOut.setEditable(false);
 		textArea_tensOut.setBackground(SystemColor.menu);
 		textArea_tensOut.setBounds(409, 370, 67, 22);
 		add(textArea_tensOut);
 		
-		JTextArea textArea_twentiesOut = new JTextArea();
+		textArea_twentiesOut = new JTextArea();
 		textArea_twentiesOut.setText("$0.00");
 		textArea_twentiesOut.setEditable(false);
 		textArea_twentiesOut.setBackground(SystemColor.menu);
 		textArea_twentiesOut.setBounds(409, 403, 67, 22);
 		add(textArea_twentiesOut);
 		
-		JTextArea textArea_fiftiesOut = new JTextArea();
+		textArea_fiftiesOut = new JTextArea();
 		textArea_fiftiesOut.setText("$0.00");
 		textArea_fiftiesOut.setEditable(false);
 		textArea_fiftiesOut.setBackground(SystemColor.menu);
 		textArea_fiftiesOut.setBounds(409, 436, 67, 22);
 		add(textArea_fiftiesOut);
 		
-		JTextArea textArea_hundredsOut = new JTextArea();
+		textArea_hundredsOut = new JTextArea();
 		textArea_hundredsOut.setText("$0.00");
 		textArea_hundredsOut.setEditable(false);
 		textArea_hundredsOut.setBackground(SystemColor.menu);
 		textArea_hundredsOut.setBounds(409, 469, 67, 22);
 		add(textArea_hundredsOut);
 		
-		JTextArea textArea_endTotal = new JTextArea();
+		textArea_endTotal = new JTextArea();
 		textArea_endTotal.setBackground(SystemColor.menu);
 		textArea_endTotal.setBounds(324, 502, 91, 27);
 		add(textArea_endTotal);
@@ -771,16 +1001,11 @@ public class Panel_CICO extends JPanel{
 		txtrBooth.setBounds(10, 31, 121, 27);
 		add(txtrBooth);
 		
-		textField_cashDrops = new JTextField();
-		textField_cashDrops.setColumns(10);
-		textField_cashDrops.setBounds(492, 403, 41, 22);
-		add(textField_cashDrops);
-		
 		JTextArea txtrX_11 = new JTextArea();
 		txtrX_11.setText("X $500 +");
 		txtrX_11.setEditable(false);
 		txtrX_11.setBackground(SystemColor.menu);
-		txtrX_11.setBounds(543, 403, 75, 22);
+		txtrX_11.setBounds(558, 403, 75, 22);
 		add(txtrX_11);
 		
 		JTextArea textArea_endTotalCalc = new JTextArea();
@@ -789,11 +1014,11 @@ public class Panel_CICO extends JPanel{
 		add(textArea_endTotalCalc);
 		
 		JTextArea txtrOfCash = new JTextArea();
-		txtrOfCash.setText("  Number of   Cash Drops");
+		txtrOfCash.setText("    Cash Drops");
 		txtrOfCash.setLineWrap(true);
 		txtrOfCash.setEditable(false);
 		txtrOfCash.setBackground(SystemColor.menu);
-		txtrOfCash.setBounds(465, 355, 114, 40);
+		txtrOfCash.setBounds(465, 370, 114, 22);
 		add(txtrOfCash);
 		
 		JTextArea txtrEndTotal = new JTextArea();
@@ -823,6 +1048,12 @@ public class Panel_CICO extends JPanel{
 		txtrFinalTotal.setBackground(SystemColor.menu);
 		txtrFinalTotal.setBounds(616, 436, 95, 27);
 		add(txtrFinalTotal);
+		
+		textArea_cashDrops = new JTextArea();
+		textArea_cashDrops.setBackground(SystemColor.control);
+		textArea_cashDrops.setEditable(false);
+		textArea_cashDrops.setBounds(492, 403, 41, 27);
+		add(textArea_cashDrops);
 	}
 	
 	/**
