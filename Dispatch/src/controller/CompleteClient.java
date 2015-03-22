@@ -204,6 +204,7 @@ public class CompleteClient extends JFrame{
 		
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
+		((Panel_CICO) panel_CICO).updateLists(clubs, availableFS, dispatchedFS);
 		
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;

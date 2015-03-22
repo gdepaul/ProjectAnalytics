@@ -429,25 +429,13 @@ public class Panel_Dispatch extends JPanel {
 	}
 
 	private ArrayList<String> getClubs() {
-		// TODO NEEDS TO GET LIST OF CLUBS FROM SERVER OR LOCAL
 		ArrayList<String> clubs = new ArrayList<>();
-		
-		//ArrayList<String clubs = 
-		
-		//String[] clubsArray = {"The Mickey Mouse", "Cliffhangers", "Hulk-smashers", "The Non-Club"};
-		
 		
 		if (activeClubs!=null){
 			for (Club club : activeClubs){
-				clubs.add(club.toString());
+				clubs.add(club.getClubName());
 			}
 		}
-		
-//		/////TEST DATA////////////////
-//		clubs.add("The Mickey Mouse");
-//		clubs.add("Cliffhangers");
-//		clubs.add("The Non-Club");
-//		/////////////////////////////
 		
 		if (clubs.size()==0){
 			clubs.add("(No clubs!)");

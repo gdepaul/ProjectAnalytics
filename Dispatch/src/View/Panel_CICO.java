@@ -1,17 +1,24 @@
 package View;
 
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.SpinnerListModel;
 
 import model.Club;
+
 import javax.swing.JTextField;
+
 import java.awt.SystemColor;
+
 import javax.swing.JButton;
 import javax.swing.JSpinner;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -24,6 +31,8 @@ public class Panel_CICO extends JPanel{
 	private List<Club> activeClubs;
 	private List<String> availableFS;
 	private	List<String> dispatchedFS;
+	
+	//WIDGETS
 	private JTextField textField_penniesIn;
 	private JTextField textField_nickelsIn;
 	private JTextField textField_dimesIn;
@@ -47,6 +56,61 @@ public class Panel_CICO extends JPanel{
 	private JTextField textField_fiftiesOut;
 	private JTextField textField_hundredsOut;
 	private JTextField textField_cashDrops;
+	
+	private JSpinner spinner_clubSelection;
+	
+	//Initial values
+	private String clubSelected;
+
+	
+	/**
+	 * UpdateLists method
+	 */
+	public void updateLists(List<Club> clubs, List<String> available, List<String> dispatched){
+		this.activeClubs = clubs;
+		this.availableFS = available;
+		this.dispatchedFS = dispatched;
+		
+		//Remove, update, replace spinner_clubs
+		remove(spinner_clubSelection);
+		ArrayList<String> clubsArray = getClubs();
+		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
+		spinner_clubSelection = new JSpinner(clubsModel);
+		spinner_clubSelection.setBounds(147, 23, 252, 40);
+		spinner_clubSelection.addChangeListener(new ClubSpinnerListener());
+		add(spinner_clubSelection);
+		clubSelected = spinner_clubSelection.getValue().toString();
+	}
+	/**
+	 *  Creates an ArrayList<String> from the activeClubs list
+	 * 
+	 */
+	private ArrayList<String> getClubs() {
+		ArrayList<String> clubs = new ArrayList<>();
+		if (activeClubs!=null){
+			for (Club club : activeClubs){
+				clubs.add(club.getClubName());
+			}
+		}
+		if (clubs.size()==0){
+			clubs.add("(No clubs!)");
+		} else{
+			clubs.remove("(No clubs!)");
+		}
+		return clubs;
+	}
+	
+	/**
+	 * ClubSelected Spinner Listener
+	 */
+	private class ClubSpinnerListener implements ChangeListener{
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
+			clubSelected = spinner_clubSelection.getValue().toString();
+		}
+		
+	}
 
 	public Panel_CICO(String userName, ObjectOutputStream out, List<Club> activeClubs2, List<String> availableFS2, List<String> dispatchedFS2) {
 		
@@ -319,7 +383,7 @@ public class Panel_CICO extends JPanel{
 		add(txtrEnd);
 		
 		JButton btnNewButton = new JButton("CONFIRM INITIAL CASH DROP");
-		btnNewButton.setBounds(10, 536, 191, 40);
+		btnNewButton.setBounds(10, 536, 252, 40);
 		add(btnNewButton);
 		
 		JTextArea textArea_12 = new JTextArea();
@@ -690,9 +754,15 @@ public class Panel_CICO extends JPanel{
 		textArea_endTotal.setBounds(324, 502, 91, 27);
 		add(textArea_endTotal);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(147, 23, 252, 40);
-		add(spinner);
+		spinner_clubSelection = new JSpinner();
+		
+		ArrayList<String> clubsArray = getClubs();
+		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
+		spinner_clubSelection = new JSpinner(clubsModel);
+		spinner_clubSelection.setBounds(147, 23, 252, 40);
+		spinner_clubSelection.addChangeListener(new ClubSpinnerListener());
+		add(spinner_clubSelection);
+		clubSelected = spinner_clubSelection.getValue().toString();
 		
 		JTextArea txtrBooth = new JTextArea();
 		txtrBooth.setBackground(SystemColor.control);
@@ -723,7 +793,7 @@ public class Panel_CICO extends JPanel{
 		txtrOfCash.setLineWrap(true);
 		txtrOfCash.setEditable(false);
 		txtrOfCash.setBackground(SystemColor.menu);
-		txtrOfCash.setBounds(465, 355, 100, 40);
+		txtrOfCash.setBounds(465, 355, 114, 40);
 		add(txtrOfCash);
 		
 		JTextArea txtrEndTotal = new JTextArea();
