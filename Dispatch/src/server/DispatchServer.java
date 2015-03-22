@@ -83,7 +83,7 @@ public class DispatchServer {
 			SER = new Serializer("backups");
 			while(true) {
 				try {
-					TimeUnit.SECONDS.sleep(20);
+					TimeUnit.SECONDS.sleep(3);
 					//TimeUnit.MINUTES.sleep(15);
 					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
@@ -124,7 +124,6 @@ public class DispatchServer {
 			while(true){
 				try{
 					Object ob = input.readObject();
-					System.out.println(ob.getClass());
 					if (ob instanceof Dispatch<?>){
 						@SuppressWarnings("unchecked")
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
@@ -298,15 +297,11 @@ public class DispatchServer {
 //SERVER COMMANDS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void addClub(Club newClub) throws DuplicateClubException {
-		System.err.println("ADD CLUB");
 		if(hash_clubs.containsKey(newClub.getClubName())) {
 			throw new DuplicateClubException(newClub.getClubName() + " already exists! Cannot add " + newClub.getClubName());
 		} 
 		list_clubs.add(newClub.getClubName());
 		hash_clubs.put(newClub.getClubName(), newClub);	
-		for(Club b : hash_clubs.values()) {
-			System.out.println(b.getClubName());
-		}
 	}
 	public void removeClub(String name) {
 		if(hash_clubs.containsKey(name)) {
@@ -329,7 +324,7 @@ public class DispatchServer {
 	public void dispatchFieldSupe(String fs) throws NullFieldSupeException {
 		if(availableFS.contains(fs)) {
 			availableFS.remove(fs);
-			dispatchedFS.remove(fs);
+			dispatchedFS.add(fs);
 		}
 		else
 			throw new NullFieldSupeException(fs + " does not exist");
@@ -396,16 +391,15 @@ public class DispatchServer {
 	 */
 	public void updateClients(){
 		System.err.println("Updating Clients");
-//		Command<NetpaintClient> update = new UpdateCommand("server", objects.toArray(new PaintObject[objects.size()]));
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		Dispatch<CompleteClient> update = new UpdateDispatch("server", clubs, availableFS, dispatchedFS);
+		Dispatch<CompleteClient> update = new UpdateDispatch("wtf", clubs, new ArrayList<String>(availableFS), new ArrayList<String>(dispatchedFS));
 		for (ObjectOutputStream out: outputs.values())
 			try{
 				out.writeObject(update);
 			}catch(Exception e){
 				Out.error("Error updating clients");
-				//System.err.println("Error updating clients");
-				//e.printStackTrace();
+			//	System.err.println("Error updating clients");
+			//	e.printStackTrace();
 				outputs.remove(out);
 			}
 	}

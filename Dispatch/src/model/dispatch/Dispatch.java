@@ -31,7 +31,6 @@ public abstract class Dispatch<T> implements Serializable {
 	private static final long serialVersionUID = -4838155228547508978L;
 
 	private String source; // client or server name
-
 	// On the UML, the constructor says "Command", but I think
 	// "Dispatch" was intended.
 	public Dispatch(String source) {

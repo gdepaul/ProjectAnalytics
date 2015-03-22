@@ -16,8 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import model.Club;
+import model.dispatch.AddActiveClub;
+import model.dispatch.AddFieldSupe;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
+import model.dispatch.DispatchFieldSupe;
+import model.dispatch.UpdateDispatch;
 import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
@@ -115,6 +119,20 @@ public class CompleteClient extends JFrame{
 			});
 			setupGUI();
 			
+			out.writeObject(new AddFieldSupe(userName, "User0"));
+			out.writeObject(new AddFieldSupe(userName, "User1"));
+			out.writeObject(new AddFieldSupe(userName, "User2"));
+			out.writeObject(new AddFieldSupe(userName, "User3"));
+			out.writeObject(new AddFieldSupe(userName, "User4"));
+			out.writeObject(new AddActiveClub(userName,"club0",0,0));
+			out.writeObject(new AddActiveClub(userName,"club1",0,0));
+			out.writeObject(new AddActiveClub(userName,"club2",0,0));
+			out.writeObject(new DispatchFieldSupe(userName,"User0"));
+			out.writeObject(new DispatchFieldSupe(userName,"User2"));
+
+			
+
+
 //			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
 //			out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
 //			out.writeObject(new AddObjectDispatch(userName, new InitialCashBox("Saracens Separation Support", 132, 2032, 3320)));
@@ -172,16 +190,14 @@ public class CompleteClient extends JFrame{
 		this.availableFS = availableFS;
 		this.dispatchedFS = dispatchedFS;
 		
-		System.out.println("From Server: Update. Currently Active Clubs: ");
-		for(Club club : clubs) {
-			System.out.println("\t" + club.getClubName());
+		System.out.println(clubs);
+		System.out.println(availableFS);
+		System.out.println(dispatchedFS);
+		
+		for(Club c: clubs) {
+			System.out.println(c.getClubName());
 		}
-		for(String supe : availableFS){
-			System.out.println("available: \t" + supe);
-		}
-		for(String supe : dispatchedFS){
-			System.out.println("dispatched: \t" + supe);
-		}
+		System.out.println("========================");
 		
 		this.repaint();
 		
@@ -191,7 +207,6 @@ public class CompleteClient extends JFrame{
 		
 		
 	}
-	
 	// Main method in order to run the client
 	public static void main(String[] args){
 		new CompleteClient();
