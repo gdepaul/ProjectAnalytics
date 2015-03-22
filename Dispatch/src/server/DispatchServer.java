@@ -87,10 +87,7 @@ public class DispatchServer {
 					//TimeUnit.MINUTES.sleep(15);
 					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
-					List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-					for(Club club : clubs) {
-						SER.backup(new SaveFile(hash_clubs,availableFS,dispatchedFS,histories));
-					}
+					SER.backup(new SaveFile(hash_clubs,availableFS,dispatchedFS,histories));
 				} catch(InterruptedException ie) { Out.error(ie.getMessage());} 
 			}
 		}
@@ -162,7 +159,8 @@ public class DispatchServer {
 				}
 				catch(Exception e){
 					System.err.println("In Client Handler:");
-					e.printStackTrace();
+					if(!(e instanceof java.net.SocketException))
+						e.printStackTrace();
 					break;
 				}
 			}
@@ -426,10 +424,8 @@ public class DispatchServer {
 		int port = 9001;
 		attachShutDownHook();
 	//--Check if Server is already running
-		boolean available;
 		try {
 			ServerSocket ignored = new ServerSocket(port);
-			available = true;
 			ignored.close();
 		} catch(Exception ioe) {
 			System.err.println("Socket is in use. Try another port");
@@ -447,6 +443,7 @@ public class DispatchServer {
 			try {
 				FileOutputStream FOUT = new FileOutputStream("server.lock");
 				FOUT.write("Server started".getBytes());
+				FOUT.close();
 			} catch (IOException e) {
 				System.err.println("Could not create server lock file.");
 				e.printStackTrace();
