@@ -487,12 +487,21 @@ public class Panel_CICO extends JPanel{
 		spinner_clubSelection.setBounds(147, 23, 252, 40);
 		spinner_clubSelection.addChangeListener(new ClubSpinnerListener());
 		add(spinner_clubSelection);
-		clubSelected = spinner_clubSelection.getValue().toString();
-		actualClub = findActualClub(clubSelected);
+		
+		if (clubsArray.contains(clubSelected)){
+		spinner_clubSelection.setValue(clubSelected);
+		}else{
+			JOptionPane.showMessageDialog(getParent(), "The cashier you were working on was removed from the active list!");
+			clubSelected = spinner_clubSelection.getValue().toString();
+			
+			actualClub = findActualClub(clubSelected);
+			clearFields();
+		}
+
 		
 		//if the club already has an initial cashdrop, turn off button and text fields...
 		
-		if (actualClub.getInitialCashDrop()!=0.0){
+		if (actualClub.getInitialCashDrop() !=0.0){
 			btn_initialCashDrop.setEnabled(false);
 			btn_initialCashDrop.setText("INITIAL CASH DROP DELIVERED!");
 			textField_penniesIn.setEnabled(false);
@@ -628,32 +637,36 @@ public class Panel_CICO extends JPanel{
 			}
 			
 		}
-
-		private void clearFields() {
-			textField_penniesIn.setText("");
-			textField_penniesOut.setText("");
-			textField_nickelsIn.setText("");
-			textField_nickelsOut.setText("");
-			textField_dimesIn.setText("");
-			textField_dimesOut.setText("");
-			textField_quartersIn.setText("");
-			textField_quartersOut.setText("");
-			textField_dollarsIn.setText("");
-			textField_dollarsOut.setText("");
-			textField_twosIn.setText("");
-			textField_twosOut.setText("");
-			textField_fivesIn.setText("");
-			textField_fivesOut.setText("");
-			textField_tensIn.setText("");
-			textField_tensOut.setText("");
-			textField_twentiesIn.setText("");
-			textField_twentiesOut.setText("");
-			textField_fiftiesIn.setText("");
-			textField_fiftiesOut.setText("");
-			textField_hundredsIn.setText("");
-			textField_hundredsOut.setText("");
-		}
-		
+	}
+	/**
+	 * This clears all the fields. Should run when the cashier changes.
+	 */
+	private void clearFields() {
+		textField_penniesIn.setText("");
+		textField_penniesOut.setText("");
+		textField_nickelsIn.setText("");
+		textField_nickelsOut.setText("");
+		textField_dimesIn.setText("");
+		textField_dimesOut.setText("");
+		textField_quartersIn.setText("");
+		textField_quartersOut.setText("");
+		textField_dollarsIn.setText("");
+		textField_dollarsOut.setText("");
+		textField_twosIn.setText("");
+		textField_twosOut.setText("");
+		textField_fivesIn.setText("");
+		textField_fivesOut.setText("");
+		textField_tensIn.setText("");
+		textField_tensOut.setText("");
+		textField_twentiesIn.setText("");
+		textField_twentiesOut.setText("");
+		textField_fiftiesIn.setText("");
+		textField_fiftiesOut.setText("");
+		textField_hundredsIn.setText("");
+		textField_hundredsOut.setText("");
+		textArea_finalTotal.setText("");
+		textArea_endTotal.setText("");
+		textArea_endTotalCalc.setText("");
 	}
 
 	public Panel_CICO(String userName, ObjectOutputStream out, List<Club> activeClubs2, List<String> availableFS2, List<String> dispatchedFS2) {

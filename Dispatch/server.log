@@ -7431,3 +7431,19 @@ Mar 23 2015 14:35:49: Server started on port 9001
 Mar 23 2015 14:36:17: Server started on port 9001
 Mar 23 2015 14:36:26: New Client Kris connected
 Mar 23 2015 14:36:39: New Client James connected
+Mar 23 2015 14:53:58: Server started on port 9001
+Mar 23 2015 14:54:10: Server started on port 9001
+Mar 23 2015 14:54:19: New Client Kris connected
+Mar 23 2015 14:55:03: Initial cash drop for club1:10.0
+Mar 23 2015 14:56:56: New Client Bill connected
+Mar 23 2015 15:01:56: Client Kris disconnecting
+Mar 23 2015 15:01:57: Client Bill disconnecting
+Mar 23 2015 15:07:53: New Client James connected
+Mar 23 2015 15:08:13: New Client Kris connected
+Mar 23 2015 15:08:41: Initial cash drop for Arendale:150.0
+Mar 23 2015 15:08:57: Initial cash drop for club0:1.0
+Mar 23 2015 15:09:10: Saving clubs to disk!
+Mar 23 2015 15:09:22: Initial cash drop for Blue Sky:400.0
+Mar 23 2015 15:10:03: Initial cash drop for club2:215.0
+Mar 23 2015 15:12:01: Client Kris disconnecting
+Mar 23 2015 15:12:03: Client James disconnecting
