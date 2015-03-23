@@ -491,7 +491,9 @@ public class Panel_CICO extends JPanel{
 		if (clubsArray.contains(clubSelected)){
 		spinner_clubSelection.setValue(clubSelected);
 		}else{
-			JOptionPane.showMessageDialog(getParent(), "The cashier you were working on was removed from the active list!");
+			if (clubSelected.compareTo("(No clubs!)")!=0){
+				JOptionPane.showMessageDialog(getParent(), "The cashier you were working on (" + clubSelected + ") was removed from the active list!");
+			}
 			clubSelected = spinner_clubSelection.getValue().toString();
 			
 			actualClub = findActualClub(clubSelected);

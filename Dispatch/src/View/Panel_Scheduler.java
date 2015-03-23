@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 
 import model.Club;
+import model.dispatch.AddActiveClub;
 import model.dispatch.AddFieldSupe;
 import model.dispatch.RemoveFieldSupe;
 
@@ -38,9 +39,10 @@ public class Panel_Scheduler extends JPanel{
 	
 	//widgets
 	private JTextField textField_name;
-	private JTextField textField_timeOut;
-	JSpinner spinner_removeEmp;
-	JScrollPane scrollPane_empList;
+	private JSpinner spinner_removeFS;
+	private JSpinner spinner_roles;
+	private JScrollPane scrollPane_empList;
+	private JSpinner spinner_removeCashier;
 	
 	//initialize some values for scope
 	private String addEmployee;
@@ -87,8 +89,8 @@ public class Panel_Scheduler extends JPanel{
 		scrollPane_empList.setBounds(372, 105, 313, 488);
 		add(scrollPane_empList);
 		
-		// Cheesy remove, reset, and replace Spinner
-		remove(spinner_removeEmp);
+		// Cheesy remove, reset, and replace remove field supe Spinner
+		remove(spinner_removeFS);
 		ArrayList<String> removeEmpArray = new ArrayList<String>();
 		for (String emp : fullEmployeeList){
 			removeEmpArray.add(emp);
@@ -99,9 +101,17 @@ public class Panel_Scheduler extends JPanel{
 			currentEmployees.removeElement("(No current employees)");
 		}
 		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
-		spinner_removeEmp = new JSpinner(removeEmpModel);
-		spinner_removeEmp.setBounds(190, 463, 154, 27);
-		add(spinner_removeEmp);
+		spinner_removeFS = new JSpinner(removeEmpModel);
+		spinner_removeFS.setBounds(181, 319, 154, 27);
+		add(spinner_removeFS);
+		
+		// Cheesy remove, reset, and replace remove cashier Spinner
+		remove(spinner_removeCashier);
+		ArrayList<String> removeCashierArray = getCashiers();
+		SpinnerListModel removeCashierModel = new SpinnerListModel(removeCashierArray);
+		spinner_removeCashier = new JSpinner((removeCashierModel));
+		spinner_removeCashier.setBounds(181, 476, 154, 27);
+		add(spinner_removeCashier);
 	}
 	
 	
@@ -114,14 +124,39 @@ public class Panel_Scheduler extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			addEmployee = textField_name.getText();
-			JOptionPane.showMessageDialog(getParent(), "Add Employee Button!\n"+
-														"addEmployee: " + addEmployee);
-			try {
-				output.writeObject(new AddFieldSupe(clientName, addEmployee));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			String action = spinner_roles.getValue().toString();
+			
+			if (action.compareTo("Field Supervisor")==0){
+						try {
+						output.writeObject(new AddFieldSupe(clientName, addEmployee));
+						JOptionPane.showMessageDialog(getParent(), addEmployee + " added to available field supervisors");
+						} catch (IOException e) {
+						JOptionPane.showMessageDialog(getParent(), "Failed to add " + addEmployee + " to available field supervisors.\n" +
+																	"Error is Panel_Scheduler, AddEmpListener, actionPerformed override");
+						e.printStackTrace();
+						}
+			} else if(action.compareTo("Cashier")==0){
+						try {
+							output.writeObject(new AddActiveClub(clientName, addEmployee, 0 ,0 )); 	//New cashier with no cash, no tickets
+							JOptionPane.showMessageDialog(getParent(), addEmployee + " added to active cashiers");
+							} catch (IOException e) {
+							JOptionPane.showMessageDialog(getParent(), "Failed to add " + addEmployee + " to available cashiers.\n" +
+																		"Error is Panel_Scheduler, AddEmpListener, actionPerformed override");
+							e.printStackTrace();
+							}
 			}
+			
+//			JOptionPane.showMessageDialog(getParent(), "Add Employee Button!\n"+
+//														"addEmployee: " + addEmployee);
+//			try {
+//				output.writeObject(new AddFieldSupe(clientName, addEmployee));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			
+			//
+			
 		}
 	}
 	
@@ -132,7 +167,7 @@ public class Panel_Scheduler extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			removeEmployee = spinner_removeEmp.getValue().toString();
+			removeEmployee = spinner_removeFS.getValue().toString();
 			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
 														"removeEmployee: " + removeEmployee);
 			try {
@@ -216,34 +251,14 @@ public class Panel_Scheduler extends JPanel{
 		textArea_role.setEditable(false);
 		add(textArea_role);
 		
-		JTextArea textArea_timeIn = new JTextArea();
-		textArea_timeIn.setBackground(SystemColor.control);
-		textArea_timeIn.setBounds(71, 219, 100, 22);
-		textArea_timeIn.setText("  Time out:");
-		textArea_timeIn.setEditable(false);
-		add(textArea_timeIn);
-		
-		JTextArea textArea_timeOut = new JTextArea();
-		textArea_timeOut.setBackground(SystemColor.control);
-		textArea_timeOut.setBounds(71, 264, 100, 22);
-		textArea_timeOut.setText("   Time in:");
-		textArea_timeOut.setEditable(false);
-		add(textArea_timeOut);
-		
 		String[] RoleArray = {"Field Supervisor", "Cashier"};
 		SpinnerListModel RoleModel = new SpinnerListModel(RoleArray);	//~LOL~
-		JSpinner spinner_roles = new JSpinner(RoleModel);
+		spinner_roles = new JSpinner(RoleModel);
 		spinner_roles.setBounds(190, 175, 154, 20);
 		add(spinner_roles);
 		
-		
-		JTextField textField_timeIn = new JTextField();
-		textField_timeIn.setBounds(190, 265, 154, 20);
-		add(textField_timeIn);
-		textField_timeIn.setColumns(10);
-		
 		JButton btnAddEmp = new JButton("Add Employee");
-		btnAddEmp.setBounds(70, 330, 274, 70);
+		btnAddEmp.setBounds(71, 216, 274, 70);
 		btnAddEmp.addActionListener(new AddEmpListener());
 		add(btnAddEmp);
 		
@@ -251,11 +266,6 @@ public class Panel_Scheduler extends JPanel{
 		textField_name.setBounds(190, 133, 154, 20);
 		add(textField_name);
 		textField_name.setColumns(10);
-		
-		textField_timeOut = new JTextField();
-		textField_timeOut.setBounds(190, 221, 154, 20);
-		add(textField_timeOut);
-		textField_timeOut.setColumns(10);
 		
 		JTextArea textArea_IDList = new JTextArea();
 		textArea_IDList.setBackground(SystemColor.control);
@@ -294,10 +304,10 @@ public class Panel_Scheduler extends JPanel{
 		add(scrollPane_empList);
 		
 		
-		JButton btnRemoveEmployee = new JButton("Remove Employee");
-		btnRemoveEmployee.setBounds(71, 515, 273, 78);
-		btnRemoveEmployee.addActionListener(new RemoveEmpListener());
-		add(btnRemoveEmployee);
+		JButton btnRemoveFS = new JButton("Remove Field Supe");
+		btnRemoveFS.setBounds(71, 368, 273, 78);
+		btnRemoveFS.addActionListener(new RemoveEmpListener());
+		add(btnRemoveFS);
 		
 
 		ArrayList<String> removeEmpArray = new ArrayList<String>();
@@ -310,17 +320,54 @@ public class Panel_Scheduler extends JPanel{
 			currentEmployees.removeElement("(No current employees)");
 		}
 		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
-		spinner_removeEmp = new JSpinner(removeEmpModel);
-		spinner_removeEmp.setBounds(190, 463, 154, 27);
-		add(spinner_removeEmp);
+		spinner_removeFS = new JSpinner(removeEmpModel);
+		spinner_removeFS.setBounds(181, 319, 154, 27);
+		add(spinner_removeFS);
 		
 		
 		JTextArea txtrName = new JTextArea();
 		txtrName.setBackground(SystemColor.control);
-		txtrName.setText("     Name:");
-		txtrName.setBounds(71, 464, 100, 22);
+		txtrName.setText("   Field Supe:");
+		txtrName.setBounds(46, 320, 125, 22);
 		txtrName.setEditable(false);
 		add(txtrName);
 		
+		JTextArea txtrCashier = new JTextArea();
+		txtrCashier.setText("   Cashier:");
+		txtrCashier.setEditable(false);
+		txtrCashier.setBackground(SystemColor.menu);
+		txtrCashier.setBounds(71, 474, 100, 22);
+		add(txtrCashier);
+		
+		ArrayList<String> removeCashierArray = getCashiers();
+		SpinnerListModel removeCashierModel = new SpinnerListModel(removeCashierArray);
+		spinner_removeCashier = new JSpinner((removeCashierModel));
+		spinner_removeCashier.setBounds(181, 476, 154, 27);
+		add(spinner_removeCashier);
+		
+		JButton btnRemoveCashier = new JButton("Remove Cashier");
+		btnRemoveCashier.setBounds(71, 530, 273, 78);
+		add(btnRemoveCashier);
+		
 	}
+	
+	private ArrayList<String> getCashiers() {
+		ArrayList<String> clubs = new ArrayList<>();
+		
+		if (activeClubs!=null){
+			for (Club club : activeClubs){
+				clubs.add(club.getClubName());
+			}
+		}
+		
+		if (clubs.size()==0){
+			clubs.add("(No clubs!)");
+			
+		} else{
+			clubs.remove("(No clubs!)");
+		}
+		
+		return clubs;
+	}
+	
 }
