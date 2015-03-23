@@ -139,6 +139,8 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new DispatchFieldSupe(userName,"User0"));
 //			out.writeObject(new DispatchFieldSupe(userName,"User2"));
 
+			
+
 
 //			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
 //			out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));
@@ -202,8 +204,11 @@ public class CompleteClient extends JFrame{
 		System.out.println(availableFS);
 		System.out.println(dispatchedFS);
 		
-		for( Club club : clubs) {
-			System.err.println(club.getClubName() + "  " + club.getCashdrops());
+		for(Club c: clubs) {
+			System.out.println(c.getClubName() + "\n" +
+					"InitialCashDrop: "+ c.getInitialCashDrop()+
+					"CashDrops: " + c.getCashdrops()+
+					"ChangeDrops: " + c.getChangedrops());
 		}
 		System.out.println("========================");
 		

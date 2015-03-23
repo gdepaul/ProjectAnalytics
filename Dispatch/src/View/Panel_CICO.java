@@ -59,10 +59,13 @@ public class Panel_CICO extends JPanel{
 	private JTextField textField_hundredsOut;
 	
 	private JTextArea textArea_cashDrops;
+	private JTextArea textArea_changeDrops;
 	private JTextArea textArea_startTotal;
 	private JTextArea textArea_endTotal;
 	private JTextArea textArea_endTotalCalc;
-	private JTextArea textArea_dropsBy800;
+	private JTextArea textArea_cashDropsBy800;
+	private JTextArea textArea_changeDropsBy50;
+	private JTextArea textArea_finalTotal;
 	private JTextArea textArea_penniesIn;
 	private JTextArea textArea_nickelsIn;
 	private JTextArea textArea_dimesIn;
@@ -85,6 +88,7 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_twentiesOut;
 	private JTextArea textArea_fiftiesOut;
 	private JTextArea textArea_hundredsOut;
+	
 	
 	private JSpinner spinner_clubSelection;
 	
@@ -451,6 +455,19 @@ public class Panel_CICO extends JPanel{
 			 	
 			textArea_endTotal.setText("$" + formatDecimal(endTotal));
 			textArea_endTotalCalc.setText("$" + formatDecimal(endTotal));
+			
+			if (textArea_endTotalCalc.getText().compareTo("")!=0){
+				textArea_finalTotal.setText("$"+
+							(formatDecimal(actualClub.getCashdrops()*800
+									+actualClub.getChangedrops()*50
+									+endTotal)	
+							));
+			}else{
+				textArea_finalTotal.setText(""+
+						(formatDecimal(actualClub.getCashdrops()*800
+								+actualClub.getChangedrops()*50)));
+			}
+			
 		}
 	}
 	
@@ -512,7 +529,7 @@ public class Panel_CICO extends JPanel{
 		//Update textAreas
 		
 		textArea_cashDrops.setText(actualClub.getCashdrops() + "");
-		textArea_dropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+		textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 	}
 	private Club findActualClub(String clubSelected2) {
 		for(Club club : activeClubs){
@@ -593,7 +610,22 @@ public class Panel_CICO extends JPanel{
 			//Update textAreas
 			
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
-			textArea_dropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			textArea_changeDrops.setText(actualClub.getChangedrops() + "");
+			textArea_changeDropsBy50.setText("$" + formatDecimal(actualClub.getChangedrops()*50));
+			
+			if (textArea_endTotalCalc.getText().compareTo("")!=0){
+				textArea_finalTotal.setText(
+							(formatDecimal(actualClub.getCashdrops()*800
+									+actualClub.getChangedrops()*50
+									+Float.parseFloat(textArea_endTotalCalc.getText().substring(0))
+							)));
+			}else{
+				textArea_finalTotal.setText(
+						(formatDecimal(actualClub.getCashdrops()*800+
+								+actualClub.getChangedrops()*50)));
+			}
+			
 		}
 		
 	}
@@ -1320,7 +1352,7 @@ public class Panel_CICO extends JPanel{
 		textArea_34.setBounds(547, 370, 12, 22);
 		add(textArea_34);
 		
-		JTextArea textArea_finalTotal = new JTextArea();
+		textArea_finalTotal = new JTextArea();
 		textArea_finalTotal.setEditable(false);
 		textArea_finalTotal.setBackground(SystemColor.menu);
 		textArea_finalTotal.setBounds(683, 370, 103, 27);
@@ -1340,11 +1372,11 @@ public class Panel_CICO extends JPanel{
 		textArea_cashDrops.setBounds(577, 238, 41, 27);
 		add(textArea_cashDrops);
 		
-		textArea_dropsBy800 = new JTextArea();
-		textArea_dropsBy800.setBackground(SystemColor.control);
-		textArea_dropsBy800.setEditable(false);
-		textArea_dropsBy800.setBounds(713, 238, 61, 27);
-		add(textArea_dropsBy800);
+		textArea_cashDropsBy800 = new JTextArea();
+		textArea_cashDropsBy800.setBackground(SystemColor.control);
+		textArea_cashDropsBy800.setEditable(false);
+		textArea_cashDropsBy800.setBounds(713, 238, 61, 27);
+		add(textArea_cashDropsBy800);
 		
 		JTextArea textArea_35 = new JTextArea();
 		textArea_35.setText("+");
@@ -1632,11 +1664,11 @@ public class Panel_CICO extends JPanel{
 		txtrChangeDrops.setBounds(461, 271, 114, 22);
 		add(txtrChangeDrops);
 		
-		JTextArea textArea_59 = new JTextArea();
-		textArea_59.setEditable(false);
-		textArea_59.setBackground(SystemColor.menu);
-		textArea_59.setBounds(577, 271, 41, 27);
-		add(textArea_59);
+		textArea_changeDrops = new JTextArea();
+		textArea_changeDrops.setEditable(false);
+		textArea_changeDrops.setBackground(SystemColor.menu);
+		textArea_changeDrops.setBounds(577, 271, 41, 27);
+		add(textArea_changeDrops);
 		
 		JTextArea txtrX_13 = new JTextArea();
 		txtrX_13.setText("X  $50 =");
@@ -1645,11 +1677,11 @@ public class Panel_CICO extends JPanel{
 		txtrX_13.setBounds(628, 271, 75, 22);
 		add(txtrX_13);
 		
-		JTextArea textArea_60 = new JTextArea();
-		textArea_60.setEditable(false);
-		textArea_60.setBackground(SystemColor.menu);
-		textArea_60.setBounds(713, 271, 61, 27);
-		add(textArea_60);
+		textArea_changeDropsBy50 = new JTextArea();
+		textArea_changeDropsBy50.setEditable(false);
+		textArea_changeDropsBy50.setBackground(SystemColor.menu);
+		textArea_changeDropsBy50.setBounds(713, 271, 61, 27);
+		add(textArea_changeDropsBy50);
 	}
 	
 	/**
