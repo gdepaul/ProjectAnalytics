@@ -61,6 +61,8 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_cashDrops;
 	private JTextArea textArea_startTotal;
 	private JTextArea textArea_endTotal;
+	private JTextArea textArea_endTotalCalc;
+	private JTextArea textArea_dropsBy800;
 	private JTextArea textArea_penniesIn;
 	private JTextArea textArea_nickelsIn;
 	private JTextArea textArea_dimesIn;
@@ -96,6 +98,15 @@ public class Panel_CICO extends JPanel{
 	//Initial values
 	private String clubSelected;
 	private Club actualClub;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
 	
 	/**
 	 * Listener for the initial cash drop button
@@ -278,9 +289,9 @@ public class Panel_CICO extends JPanel{
 	public String formatDecimal(float number) {
 		  float epsilon = 0.004f; // 4 tenths of a cent
 		  if (Math.abs(Math.round(number) - number) < epsilon) {
-		     return String.format("%10.0f", number); // sdb
+		     return String.format("%10.0f", number);
 		  } else {
-		     return String.format("%10.2f", number); // dj_segfault
+		     return String.format("%10.2f", number);
 		  }
 	}
 	
@@ -439,6 +450,7 @@ public class Panel_CICO extends JPanel{
 			 	}
 			 	
 			textArea_endTotal.setText("$" + formatDecimal(endTotal));
+			textArea_endTotalCalc.setText("$" + formatDecimal(endTotal));
 		}
 	}
 	
@@ -500,6 +512,7 @@ public class Panel_CICO extends JPanel{
 		//Update textAreas
 		
 		textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+		textArea_dropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 	}
 	private Club findActualClub(String clubSelected2) {
 		for(Club club : activeClubs){
@@ -539,9 +552,9 @@ public class Panel_CICO extends JPanel{
 			actualClub = findActualClub(clubSelected);
 			//if the club already has an initial cashdrop, turn off button and text fields...
 			
-			JOptionPane.showMessageDialog(getParent(), "SpinnerChanged!\n"+
-					"actualClub = " + actualClub.getClubName() + "\n"+
-					"Initial Cash Drop = " + actualClub.getInitialCashDrop());
+//			JOptionPane.showMessageDialog(getParent(), "SpinnerChanged!\n"+
+//					"actualClub = " + actualClub.getClubName() + "\n"+
+//					"Initial Cash Drop = " + actualClub.getInitialCashDrop());
 			
 			if (actualClub.getInitialCashDrop()!=0.0){
 				btn_initialCashDrop.setEnabled(false);
@@ -580,7 +593,7 @@ public class Panel_CICO extends JPanel{
 			//Update textAreas
 			
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
-			
+			textArea_dropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 		}
 		
 	}
@@ -1204,7 +1217,7 @@ public class Panel_CICO extends JPanel{
 		textArea_dollarsOut.setText("$0.00");
 		textArea_dollarsOut.setEditable(false);
 		textArea_dollarsOut.setBackground(SystemColor.menu);
-		textArea_dollarsOut.setBounds(409, 271, 67, 22);
+		textArea_dollarsOut.setBounds(409, 271, 54, 22);
 		add(textArea_dollarsOut);
 		
 		textArea_twosOut = new JTextArea();
@@ -1272,23 +1285,24 @@ public class Panel_CICO extends JPanel{
 		add(txtrBooth);
 		
 		JTextArea txtrX_11 = new JTextArea();
-		txtrX_11.setText("X $500 +");
+		txtrX_11.setText("X $800 =");
 		txtrX_11.setEditable(false);
 		txtrX_11.setBackground(SystemColor.menu);
-		txtrX_11.setBounds(558, 403, 75, 22);
+		txtrX_11.setBounds(628, 271, 75, 22);
 		add(txtrX_11);
 		
-		JTextArea textArea_endTotalCalc = new JTextArea();
+		textArea_endTotalCalc = new JTextArea();
+		textArea_endTotalCalc.setEditable(false);
 		textArea_endTotalCalc.setBackground(SystemColor.menu);
-		textArea_endTotalCalc.setBounds(628, 403, 91, 27);
+		textArea_endTotalCalc.setBounds(683, 320, 103, 27);
 		add(textArea_endTotalCalc);
 		
 		JTextArea txtrOfCash = new JTextArea();
-		txtrOfCash.setText("    Cash Drops");
+		txtrOfCash.setText("   Cash Drops");
 		txtrOfCash.setLineWrap(true);
 		txtrOfCash.setEditable(false);
 		txtrOfCash.setBackground(SystemColor.menu);
-		txtrOfCash.setBounds(465, 370, 114, 22);
+		txtrOfCash.setBounds(463, 271, 114, 22);
 		add(txtrOfCash);
 		
 		JTextArea txtrEndTotal = new JTextArea();
@@ -1296,19 +1310,20 @@ public class Panel_CICO extends JPanel{
 		txtrEndTotal.setLineWrap(true);
 		txtrEndTotal.setEditable(false);
 		txtrEndTotal.setBackground(SystemColor.menu);
-		txtrEndTotal.setBounds(636, 370, 95, 27);
+		txtrEndTotal.setBounds(577, 320, 95, 27);
 		add(txtrEndTotal);
 		
 		JTextArea textArea_34 = new JTextArea();
 		textArea_34.setText("=");
 		textArea_34.setEditable(false);
 		textArea_34.setBackground(SystemColor.menu);
-		textArea_34.setBounds(594, 469, 12, 22);
+		textArea_34.setBounds(547, 370, 12, 22);
 		add(textArea_34);
 		
 		JTextArea textArea_finalTotal = new JTextArea();
+		textArea_finalTotal.setEditable(false);
 		textArea_finalTotal.setBackground(SystemColor.menu);
-		textArea_finalTotal.setBounds(616, 469, 103, 27);
+		textArea_finalTotal.setBounds(683, 370, 103, 27);
 		add(textArea_finalTotal);
 		
 		JTextArea txtrFinalTotal = new JTextArea();
@@ -1316,14 +1331,298 @@ public class Panel_CICO extends JPanel{
 		txtrFinalTotal.setLineWrap(true);
 		txtrFinalTotal.setEditable(false);
 		txtrFinalTotal.setBackground(SystemColor.menu);
-		txtrFinalTotal.setBounds(616, 436, 95, 27);
+		txtrFinalTotal.setBounds(577, 370, 95, 27);
 		add(txtrFinalTotal);
 		
 		textArea_cashDrops = new JTextArea();
 		textArea_cashDrops.setBackground(SystemColor.control);
 		textArea_cashDrops.setEditable(false);
-		textArea_cashDrops.setBounds(492, 403, 41, 27);
+		textArea_cashDrops.setBounds(577, 271, 41, 27);
 		add(textArea_cashDrops);
+		
+		textArea_dropsBy800 = new JTextArea();
+		textArea_dropsBy800.setBackground(SystemColor.control);
+		textArea_dropsBy800.setEditable(false);
+		textArea_dropsBy800.setBounds(713, 271, 61, 27);
+		add(textArea_dropsBy800);
+		
+		JTextArea textArea_35 = new JTextArea();
+		textArea_35.setText("+");
+		textArea_35.setEditable(false);
+		textArea_35.setBackground(SystemColor.menu);
+		textArea_35.setBounds(547, 320, 12, 22);
+		add(textArea_35);
+		
+		JTextArea txtrTickets = new JTextArea();
+		txtrTickets.setText("Initial");
+		txtrTickets.setLineWrap(true);
+		txtrTickets.setEditable(false);
+		txtrTickets.setBackground(SystemColor.menu);
+		txtrTickets.setBounds(72, 587, 67, 27);
+		add(txtrTickets);
+		
+		JTextArea txtrFullSheets = new JTextArea();
+		txtrFullSheets.setText("   Full:");
+		txtrFullSheets.setLineWrap(true);
+		txtrFullSheets.setEditable(false);
+		txtrFullSheets.setBackground(SystemColor.menu);
+		txtrFullSheets.setBounds(10, 619, 75, 27);
+		add(txtrFullSheets);
+		
+		JTextArea txtrHalf = new JTextArea();
+		txtrHalf.setText("   Half:");
+		txtrHalf.setLineWrap(true);
+		txtrHalf.setEditable(false);
+		txtrHalf.setBackground(SystemColor.menu);
+		txtrHalf.setBounds(10, 651, 75, 27);
+		add(txtrHalf);
+		
+		JTextArea txtrSingles = new JTextArea();
+		txtrSingles.setText("Singles:");
+		txtrSingles.setLineWrap(true);
+		txtrSingles.setEditable(false);
+		txtrSingles.setBackground(SystemColor.menu);
+		txtrSingles.setBounds(10, 683, 75, 27);
+		add(txtrSingles);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(87, 620, 41, 22);
+		add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(87, 652, 41, 22);
+		add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(87, 684, 41, 22);
+		add(textField_2);
+		
+		JTextArea textArea_33 = new JTextArea();
+		textArea_33.setText("+");
+		textArea_33.setEditable(false);
+		textArea_33.setBackground(SystemColor.menu);
+		textArea_33.setBounds(138, 619, 12, 22);
+		add(textArea_33);
+		
+		JTextArea textArea_36 = new JTextArea();
+		textArea_36.setText("+");
+		textArea_36.setEditable(false);
+		textArea_36.setBackground(SystemColor.menu);
+		textArea_36.setBounds(138, 651, 12, 22);
+		add(textArea_36);
+		
+		JTextArea textArea_37 = new JTextArea();
+		textArea_37.setText("+");
+		textArea_37.setEditable(false);
+		textArea_37.setBackground(SystemColor.menu);
+		textArea_37.setBounds(138, 683, 12, 22);
+		add(textArea_37);
+		
+		JTextArea txtrAdded = new JTextArea();
+		txtrAdded.setText("Added");
+		txtrAdded.setLineWrap(true);
+		txtrAdded.setEditable(false);
+		txtrAdded.setBackground(SystemColor.menu);
+		txtrAdded.setBounds(160, 587, 54, 27);
+		add(txtrAdded);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(160, 619, 41, 22);
+		add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(160, 651, 41, 22);
+		add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(160, 683, 41, 22);
+		add(textField_5);
+		
+		JTextArea textArea_38 = new JTextArea();
+		textArea_38.setText("-");
+		textArea_38.setEditable(false);
+		textArea_38.setBackground(SystemColor.menu);
+		textArea_38.setBounds(211, 619, 12, 22);
+		add(textArea_38);
+		
+		JTextArea textArea_39 = new JTextArea();
+		textArea_39.setText("-");
+		textArea_39.setEditable(false);
+		textArea_39.setBackground(SystemColor.menu);
+		textArea_39.setBounds(211, 651, 12, 22);
+		add(textArea_39);
+		
+		JTextArea textArea_40 = new JTextArea();
+		textArea_40.setText("-");
+		textArea_40.setEditable(false);
+		textArea_40.setBackground(SystemColor.menu);
+		textArea_40.setBounds(211, 683, 12, 22);
+		add(textArea_40);
+		
+		JTextArea txtrUnsold = new JTextArea();
+		txtrUnsold.setText("Unsold");
+		txtrUnsold.setLineWrap(true);
+		txtrUnsold.setEditable(false);
+		txtrUnsold.setBackground(SystemColor.menu);
+		txtrUnsold.setBounds(224, 587, 54, 27);
+		add(txtrUnsold);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(229, 619, 41, 22);
+		add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(229, 651, 41, 22);
+		add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
+		textField_8.setBounds(229, 683, 41, 22);
+		add(textField_8);
+		
+		JTextArea textArea_41 = new JTextArea();
+		textArea_41.setText("=");
+		textArea_41.setEditable(false);
+		textArea_41.setBackground(SystemColor.menu);
+		textArea_41.setBounds(280, 619, 12, 22);
+		add(textArea_41);
+		
+		JTextArea textArea_42 = new JTextArea();
+		textArea_42.setText("=");
+		textArea_42.setEditable(false);
+		textArea_42.setBackground(SystemColor.menu);
+		textArea_42.setBounds(280, 651, 12, 22);
+		add(textArea_42);
+		
+		JTextArea textArea_43 = new JTextArea();
+		textArea_43.setText("=");
+		textArea_43.setEditable(false);
+		textArea_43.setBackground(SystemColor.menu);
+		textArea_43.setBounds(280, 683, 12, 22);
+		add(textArea_43);
+		
+		JTextArea txtrSold = new JTextArea();
+		txtrSold.setText("Sold");
+		txtrSold.setLineWrap(true);
+		txtrSold.setEditable(false);
+		txtrSold.setBackground(SystemColor.menu);
+		txtrSold.setBounds(302, 587, 46, 27);
+		add(txtrSold);
+		
+		JTextArea textArea_44 = new JTextArea();
+		textArea_44.setBounds(302, 619, 59, 22);
+		add(textArea_44);
+		
+		JTextArea textArea_45 = new JTextArea();
+		textArea_45.setBounds(302, 651, 59, 22);
+		add(textArea_45);
+		
+		JTextArea textArea_46 = new JTextArea();
+		textArea_46.setBounds(302, 683, 59, 22);
+		add(textArea_46);
+		
+		JTextArea txtrX_12 = new JTextArea();
+		txtrX_12.setText("x");
+		txtrX_12.setEditable(false);
+		txtrX_12.setBackground(SystemColor.menu);
+		txtrX_12.setBounds(371, 619, 12, 22);
+		add(txtrX_12);
+		
+		JTextArea textArea_47 = new JTextArea();
+		textArea_47.setText("x");
+		textArea_47.setEditable(false);
+		textArea_47.setBackground(SystemColor.menu);
+		textArea_47.setBounds(371, 651, 12, 22);
+		add(textArea_47);
+		
+		JTextArea textArea_48 = new JTextArea();
+		textArea_48.setText("x");
+		textArea_48.setEditable(false);
+		textArea_48.setBackground(SystemColor.menu);
+		textArea_48.setBounds(371, 683, 12, 22);
+		add(textArea_48);
+		
+		JTextArea textArea_49 = new JTextArea();
+		textArea_49.setText("$20.00");
+		textArea_49.setEditable(false);
+		textArea_49.setBackground(SystemColor.menu);
+		textArea_49.setBounds(387, 619, 67, 22);
+		add(textArea_49);
+		
+		JTextArea textArea_50 = new JTextArea();
+		textArea_50.setText("$10.00");
+		textArea_50.setEditable(false);
+		textArea_50.setBackground(SystemColor.menu);
+		textArea_50.setBounds(387, 651, 67, 22);
+		add(textArea_50);
+		
+		JTextArea textArea_51 = new JTextArea();
+		textArea_51.setText("$0.50");
+		textArea_51.setEditable(false);
+		textArea_51.setBackground(SystemColor.menu);
+		textArea_51.setBounds(387, 683, 67, 22);
+		add(textArea_51);
+		
+		JTextArea textArea_52 = new JTextArea();
+		textArea_52.setText("=");
+		textArea_52.setEditable(false);
+		textArea_52.setBackground(SystemColor.menu);
+		textArea_52.setBounds(451, 619, 12, 22);
+		add(textArea_52);
+		
+		JTextArea textArea_53 = new JTextArea();
+		textArea_53.setText("=");
+		textArea_53.setEditable(false);
+		textArea_53.setBackground(SystemColor.menu);
+		textArea_53.setBounds(451, 651, 12, 22);
+		add(textArea_53);
+		
+		JTextArea textArea_54 = new JTextArea();
+		textArea_54.setText("=");
+		textArea_54.setEditable(false);
+		textArea_54.setBackground(SystemColor.menu);
+		textArea_54.setBounds(451, 683, 12, 22);
+		add(textArea_54);
+		
+		JTextArea txtrTotals = new JTextArea();
+		txtrTotals.setText("Totals");
+		txtrTotals.setLineWrap(true);
+		txtrTotals.setEditable(false);
+		txtrTotals.setBackground(SystemColor.menu);
+		txtrTotals.setBounds(488, 587, 64, 27);
+		add(txtrTotals);
+		
+		JTextArea textArea_55 = new JTextArea();
+		textArea_55.setBounds(473, 619, 86, 22);
+		add(textArea_55);
+		
+		JTextArea textArea_56 = new JTextArea();
+		textArea_56.setBounds(473, 651, 86, 22);
+		add(textArea_56);
+		
+		JTextArea textArea_57 = new JTextArea();
+		textArea_57.setBounds(473, 683, 86, 22);
+		add(textArea_57);
+		
+		JTextArea txtrExpectedRevenue = new JTextArea();
+		txtrExpectedRevenue.setText("Expected Revenue");
+		txtrExpectedRevenue.setLineWrap(true);
+		txtrExpectedRevenue.setEditable(false);
+		txtrExpectedRevenue.setBackground(SystemColor.menu);
+		txtrExpectedRevenue.setBounds(597, 619, 145, 27);
+		add(txtrExpectedRevenue);
+		
+		JTextArea textArea_58 = new JTextArea();
+		textArea_58.setBounds(597, 651, 130, 22);
+		add(textArea_58);
 	}
 	
 	/**
