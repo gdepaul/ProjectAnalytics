@@ -9,8 +9,13 @@ import exceptions.NullClubException;
 
 public class CashDrop  extends Dispatch<DispatchServer>  {
 
+	private String supe;
 	public CashDrop(String source, String club) {
 		super(source,club);
+	}
+	public CashDrop(String source, String club, String supe) {
+		super(source,club);
+		this.supe = supe;
 	}
 
 	@Override
@@ -20,6 +25,6 @@ public class CashDrop  extends Dispatch<DispatchServer>  {
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
 		Date date = new Date();
-		return "CashDrop:"+ format.format(date) +"\tSource: " + this.getSource() + "\tClub: " + this.club;
+		return "CashDrop:"+ format.format(date) +"\tField Supervisor Assigned: " + this.supe + "\tSource: " + this.getSource() + "\tClub: " + this.club;
 	}
 }
