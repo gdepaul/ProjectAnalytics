@@ -15,6 +15,7 @@ import model.dispatchObject.DispatchObject;
 public class Club implements Serializable {
 
 	private static final long serialVersionUID = 6552795683175716091L;
+	private boolean onField;
 	private String clubName;
 	private float balance;
 	private float initialCashDrop;
@@ -31,6 +32,7 @@ public class Club implements Serializable {
 		this.clubName = clubName;
 		this.balance = 0;
 		this.tickets = 0;
+		this.onField = true;
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
@@ -38,6 +40,7 @@ public class Club implements Serializable {
 		this.clubName = clubName;
 		this.balance = money;
 		this.tickets = tickets;
+		this.onField = true;
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
