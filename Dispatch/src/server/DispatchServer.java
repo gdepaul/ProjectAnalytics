@@ -26,18 +26,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
-import model.Club;
-import model.dispatch.Dispatch;
-import model.dispatch.UndoLastDispatch;
-import model.dispatch.UpdateDispatch;
+import model.*;
+import model.dispatch.*;
 import controller.CompleteClient;
-import exceptions.DeployedException;
-import exceptions.DuplicateClubException;
-import exceptions.DuplicateFieldSupeException;
-import exceptions.IllegalTicketOperation;
-import exceptions.NotDispatchedException;
-import exceptions.NullClubException;
-import exceptions.NullFieldSupeException;
+import exceptions.*;
+
 
 
 /**
@@ -126,6 +119,9 @@ public class DispatchServer {
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
 						try {
 							dispatch.execute(DispatchServer.this); // execute the command on the server
+							if(dispatch instanceof CashDrop || dispatch instanceof ChangeDrop || dispatch instanceof TicketDrop) {
+								hash_clubs.get(dispatch.getClub()).addTransaction(dispatch);
+							}
 						} catch(DuplicateClubException dce) {
 							Out.error("Client " + dispatch.getSource() + " tried to add a duplicate club");
 							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
@@ -339,7 +335,6 @@ public class DispatchServer {
 	public void cashDrop(String club) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putCashDrop();
-			System.out.println("CashDrop for " + club + ". This is its " + hash_clubs.get(club).getCashdrops() + " drop" );
 		}
 		else
 			throw new NullClubException(club + "does not exist");

@@ -139,8 +139,6 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new DispatchFieldSupe(userName,"User0"));
 //			out.writeObject(new DispatchFieldSupe(userName,"User2"));
 
-			
-
 
 //			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
 //			out.writeObject(new AddObjectDispatch(userName, new ChangeDrop("Chestclub for non-men", 123, 232, 3032)));

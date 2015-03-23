@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import server.DispatchServer;
 import model.dispatch.Dispatch;
 import model.dispatchObject.DispatchObject;
 
@@ -24,20 +25,20 @@ public class Club implements Serializable {
 	private int halfsheets;
 	private int singletickets;
 	private int wristbands;
-	private List<Dispatch<?>> transactions;
+	private List<Dispatch<DispatchServer>> transactions;
 	
 	public Club(String clubName){
 		this.clubName = clubName;
 		this.balance = 0;
 		this.tickets = 0;
-		transactions = new ArrayList<Dispatch<?>>();
+		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
 	public Club(String clubName, int money, int tickets){
 		this.clubName = clubName;
 		this.balance = money;
 		this.tickets = tickets;
-		transactions = new ArrayList<Dispatch<?>>();
+		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
 	//Initial Cash Drop can be different for each club, but should not be
@@ -91,7 +92,7 @@ public class Club implements Serializable {
 		return printTransactions;
 	}
 	
-	public void addTransaction(Dispatch<?> dispatch){
+	public void addTransaction(Dispatch<DispatchServer> dispatch){
 		transactions.add(dispatch);
 	}
 	
@@ -128,4 +129,12 @@ public class Club implements Serializable {
 	public void putFullSheet(int amount) { this.fullsheets += amount; }
 	public void putHalfSheet(int amount) { this.halfsheets += amount; }
 	public void putSingleTickets(int amount) { this.singletickets += amount; }	
+	
+	public String printTransactions() {
+		String out="";
+		for(Dispatch d : this.transactions) {
+			out += d.toString() +"\n";
+		}
+		return out;
+	}
 }
