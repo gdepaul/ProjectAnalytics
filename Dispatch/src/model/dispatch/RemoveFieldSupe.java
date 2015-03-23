@@ -5,6 +5,7 @@ import server.DispatchServer;
 import exceptions.DeployedException;
 import exceptions.DuplicateClubException;
 import exceptions.DuplicateFieldSupeException;
+import exceptions.NullFieldSupeException;
 
 public class RemoveFieldSupe extends Dispatch<DispatchServer> {
 	private String name;
@@ -15,7 +16,7 @@ public class RemoveFieldSupe extends Dispatch<DispatchServer> {
 	}
 
 	@Override
-	public void execute(DispatchServer executeOn) throws DeployedException {
+	public void execute(DispatchServer executeOn) throws DeployedException, NullFieldSupeException {
 		executeOn.removeFieldSupe(name);		
 	}
 

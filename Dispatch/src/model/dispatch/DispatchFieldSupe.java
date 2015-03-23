@@ -1,5 +1,6 @@
 package model.dispatch;
 
+import exceptions.DeployedException;
 import exceptions.NullFieldSupeException;
 import server.DispatchServer;
 
@@ -13,7 +14,7 @@ public class DispatchFieldSupe extends Dispatch<DispatchServer>  {
 	}
 
 	@Override
-	public void execute(DispatchServer executeOn) throws NullFieldSupeException {
+	public void execute(DispatchServer executeOn) throws NullFieldSupeException, DeployedException {
 		executeOn.dispatchFieldSupe(name);		
 	}
 

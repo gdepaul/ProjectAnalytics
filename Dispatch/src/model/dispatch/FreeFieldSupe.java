@@ -14,7 +14,7 @@ public class FreeFieldSupe extends Dispatch<DispatchServer>  {
 	}
 
 	@Override
-	public void execute(DispatchServer executeOn) throws NotDispatchedException {
+	public void execute(DispatchServer executeOn) throws NotDispatchedException, NullFieldSupeException {
 		executeOn.freeFieldSupe(name);
 	}
 }
