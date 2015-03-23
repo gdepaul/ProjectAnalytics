@@ -127,11 +127,10 @@ public class Club implements Serializable {
 		return tickets;
 	}
 	
-	public void putChangeDrop() { changedrops++; }
-	public void putCashDrop() { cashdrops++; }
-	public void putFullSheet(int amount) { this.fullsheets += amount; }
-	public void putHalfSheet(int amount) { this.halfsheets += amount; }
-	public void putSingleTickets(int amount) { this.singletickets += amount; }	
+	public void putChangeDrop(int amount) { this.changedrops += amount; }
+	public void putCashDrop(int amount)   { this.cashdrops   += amount; }
+	public void putFullSheet(int amount)  { this.fullsheets  += amount; }
+	public void putHalfSheet(int amount)  { this.halfsheets  += amount; }
 	
 	public String printTransactions() {
 		String out="";

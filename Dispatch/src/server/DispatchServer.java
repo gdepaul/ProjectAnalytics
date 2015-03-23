@@ -327,10 +327,7 @@ public class DispatchServer {
 			throw new NullFieldSupeException(fs + " does not exist in the system as Field Supervisor.");
 		this.field_sups.remove(fs);
 	}
-	/**
-	 * @param fs
-	 * @throws NullFieldSupeException
-	 */
+
 	public void dispatchFieldSupe(String fs) throws NullFieldSupeException, DeployedException {
 		if(!this.field_sups.containsKey(fs))
 			throw new NullFieldSupeException(fs + " does not exist in the system as Field Supervisor.");
@@ -338,13 +335,7 @@ public class DispatchServer {
 			throw new DeployedException(fs + " is already dispatched.");
 		this.field_sups.get(fs).dispatch();
 	}
-	
-	/**
-	 * 
-	 * @param fs Field Supervisor who returned
-	 * @throws NotDispatchedException
-	 * @throws NullFieldSupeException 
-	 */
+
 	public void freeFieldSupe(String fs) throws NotDispatchedException, NullFieldSupeException {
 		if(!this.field_sups.containsKey(fs))
 			throw new NullFieldSupeException(fs + " does not exist in the system as a Field Supervisor.");
@@ -353,16 +344,9 @@ public class DispatchServer {
 		this.field_sups.get(fs).free();
 	}
 	
-	public void cashDrop(String club) throws NullClubException {
+	public void cashDrop(String club, int amount) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).putCashDrop();
-		}
-		else
-			throw new NullClubException(club + "does not exist");
-	}
-	public void cashDrop(String club, String fs) throws NullClubException {
-		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).putCashDrop();
+			hash_clubs.get(club).putCashDrop(amount);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
@@ -375,31 +359,19 @@ public class DispatchServer {
 		else
 			throw new NullClubException(club + "does not exist");
 	}
-	public void changeDrop(String club) throws NullClubException {
+	public void changeDrop(String club, int amount) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).putChangeDrop();
+			hash_clubs.get(club).putChangeDrop(amount);
 			Out.print("Change Drop for " + club);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
 	}
 
-	public void ticketDrop(String club, String type, int amount) throws NullClubException, IllegalTicketOperation {
+	public void ticketDrop(String club, int num_full, int num_half) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
-			if(amount <= 0)
-				throw new IllegalTicketOperation("Must be a nonzero positive amount of tickets");
-			if(type.compareTo("FULL") == 0) {
-				hash_clubs.get(club).putFullSheet(amount);
-			}
-			else if(type.compareTo("HALF") == 0) {
-				hash_clubs.get(club).putHalfSheet(amount);
-			}
-			else if(type.compareTo("SINGLE") == 0) {
-				hash_clubs.get(club).putSingleTickets(amount);
-			}
-			else
-				throw new IllegalTicketOperation("TicketDrop must be FULL, HALF, or SINGLE");
-			hash_clubs.get(club).putChangeDrop();
+			hash_clubs.get(club).putFullSheet(num_full);
+			hash_clubs.get(club).putHalfSheet(num_half);
 		}
 		else
 			throw new NullClubException(club + "does not exist");

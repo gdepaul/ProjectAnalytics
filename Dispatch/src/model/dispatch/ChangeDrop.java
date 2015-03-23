@@ -10,18 +10,15 @@ import exceptions.NullClubException;
 public class ChangeDrop extends Dispatch<DispatchServer>  {
 
 	private String supe; 
-	
-	public ChangeDrop(String source, String club) {
+	private int amount;
+	public ChangeDrop(String source, String club, int amount) {
 		super(source,club);
-	}
-	public ChangeDrop(String source, String club, String supe) {
-		super(source,club);
-		this.supe=supe;
+		this.amount = amount;
 	}
 
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException {
-		executeOn.changeDrop(this.club);
+		executeOn.changeDrop(this.club, amount);
 	}
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
