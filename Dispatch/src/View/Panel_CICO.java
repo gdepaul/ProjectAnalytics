@@ -1288,7 +1288,7 @@ public class Panel_CICO extends JPanel{
 		txtrX_11.setText("X $800 =");
 		txtrX_11.setEditable(false);
 		txtrX_11.setBackground(SystemColor.menu);
-		txtrX_11.setBounds(628, 271, 75, 22);
+		txtrX_11.setBounds(628, 238, 75, 22);
 		add(txtrX_11);
 		
 		textArea_endTotalCalc = new JTextArea();
@@ -1302,7 +1302,7 @@ public class Panel_CICO extends JPanel{
 		txtrOfCash.setLineWrap(true);
 		txtrOfCash.setEditable(false);
 		txtrOfCash.setBackground(SystemColor.menu);
-		txtrOfCash.setBounds(463, 271, 114, 22);
+		txtrOfCash.setBounds(461, 238, 114, 22);
 		add(txtrOfCash);
 		
 		JTextArea txtrEndTotal = new JTextArea();
@@ -1337,13 +1337,13 @@ public class Panel_CICO extends JPanel{
 		textArea_cashDrops = new JTextArea();
 		textArea_cashDrops.setBackground(SystemColor.control);
 		textArea_cashDrops.setEditable(false);
-		textArea_cashDrops.setBounds(577, 271, 41, 27);
+		textArea_cashDrops.setBounds(577, 238, 41, 27);
 		add(textArea_cashDrops);
 		
 		textArea_dropsBy800 = new JTextArea();
 		textArea_dropsBy800.setBackground(SystemColor.control);
 		textArea_dropsBy800.setEditable(false);
-		textArea_dropsBy800.setBounds(713, 271, 61, 27);
+		textArea_dropsBy800.setBounds(713, 238, 61, 27);
 		add(textArea_dropsBy800);
 		
 		JTextArea textArea_35 = new JTextArea();
@@ -1623,6 +1623,33 @@ public class Panel_CICO extends JPanel{
 		JTextArea textArea_58 = new JTextArea();
 		textArea_58.setBounds(597, 651, 130, 22);
 		add(textArea_58);
+		
+		JTextArea txtrChangeDrops = new JTextArea();
+		txtrChangeDrops.setText(" Change Drops");
+		txtrChangeDrops.setLineWrap(true);
+		txtrChangeDrops.setEditable(false);
+		txtrChangeDrops.setBackground(SystemColor.menu);
+		txtrChangeDrops.setBounds(461, 271, 114, 22);
+		add(txtrChangeDrops);
+		
+		JTextArea textArea_59 = new JTextArea();
+		textArea_59.setEditable(false);
+		textArea_59.setBackground(SystemColor.menu);
+		textArea_59.setBounds(577, 271, 41, 27);
+		add(textArea_59);
+		
+		JTextArea txtrX_13 = new JTextArea();
+		txtrX_13.setText("X  $50 =");
+		txtrX_13.setEditable(false);
+		txtrX_13.setBackground(SystemColor.menu);
+		txtrX_13.setBounds(628, 271, 75, 22);
+		add(txtrX_13);
+		
+		JTextArea textArea_60 = new JTextArea();
+		textArea_60.setEditable(false);
+		textArea_60.setBackground(SystemColor.menu);
+		textArea_60.setBounds(713, 271, 61, 27);
+		add(textArea_60);
 	}
 	
 	/**

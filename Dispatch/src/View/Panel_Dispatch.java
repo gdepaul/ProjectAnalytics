@@ -174,7 +174,7 @@ public class Panel_Dispatch extends JPanel {
 	}
 	
 	/**
-	 *	DispatchListener
+	 *	DispatchButton Listener
 	 *
 	 */
 	private class DispatchListener implements ActionListener{
@@ -188,37 +188,39 @@ public class Panel_Dispatch extends JPanel {
 			//Dispatch field supe
 			try {
 				output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+				
+				// Process actionSelected on Club
+				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
+					if (actionSelected.compareTo("CashDrop")==0){
+						try {
+							output.writeObject(new CashDrop(clientName, clubSelected));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else if (actionSelected.compareTo("ChangeDrop")==0){
+						try {
+							output.writeObject(new ChangeDrop(clientName, clubSelected));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else if (actionSelected.compareTo("TicketDrop")==0){
+						try {
+							output.writeObject(new TicketDrop(clientName, clubSelected, "SINGLE", 50));	//Right now, drops 50 single tickets. Ask about implementation.
+																										//Ebitie said they're worth $.50 cents
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			// Process actionSelected on Club
-			String[] actionArray = {"CashDrop", "ChangeDrop", "InitialCashBox", "TicketDrop"};
 			
-			if (actionSelected.compareTo("CashDrop")==0){
-				try {
-					output.writeObject(new CashDrop(clientName, clubSelected));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else if (actionSelected.compareTo("ChangeDrop")==0){
-				try {
-					output.writeObject(new ChangeDrop(clientName, clubSelected));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else if (actionSelected.compareTo("TicketDrop")==0){
-				try {
-					output.writeObject(new TicketDrop(clientName, clubSelected, "SINGLE", 50));	//Right now, drops 50 single tickets. Ask about implementation.
-																								//Ebitie said they're worth $.50 cents
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 	
