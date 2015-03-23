@@ -22,6 +22,7 @@ import model.dispatch.CashDrop;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchFieldSupe;
+import model.dispatch.FreeFieldSupe;
 import model.dispatch.InitialCashDrop;
 import model.dispatch.UpdateDispatch;
 import View.Panel_CICO;
@@ -55,6 +56,7 @@ public class CompleteClient extends JFrame{
 				try {
 					Object obj = in.readObject();
 					if(obj instanceof Dispatch<?>) { // See if we have a valid command
+						@SuppressWarnings("unchecked")
 						Dispatch<CompleteClient> command = (Dispatch<CompleteClient>)obj;
 						System.out.println("Update from server: " + command.getSource());
 						command.execute(CompleteClient.this);
@@ -121,23 +123,25 @@ public class CompleteClient extends JFrame{
 			});
 			setupGUI();
 			
-//			out.writeObject(new AddFieldSupe(userName, "User0"));
-//			out.writeObject(new AddFieldSupe(userName, "User1"));
-//			out.writeObject(new AddFieldSupe(userName, "User2"));
-//			out.writeObject(new AddFieldSupe(userName, "User3"));
-//			out.writeObject(new AddFieldSupe(userName, "User4"));
+			out.writeObject(new AddFieldSupe(userName, "User0"));
+			out.writeObject(new AddFieldSupe(userName, "User1"));
+			out.writeObject(new AddFieldSupe(userName, "User2"));
+			out.writeObject(new AddFieldSupe(userName, "User3"));
+			out.writeObject(new AddFieldSupe(userName, "User4"));
 			out.writeObject(new AddActiveClub(userName,"club0",0,0));
 			out.writeObject(new AddActiveClub(userName,"club1",0,0));
 			out.writeObject(new AddActiveClub(userName,"club2",0,0));
 			out.writeObject(new AddActiveClub(userName,"AAA",0,0));
-//			out.writeObject(new InitialCashDrop(userName, "AAA", (float) 800.00));			
+			out.writeObject(new InitialCashDrop(userName, "AAA", (float) 800.00));			
 			out.writeObject(new AddActiveClub(userName,"Arendale",0,0));
 			out.writeObject(new AddActiveClub(userName,"Blue Sky",0,0));
-//			out.writeObject(new CashDrop(userName, "Blue Sky"));
-//			out.writeObject(new InitialCashDrop(userName, "Arendale", (float) 800.00));
+			out.writeObject(new CashDrop(userName, "Blue Sky"));
+			out.writeObject(new InitialCashDrop(userName, "Arendale", (float) 800.00));
 			out.writeObject(new AddActiveClub(userName,"Traveling Pants",0,0));
-//			out.writeObject(new DispatchFieldSupe(userName,"User0"));
-//			out.writeObject(new DispatchFieldSupe(userName,"User2"));
+			out.writeObject(new DispatchFieldSupe(userName,"User0"));
+			out.writeObject(new DispatchFieldSupe(userName,"User2"));
+			out.writeObject(new FreeFieldSupe(userName,"User0"));
+			out.writeObject(new FreeFieldSupe(userName,"User2"));
 
 
 //			out.writeObject(new AddObjectDispatch(userName, new CashDrop("Hairclub for Men", 101, 202, 303)));
@@ -200,12 +204,7 @@ public class CompleteClient extends JFrame{
 		
 		System.out.println(clubs);
 		System.out.println(availableFS);
-		System.out.println(dispatchedFS);
-		
-		for( Club club : clubs) {
-			System.err.println(club.getClubName() + "  " + club.getCashdrops());
-		}
-		System.out.println("========================");
+		System.out.println(dispatchedFS+"\n");
 		
 		this.repaint();
 		

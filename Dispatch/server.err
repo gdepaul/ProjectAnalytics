@@ -1,230 +1,64 @@
-Mar 20 2015 17:16:01: Error updating clients
-Mar 20 2015 17:17:33: Error updating clients
-Mar 20 2015 22:43:43: Error creating server:
-Mar 21 2015 13:31:52: Error creating server:
-Mar 21 2015 13:35:11: Error updating clients
-Mar 21 2015 13:35:37: Error updating clients
-Mar 21 2015 13:35:54: Error updating clients
-Mar 21 2015 13:35:54: Error updating clients
-Mar 21 2015 13:37:32: Error updating clients
-Mar 21 2015 13:39:38: Client Bill tried to add a duplicate Field Supervior
-Mar 21 2015 13:39:38: Error updating clients
-Mar 21 2015 13:39:52: Error updating clients
-Mar 21 2015 13:40:04: Error updating clients
-Mar 21 2015 13:40:20: Error updating clients
-Mar 21 2015 13:40:34: Error updating clients
-Mar 21 2015 13:40:34: Error updating clients
-Mar 21 2015 13:40:49: Client James tried to add a duplicate Field Supervior
-Mar 21 2015 13:40:49: Error updating clients
-Mar 21 2015 13:41:31: Error updating clients
-Mar 21 2015 13:41:42: Error updating clients
-Mar 21 2015 13:41:42: Error updating clients
-Mar 21 2015 13:42:15: Error updating clients
-Mar 21 2015 13:42:16: Error updating clients
-Mar 21 2015 13:42:19: Error updating clients
-Mar 21 2015 13:42:34: Error creating server:
-Mar 21 2015 13:44:29: Error creating server:
-Mar 21 2015 13:46:05: Error creating server:
-Mar 21 2015 13:48:00: Error updating clients
-Mar 21 2015 13:48:00: Error updating clients
-Mar 21 2015 13:50:37: Error updating clients
-Mar 21 2015 13:50:37: Error updating clients
-<<<<<<< HEAD
-Mar 21 2015 13:55:17: Error creating server:
-Mar 21 2015 14:20:26: Error creating server:
-Mar 21 2015 14:27:54: Error creating server:
-Mar 21 2015 14:30:56: Error creating server:
-Mar 21 2015 14:44:32: Error creating server:
-Mar 21 2015 14:51:20: Error creating server:
-Mar 21 2015 14:54:39: Error creating server:
-Mar 21 2015 14:57:53: Client Peter tried to add a duplicate Field Supervior
-Mar 21 2015 15:01:32: Error creating server:
-Mar 21 2015 15:16:18: Error creating server:
-Mar 21 2015 15:17:36: Error creating server:
-Mar 21 2015 15:18:44: Error creating server:
-Mar 21 2015 15:24:37: Error creating server:
-Mar 21 2015 15:35:23: Error creating server:
-Mar 21 2015 15:52:05: Error creating server:
-Mar 21 2015 15:53:36: Error creating server:
-Mar 21 2015 17:30:01: Error creating server:
-=======
->>>>>>> 1737587156277e2e2cf60a03429d96485834c9ff
-Mar 21 2015 17:56:48: Error creating server:
-Mar 21 2015 18:03:11: Error creating server:
-Mar 21 2015 18:08:55: Error creating server:
-Mar 21 2015 18:12:49: Error creating server:
-Mar 21 2015 18:13:53: Error creating server:
-Mar 21 2015 18:15:02: Error creating server:
-Mar 21 2015 18:16:47: Error creating server:
-Mar 21 2015 18:19:13: Error creating server:
-Mar 21 2015 18:26:49: Error creating server:
-Mar 21 2015 18:28:36: Error creating server:
-Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
-Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
-Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
-Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
-Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
-Mar 21 2015 18:31:48: Error creating server:
-Mar 21 2015 18:33:38: Error creating server:
-Mar 21 2015 18:35:44: Error creating server:
-Mar 21 2015 18:37:45: Error creating server:
-Mar 21 2015 18:39:58: Error creating server:
-Mar 21 2015 18:41:02: Error creating server:
-Mar 21 2015 18:45:01: Error creating server:
-Mar 21 2015 19:46:34: Client James tried to add a duplicate Field Supervior
-Mar 21 2015 19:46:54: Error updating clients
-Mar 21 2015 19:47:01: Error updating clients
-Mar 21 2015 19:47:06: Error updating clients
-Mar 21 2015 19:47:12: Error updating clients
-Mar 21 2015 19:54:02: Error updating clients
-Mar 21 2015 19:54:02: Error updating clients
-Mar 21 2015 19:54:23: Error updating clients
-Mar 21 2015 19:54:23: Error updating clients
-Mar 21 2015 19:58:52: Error updating clients
-Mar 21 2015 19:58:52: Error updating clients
-Mar 21 2015 20:15:28: Error updating clients
-Mar 21 2015 20:15:32: Error updating clients
-Mar 21 2015 20:15:43: Error updating clients
-Mar 21 2015 20:30:22: Error updating clients
-Mar 21 2015 20:30:29: Error updating clients
-Mar 21 2015 20:30:37: Error updating clients
-Mar 21 2015 20:31:03: Error updating clients
-Mar 21 2015 20:31:05: Error updating clients
-Mar 21 2015 20:34:44: Error updating clients
-Mar 21 2015 20:35:13: Error updating clients
-Mar 21 2015 20:38:48: Error updating clients
-Mar 21 2015 20:38:53: Error updating clients
-Mar 21 2015 20:39:24: Error updating clients
-Mar 21 2015 20:39:30: Error updating clients
-Mar 21 2015 20:39:55: Error updating clients
-Mar 21 2015 20:39:59: Error updating clients
-Mar 21 2015 20:40:00: Error updating clients
-Mar 21 2015 20:41:15: Error updating clients
-Mar 21 2015 20:41:20: Error updating clients
-Mar 21 2015 20:41:27: Error updating clients
-Mar 21 2015 20:41:32: Error updating clients
-Mar 21 2015 20:41:35: Client Wrench tried to free Field Supe that is not dispatched
-Mar 21 2015 20:41:35: Error updating clients
-Mar 21 2015 20:41:43: Client Wrench tried to free Field Supe that is not dispatched
-Mar 21 2015 20:41:43: Error updating clients
-Mar 21 2015 20:41:53: Error updating clients
-Mar 21 2015 20:41:56: Error updating clients
-Mar 21 2015 20:41:58: Client Wrench tried to dispatch a Field Supe that does not exist.
-Mar 21 2015 20:41:58: Error updating clients
-Mar 21 2015 20:42:06: Client Wrench tried to dispatch a Field Supe that does not exist.
-Mar 21 2015 20:42:06: Error updating clients
-Mar 21 2015 20:56:20: Error updating clients
-Mar 21 2015 22:13:25: Client Kris tried to free Field Supe that is not dispatched
-Mar 21 2015 22:13:38: Client Kris tried to operate on Club (No clubs!)does not exist which does not exist
-Mar 21 2015 22:13:42: Client Kris tried to operate on Club (No clubs!)does not exist which does not exist
-Mar 21 2015 22:14:29: Client Kris tried to operate on Club (No clubs!)does not exist which does not exist
-Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
-Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
-Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
-Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
-Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
-Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
-Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
-Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
-Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
-Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
-Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
-Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
-Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
-Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
-Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
-Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
-Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
-Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
-Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
-Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
-Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
-Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
-Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
-Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:25:34: Client James tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
-Mar 22 2015 15:30:01: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:30:01: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:30:02: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:30:03: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:30:04: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:30:06: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:30:10: Client 4568 tried to add a duplicate Field Supervior
-Mar 22 2015 15:37:19: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:38:54: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:38:56: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:40:46: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:40:47: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:49:26: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:49:28: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:49:29: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:49:30: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
-Mar 22 2015 15:57:30: Client 4562 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:57:31: Client 4562 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 15:57:32: Client 4562 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:00:10: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:00:12: Client 4568 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
-Mar 22 2015 16:03:48: Client 45618 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:03:55: Client 45618 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:03:56: Client 45618 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:03:56: Client 45618 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:05:13: Client 456841 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:05:14: Client 456841 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:05:15: Client 456841 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:05:16: Client 456841 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 16:17:51: Client James tried to add a duplicate club
-Mar 22 2015 17:32:43: Client 452 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:32:44: Client 452 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:32:45: Client 452 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:32:45: Client 452 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:40:05: Client 4561 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:40:07: Client 4561 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:40:07: Client 4561 tried to dispatch a Field Supe that does not exist.
-Mar 22 2015 17:40:08: Client 4561 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 22:15:56: Client 4568 tried to free Field Supe that is not dispatched
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate Field Supervior
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate Field Supervior
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate Field Supervior
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate Field Supervior
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate Field Supervior
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate club
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate club
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate club
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Client 56 tried to add a duplicate club
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:13: Error updating clients
+Mar 22 2015 22:23:27: Error updating clients
+Mar 22 2015 22:23:37: Error updating clients
+Mar 22 2015 22:23:37: Error updating clients
+Mar 22 2015 22:23:44: Error updating clients
+Mar 22 2015 22:23:44: Error updating clients
+Mar 22 2015 22:23:53: Error updating clients
+Mar 22 2015 22:23:53: Error updating clients
+Mar 22 2015 22:24:02: Error updating clients
+Mar 22 2015 22:24:02: Error updating clients
+Mar 22 2015 22:24:07: Error updating clients
+Mar 22 2015 22:24:07: Error updating clients
+Mar 22 2015 22:24:16: Error updating clients
+Mar 22 2015 22:24:17: Error updating clients
+Mar 22 2015 22:24:17: Error updating clients
+Mar 22 2015 22:24:18: Error updating clients
+Mar 22 2015 22:24:20: Error updating clients
+Mar 22 2015 22:24:27: Error updating clients
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate Field Supervior
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate Field Supervior
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate Field Supervior
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate Field Supervior
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate Field Supervior
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate club
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate club
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate club
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Client 456 tried to add a duplicate club
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Error updating clients
+Mar 22 2015 22:24:40: Error updating clients
