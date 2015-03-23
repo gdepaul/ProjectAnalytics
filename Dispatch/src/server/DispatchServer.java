@@ -46,6 +46,7 @@ import exceptions.*;
 public class DispatchServer {
 	private Logger Out;
 	private ServerSocket socket;
+	private HashMap<String, FieldSupervisor> field_sups;
 	private List<String> list_clubs;
 	private List<String> availableFS;
 	private List<String> dispatchedFS;
@@ -228,6 +229,7 @@ public class DispatchServer {
 			dispatchedFS = new ArrayList<String>();
 			
 			
+			this.field_sups = new HashMap<String, FieldSupervisor>();
 			hash_clubs = new HashMap<String, Club>();
 			
 			Out.print("Server started on port " + port);
@@ -304,35 +306,61 @@ public class DispatchServer {
 			hash_clubs.remove(name);
 		}
 	}
+	/**
+	 * @param fs Name of Field Supervisor to Add
+	 * @throws DuplicateFieldSupeException
+	 */
 	public void addFieldSupe(String fs) throws DuplicateFieldSupeException {
-		if(availableFS.contains(fs) || dispatchedFS.contains(fs)) {
-			throw new DuplicateFieldSupeException(fs + " is already a field supe!");
+		if(this.field_sups.containsKey(fs)) {
+			throw new DuplicateFieldSupeException(fs + " is already a Field Supervisor!");
 		}
-		availableFS.add(fs);
+		this.field_sups.put(fs, new FieldSupervisor(fs));
 	}
-	public void removeFieldSupe(String fs) throws DeployedException {
-		if(dispatchedFS.contains(fs)) {
+	/**
+	 * @param fs
+	 * @throws DeployedException
+	 */
+	public void removeFieldSupe(String fs) throws DeployedException, NullFieldSupeException {
+		if(this.field_sups.get(fs).isDispatched())
 			throw new DeployedException(fs + " is currently dispatched and cannot be removed.");
-		}
-		availableFS.remove(fs);
+		if(!this.field_sups.containsKey(fs))
+			throw new NullFieldSupeException(fs + " does not exist in the system as Field Supervisor.");
+		this.field_sups.remove(fs);
 	}
-	public void dispatchFieldSupe(String fs) throws NullFieldSupeException {
-		if(availableFS.contains(fs)) {
-			availableFS.remove(fs);
-			dispatchedFS.add(fs);
-		}
-		else
-			throw new NullFieldSupeException(fs + " does not exist");
+	/**
+	 * @param fs
+	 * @throws NullFieldSupeException
+	 */
+	public void dispatchFieldSupe(String fs) throws NullFieldSupeException, DeployedException {
+		if(!this.field_sups.containsKey(fs))
+			throw new NullFieldSupeException(fs + " does not exist in the system as Field Supervisor.");
+		if(this.field_sups.get(fs).isDispatched())
+			throw new DeployedException(fs + " is already dispatched.");
+		this.field_sups.get(fs).dispatch();
 	}
-	public void freeFieldSupe(String fs) throws NotDispatchedException {
-		if(dispatchedFS.contains(fs)) {
-			dispatchedFS.remove(fs);
-			availableFS.add(fs);
-		}
-		else
-			throw new NotDispatchedException(fs + "is not currently dispatched!");
+	
+	/**
+	 * 
+	 * @param fs Field Supervisor who returned
+	 * @throws NotDispatchedException
+	 * @throws NullFieldSupeException 
+	 */
+	public void freeFieldSupe(String fs) throws NotDispatchedException, NullFieldSupeException {
+		if(!this.field_sups.containsKey(fs))
+			throw new NullFieldSupeException(fs + " does not exist in the system as a Field Supervisor.");
+		if(!this.field_sups.get(fs).isDispatched())
+			throw new NotDispatchedException(fs + " is not currently dispatched.");
+		this.field_sups.get(fs).free();
 	}
+	
 	public void cashDrop(String club) throws NullClubException {
+		if(hash_clubs.containsKey(club)) {
+			hash_clubs.get(club).putCashDrop();
+		}
+		else
+			throw new NullClubException(club + "does not exist");
+	}
+	public void cashDrop(String club, String fs) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putCashDrop();
 		}
@@ -342,7 +370,7 @@ public class DispatchServer {
 	public void initialCashDrop(String club, float drop) throws NullClubException{
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).setInitialCashDrop(drop);
-			System.out.println("\nInitial cash drop for " + club + ":" + hash_clubs.get(club).getInitialCashDrop());
+			Out.print("Initial cash drop for " + club + ":" + hash_clubs.get(club).getInitialCashDrop());
 		}
 		else
 			throw new NullClubException(club + "does not exist");
@@ -350,10 +378,12 @@ public class DispatchServer {
 	public void changeDrop(String club) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putChangeDrop();
+			Out.print("Change Drop for " + club);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
 	}
+
 	public void ticketDrop(String club, String type, int amount) throws NullClubException, IllegalTicketOperation {
 		if(hash_clubs.containsKey(club)) {
 			if(amount <= 0)
@@ -375,7 +405,6 @@ public class DispatchServer {
 			throw new NullClubException(club + "does not exist");
 	}
 	
-	
 	/**
 	 * This method undoes the last command of a client
 	 * 
@@ -393,11 +422,19 @@ public class DispatchServer {
 	 *	clubs, available field supervisors, and dispatched field supervisors
 	 */
 	public void updateClients(){
-		System.err.println("Updating Clients");
+		//System.err.println("Updating Clients");
 		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		Dispatch<CompleteClient> update = new UpdateDispatch("server", new ArrayList<Club>(clubs), new ArrayList<String>(availableFS), new ArrayList<String>(dispatchedFS));
+		List<String> availableFieldSupervisors = new ArrayList();
+		List<String> dispatchedFieldSupervisors = new ArrayList();
+
+		for(FieldSupervisor fs : this.field_sups.values()) {
+			if(!fs.isDispatched())
+				availableFieldSupervisors.add(fs.getName());
+			else
+				dispatchedFieldSupervisors.add(fs.getName());
+		}
+		Dispatch<CompleteClient> update = new UpdateDispatch("server", new ArrayList<Club>(clubs), new ArrayList<String>(availableFieldSupervisors), new ArrayList<String>(dispatchedFieldSupervisors));
 		for (ObjectOutputStream out: outputs.values()) {
-			
 			try{
 				out.reset();
 				out.writeObject(update);
