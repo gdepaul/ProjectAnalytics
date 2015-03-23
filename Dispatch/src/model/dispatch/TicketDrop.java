@@ -13,6 +13,9 @@ public class TicketDrop extends Dispatch<DispatchServer>  {
 	private String supe;
 	private int amount;
 	
+	private int num_fulls;
+	private int num_halves;
+	
 	public TicketDrop(String source, String club, String type, int amount) {
 		super(source, club);
 		this.type=type;
@@ -24,6 +27,12 @@ public class TicketDrop extends Dispatch<DispatchServer>  {
 		this.amount = amount;
 		this.supe = supe;
 	}
+	public TicketDrop(String source, String club, String supe, int num_fulls, int num_halves) {
+		super(source, club);
+		this.supe = supe;
+		this.num_fulls=num_fulls;
+		this.num_halves=num_halves;
+	}
 
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException, IllegalTicketOperation {
@@ -33,6 +42,8 @@ public class TicketDrop extends Dispatch<DispatchServer>  {
 	public String getName() { return this.club; }
 	public String getType() { return type; }
 	public int getAmount() { return amount; }
+	public int getFullSheets() { return num_fulls; }
+	public int getHalfSheets() { return num_halves; }
 	
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
