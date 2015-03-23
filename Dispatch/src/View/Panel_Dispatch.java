@@ -193,21 +193,21 @@ public class Panel_Dispatch extends JPanel {
 				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
 					if (actionSelected.compareTo("CashDrop")==0){
 						try {
-							output.writeObject(new CashDrop(clientName, clubSelected));
+							output.writeObject(new CashDrop(clientName, clubSelected, 1)); //NEED TO MAKE CHANGEABLE
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}else if (actionSelected.compareTo("ChangeDrop")==0){
 						try {
-							output.writeObject(new ChangeDrop(clientName, clubSelected));
+							output.writeObject(new ChangeDrop(clientName, clubSelected, 1)); //NEED TO MAKE CHANGEABLE
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}else if (actionSelected.compareTo("TicketDrop")==0){
 						try {
-							output.writeObject(new TicketDrop(clientName, clubSelected, "SINGLE", 50));	//Right now, drops 50 single tickets. Ask about implementation.
+							output.writeObject(new TicketDrop(clientName, clubSelected, 1, 1));	//Right now, drops 50 single tickets. Ask about implementation.
 																										//Ebitie said they're worth $.50 cents
 						} catch (IOException e) {
 							// TODO Auto-generated catch block

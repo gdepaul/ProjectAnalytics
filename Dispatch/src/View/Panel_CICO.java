@@ -565,6 +565,7 @@ public class Panel_CICO extends JPanel{
 
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
+			clearFields();
 			clubSelected = spinner_clubSelection.getValue().toString();
 			actualClub = findActualClub(clubSelected);
 			//if the club already has an initial cashdrop, turn off button and text fields...
@@ -622,10 +623,35 @@ public class Panel_CICO extends JPanel{
 							)));
 			}else{
 				textArea_finalTotal.setText(
-						(formatDecimal(actualClub.getCashdrops()*800+
+						(formatDecimal(actualClub.getCashdrops()*800
 								+actualClub.getChangedrops()*50)));
 			}
 			
+		}
+
+		private void clearFields() {
+			textField_penniesIn.setText("");
+			textField_penniesOut.setText("");
+			textField_nickelsIn.setText("");
+			textField_nickelsOut.setText("");
+			textField_dimesIn.setText("");
+			textField_dimesOut.setText("");
+			textField_quartersIn.setText("");
+			textField_quartersOut.setText("");
+			textField_dollarsIn.setText("");
+			textField_dollarsOut.setText("");
+			textField_twosIn.setText("");
+			textField_twosOut.setText("");
+			textField_fivesIn.setText("");
+			textField_fivesOut.setText("");
+			textField_tensIn.setText("");
+			textField_tensOut.setText("");
+			textField_twentiesIn.setText("");
+			textField_twentiesOut.setText("");
+			textField_fiftiesIn.setText("");
+			textField_fiftiesOut.setText("");
+			textField_hundredsIn.setText("");
+			textField_hundredsOut.setText("");
 		}
 		
 	}
@@ -1312,7 +1338,7 @@ public class Panel_CICO extends JPanel{
 		JTextArea txtrBooth = new JTextArea();
 		txtrBooth.setBackground(SystemColor.control);
 		txtrBooth.setEditable(false);
-		txtrBooth.setText("         BOOTH:");
+		txtrBooth.setText("      CASHIER:");
 		txtrBooth.setBounds(10, 31, 121, 27);
 		add(txtrBooth);
 		
