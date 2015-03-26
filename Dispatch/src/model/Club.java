@@ -33,6 +33,15 @@ public class Club implements Serializable {
 		this.balance = 0;
 		this.tickets = 0;
 		this.onField = true;
+		
+		this.initialCashDrop = 0;
+		this.changedrops = 0;
+		this.cashdrops = 0;
+		this.fullsheets = 0;
+		this.halfsheets = 0;
+		this.singletickets = 0;
+		this.wristbands = 0;
+		
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
@@ -41,6 +50,15 @@ public class Club implements Serializable {
 		this.balance = money;
 		this.tickets = tickets;
 		this.onField = true;
+		
+		this.initialCashDrop = 0;
+		this.changedrops = 0;
+		this.cashdrops = 0;
+		this.fullsheets = 0;
+		this.halfsheets = 0;
+		this.singletickets = 0;
+		this.wristbands = 0;
+		
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	

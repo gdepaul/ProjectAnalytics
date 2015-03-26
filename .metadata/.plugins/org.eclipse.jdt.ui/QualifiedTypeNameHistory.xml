@@ -38,4 +38,5 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="model.dispatch.CashDrop"/>
 <fullyQualifiedTypeName name="model.dispatch.InitialCashDrop"/>
+<fullyQualifiedTypeName name="model.dispatch.AddActiveClub"/>
 </qualifiedTypeNameHistroy>
