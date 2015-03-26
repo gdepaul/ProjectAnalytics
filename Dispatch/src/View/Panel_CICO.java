@@ -21,6 +21,7 @@ import javax.swing.event.ChangeListener;
 
 import model.Club;
 import model.dispatch.InitialCashDrop;
+
 import javax.swing.JLabel;
 
 public class Panel_CICO extends JPanel{
@@ -87,6 +88,7 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_fiftiesOut;
 	private JTextArea textArea_hundredsOut;
 	private JTextArea textArea_issuedTickets;
+	private JTextArea textArea_issuedWristbands;
 	
 	
 	private JSpinner spinner_clubSelection;
@@ -104,6 +106,7 @@ public class Panel_CICO extends JPanel{
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	private JTextField textField;
 	
 	/**
 	 * Listener for the initial cash drop button
@@ -481,8 +484,13 @@ public class Panel_CICO extends JPanel{
 		
 		if (clubsArray.contains(clubSelected)){
 			spinner_clubSelection.setValue(clubSelected);
+			
 			//Update tickets value
 			textArea_issuedTickets.setText("" + (actualClub.getFullsheets()*40 + actualClub.getHalfsheets()*20));
+			
+			//Update 
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			
 			// ...if it's there, show that value as startTotal
 			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
@@ -613,6 +621,13 @@ public class Panel_CICO extends JPanel{
 			
 			//Update textAreas
 			
+			//Update tickets value
+			textArea_issuedTickets.setText("" + (actualClub.getFullsheets()*40 + actualClub.getHalfsheets()*20));
+			
+			//Update 
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			
+			//Update cashdrop stuff
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
@@ -677,7 +692,7 @@ public class Panel_CICO extends JPanel{
 		txtrCashOut.setBackground(SystemColor.control);
 		txtrCashOut.setEditable(false);
 		txtrCashOut.setText("Cash Out:");
-		txtrCashOut.setBounds(10, 73, 100, 22);
+		txtrCashOut.setBounds(10, 106, 100, 22);
 		add(txtrCashOut);
 		
 		JTextArea txtrX = new JTextArea();
@@ -1406,80 +1421,19 @@ public class Panel_CICO extends JPanel{
 		textArea_35.setBounds(547, 288, 12, 22);
 		add(textArea_35);
 		
-		JTextArea txtrTickets = new JTextArea();
-		txtrTickets.setText("Tickets Issued");
-		txtrTickets.setLineWrap(true);
-		txtrTickets.setEditable(false);
-		txtrTickets.setBackground(SystemColor.menu);
-		txtrTickets.setBounds(20, 587, 130, 27);
-		add(txtrTickets);
-		
-		JTextArea txtrFullSheets = new JTextArea();
-		txtrFullSheets.setText("  Full:");
-		txtrFullSheets.setLineWrap(true);
-		txtrFullSheets.setEditable(false);
-		txtrFullSheets.setBackground(SystemColor.menu);
-		txtrFullSheets.setBounds(162, 619, 61, 27);
-		add(txtrFullSheets);
-		
-		JTextArea txtrHalf = new JTextArea();
-		txtrHalf.setText("   Half:");
-		txtrHalf.setLineWrap(true);
-		txtrHalf.setEditable(false);
-		txtrHalf.setBackground(SystemColor.menu);
-		txtrHalf.setBounds(152, 651, 75, 27);
-		add(txtrHalf);
-		
-		JTextArea txtrSingles = new JTextArea();
-		txtrSingles.setText("Singles:");
-		txtrSingles.setLineWrap(true);
-		txtrSingles.setEditable(false);
-		txtrSingles.setBackground(SystemColor.menu);
-		txtrSingles.setBounds(152, 683, 75, 27);
-		add(txtrSingles);
-		
-		JTextArea textArea_38 = new JTextArea();
-		textArea_38.setText("-");
-		textArea_38.setEditable(false);
-		textArea_38.setBackground(SystemColor.menu);
-		textArea_38.setBounds(138, 619, 12, 22);
-		add(textArea_38);
-		
-		JTextArea textArea_39 = new JTextArea();
-		textArea_39.setText("-");
-		textArea_39.setEditable(false);
-		textArea_39.setBackground(SystemColor.menu);
-		textArea_39.setBounds(138, 651, 12, 22);
-		add(textArea_39);
-		
-		JTextArea textArea_40 = new JTextArea();
-		textArea_40.setText("-");
-		textArea_40.setEditable(false);
-		textArea_40.setBackground(SystemColor.menu);
-		textArea_40.setBounds(138, 683, 12, 22);
-		add(textArea_40);
-		
-		JTextArea txtrUnsold = new JTextArea();
-		txtrUnsold.setText("Unsold");
-		txtrUnsold.setLineWrap(true);
-		txtrUnsold.setEditable(false);
-		txtrUnsold.setBackground(SystemColor.menu);
-		txtrUnsold.setBounds(224, 587, 54, 27);
-		add(txtrUnsold);
-		
 		textField_6 = new JTextField();
 		textField_6.setColumns(10);
-		textField_6.setBounds(229, 619, 41, 22);
+		textField_6.setBounds(229, 594, 41, 22);
 		add(textField_6);
 		
 		textField_7 = new JTextField();
 		textField_7.setColumns(10);
-		textField_7.setBounds(229, 651, 41, 22);
+		textField_7.setBounds(229, 620, 41, 22);
 		add(textField_7);
 		
 		textField_8 = new JTextField();
 		textField_8.setColumns(10);
-		textField_8.setBounds(229, 683, 41, 22);
+		textField_8.setBounds(229, 652, 41, 22);
 		add(textField_8);
 		
 		JTextArea textArea_43 = new JTextArea();
@@ -1489,41 +1443,22 @@ public class Panel_CICO extends JPanel{
 		textArea_43.setBounds(280, 683, 12, 22);
 		add(textArea_43);
 		
-		JTextArea txtrSold = new JTextArea();
-		txtrSold.setText("Sold tickets");
-		txtrSold.setLineWrap(true);
-		txtrSold.setEditable(false);
-		txtrSold.setBackground(SystemColor.menu);
-		txtrSold.setBounds(286, 651, 113, 27);
-		add(txtrSold);
-		
 		JTextArea textArea_46 = new JTextArea();
+		textArea_46.setEditable(false);
 		textArea_46.setBounds(302, 683, 59, 22);
 		add(textArea_46);
-		
-		JTextArea textArea_48 = new JTextArea();
-		textArea_48.setText("x");
-		textArea_48.setEditable(false);
-		textArea_48.setBackground(SystemColor.menu);
-		textArea_48.setBounds(371, 683, 12, 22);
-		add(textArea_48);
-		
-		JTextArea textArea_51 = new JTextArea();
-		textArea_51.setText("$0.50");
-		textArea_51.setEditable(false);
-		textArea_51.setBackground(SystemColor.menu);
-		textArea_51.setBounds(387, 683, 67, 22);
-		add(textArea_51);
 		
 		JTextArea textArea_54 = new JTextArea();
 		textArea_54.setText("=");
 		textArea_54.setEditable(false);
 		textArea_54.setBackground(SystemColor.menu);
-		textArea_54.setBounds(451, 683, 12, 22);
+		textArea_54.setBounds(606, 683, 12, 22);
 		add(textArea_54);
 		
 		JTextArea textArea_57 = new JTextArea();
-		textArea_57.setBounds(473, 683, 102, 22);
+		textArea_57.setBackground(SystemColor.control);
+		textArea_57.setEditable(false);
+		textArea_57.setBounds(639, 683, 102, 22);
 		add(textArea_57);
 		
 		JTextArea txtrExpectedRevenue = new JTextArea();
@@ -1531,18 +1466,104 @@ public class Panel_CICO extends JPanel{
 		txtrExpectedRevenue.setLineWrap(true);
 		txtrExpectedRevenue.setEditable(false);
 		txtrExpectedRevenue.setBackground(SystemColor.menu);
-		txtrExpectedRevenue.setBounds(451, 651, 145, 27);
+		txtrExpectedRevenue.setBounds(629, 651, 145, 27);
 		add(txtrExpectedRevenue);
 		
 		textArea_issuedTickets = new JTextArea();
+		textArea_issuedTickets.setBackground(SystemColor.control);
+		textArea_issuedTickets.setEditable(false);
 		textArea_issuedTickets.setBounds(30, 619, 100, 22);
 		add(textArea_issuedTickets);
 		
 		JLabel lblNewLabel = new JLabel("Location:");
-		lblNewLabel.setBounds(20, 106, 54, 14);
+		lblNewLabel.setBounds(23, 78, 54, 14);
 		add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("x $0.50 + ");
+		lblNewLabel_1.setBounds(371, 688, 54, 14);
+		add(lblNewLabel_1);
+		
+		JTextArea textArea_33 = new JTextArea();
+		textArea_33.setBounds(440, 683, 59, 22);
+		add(textArea_33);
+		
+		JLabel lblX = new JLabel("x $25.00");
+		lblX.setBounds(521, 688, 54, 14);
+		add(lblX);
+		
+		ArrayList<String> locationsArray = getLocations();
+		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
+		JSpinner spinner_locations = new JSpinner();
+		spinner_locations.setBounds(87, 69, 162, 33);
+		add(spinner_locations);
+		
+		JLabel lblTicketsIssued = new JLabel("Tickets Issued:");
+		lblTicketsIssued.setBounds(30, 594, 108, 14);
+		add(lblTicketsIssued);
+		
+		JLabel lblWristbandsIssued = new JLabel("Wristbands Issued:");
+		lblWristbandsIssued.setBounds(28, 656, 100, 14);
+		add(lblWristbandsIssued);
+		
+		textArea_issuedWristbands = new JTextArea();
+		textArea_issuedWristbands.setBackground(SystemColor.control);
+		textArea_issuedWristbands.setEditable(false);
+		textArea_issuedWristbands.setBounds(30, 683, 100, 22);
+		add(textArea_issuedWristbands);
+		
+		JLabel lblUnsold = new JLabel("UNSOLD");
+		lblUnsold.setBounds(160, 580, 46, 14);
+		add(lblUnsold);
+		
+		JLabel lblNewLabel_2 = new JLabel("Sold Tickets");
+		lblNewLabel_2.setBounds(302, 655, 61, 14);
+		add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Sold Wristbands");
+		lblNewLabel_3.setBounds(432, 655, 82, 14);
+		add(lblNewLabel_3);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(229, 685, 41, 22);
+		add(textField);
+		
+		JLabel lblFullSheets = new JLabel("Full Sheets");
+		lblFullSheets.setBounds(151, 598, 68, 14);
+		add(lblFullSheets);
+		
+		JLabel lblHalfSheets = new JLabel("Half Sheets");
+		lblHalfSheets.setBounds(147, 624, 59, 14);
+		add(lblHalfSheets);
+		
+		JLabel lblSingleTickets = new JLabel("Single Tickets");
+		lblSingleTickets.setBounds(147, 656, 72, 14);
+		add(lblSingleTickets);
+		
+		JLabel lblWristbands = new JLabel("Wristbands");
+		lblWristbands.setBounds(151, 688, 68, 14);
+		add(lblWristbands);
 	}
 	
+	private ArrayList<String> getLocations() {
+		ArrayList<String> locations = new ArrayList<String>();
+		locations.add("Castle 1");
+		locations.add("Castle 2");
+		locations.add("Castle 3");
+		locations.add("Castle 4");
+		locations.add("Cottage 1");
+		locations.add("Cottage 2");
+		locations.add("Cottage 3");
+		locations.add("Wonderland");
+		locations.add("Wishing Well");
+		locations.add("Pride Rock");
+		locations.add("Palace");
+		locations.add("Enchanted Forest");
+		locations.add("Swamp");
+		locations.add("Woods");
+		locations.add("Beanstalk");
+		return locations;
+	}
 	/**
 	 * This method is called by a UpdateClientCommand executed on
 	 * a Client
