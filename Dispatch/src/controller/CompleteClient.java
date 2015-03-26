@@ -162,7 +162,7 @@ public class CompleteClient extends JFrame{
 	// Create the gui in the client once signed in
 	private void setupGUI() {
 		
-		setTitle("SpringFlingSoft 2015 - Client");
+		setTitle("SpringFlingSoft 2015 - Client: " + userName);
 		setSize(800,800);
 		setBackground(Color.gray);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
