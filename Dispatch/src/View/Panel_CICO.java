@@ -89,6 +89,10 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_hundredsOut;
 	private JTextArea textArea_issuedTickets;
 	private JTextArea textArea_issuedWristbands;
+	private JTextArea textArea_expectedRevenue;
+	private JTextArea textArea_soldWristbands;
+	private JTextArea textArea_soldTickets;
+	
 	
 	
 	private JSpinner spinner_clubSelection;
@@ -98,15 +102,16 @@ public class Panel_CICO extends JPanel{
 	//Listeners
 	private StartValsChangedListener startValsChangedListener;
 	private EndValsChangedListener endValsChangedListener;
+	private RevenueChangedListener revenueChangedListener;
 	private ConfirmInitialDropListener confirmInitialDropListener;
 	
 	//Initial values
 	private String clubSelected;
 	private Club actualClub;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField;
+	private JTextField textField_fullSheetsUnsold;
+	private JTextField textField_halfSheetsUnsold;
+	private JTextField textField_singleTicketsUnsold;
+	private JTextField textField_wristbandsUnsold;
 	
 	/**
 	 * Listener for the initial cash drop button
@@ -124,6 +129,37 @@ public class Panel_CICO extends JPanel{
 				e.printStackTrace();
 			}
 			
+		}
+		
+	}
+	
+	/**
+	 * Revenue changed listener, update when values changed for tickets, wristbands
+	 */
+	private class RevenueChangedListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			int ticketsTotal = 0;
+			int wristbandsTotal = 0;
+			float revenueTotal = 0;
+			//TODO: IMPLEMENT THIS!!!
+			if(textField_fullSheetsUnsold.getText().compareTo("")==0){
+		 		ticketsTotal += 0;
+		 	}else{
+				try { 
+					ticketsTotal += Integer.parseInt(textField_fullSheetsUnsold.getText().toString());
+							
+							;
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of pennies!");
+			    }
+		 	}
+			
+			
+			textArea_soldTickets.setText("" + ticketsTotal);
+			textArea_soldWristbands.setText("" + wristbandsTotal);
+			textArea_expectedRevenue.setText("$" + formatDecimal(revenueTotal));
 		}
 		
 	}
@@ -1421,53 +1457,48 @@ public class Panel_CICO extends JPanel{
 		textArea_35.setBounds(547, 288, 12, 22);
 		add(textArea_35);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(229, 594, 41, 22);
-		add(textField_6);
+		textField_fullSheetsUnsold = new JTextField();
+		textField_fullSheetsUnsold.setColumns(10);
+		textField_fullSheetsUnsold.setBounds(229, 594, 41, 22);
+		textField_fullSheetsUnsold.addActionListener(revenueChangedListener);
+		add(textField_fullSheetsUnsold);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(229, 620, 41, 22);
-		add(textField_7);
+		textField_halfSheetsUnsold = new JTextField();
+		textField_halfSheetsUnsold.setColumns(10);
+		textField_halfSheetsUnsold.setBounds(229, 620, 41, 22);
+		textField_halfSheetsUnsold.addActionListener(revenueChangedListener);
+		add(textField_halfSheetsUnsold);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(229, 652, 41, 22);
-		add(textField_8);
+		textField_singleTicketsUnsold = new JTextField();
+		textField_singleTicketsUnsold.setColumns(10);
+		textField_singleTicketsUnsold.setBounds(229, 652, 41, 22);
+		textField_singleTicketsUnsold.addActionListener(revenueChangedListener);
+		add(textField_singleTicketsUnsold);
 		
 		JTextArea textArea_43 = new JTextArea();
 		textArea_43.setText("=");
 		textArea_43.setEditable(false);
 		textArea_43.setBackground(SystemColor.menu);
-		textArea_43.setBounds(280, 683, 12, 22);
+		textArea_43.setBounds(280, 593, 12, 22);
 		add(textArea_43);
 		
-		JTextArea textArea_46 = new JTextArea();
-		textArea_46.setEditable(false);
-		textArea_46.setBounds(302, 683, 59, 22);
-		add(textArea_46);
+		textArea_soldTickets = new JTextArea();
+		textArea_soldTickets.setEditable(false);
+		textArea_soldTickets.setBounds(302, 593, 59, 22);
+		add(textArea_soldTickets);
 		
 		JTextArea textArea_54 = new JTextArea();
 		textArea_54.setText("=");
 		textArea_54.setEditable(false);
 		textArea_54.setBackground(SystemColor.menu);
-		textArea_54.setBounds(606, 683, 12, 22);
+		textArea_54.setBounds(561, 593, 12, 22);
 		add(textArea_54);
 		
-		JTextArea textArea_57 = new JTextArea();
-		textArea_57.setBackground(SystemColor.control);
-		textArea_57.setEditable(false);
-		textArea_57.setBounds(639, 683, 102, 22);
-		add(textArea_57);
-		
-		JTextArea txtrExpectedRevenue = new JTextArea();
-		txtrExpectedRevenue.setText("Expected Revenue");
-		txtrExpectedRevenue.setLineWrap(true);
-		txtrExpectedRevenue.setEditable(false);
-		txtrExpectedRevenue.setBackground(SystemColor.menu);
-		txtrExpectedRevenue.setBounds(629, 651, 145, 27);
-		add(txtrExpectedRevenue);
+		textArea_expectedRevenue = new JTextArea();
+		textArea_expectedRevenue.setBackground(SystemColor.control);
+		textArea_expectedRevenue.setEditable(false);
+		textArea_expectedRevenue.setBounds(601, 593, 102, 22);
+		add(textArea_expectedRevenue);
 		
 		textArea_issuedTickets = new JTextArea();
 		textArea_issuedTickets.setBackground(SystemColor.control);
@@ -1480,15 +1511,15 @@ public class Panel_CICO extends JPanel{
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("x $0.50 + ");
-		lblNewLabel_1.setBounds(371, 688, 54, 14);
+		lblNewLabel_1.setBounds(371, 598, 54, 14);
 		add(lblNewLabel_1);
 		
-		JTextArea textArea_33 = new JTextArea();
-		textArea_33.setBounds(440, 683, 59, 22);
-		add(textArea_33);
+		textArea_soldWristbands = new JTextArea();
+		textArea_soldWristbands.setBounds(435, 593, 59, 22);
+		add(textArea_soldWristbands);
 		
 		JLabel lblX = new JLabel("x $25.00");
-		lblX.setBounds(521, 688, 54, 14);
+		lblX.setBounds(504, 598, 54, 14);
 		add(lblX);
 		
 		ArrayList<String> locationsArray = getLocations();
@@ -1516,17 +1547,18 @@ public class Panel_CICO extends JPanel{
 		add(lblUnsold);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sold Tickets");
-		lblNewLabel_2.setBounds(302, 655, 91, 14);
+		lblNewLabel_2.setBounds(302, 576, 91, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Sold Wristbands");
-		lblNewLabel_3.setBounds(432, 655, 114, 14);
+		lblNewLabel_3.setBounds(431, 576, 114, 14);
 		add(lblNewLabel_3);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(229, 685, 41, 22);
-		add(textField);
+		textField_wristbandsUnsold = new JTextField();
+		textField_wristbandsUnsold.setColumns(10);
+		textField_wristbandsUnsold.setBounds(229, 685, 41, 22);
+		textField_wristbandsUnsold.addActionListener(revenueChangedListener);
+		add(textField_wristbandsUnsold);
 		
 		JLabel lblFullSheets = new JLabel("Full Sheets");
 		lblFullSheets.setBounds(138, 598, 81, 14);
@@ -1543,6 +1575,10 @@ public class Panel_CICO extends JPanel{
 		JLabel lblWristbands = new JLabel("Wristbands");
 		lblWristbands.setBounds(138, 688, 81, 14);
 		add(lblWristbands);
+		
+		JLabel lblExpectedRevenue = new JLabel("Expected Revenue");
+		lblExpectedRevenue.setBounds(601, 576, 102, 14);
+		add(lblExpectedRevenue);
 	}
 	
 	private ArrayList<String> getLocations() {
