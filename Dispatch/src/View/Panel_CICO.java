@@ -86,6 +86,7 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_twentiesOut;
 	private JTextArea textArea_fiftiesOut;
 	private JTextArea textArea_hundredsOut;
+	private JTextArea textArea_issuedTickets;
 	
 	
 	private JSpinner spinner_clubSelection;
@@ -479,7 +480,15 @@ public class Panel_CICO extends JPanel{
 		add(spinner_clubSelection);
 		
 		if (clubsArray.contains(clubSelected)){
-		spinner_clubSelection.setValue(clubSelected);
+			spinner_clubSelection.setValue(clubSelected);
+			//Update tickets value
+			textArea_issuedTickets.setText("" + (actualClub.getFullsheets()*40 + actualClub.getHalfsheets()*20));
+			// ...if it's there, show that value as startTotal
+			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
+			//Update textAreas
+			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 		}else{
 			if (clubSelected.compareTo("(No clubs!)")!=0){
 				JOptionPane.showMessageDialog(getParent(), "The cashier you were working on (" + clubSelected + ") was removed from the active list!");
@@ -490,8 +499,6 @@ public class Panel_CICO extends JPanel{
 			clearFields();
 		}
 		
-		//If the club selected has tickets, update tickets value
-
 		
 		//if the club already has an initial cashdrop, turn off button and text fields...
 		
@@ -526,13 +533,6 @@ public class Panel_CICO extends JPanel{
 			textField_hundredsIn.setEnabled(true);
 		}
 		
-		// ...if it's there, show that value as startTotal
-		textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
-		
-		//Update textAreas
-		
-		textArea_cashDrops.setText(actualClub.getCashdrops() + "");
-		textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 	}
 	private Club findActualClub(String clubSelected2) {
 		for(Club club : activeClubs){
@@ -1534,9 +1534,9 @@ public class Panel_CICO extends JPanel{
 		txtrExpectedRevenue.setBounds(451, 651, 145, 27);
 		add(txtrExpectedRevenue);
 		
-		JTextArea textArea_33 = new JTextArea();
-		textArea_33.setBounds(30, 619, 100, 22);
-		add(textArea_33);
+		textArea_issuedTickets = new JTextArea();
+		textArea_issuedTickets.setBounds(30, 619, 100, 22);
+		add(textArea_issuedTickets);
 		
 		JLabel lblNewLabel = new JLabel("Location:");
 		lblNewLabel.setBounds(20, 106, 54, 14);
