@@ -1370,7 +1370,7 @@ public class Panel_CICO extends JPanel{
 		txtrOfCash.setLineWrap(true);
 		txtrOfCash.setEditable(false);
 		txtrOfCash.setBackground(SystemColor.menu);
-		txtrOfCash.setBounds(461, 238, 114, 22);
+		txtrOfCash.setBounds(479, 238, 114, 22);
 		add(txtrOfCash);
 		
 		JTextArea txtrEndTotal = new JTextArea();
@@ -1493,16 +1493,16 @@ public class Panel_CICO extends JPanel{
 		
 		ArrayList<String> locationsArray = getLocations();
 		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
-		JSpinner spinner_locations = new JSpinner();
+		JSpinner spinner_locations = new JSpinner(locationsModel);
 		spinner_locations.setBounds(87, 69, 162, 33);
 		add(spinner_locations);
 		
 		JLabel lblTicketsIssued = new JLabel("Tickets Issued:");
-		lblTicketsIssued.setBounds(30, 594, 108, 14);
+		lblTicketsIssued.setBounds(10, 594, 128, 14);
 		add(lblTicketsIssued);
 		
 		JLabel lblWristbandsIssued = new JLabel("Wristbands Issued:");
-		lblWristbandsIssued.setBounds(28, 656, 100, 14);
+		lblWristbandsIssued.setBounds(10, 656, 118, 14);
 		add(lblWristbandsIssued);
 		
 		textArea_issuedWristbands = new JTextArea();
@@ -1512,15 +1512,15 @@ public class Panel_CICO extends JPanel{
 		add(textArea_issuedWristbands);
 		
 		JLabel lblUnsold = new JLabel("UNSOLD");
-		lblUnsold.setBounds(160, 580, 46, 14);
+		lblUnsold.setBounds(152, 576, 67, 14);
 		add(lblUnsold);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sold Tickets");
-		lblNewLabel_2.setBounds(302, 655, 61, 14);
+		lblNewLabel_2.setBounds(302, 655, 91, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Sold Wristbands");
-		lblNewLabel_3.setBounds(432, 655, 82, 14);
+		lblNewLabel_3.setBounds(432, 655, 114, 14);
 		add(lblNewLabel_3);
 		
 		textField = new JTextField();
@@ -1529,19 +1529,19 @@ public class Panel_CICO extends JPanel{
 		add(textField);
 		
 		JLabel lblFullSheets = new JLabel("Full Sheets");
-		lblFullSheets.setBounds(151, 598, 68, 14);
+		lblFullSheets.setBounds(138, 598, 81, 14);
 		add(lblFullSheets);
 		
 		JLabel lblHalfSheets = new JLabel("Half Sheets");
-		lblHalfSheets.setBounds(147, 624, 59, 14);
+		lblHalfSheets.setBounds(138, 624, 68, 14);
 		add(lblHalfSheets);
 		
 		JLabel lblSingleTickets = new JLabel("Single Tickets");
-		lblSingleTickets.setBounds(147, 656, 72, 14);
+		lblSingleTickets.setBounds(138, 656, 81, 14);
 		add(lblSingleTickets);
 		
 		JLabel lblWristbands = new JLabel("Wristbands");
-		lblWristbands.setBounds(151, 688, 68, 14);
+		lblWristbands.setBounds(138, 688, 81, 14);
 		add(lblWristbands);
 	}
 	
