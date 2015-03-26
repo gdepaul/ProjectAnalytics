@@ -26,6 +26,7 @@ public class Club implements Serializable {
 	private int halfsheets;
 	private int singletickets;
 	private int wristbands;
+	private String location;
 	private List<Dispatch<DispatchServer>> transactions;
 	
 	public Club(String clubName){
@@ -41,6 +42,7 @@ public class Club implements Serializable {
 		this.halfsheets = 0;
 		this.singletickets = 0;
 		this.wristbands = 0;
+		this.location = "(Unassigned)";
 		
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
@@ -58,6 +60,7 @@ public class Club implements Serializable {
 		this.halfsheets = 0;
 		this.singletickets = 0;
 		this.wristbands = 0;
+		this.location = "(Unassigned)";
 		
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}

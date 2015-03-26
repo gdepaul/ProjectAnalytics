@@ -418,6 +418,19 @@ public class DispatchServer {
 			}
 		}
 	}
+	/**
+	 * 
+	 * @param club
+	 * @param cashDrops
+	 * @param changeDrops
+	 * @param fullSheets
+	 * @param halfSheets
+	 */
+	public void dispatchAll(String club, int cashDrops, int changeDrops,
+			int fullSheets, int halfSheets) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	/**
@@ -470,4 +483,5 @@ public class DispatchServer {
 			new DispatchServer(port);
 		}
 	}
+
 }
