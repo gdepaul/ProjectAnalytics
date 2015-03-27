@@ -28,7 +28,7 @@ import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
 
-public class CompleteClient extends JFrame{
+public class DemoValuesOnServer extends JFrame{
 	
 	private JTabbedPane tabbedPane;
 	private JPanel panel_scheduler;
@@ -55,9 +55,9 @@ public class CompleteClient extends JFrame{
 				try {
 					Object obj = in.readObject();
 					if(obj instanceof Dispatch<?>) { // See if we have a valid command
-						Dispatch<CompleteClient> command = (Dispatch<CompleteClient>)obj;
+						Dispatch<DemoValuesOnServer> command = (Dispatch<DemoValuesOnServer>)obj;
 						System.out.println("Update from server: " + command.getSource());
-						command.execute(CompleteClient.this);
+						command.execute(DemoValuesOnServer.this);
 					}	
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,7 +73,7 @@ public class CompleteClient extends JFrame{
 	 */
 	private static final long serialVersionUID = -4326297992047795976L;
 	
-	public CompleteClient(){
+	public DemoValuesOnServer(){
 		
 		// Open connection to server
 //		// ask the user for a host, port, and user name
@@ -126,18 +126,18 @@ public class CompleteClient extends JFrame{
 			});
 			setupGUI();
 			
-//			out.writeObject(new AddFieldSupe(userName, "Russell Leeves"));
-//			out.writeObject(new AddFieldSupe(userName, "Polly Ester"));
-//			out.writeObject(new AddFieldSupe(userName, "Emma Royds"));
-//			out.writeObject(new AddFieldSupe(userName, "Mike Easter"));
-//			out.writeObject(new AddFieldSupe(userName, "Jasmine Rice"));
-//			out.writeObject(new AddActiveClub(userName,"United Loners",0,0));
-//			out.writeObject(new AddActiveClub(userName,"Sad Clown Awareness",0,0));
-//			out.writeObject(new AddActiveClub(userName,"Tequila Mockingbird",0,0));
-//			out.writeObject(new AddActiveClub(userName,"Menace to Sobriety",0,0));	
-//			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good",0,0));
-//			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
-//			
+			out.writeObject(new AddFieldSupe(userName, "Russell Leeves"));
+			out.writeObject(new AddFieldSupe(userName, "Polly Ester"));
+			out.writeObject(new AddFieldSupe(userName, "Emma Royds"));
+			out.writeObject(new AddFieldSupe(userName, "Mike Easter"));
+			out.writeObject(new AddFieldSupe(userName, "Jasmine Rice"));
+			out.writeObject(new AddActiveClub(userName,"United Loners",0,0));
+			out.writeObject(new AddActiveClub(userName,"Sad Clown Awareness",0,0));
+			out.writeObject(new AddActiveClub(userName,"Tequila Mockingbird",0,0));
+			out.writeObject(new AddActiveClub(userName,"Menace to Sobriety",0,0));	
+			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good",0,0));
+			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
+			
 			new Thread(new ServerHandler()).start();
 			
 			
@@ -213,7 +213,7 @@ public class CompleteClient extends JFrame{
 	}
 	// Main method in order to run the client
 	public static void main(String[] args){
-		new CompleteClient();
+		new DemoValuesOnServer();
 	}	
 	
 	

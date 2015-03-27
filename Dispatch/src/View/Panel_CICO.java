@@ -569,6 +569,7 @@ public class Panel_CICO extends JPanel{
 			//Update textAreas
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			
 		}else{
 			if (clubSelected.compareTo("(No clubs!)")!=0){
 				JOptionPane.showMessageDialog(getParent(), "The cashier you were working on (" + clubSelected + ") was removed from the active list!");
@@ -612,7 +613,7 @@ public class Panel_CICO extends JPanel{
 			textField_fiftiesIn.setEnabled(true);
 			textField_hundredsIn.setEnabled(true);
 		}
-		
+		this.repaint();
 	}
 	private Club findActualClub(String clubSelected2) {
 		for(Club club : activeClubs){
@@ -1614,7 +1615,7 @@ public class Panel_CICO extends JPanel{
 		add(lblWristbands);
 		
 		JLabel lblExpectedRevenue = new JLabel("Expected Revenue");
-		lblExpectedRevenue.setBounds(601, 576, 102, 14);
+		lblExpectedRevenue.setBounds(601, 576, 121, 14);
 		add(lblExpectedRevenue);
 	}
 	
