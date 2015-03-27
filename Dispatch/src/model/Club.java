@@ -65,6 +65,10 @@ public class Club implements Serializable {
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
 	//Initial Cash Drop can be different for each club, but should not be
 	//changed after it was made except to fix an administrative error.
 	public float getInitialCashDrop(){
