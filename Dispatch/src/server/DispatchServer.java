@@ -425,11 +425,15 @@ public class DispatchServer {
 	 * @param changeDrops
 	 * @param fullSheets
 	 * @param halfSheets
+	 * @throws NullClubException 
 	 */
 	public void dispatchAll(String club, int cashDrops, int changeDrops,
-			int fullSheets, int halfSheets) {
-		// TODO Auto-generated method stub
-		
+			int fullSheets, int halfSheets) throws NullClubException {
+		if(cashDrops != 0) 
+			this.cashDrop(club, cashDrops);
+		if(changeDrops != 0)
+			this.changeDrop(club, changeDrops);
+		this.ticketDrop(club, fullSheets, halfSheets);
 	}
 
 
