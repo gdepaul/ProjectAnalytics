@@ -77,8 +77,13 @@ public class CompleteClient extends JFrame{
 		
 		// Open connection to server
 //		// ask the user for a host, port, and user name
-		String host = JOptionPane.showInputDialog("Host address:");
-		String port = JOptionPane.showInputDialog("Host port:");
+		
+//		String host = JOptionPane.showInputDialog("Host address:");
+//		String port = JOptionPane.showInputDialog("Host port:");
+		
+		String host = "LOCALHOST";
+		String port = "9001";
+		
 		userName = JOptionPane.showInputDialog("User name:");
 		
 		System.out.println("host: " + host + "\n" + 
@@ -126,16 +131,16 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new AddFieldSupe(userName, "User2"));
 //			out.writeObject(new AddFieldSupe(userName, "User3"));
 //			out.writeObject(new AddFieldSupe(userName, "User4"));
-			out.writeObject(new AddActiveClub(userName,"club0",0,0));
-			out.writeObject(new AddActiveClub(userName,"club1",0,0));
-			out.writeObject(new AddActiveClub(userName,"club2",0,0));
-			out.writeObject(new AddActiveClub(userName,"AAA",0,0));
+//			out.writeObject(new AddActiveClub(userName,"club0",0,0));
+//			out.writeObject(new AddActiveClub(userName,"club1",0,0));
+//			out.writeObject(new AddActiveClub(userName,"club2",0,0));
+//			out.writeObject(new AddActiveClub(userName,"AAA",0,0));
 //			out.writeObject(new InitialCashDrop(userName, "AAA", (float) 800.00));			
-			out.writeObject(new AddActiveClub(userName,"Arendale",0,0));
-			out.writeObject(new AddActiveClub(userName,"Blue Sky",0,0));
+//			out.writeObject(new AddActiveClub(userName,"Arendale",0,0));
+//			out.writeObject(new AddActiveClub(userName,"Blue Sky",0,0));
 //			out.writeObject(new CashDrop(userName, "Blue Sky"));
 //			out.writeObject(new InitialCashDrop(userName, "Arendale", (float) 800.00));
-			out.writeObject(new AddActiveClub(userName,"Traveling Pants",0,0));
+//
 //			out.writeObject(new DispatchFieldSupe(userName,"User0"));
 //			out.writeObject(new DispatchFieldSupe(userName,"User2"));
 
@@ -162,7 +167,7 @@ public class CompleteClient extends JFrame{
 	// Create the gui in the client once signed in
 	private void setupGUI() {
 		
-		setTitle("SpringFlingSoft 2015 - Client: " + userName);
+		setTitle("SpringFlingSoft 2015 - User: " + userName);
 		setSize(800,800);
 		setBackground(Color.gray);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

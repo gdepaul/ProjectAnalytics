@@ -140,25 +140,61 @@ public class Panel_CICO extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			int ticketsTotal = 0;
-			int wristbandsTotal = 0;
+			int issuedTickets = Integer.parseInt(textArea_issuedTickets.getText().toString());
+			int issuedWristbands = Integer.parseInt(textArea_issuedWristbands.getText().toString());
+			int unsoldTicketsTotal = 0;
+			int unsoldWristbandsTotal = 0;
 			float revenueTotal = 0;
-			//TODO: IMPLEMENT THIS!!!
+			
 			if(textField_fullSheetsUnsold.getText().compareTo("")==0){
-		 		ticketsTotal += 0;
+		 		unsoldTicketsTotal += 0;
 		 	}else{
 				try { 
-					ticketsTotal += Integer.parseInt(textField_fullSheetsUnsold.getText().toString());
+					unsoldTicketsTotal += Integer.parseInt(textField_fullSheetsUnsold.getText().toString()) * 40;
+							;
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of full sheets!");
+			    }
+		 	}
+			
+			if(textField_halfSheetsUnsold.getText().compareTo("")==0){
+		 		unsoldTicketsTotal += 0;
+		 	}else{
+				try { 
+					unsoldTicketsTotal += Integer.parseInt(textField_halfSheetsUnsold.getText().toString()) * 20;
+							;
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of half sheets!");
+			    }
+		 	}
+			
+			if(textField_singleTicketsUnsold.getText().compareTo("")==0){
+		 		unsoldTicketsTotal += 0;
+		 	}else{
+				try { 
+					unsoldTicketsTotal += Integer.parseInt(textField_singleTicketsUnsold.getText().toString());
+							;
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of single tickets!");
+			    }
+		 	}
+			
+			if(textField_wristbandsUnsold.getText().compareTo("")==0){
+		 		unsoldWristbandsTotal += 0;
+		 	}else{
+				try { 
+					unsoldWristbandsTotal += Integer.parseInt(textField_wristbandsUnsold.getText().toString());
 							
 							;
 			    } catch(NumberFormatException e) { 
-			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of pennies!");
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of wristbands!");
 			    }
 		 	}
 			
 			
-			textArea_soldTickets.setText("" + ticketsTotal);
-			textArea_soldWristbands.setText("" + wristbandsTotal);
+			textArea_soldTickets.setText("" + (issuedTickets - unsoldTicketsTotal));
+			textArea_soldWristbands.setText("" + (issuedWristbands - unsoldWristbandsTotal));
+			revenueTotal = (float) ((issuedTickets - unsoldTicketsTotal)*.5 + (issuedWristbands - unsoldWristbandsTotal)*25);
 			textArea_expectedRevenue.setText("$" + formatDecimal(revenueTotal));
 		}
 		
@@ -721,6 +757,7 @@ public class Panel_CICO extends JPanel{
 		startValsChangedListener = new StartValsChangedListener();
 		endValsChangedListener = new EndValsChangedListener();
 		confirmInitialDropListener = new ConfirmInitialDropListener();
+		revenueChangedListener = new RevenueChangedListener();
 		
 		setLayout(null);
 		
