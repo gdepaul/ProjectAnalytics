@@ -25,6 +25,7 @@ import model.dispatch.ChangeDrop;
 import model.dispatch.DispatchFieldSupe;
 import model.dispatch.FreeFieldSupe;
 import model.dispatch.TicketDrop;
+import model.dispatch.InitialCashDrop;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -211,6 +212,13 @@ public class Panel_Dispatch extends JPanel {
 																										//Ebitie said they're worth $.50 cents
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else if (actionSelected.compareTo("InitialCashBox")==0){
+						try {
+							output.writeObject(new InitialCashDrop(clientName, clubSelected, 0));
+						}catch(IOException e){
+							//TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
