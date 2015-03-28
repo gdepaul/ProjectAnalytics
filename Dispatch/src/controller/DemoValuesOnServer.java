@@ -28,7 +28,7 @@ import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
 
-public class DemoValuesOnServer extends JFrame{
+public class DemoValuesOnServer extends CompleteClient{
 	
 	private JTabbedPane tabbedPane;
 	private JPanel panel_scheduler;

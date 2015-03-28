@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="View.Panel_Scheduler.AddEmpListener"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="model.dispatch.AddFieldSupe"/>
 <fullyQualifiedTypeName name="model.dispatch.RemoveFieldSupe"/>
 <fullyQualifiedTypeName name="model.dispatch.DispatchFieldSupe"/>
 <fullyQualifiedTypeName name="model.dispatch.FreeFieldSupe"/>
@@ -38,5 +37,8 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="model.dispatch.CashDrop"/>
 <fullyQualifiedTypeName name="model.dispatch.InitialCashDrop"/>
+<fullyQualifiedTypeName name="View.Panel_CICO.RevenueChangedListener"/>
+<fullyQualifiedTypeName name="model.dispatchObject.InitialCashBox"/>
+<fullyQualifiedTypeName name="model.dispatch.AddFieldSupe"/>
 <fullyQualifiedTypeName name="model.dispatch.AddActiveClub"/>
 </qualifiedTypeNameHistroy>
