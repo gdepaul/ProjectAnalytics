@@ -23,6 +23,7 @@ import model.Club;
 import model.dispatch.InitialCashDrop;
 
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -113,6 +114,10 @@ public class Panel_CICO extends JPanel{
 	private JTextField textField_halfSheetsUnsold;
 	private JTextField textField_singleTicketsUnsold;
 	private JTextField textField_wristbandsUnsold;
+	private JTextField textField_fullSheetsIn;
+	private JTextField textField_halfSheetsIn;
+	private JTextField textField_singleTicketsIn;
+	private JTextField textField_wristbandsIn;
 	
 	/**
 	 * Listener for the initial cash drop button
@@ -912,17 +917,10 @@ public class Panel_CICO extends JPanel{
 		textField_hundredsIn.addActionListener(startValsChangedListener);
 		add(textField_hundredsIn);
 		
-		JTextArea txtrStartTotal = new JTextArea();
-		txtrStartTotal.setBounds(10, 502, 67, 27);
-		txtrStartTotal.setBackground(SystemColor.control);
-		txtrStartTotal.setText("START =");
-		txtrStartTotal.setLineWrap(true);
-		txtrStartTotal.setEditable(false);
-		add(txtrStartTotal);
-		
 		textArea_startTotal = new JTextArea();
-		textArea_startTotal.setBounds(87, 503, 91, 27);
-		textArea_startTotal.setBackground(SystemColor.control);
+		textArea_startTotal.setEditable(false);
+		textArea_startTotal.setBounds(107, 635, 91, 27);
+		textArea_startTotal.setBackground(Color.WHITE);
 		add(textArea_startTotal);
 		
 		JTextArea txtrFinishHere = new JTextArea();
@@ -1017,16 +1015,8 @@ public class Panel_CICO extends JPanel{
 		textArea_11.setBackground(SystemColor.menu);
 		add(textArea_11);
 		
-		JTextArea txtrEnd = new JTextArea();
-		txtrEnd.setBounds(263, 502, 67, 27);
-		txtrEnd.setText("END  =");
-		txtrEnd.setLineWrap(true);
-		txtrEnd.setEditable(false);
-		txtrEnd.setBackground(SystemColor.menu);
-		add(txtrEnd);
-		
-		btn_initialCashDrop = new JButton("CONFIRM INITIAL CASH DROP");
-		btn_initialCashDrop.setBounds(10, 536, 252, 40);
+		btn_initialCashDrop = new JButton("CONFIRM INITIAL CASH/TICKET DROP");
+		btn_initialCashDrop.setBounds(10, 685, 252, 40);
 		btn_initialCashDrop.addActionListener(confirmInitialDropListener);
 		add(btn_initialCashDrop);
 		
@@ -1405,8 +1395,9 @@ public class Panel_CICO extends JPanel{
 		add(textArea_hundredsOut);
 		
 		textArea_endTotal = new JTextArea();
-		textArea_endTotal.setBounds(324, 502, 91, 27);
-		textArea_endTotal.setBackground(SystemColor.menu);
+		textArea_endTotal.setEditable(false);
+		textArea_endTotal.setBounds(336, 635, 91, 27);
+		textArea_endTotal.setBackground(Color.WHITE);
 		add(textArea_endTotal);
 		
 		spinner_clubSelection = new JSpinner();
@@ -1427,20 +1418,20 @@ public class Panel_CICO extends JPanel{
 		add(txtrBooth);
 		
 		JTextArea txtrX_11 = new JTextArea();
-		txtrX_11.setBounds(628, 238, 75, 22);
+		txtrX_11.setBounds(628, 139, 75, 22);
 		txtrX_11.setText("X $800 =");
 		txtrX_11.setEditable(false);
 		txtrX_11.setBackground(SystemColor.menu);
 		add(txtrX_11);
 		
 		textArea_endTotalCalc = new JTextArea();
-		textArea_endTotalCalc.setBounds(671, 288, 103, 27);
+		textArea_endTotalCalc.setBounds(699, 172, 75, 27);
 		textArea_endTotalCalc.setEditable(false);
 		textArea_endTotalCalc.setBackground(SystemColor.menu);
 		add(textArea_endTotalCalc);
 		
 		JTextArea txtrOfCash = new JTextArea();
-		txtrOfCash.setBounds(479, 238, 114, 22);
+		txtrOfCash.setBounds(473, 139, 114, 22);
 		txtrOfCash.setText("   Cash Drops");
 		txtrOfCash.setLineWrap(true);
 		txtrOfCash.setEditable(false);
@@ -1448,98 +1439,70 @@ public class Panel_CICO extends JPanel{
 		add(txtrOfCash);
 		
 		JTextArea txtrEndTotal = new JTextArea();
-		txtrEndTotal.setBounds(577, 288, 95, 27);
-		txtrEndTotal.setText("End Total");
+		txtrEndTotal.setBounds(548, 172, 141, 27);
+		txtrEndTotal.setText("+ Collected Cash");
 		txtrEndTotal.setLineWrap(true);
 		txtrEndTotal.setEditable(false);
 		txtrEndTotal.setBackground(SystemColor.menu);
 		add(txtrEndTotal);
 		
-		JTextArea textArea_34 = new JTextArea();
-		textArea_34.setBounds(547, 326, 12, 22);
-		textArea_34.setText("=");
-		textArea_34.setEditable(false);
-		textArea_34.setBackground(SystemColor.menu);
-		add(textArea_34);
-		
 		textArea_finalTotal = new JTextArea();
-		textArea_finalTotal.setBounds(671, 326, 103, 27);
+		textArea_finalTotal.setBounds(683, 238, 91, 27);
 		textArea_finalTotal.setEditable(false);
 		textArea_finalTotal.setBackground(SystemColor.menu);
 		add(textArea_finalTotal);
 		
 		JTextArea txtrFinalTotal = new JTextArea();
-		txtrFinalTotal.setBounds(566, 326, 95, 27);
-		txtrFinalTotal.setText("Final Total");
+		txtrFinalTotal.setBounds(523, 238, 166, 27);
+		txtrFinalTotal.setText("= COLLECTED REVENUE");
 		txtrFinalTotal.setLineWrap(true);
 		txtrFinalTotal.setEditable(false);
 		txtrFinalTotal.setBackground(SystemColor.menu);
 		add(txtrFinalTotal);
 		
 		textArea_cashDrops = new JTextArea();
-		textArea_cashDrops.setBounds(577, 238, 41, 27);
+		textArea_cashDrops.setBounds(577, 139, 41, 27);
 		textArea_cashDrops.setBackground(SystemColor.control);
 		textArea_cashDrops.setEditable(false);
 		add(textArea_cashDrops);
 		
 		textArea_cashDropsBy800 = new JTextArea();
-		textArea_cashDropsBy800.setBounds(713, 238, 61, 27);
+		textArea_cashDropsBy800.setBounds(713, 134, 61, 27);
 		textArea_cashDropsBy800.setBackground(SystemColor.control);
 		textArea_cashDropsBy800.setEditable(false);
 		add(textArea_cashDropsBy800);
 		
-		JTextArea textArea_35 = new JTextArea();
-		textArea_35.setBounds(547, 288, 12, 22);
-		textArea_35.setText("+");
-		textArea_35.setEditable(false);
-		textArea_35.setBackground(SystemColor.menu);
-		add(textArea_35);
-		
 		textField_fullSheetsUnsold = new JTextField();
-		textField_fullSheetsUnsold.setBounds(229, 594, 41, 22);
+		textField_fullSheetsUnsold.setBounds(346, 502, 31, 22);
 		textField_fullSheetsUnsold.setColumns(10);
 		textField_fullSheetsUnsold.addActionListener(revenueChangedListener);
 		add(textField_fullSheetsUnsold);
 		
 		textField_halfSheetsUnsold = new JTextField();
-		textField_halfSheetsUnsold.setBounds(229, 620, 41, 22);
+		textField_halfSheetsUnsold.setBounds(346, 535, 31, 22);
 		textField_halfSheetsUnsold.setColumns(10);
 		textField_halfSheetsUnsold.addActionListener(revenueChangedListener);
 		add(textField_halfSheetsUnsold);
 		
 		textField_singleTicketsUnsold = new JTextField();
-		textField_singleTicketsUnsold.setBounds(229, 652, 41, 22);
+		textField_singleTicketsUnsold.setBounds(346, 568, 31, 22);
 		textField_singleTicketsUnsold.setColumns(10);
 		textField_singleTicketsUnsold.addActionListener(revenueChangedListener);
 		add(textField_singleTicketsUnsold);
 		
-		JTextArea textArea_43 = new JTextArea();
-		textArea_43.setBounds(280, 593, 12, 22);
-		textArea_43.setText("=");
-		textArea_43.setEditable(false);
-		textArea_43.setBackground(SystemColor.menu);
-		add(textArea_43);
-		
 		textArea_soldTickets = new JTextArea();
-		textArea_soldTickets.setBounds(302, 593, 59, 22);
+		textArea_soldTickets.setBounds(695, 403, 59, 22);
 		textArea_soldTickets.setEditable(false);
 		add(textArea_soldTickets);
 		
-		JTextArea textArea_54 = new JTextArea();
-		textArea_54.setBounds(561, 593, 12, 22);
-		textArea_54.setText("=");
-		textArea_54.setEditable(false);
-		textArea_54.setBackground(SystemColor.menu);
-		add(textArea_54);
-		
 		textArea_expectedRevenue = new JTextArea();
-		textArea_expectedRevenue.setBounds(601, 593, 102, 22);
+		textArea_expectedRevenue.setBounds(672, 728, 102, 22);
 		textArea_expectedRevenue.setBackground(SystemColor.control);
 		textArea_expectedRevenue.setEditable(false);
 		add(textArea_expectedRevenue);
 		
 		textArea_issuedTickets = new JTextArea();
-		textArea_issuedTickets.setBounds(30, 619, 100, 22);
+		textArea_issuedTickets.setBounds(683, 337, 100, 22);
 		textArea_issuedTickets.setBackground(SystemColor.control);
 		textArea_issuedTickets.setEditable(false);
 		add(textArea_issuedTickets);
@@ -1548,17 +1511,9 @@ public class Panel_CICO extends JPanel{
 		lblNewLabel.setBounds(23, 78, 54, 14);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("x $0.50 + ");
-		lblNewLabel_1.setBounds(371, 598, 54, 14);
-		add(lblNewLabel_1);
-		
 		textArea_soldWristbands = new JTextArea();
-		textArea_soldWristbands.setBounds(435, 593, 59, 22);
+		textArea_soldWristbands.setBounds(695, 600, 59, 22);
 		add(textArea_soldWristbands);
-		
-		JLabel lblX = new JLabel("x $25.00");
-		lblX.setBounds(504, 598, 54, 14);
-		add(lblX);
 		
 		ArrayList<String> locationsArray = getLocations();
 		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
@@ -1566,57 +1521,258 @@ public class Panel_CICO extends JPanel{
 		spinner_locations.setBounds(87, 69, 162, 33);
 		add(spinner_locations);
 		
-		JLabel lblTicketsIssued = new JLabel("Tickets Issued:");
-		lblTicketsIssued.setBounds(10, 594, 128, 14);
-		add(lblTicketsIssued);
-		
-		JLabel lblWristbandsIssued = new JLabel("Wristbands Issued:");
-		lblWristbandsIssued.setBounds(10, 656, 118, 14);
-		add(lblWristbandsIssued);
-		
 		textArea_issuedWristbands = new JTextArea();
-		textArea_issuedWristbands.setBounds(30, 683, 100, 22);
+		textArea_issuedWristbands.setBounds(683, 534, 100, 22);
 		textArea_issuedWristbands.setBackground(SystemColor.control);
 		textArea_issuedWristbands.setEditable(false);
 		add(textArea_issuedWristbands);
 		
-		JLabel lblUnsold = new JLabel("UNSOLD");
-		lblUnsold.setBounds(152, 576, 67, 14);
-		add(lblUnsold);
-		
-		JLabel lblNewLabel_2 = new JLabel("Sold Tickets");
-		lblNewLabel_2.setBounds(302, 576, 91, 14);
-		add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Sold Wristbands");
-		lblNewLabel_3.setBounds(431, 576, 114, 14);
-		add(lblNewLabel_3);
-		
 		textField_wristbandsUnsold = new JTextField();
-		textField_wristbandsUnsold.setBounds(229, 685, 41, 22);
+		textField_wristbandsUnsold.setBounds(346, 601, 31, 22);
 		textField_wristbandsUnsold.setColumns(10);
 		textField_wristbandsUnsold.addActionListener(revenueChangedListener);
 		add(textField_wristbandsUnsold);
 		
-		JLabel lblFullSheets = new JLabel("Full Sheets");
-		lblFullSheets.setBounds(138, 598, 81, 14);
-		add(lblFullSheets);
+		textField_fullSheetsIn = new JTextField();
+		textField_fullSheetsIn.setColumns(10);
+		textField_fullSheetsIn.setBounds(97, 503, 31, 22);
+		add(textField_fullSheetsIn);
 		
-		JLabel lblHalfSheets = new JLabel("Half Sheets");
-		lblHalfSheets.setBounds(138, 624, 68, 14);
-		add(lblHalfSheets);
+		textField_halfSheetsIn = new JTextField();
+		textField_halfSheetsIn.setColumns(10);
+		textField_halfSheetsIn.setBounds(97, 536, 31, 22);
+		add(textField_halfSheetsIn);
 		
-		JLabel lblSingleTickets = new JLabel("Single Tickets");
-		lblSingleTickets.setBounds(138, 656, 81, 14);
-		add(lblSingleTickets);
+		textField_singleTicketsIn = new JTextField();
+		textField_singleTicketsIn.setColumns(10);
+		textField_singleTicketsIn.setBounds(97, 569, 31, 22);
+		add(textField_singleTicketsIn);
 		
-		JLabel lblWristbands = new JLabel("Wristbands");
-		lblWristbands.setBounds(138, 688, 81, 14);
-		add(lblWristbands);
+		JTextArea textArea_33 = new JTextArea();
+		textArea_33.setText("=");
+		textArea_33.setEditable(false);
+		textArea_33.setBackground(SystemColor.menu);
+		textArea_33.setBounds(138, 502, 12, 22);
+		add(textArea_33);
 		
-		JLabel lblExpectedRevenue = new JLabel("Expected Revenue");
-		lblExpectedRevenue.setBounds(601, 576, 121, 14);
-		add(lblExpectedRevenue);
+		JTextArea textArea_36 = new JTextArea();
+		textArea_36.setText("=");
+		textArea_36.setEditable(false);
+		textArea_36.setBackground(SystemColor.menu);
+		textArea_36.setBounds(138, 535, 12, 22);
+		add(textArea_36);
+		
+		JTextArea textArea_37 = new JTextArea();
+		textArea_37.setText("=");
+		textArea_37.setEditable(false);
+		textArea_37.setBackground(SystemColor.menu);
+		textArea_37.setBounds(138, 568, 12, 22);
+		add(textArea_37);
+		
+		textField_wristbandsIn = new JTextField();
+		textField_wristbandsIn.setColumns(10);
+		textField_wristbandsIn.setBounds(97, 602, 31, 22);
+		add(textField_wristbandsIn);
+		
+		JTextArea textArea_38 = new JTextArea();
+		textArea_38.setText("=");
+		textArea_38.setEditable(false);
+		textArea_38.setBackground(SystemColor.menu);
+		textArea_38.setBounds(138, 601, 12, 22);
+		add(textArea_38);
+		
+		JTextArea textArea_44 = new JTextArea();
+		textArea_44.setText("=");
+		textArea_44.setEditable(false);
+		textArea_44.setBackground(SystemColor.menu);
+		textArea_44.setBounds(387, 502, 12, 22);
+		add(textArea_44);
+		
+		JTextArea textArea_45 = new JTextArea();
+		textArea_45.setText("=");
+		textArea_45.setEditable(false);
+		textArea_45.setBackground(SystemColor.menu);
+		textArea_45.setBounds(387, 535, 12, 22);
+		add(textArea_45);
+		
+		JTextArea textArea_46 = new JTextArea();
+		textArea_46.setText("=");
+		textArea_46.setEditable(false);
+		textArea_46.setBackground(SystemColor.menu);
+		textArea_46.setBounds(387, 568, 12, 22);
+		add(textArea_46);
+		
+		JTextArea textArea_47 = new JTextArea();
+		textArea_47.setText("=");
+		textArea_47.setEditable(false);
+		textArea_47.setBackground(SystemColor.menu);
+		textArea_47.setBounds(387, 601, 12, 22);
+		add(textArea_47);
+		
+		JTextArea textArea_fullSheetsIn = new JTextArea();
+		textArea_fullSheetsIn.setText("0");
+		textArea_fullSheetsIn.setEditable(false);
+		textArea_fullSheetsIn.setBackground(SystemColor.menu);
+		textArea_fullSheetsIn.setBounds(160, 502, 41, 22);
+		add(textArea_fullSheetsIn);
+		
+		JTextArea textArea_halfSheetsIn = new JTextArea();
+		textArea_halfSheetsIn.setText("0");
+		textArea_halfSheetsIn.setEditable(false);
+		textArea_halfSheetsIn.setBackground(SystemColor.menu);
+		textArea_halfSheetsIn.setBounds(160, 535, 31, 22);
+		add(textArea_halfSheetsIn);
+		
+		JTextArea textArea_singleTicketsIn = new JTextArea();
+		textArea_singleTicketsIn.setText("0");
+		textArea_singleTicketsIn.setEditable(false);
+		textArea_singleTicketsIn.setBackground(SystemColor.menu);
+		textArea_singleTicketsIn.setBounds(160, 568, 31, 22);
+		add(textArea_singleTicketsIn);
+		
+		JTextArea textArea_wristbandsin = new JTextArea();
+		textArea_wristbandsin.setText("0");
+		textArea_wristbandsin.setEditable(false);
+		textArea_wristbandsin.setBackground(SystemColor.menu);
+		textArea_wristbandsin.setBounds(160, 601, 31, 22);
+		add(textArea_wristbandsin);
+		
+		JTextArea textArea_fullSheetsOut = new JTextArea();
+		textArea_fullSheetsOut.setText("0");
+		textArea_fullSheetsOut.setEditable(false);
+		textArea_fullSheetsOut.setBackground(SystemColor.menu);
+		textArea_fullSheetsOut.setBounds(409, 502, 67, 22);
+		add(textArea_fullSheetsOut);
+		
+		JTextArea textArea_halfSheetsOut = new JTextArea();
+		textArea_halfSheetsOut.setText("0");
+		textArea_halfSheetsOut.setEditable(false);
+		textArea_halfSheetsOut.setBackground(SystemColor.menu);
+		textArea_halfSheetsOut.setBounds(409, 535, 67, 22);
+		add(textArea_halfSheetsOut);
+		
+		JTextArea textArea_singleTicketsOut = new JTextArea();
+		textArea_singleTicketsOut.setText("0");
+		textArea_singleTicketsOut.setEditable(false);
+		textArea_singleTicketsOut.setBackground(SystemColor.menu);
+		textArea_singleTicketsOut.setBounds(409, 568, 67, 22);
+		add(textArea_singleTicketsOut);
+		
+		JTextArea textArea_wristbandsOut = new JTextArea();
+		textArea_wristbandsOut.setText("0");
+		textArea_wristbandsOut.setEditable(false);
+		textArea_wristbandsOut.setBackground(SystemColor.menu);
+		textArea_wristbandsOut.setBounds(409, 601, 67, 22);
+		add(textArea_wristbandsOut);
+		
+		JLabel lblFullSheetsX = new JLabel("Full Sheets      X");
+		lblFullSheetsX.setBounds(10, 503, 77, 22);
+		add(lblFullSheetsX);
+		
+		JLabel lblNewLabel_4 = new JLabel("Half Sheets     X");
+		lblNewLabel_4.setBounds(10, 536, 77, 22);
+		add(lblNewLabel_4);
+		
+		JLabel lblSinglesX = new JLabel("Single Tickets  X");
+		lblSinglesX.setBounds(10, 569, 81, 22);
+		add(lblSinglesX);
+		
+		JLabel lblWristbandsX = new JLabel("Wristbands     X");
+		lblWristbandsX.setBounds(10, 602, 81, 22);
+		add(lblWristbandsX);
+		
+		JTextArea txtrInitialCash = new JTextArea();
+		txtrInitialCash.setText("- Initial Cash Drop");
+		txtrInitialCash.setEditable(false);
+		txtrInitialCash.setBackground(SystemColor.menu);
+		txtrInitialCash.setBounds(523, 205, 166, 22);
+		add(txtrInitialCash);
+		
+		JTextArea textArea_startTotal2 = new JTextArea();
+		textArea_startTotal2.setEditable(false);
+		textArea_startTotal2.setBackground(SystemColor.menu);
+		textArea_startTotal2.setBounds(699, 205, 75, 27);
+		add(textArea_startTotal2);
+		
+		JLabel lblUnsoldFullSheets = new JLabel("Unsold Full Sheets      X");
+		lblUnsoldFullSheets.setBounds(217, 502, 119, 22);
+		add(lblUnsoldFullSheets);
+		
+		JLabel lblUnsoldHalfSheets = new JLabel(" Unsold Half Sheets     X");
+		lblUnsoldHalfSheets.setBounds(215, 535, 121, 22);
+		add(lblUnsoldHalfSheets);
+		
+		JLabel lblUnsoldSingleTickets = new JLabel("  Unsold Single Tickets  X");
+		lblUnsoldSingleTickets.setBounds(213, 568, 123, 22);
+		add(lblUnsoldSingleTickets);
+		
+		JLabel lblUnsoldWristbandsX = new JLabel(" Unsold Wristbands     X");
+		lblUnsoldWristbandsX.setBounds(217, 601, 123, 22);
+		add(lblUnsoldWristbandsX);
+		
+		JLabel lblInitialTickets = new JLabel("Initial Tickets:");
+		lblInitialTickets.setBounds(614, 303, 75, 27);
+		add(lblInitialTickets);
+		
+		JLabel lblIssuedTickets = new JLabel("+ Issued Tickets:");
+		lblIssuedTickets.setBounds(598, 336, 91, 27);
+		add(lblIssuedTickets);
+		
+		JLabel lblUnsoldTickets = new JLabel("- Unsold Tickets:");
+		lblUnsoldTickets.setBounds(598, 369, 91, 27);
+		add(lblUnsoldTickets);
+		
+		JLabel lblInitialWristbands = new JLabel("     Initial Wristbands:");
+		lblInitialWristbands.setBounds(577, 500, 112, 27);
+		add(lblInitialWristbands);
+		
+		JLabel lblIssuedWristbands = new JLabel("+ Issued Wristbands:");
+		lblIssuedWristbands.setBounds(577, 533, 112, 27);
+		add(lblIssuedWristbands);
+		
+		JLabel lblUnsoldWristbands = new JLabel("- Unsold Wristbands:");
+		lblUnsoldWristbands.setBounds(577, 566, 112, 27);
+		add(lblUnsoldWristbands);
+		
+		JLabel lblexpectedRevenue = new JLabel("Ticket Sales + Wristband Sales = EXPECTED REVENUE:");
+		lblexpectedRevenue.setBounds(387, 727, 285, 27);
+		add(lblexpectedRevenue);
+		
+		JLabel lblTicketsSold = new JLabel("  = Tickets Sold:");
+		lblTicketsSold.setBounds(598, 403, 91, 27);
+		add(lblTicketsSold);
+		
+		JLabel lblX_1 = new JLabel("X $0.50 = Ticket Sales :");
+		lblX_1.setBounds(566, 436, 123, 27);
+		add(lblX_1);
+		
+		JLabel lblWristbandsSold = new JLabel("= Wristbands Sold:");
+		lblWristbandsSold.setBounds(577, 601, 112, 27);
+		add(lblWristbandsSold);
+		
+		JLabel lblNewLabel_5 = new JLabel("INITIAL CASH =");
+		lblNewLabel_5.setBounds(10, 634, 81, 27);
+		add(lblNewLabel_5);
+		
+		JLabel lblCollectedCash = new JLabel("COLLECTED CASH =");
+		lblCollectedCash.setBounds(227, 636, 109, 22);
+		add(lblCollectedCash);
+		
+		JLabel lblX_2 = new JLabel("X");
+		lblX_2.setBounds(515, 634, 18, 27);
+		add(lblX_2);
+		
+		ArrayList<String> wbValueArray = new ArrayList<String>();
+		wbValueArray.add("$30");
+		wbValueArray.add("$20");
+		SpinnerListModel wbValueModel = new SpinnerListModel(wbValueArray);
+		JSpinner spinner_wbValue = new JSpinner(wbValueModel);
+		spinner_wbValue.setBounds(530, 637, 41, 20);
+		add(spinner_wbValue);
+		
+		JLabel lblWristbandSales = new JLabel("= Wristband Sales:");
+		lblWristbandSales.setBounds(577, 635, 112, 27);
+		add(lblWristbandSales);
 	}
 	
 	private ArrayList<String> getLocations() {

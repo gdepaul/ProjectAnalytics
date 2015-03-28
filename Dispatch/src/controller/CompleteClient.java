@@ -20,6 +20,7 @@ import javax.swing.JTabbedPane;
 import model.Club;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
+import View.Panel_ADMIN;
 import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
@@ -30,12 +31,14 @@ public class CompleteClient extends JFrame{
 	private JPanel panel_scheduler;
 	private JPanel panel_CICO;
 	private JPanel panel_dispatch;
+	private JPanel panel_ADMIN;
 	private List<Club> activeClubs;
 	private List<String> availableFS;
 	private	List<String> dispatchedFS;
 	private JScrollPane scrollPane_scheduler;
 	private JScrollPane scrollPane_CICO;
 	private JScrollPane scrollPane_dispatch;
+	private JScrollPane scrollPane_ADMIN;
 	
 	private String userName; // user name of the client
 	
@@ -162,7 +165,7 @@ public class CompleteClient extends JFrame{
 		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_scheduler.setPreferredSize(new Dimension(800, 800));
 		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
-		panel_CICO.setPreferredSize(new Dimension(800, 800));
+		panel_CICO.setPreferredSize(new Dimension(800, 1000));
 		panel_dispatch = new Panel_Dispatch(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_dispatch.setPreferredSize(new Dimension(800, 800));
 		
@@ -177,7 +180,19 @@ public class CompleteClient extends JFrame{
 		tabbedPane.addTab("Scheduler", scrollPane_scheduler);
 		tabbedPane.addTab("Cash In/Cash Out", scrollPane_CICO);
 		tabbedPane.addTab("Dispatch", scrollPane_dispatch);
+		
+				// If userName is "ADMIN", add admin panel
+		if (userName.equals("ADMIN")){
+			panel_ADMIN = new Panel_ADMIN(userName, out, activeClubs, availableFS, dispatchedFS);
+			panel_ADMIN.setPreferredSize(new Dimension(800,800));
+			scrollPane_ADMIN = new JScrollPane(panel_ADMIN);
+			tabbedPane.addTab("ADMIN", scrollPane_ADMIN);
+		}
+		
 		topPanel.add( tabbedPane, BorderLayout.CENTER);
+		
+		
+
 		
 		// Finally add topPanel
 		getContentPane().add(topPanel);
