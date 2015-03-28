@@ -22,6 +22,6 @@ public class CashDrop  extends Dispatch<DispatchServer>  {
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
 		Date date = new Date();
-		return "CashDrop:"+ format.format(date) +"\tSource: " + this.getSource() + "\tClub: " + this.club;
+		return "CashDrop:     "+ format.format(date) +"     Source: " + this.getSource() + "     Club: " + this.club + "     # of Drops: " + this.amount;
 	}
 }

@@ -33,6 +33,6 @@ public class TicketDrop extends Dispatch<DispatchServer>  {
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
 		Date date = new Date();
-		return "TicketDrop:"+ format.format(date) +"\tSource: " + this.getSource() + "\tClub: " + this.club + "\tFull Sheets: " + this.num_fulls + "\tHalf Sheets: " + this.num_halves;
+		return "TicketDrop:     "+ format.format(date) +"     Source: " + this.getSource() + "     Club: " + this.club + "     Full Sheets: " + this.num_fulls + "     Half Sheets: " + this.num_halves;
 	}
 }

@@ -121,9 +121,12 @@ public class Club implements Serializable {
 	}
 	
 	public void addTransaction(Dispatch<DispatchServer> dispatch){
+		//System.err.println("Adding transaction: " + dispatch);
 		transactions.add(dispatch);
 	}
-	
+	public List<Dispatch<DispatchServer>> getTransactions() {
+		return this.transactions;
+	}
 	public void addMoney(int more_money){
 		balance += more_money;
 	}

@@ -23,6 +23,12 @@ public class ChangeDrop extends Dispatch<DispatchServer>  {
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
 		Date date = new Date();
-		return "ChangeDrop:"+ format.format(date) + "\tField Supervisor Assigned: " + this.supe + "\tSource: " + this.getSource() + "\tClub: " + this.club;
+		return "ChangeDrop:     "+ format.format(date) + "     Source: " + this.getSource() + "     Club: " + this.club + "     # of Change Drops: " + this.amount;
+		//return "ChangeDrop:\t"+ format.format(date) + "\tSource: " + this.getSource() + "\tClub: " + this.club + "\t # of Change Drops: " + this.amount;
+	}
+	public String toStringList() {
+		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
+		Date date = new Date();
+		return "ChangeDrop:     "+ format.format(date) + "     Source: " + this.getSource() + "     Club: " + this.club + "     # of Change Drops: " + this.amount;
 	}
 }

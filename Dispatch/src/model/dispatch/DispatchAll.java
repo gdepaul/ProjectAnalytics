@@ -39,6 +39,6 @@ public class DispatchAll  extends Dispatch<DispatchServer>  {
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
 		Date date = new Date();
-		return "DispatchAllTypes:"+ format.format(date) +"\tSource: " + this.getSource() + "\tClub: " + this.club;
+		return "DispatchAllTypes:     "+ format.format(date) +"     Source: " + this.getSource() + "     Club: " + this.club +  "      # of Cash Drops: " + this.cashDrops  + "      # of Change Drops: " + this.changeDrops  + "      # of Full Sheets: " + this.fullSheets +  "     # of Half Sheets: " + this.halfSheets;
 	}
 }

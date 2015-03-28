@@ -7,6 +7,8 @@ package server;
  */
 
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,6 +28,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.*;
+
+import View.*;
 import model.*;
 import model.dispatch.*;
 import controller.CompleteClient;
@@ -43,7 +48,11 @@ import exceptions.*;
  *
  */
 
-public class DispatchServer {
+public class DispatchServer extends JFrame {
+	private static final long serialVersionUID = -4034798597118847005L;
+	
+	private String username = "Server";
+	
 	private Logger Out;
 	private ServerSocket socket;
 	private HashMap<String, FieldSupervisor> field_sups;
@@ -55,6 +64,13 @@ public class DispatchServer {
 	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private Map<String, ObjectInputStream> inputs;
 	private Map<String, ObjectOutputStream> outputs;
+	
+//--GUI Instance Variables
+	private JTabbedPane tabbedPane;
+	private JPanel panel_scheduler;
+	private JPanel panel_CICO;
+	private JPanel panel_dispatch;
+	private JPanel panel_history;
 	
 	/**
 	 * AutoSaver
@@ -120,7 +136,7 @@ public class DispatchServer {
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
 						try {
 							dispatch.execute(DispatchServer.this); // execute the command on the server
-							if(dispatch instanceof CashDrop || dispatch instanceof ChangeDrop || dispatch instanceof TicketDrop) {
+							if(dispatch instanceof CashDrop || dispatch instanceof ChangeDrop || dispatch instanceof TicketDrop || dispatch instanceof DispatchAll) {
 								hash_clubs.get(dispatch.getClub()).addTransaction(dispatch);
 							}
 						} catch(DuplicateClubException dce) {
@@ -228,6 +244,7 @@ public class DispatchServer {
 			availableFS = new ArrayList<String>();
 			dispatchedFS = new ArrayList<String>();
 			
+		
 			
 			this.field_sups = new HashMap<String, FieldSupervisor>();
 			hash_clubs = new HashMap<String, Club>();
@@ -245,6 +262,8 @@ public class DispatchServer {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
+		//setUpGUI();
+		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 	
 	public DispatchServer(int port, SaveFile save) {
@@ -264,7 +283,6 @@ public class DispatchServer {
 			
 			Out.print("Server started on port " + port);
 			//System.out.println("Server started on port " + port);
-			
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
 			new Thread(new AutoSaver()).start();
@@ -275,6 +293,8 @@ public class DispatchServer {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
+		//setUpGUI();
+		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 
 	public static void attachShutDownHook() {
@@ -376,6 +396,9 @@ public class DispatchServer {
 		else
 			throw new NullClubException(club + "does not exist");
 	}
+	public void addTransaction(Dispatch<DispatchServer> transaction) {
+		this.hash_clubs.get(transaction.getClub()).addTransaction(transaction);
+	}
 	
 	/**
 	 * This method undoes the last command of a client
@@ -417,6 +440,7 @@ public class DispatchServer {
 				outputs.remove(out);
 			}
 		}
+		//((ServerPanel_Histories)this.panel_history).updatePanel(this.hash_clubs,this.histories);
 	}
 	/**
 	 * 
@@ -451,8 +475,31 @@ public class DispatchServer {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
-	
-	
+/* ********************** GUI METHODS ********************** */ 	
+	private void setUpGUI() {
+		System.err.println("Setting up GUI");
+		setTitle("Spring Fling 2015 Server");
+		setSize(800,800);
+		setBackground(Color.gray);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new BorderLayout());
+		getContentPane().add(topPanel);
+		
+		//this.panel_history = new ServerPanel_Histories(this.hash_clubs,this.histories);
+				
+		// Create the tabbed pane
+		tabbedPane = new JTabbedPane();
+		//tabbedPane.addTab("Scheduler", panel_scheduler);
+		//tabbedPane.addTab("Cash In/Cash Out", panel_CICO);
+		//tabbedPane.addTab("Dispatch", panel_dispatch);
+		tabbedPane.addTab("History",panel_history);
+		topPanel.add( tabbedPane, BorderLayout.CENTER);
+		
+		this.setVisible(true);		
+	}
 	
 	public static void main(String[] args) {
 		int port = 9001;
