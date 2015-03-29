@@ -169,7 +169,7 @@ public class Panel_Scheduler extends JPanel{
 						}
 			} else if(action.compareTo("Cashier")==0){
 						try {
-							output.writeObject(new AddActiveClub(clientName, addEmployee, 0 ,0 )); 	//New cashier with no cash, no tickets
+							output.writeObject(new AddActiveClub(clientName, addEmployee)); 	//New cashier with no cash, no tickets
 							JOptionPane.showMessageDialog(getParent(), addEmployee + " added to active cashiers");
 							} catch (IOException e) {
 							JOptionPane.showMessageDialog(getParent(), "Failed to add " + addEmployee + " to available cashiers.\n" +

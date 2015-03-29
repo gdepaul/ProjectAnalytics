@@ -194,19 +194,28 @@ public class Panel_Dispatch extends JPanel {
 						int addFullSheets=0;
 						int addHalfSheets=0;
 						int addSingleTickets=0;
+						int addWristbands=0;
 						
 						JTextField tf_cashDrops = new JTextField();
+							tf_cashDrops.setText("0");
 						JTextField tf_changeDrops = new JTextField();
+							tf_changeDrops.setText("0");
 						JTextField tf_addFullSheets = new JTextField();
+							tf_addFullSheets.setText("0");
 						JTextField tf_addHalfSheets = new JTextField();
+							tf_addHalfSheets.setText("0");
 						JTextField tf_addSingletickets = new JTextField();
+							tf_addSingletickets.setText("0");
+						JTextField tf_addWristbands = new JTextField();
+							tf_addWristbands.setText("0");
 						
 						Object[] getDispatch = {
 								"Cash Drops:", tf_cashDrops,
 								"Change Drops:", tf_changeDrops,
 								"Full Sheets:", tf_addFullSheets,
 								"Half Sheets:", tf_addHalfSheets,
-								"Single Tickets", tf_addSingletickets
+								"Single Tickets:", tf_addSingletickets,
+								"Wristbands:", tf_addWristbands
 								};
 						
 						int option = JOptionPane.showConfirmDialog(getParent(), getDispatch, "Enter all dispatch values", JOptionPane.OK_CANCEL_OPTION);
@@ -217,22 +226,25 @@ public class Panel_Dispatch extends JPanel {
 							addChangeDrops = Integer.parseInt(tf_changeDrops.getText());
 							addFullSheets = Integer.parseInt(tf_addFullSheets.getText());
 							addHalfSheets = Integer.parseInt(tf_addHalfSheets.getText());
-							addSingleTickets =Integer.parseInt(tf_addSingletickets.getText());
-							
+							addSingleTickets = Integer.parseInt(tf_addSingletickets.getText());
+							addWristbands = Integer.parseInt(tf_addWristbands.getText());
 							if ( addCashDrops>=0 && 
 									addChangeDrops>=0 &&
 									addFullSheets>=0 &&
 									addHalfSheets>=0 &&
-									addSingleTickets>=0){
-								JOptionPane.showMessageDialog(getParent(), "Dispatch All!\n"+
+									addSingleTickets>=0 &&
+									addWristbands>=0){
+								JOptionPane.showMessageDialog(getParent(), "Dispatching "+DFSSelected + "\n" +
+																			"to " + clubSelected + "!\n" + 
 									"Cash Drops: " + addCashDrops + "\n" +
 									"Change Drops: " + addChangeDrops + "\n" +
 									"Full Sheets: " + addFullSheets + "\n" +
 									"Half Sheets: " + addHalfSheets + "\n" +
-									"Single Tickets: " + addSingleTickets);
+									"Single Tickets: " + addSingleTickets + "\n" +
+									"Wristbands: " + addWristbands);
 								
 								//Execute
-								output.writeObject(new DispatchAll(clientName, clubSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets));
+								output.writeObject(new DispatchAll(clientName, clubSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets, addWristbands));
 								//Dispatch field supe
 								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 								
@@ -247,41 +259,6 @@ public class Panel_Dispatch extends JPanel {
 								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 248");
 								e.printStackTrace();
 							}
-						}
-						
-
-					}
-					else if (actionSelected.compareTo("CashDrop")==0){
-						try {
-							output.writeObject(new CashDrop(clientName, clubSelected, 1)); //NEED TO MAKE CHANGEABLE
-							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}else if (actionSelected.compareTo("ChangeDrop")==0){
-						try {
-							output.writeObject(new ChangeDrop(clientName, clubSelected, 1)); //NEED TO MAKE CHANGEABLE
-							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}else if (actionSelected.compareTo("TicketDrop")==0){
-						try {
-							output.writeObject(new TicketDrop(clientName, clubSelected, 1, 1, 1));	//Right now, drops 50 single tickets. Ask about implementation.
-							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected)); 	//Ebitie said they're worth $.50 cents
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}else if (actionSelected.compareTo("InitialCashBox")==0){
-						try {
-							output.writeObject(new InitialCashDrop(clientName, clubSelected, 0));
-							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-						}catch(IOException e){
-							//TODO Auto-generated catch block
-							e.printStackTrace();
 						}
 					}
 				}

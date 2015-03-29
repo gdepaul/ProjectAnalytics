@@ -61,7 +61,8 @@ public class Panel_CICO extends JPanel{
 	private JTextField textField_hundredsOut;
 	
 	private JTextArea textArea_cashDrops;
-	private JTextArea textArea_startTotal;
+	private JTextArea textArea_startTotal;		//left hand start total on GUI
+	private JTextArea textArea_startTotal2;		//right hand start total on GUI
 	private JTextArea textArea_endTotal;
 	private JTextArea textArea_endTotalCalc;
 	private JTextArea textArea_cashDropsBy800;
@@ -94,7 +95,21 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_soldWristbands;
 	private JTextArea textArea_soldTickets;
 	
-	
+	// Ticket Widgets
+	private JTextField textField_fullSheetsUnsold;
+	private JTextField textField_halfSheetsUnsold;
+	private JTextField textField_singleTicketsUnsold;
+	private JTextField textField_wristbandsUnsold;
+	private JTextField textField_fullSheetsIn;
+	private JTextField textField_halfSheetsIn;
+	private JTextField textField_singleTicketsIn;
+	private JTextField textField_wristbandsIn;
+	private JTextArea textArea_initialtickets;
+	private JTextArea textArea_unsoldTickets;
+	private JTextArea textArea_ticketSales;
+	private JTextArea textArea_initialWristbands;
+	private JTextArea textArea_unsoldWristbands;
+	private JTextArea textArea_wristbandSales;
 	
 	//private JSpinner spinner_clubSelection;
 	private JSpinner spinner_clubSelection_1;
@@ -110,14 +125,9 @@ public class Panel_CICO extends JPanel{
 	//Initial values
 	private String clubSelected;
 	private Club actualClub;
-	private JTextField textField_fullSheetsUnsold;
-	private JTextField textField_halfSheetsUnsold;
-	private JTextField textField_singleTicketsUnsold;
-	private JTextField textField_wristbandsUnsold;
-	private JTextField textField_fullSheetsIn;
-	private JTextField textField_halfSheetsIn;
-	private JTextField textField_singleTicketsIn;
-	private JTextField textField_wristbandsIn;
+	
+	
+
 	
 	/**
 	 * Listener for the initial cash drop button
@@ -543,6 +553,37 @@ public class Panel_CICO extends JPanel{
 		}
 	}
 	
+	
+	private Club findActualClub(String clubSelected2) {
+		
+		if (activeClubs!=null){
+			for(Club club : activeClubs){
+				if (clubSelected.compareTo(club.getClubName())==0){
+					return club;
+				}
+			}
+		}
+		return new Club("Dummy club");
+	}
+	/**
+	 *  Creates an ArrayList<String> from the activeClubs list
+	 * 
+	 */
+	private ArrayList<String> getClubs() {
+		ArrayList<String> clubs = new ArrayList<>();
+		if (activeClubs!=null){
+			for (Club club : activeClubs){
+				clubs.add(club.getClubName());
+			}
+		}
+		if (clubs.size()==0){
+			clubs.add("(No clubs!)");
+		} else{
+			clubs.remove("(No clubs!)");
+		}
+		return clubs;
+	}
+	
 	/**
 	 * UpdateLists method
 	 */
@@ -577,9 +618,6 @@ public class Panel_CICO extends JPanel{
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
 		}else{
-//			if (clubSelected.compareTo("(No clubs!)")!=0){
-//				JOptionPane.showMessageDialog(getParent(), "The cashier you were working on (" + clubSelected + ") was removed from the active list!");
-//			}
 			clubSelected = spinner_clubSelection_1.getValue().toString();
 			
 			actualClub = findActualClub(clubSelected);
@@ -621,35 +659,6 @@ public class Panel_CICO extends JPanel{
 		}
 		this.repaint();
 	}
-	private Club findActualClub(String clubSelected2) {
-		
-		if (activeClubs!=null){
-			for(Club club : activeClubs){
-				if (clubSelected.compareTo(club.getClubName())==0){
-					return club;
-				}
-			}
-		}
-		return new Club("Dummy club");
-	}
-	/**
-	 *  Creates an ArrayList<String> from the activeClubs list
-	 * 
-	 */
-	private ArrayList<String> getClubs() {
-		ArrayList<String> clubs = new ArrayList<>();
-		if (activeClubs!=null){
-			for (Club club : activeClubs){
-				clubs.add(club.getClubName());
-			}
-		}
-		if (clubs.size()==0){
-			clubs.add("(No clubs!)");
-		} else{
-			clubs.remove("(No clubs!)");
-		}
-		return clubs;
-	}
 	
 	/**
 	 * ClubSelected Spinner Listener
@@ -662,10 +671,6 @@ public class Panel_CICO extends JPanel{
 			clubSelected = spinner_clubSelection_1.getValue().toString();
 			actualClub = findActualClub(clubSelected);
 			//if the club already has an initial cashdrop, turn off button and text fields...
-			
-//			JOptionPane.showMessageDialog(getParent(), "SpinnerChanged!\n"+
-//					"actualClub = " + actualClub.getClubName() + "\n"+
-//					"Initial Cash Drop = " + actualClub.getInitialCashDrop());
 			
 			if (actualClub.getInitialCashDrop()!=0.0){
 				btn_initialCashDrop.setEnabled(false);
@@ -682,6 +687,13 @@ public class Panel_CICO extends JPanel{
 				textField_fiftiesIn.setEnabled(false);
 				textField_hundredsIn.setEnabled(false);
 				
+				//ticket calculations
+				textField_fullSheetsIn.setEnabled(false);
+				textField_halfSheetsIn.setEnabled(false);
+				textField_singleTicketsIn.setEnabled(false);
+				textField_wristbandsIn.setEnabled(false);
+				
+				
 			} else{ // else, make sure, they're on...
 				btn_initialCashDrop.setEnabled(true);
 				btn_initialCashDrop.setText("CONFIRM INITIAL CASH DROP");
@@ -696,6 +708,12 @@ public class Panel_CICO extends JPanel{
 				textField_twentiesIn.setEnabled(true);
 				textField_fiftiesIn.setEnabled(true);
 				textField_hundredsIn.setEnabled(true);
+				
+				//ticket calculations
+				textField_fullSheetsIn.setEnabled(true);
+				textField_halfSheetsIn.setEnabled(true);
+				textField_singleTicketsIn.setEnabled(true);
+				textField_wristbandsIn.setEnabled(true);
 			}
 			
 			// ...if it's there, show that value as startTotal
@@ -703,30 +721,29 @@ public class Panel_CICO extends JPanel{
 			
 			//Update textAreas
 			
-			//Update tickets value
+			//Update initial ticket values
+			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
+			//Update tickets values
 			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
+			textArea_unsoldTickets.setText("" );
+			textArea_soldTickets.setText("" + actualClub.getInitialTickets()+actualClub.getTickets());	// = initial+issued-(unsold tickets, but unsold tickets cleared)
+			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f));
 			
-			//Update 
+			//Update wristband values
 			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
 			
-			//Update cashdrop stuff
+			//Update Cash Calculations
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
-			if (textArea_endTotalCalc.getText().compareTo("")!=0){
-				textArea_finalTotal.setText(
-							(formatDecimal(actualClub.getCashdrops()*800
-									+Float.parseFloat(textArea_endTotalCalc.getText().substring(0))
-							)));
-			}else{
-				textArea_finalTotal.setText(
-						(formatDecimal(actualClub.getCashdrops()*800)));
-			}
+			textArea_endTotalCalc.setText("");
+			textArea_finalTotal.setText(formatDecimal(actualClub.getCashdrops()*800-actualClub.getInitialCashDrop()));
+			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
 		}
 	}
 	/**
-	 * This clears all the fields. Should run when the cashier changes.
+	 * This clears all the fields. Should run when the cashier changes only
 	 */
 	private void clearFields() {
 		textField_penniesIn.setText("");
@@ -751,6 +768,32 @@ public class Panel_CICO extends JPanel{
 		textField_fiftiesOut.setText("");
 		textField_hundredsIn.setText("");
 		textField_hundredsOut.setText("");
+		
+		textArea_penniesIn.setText("$0.00");
+		textArea_penniesOut.setText("$0.00");
+		textArea_nickelsIn.setText("$0.00");
+		textArea_nickelsOut.setText("$0.00");
+		textArea_dimesIn.setText("$0.00");
+		textArea_dimesOut.setText("$0.00");
+		textArea_quartersIn.setText("$0.00");
+		textArea_quartersOut.setText("$0.00");
+		textArea_dollarsIn.setText("$0.00");
+		textArea_dollarsOut.setText("$0.00");
+		textArea_twosIn.setText("$0.00");
+		textArea_twosOut.setText("$0.00");
+		textArea_fivesIn.setText("$0.00");
+		textArea_fivesOut.setText("$0.00");
+		textArea_tensIn.setText("$0.00");
+		textArea_tensOut.setText("$0.00");
+		textArea_twentiesIn.setText("$0.00");
+		textArea_twentiesOut.setText("$0.00");
+		textArea_fiftiesIn.setText("$0.00");
+		textArea_fiftiesOut.setText("$0.00");
+		textArea_hundredsIn.setText("$0.00");
+		textArea_hundredsOut.setText("$0.00");
+		
+		
+		//Calculation Fields
 		textArea_finalTotal.setText("");
 		textArea_endTotal.setText("");
 		textArea_endTotalCalc.setText("");
@@ -1692,7 +1735,7 @@ public class Panel_CICO extends JPanel{
 		txtrInitialCash.setBounds(523, 205, 166, 22);
 		add(txtrInitialCash);
 		
-		JTextArea textArea_startTotal2 = new JTextArea();
+		textArea_startTotal2 = new JTextArea();
 		textArea_startTotal2.setEditable(false);
 		textArea_startTotal2.setBackground(SystemColor.menu);
 		textArea_startTotal2.setBounds(699, 205, 75, 27);
@@ -1778,33 +1821,33 @@ public class Panel_CICO extends JPanel{
 		lblWristbandSales.setBounds(577, 635, 112, 27);
 		add(lblWristbandSales);
 		
-		JTextArea textArea_initialtickets = new JTextArea();
+		textArea_initialtickets = new JTextArea();
 		textArea_initialtickets.setEditable(false);
 		textArea_initialtickets.setBounds(699, 304, 61, 22);
 		add(textArea_initialtickets);
 		
-		JTextArea textArea_unsoldTickets = new JTextArea();
+		textArea_unsoldTickets = new JTextArea();
 		textArea_unsoldTickets.setEditable(false);
 		textArea_unsoldTickets.setBounds(699, 370, 61, 22);
 		add(textArea_unsoldTickets);
 		
-		JTextArea textArea_ticketSales = new JTextArea();
+		textArea_ticketSales = new JTextArea();
 		textArea_ticketSales.setEditable(false);
 		textArea_ticketSales.setBounds(699, 436, 61, 22);
 		add(textArea_ticketSales);
 		
-		JTextArea textArea_initialWristbands = new JTextArea();
+		textArea_initialWristbands = new JTextArea();
 		textArea_initialWristbands.setEditable(false);
 		textArea_initialWristbands.setBounds(699, 501, 61, 22);
 		add(textArea_initialWristbands);
 		
-		JTextArea textArea_unsoldWristbands = new JTextArea();
+		textArea_unsoldWristbands = new JTextArea();
 		textArea_unsoldWristbands.setEditable(false);
 		textArea_unsoldWristbands.setBackground(Color.WHITE);
 		textArea_unsoldWristbands.setBounds(699, 567, 61, 22);
 		add(textArea_unsoldWristbands);
 		
-		JTextArea textArea_wristbandSales = new JTextArea();
+		textArea_wristbandSales = new JTextArea();
 		textArea_wristbandSales.setEditable(false);
 		textArea_wristbandSales.setBackground(Color.WHITE);
 		textArea_wristbandSales.setBounds(699, 635, 61, 22);
