@@ -159,7 +159,11 @@ public class Panel_CICO extends JPanel{
 				
 				output.writeObject(new InitialCashDrop(clientName, actualClub.getClubName(), startTotal, initialTickets, initialWristbands, location));
 				
-				JOptionPane.showMessageDialog(getParent(), "Initial Cash Drop logged for " + actualClub.getClubName()+ " for " + startTotal);
+				JOptionPane.showMessageDialog(getParent(), "Initial Drop logged for " + actualClub.getClubName()+ " for " + 
+															"Cash: "+  actualClub.getInitialCashDrop() + "\n"
+															+"Tickets: " + actualClub.getInitialTickets() + "\n"
+															+"wristbands: " + actualClub.getInitialWristbands() + "\n"
+															+"location: " + actualClub.getLocation());
 				
 				
 			} catch (NumberFormatException | IOException e) {
@@ -565,8 +569,10 @@ public class Panel_CICO extends JPanel{
 			if (textArea_endTotalCalc.getText().compareTo("")!=0){
 				textArea_finalTotal.setText("$"+
 							(formatDecimal(actualClub.getCashdrops()*800
-									+endTotal)	
+									+endTotal - actualClub.getInitialCashDrop())	
 							));
+				
+	
 			}else{
 				textArea_finalTotal.setText(""+
 						(formatDecimal(actualClub.getCashdrops()*800)));
@@ -633,20 +639,22 @@ public class Panel_CICO extends JPanel{
 			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
 			
 			// ...if it's there, show that value as startTotal
-			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			//textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
 			//Update textAreas
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
+			//update actualClub to reflect version received from server
+			actualClub = findActualClub(clubSelected);
 		}else{
 			clubSelected = spinner_clubSelection_1.getValue().toString();
 			
 			actualClub = findActualClub(clubSelected);
-			clearFields();
+//			clearFields();
 		}
 		
-		
+
 		//if the club already has an initial cashdrop, turn off button and text fields...
 		
 		if (actualClub.getInitialCashDrop() !=0.0){
@@ -664,6 +672,14 @@ public class Panel_CICO extends JPanel{
 			textField_fiftiesIn.setEnabled(false);
 			textField_hundredsIn.setEnabled(false);
 			
+			//ticket calculations
+			textField_fullSheetsIn.setEnabled(false);
+			textField_halfSheetsIn.setEnabled(false);
+			textField_singleTicketsIn.setEnabled(false);
+			textField_wristbandsIn.setEnabled(false);
+			
+			spinner_locations.setEnabled(false);
+			
 		} else{ // else, make sure, they're on...
 			btn_initialCashDrop.setEnabled(true);
 			btn_initialCashDrop.setText("CONFIRM INITIAL CASH DROP");
@@ -678,6 +694,14 @@ public class Panel_CICO extends JPanel{
 			textField_twentiesIn.setEnabled(true);
 			textField_fiftiesIn.setEnabled(true);
 			textField_hundredsIn.setEnabled(true);
+			
+			//ticket calculations
+			textField_fullSheetsIn.setEnabled(true);
+			textField_halfSheetsIn.setEnabled(true);
+			textField_singleTicketsIn.setEnabled(true);
+			textField_wristbandsIn.setEnabled(true);
+			
+			spinner_locations.setEnabled(true);
 		}
 		this.repaint();
 	}
@@ -1653,16 +1677,22 @@ public class Panel_CICO extends JPanel{
 		textField_fullSheetsIn = new JTextField();
 		textField_fullSheetsIn.setColumns(10);
 		textField_fullSheetsIn.setBounds(97, 503, 31, 22);
+		textField_fullSheetsIn.setText("0");
+		textField_fullSheetsIn.addActionListener(startValsChangedListener);
 		add(textField_fullSheetsIn);
 		
 		textField_halfSheetsIn = new JTextField();
 		textField_halfSheetsIn.setColumns(10);
 		textField_halfSheetsIn.setBounds(97, 536, 31, 22);
+		textField_halfSheetsIn.setText("0");
+		textField_halfSheetsIn.addActionListener(startValsChangedListener);
 		add(textField_halfSheetsIn);
 		
 		textField_singleTicketsIn = new JTextField();
 		textField_singleTicketsIn.setColumns(10);
 		textField_singleTicketsIn.setBounds(97, 569, 31, 22);
+		textField_singleTicketsIn.setText("0");
+		textField_singleTicketsIn.addActionListener(startValsChangedListener);
 		add(textField_singleTicketsIn);
 		
 		JTextArea textArea_33 = new JTextArea();
@@ -1689,6 +1719,8 @@ public class Panel_CICO extends JPanel{
 		textField_wristbandsIn = new JTextField();
 		textField_wristbandsIn.setColumns(10);
 		textField_wristbandsIn.setBounds(97, 602, 31, 22);
+		textField_wristbandsIn.setText("0");
+		textField_wristbandsIn.addActionListener(startValsChangedListener);
 		add(textField_wristbandsIn);
 		
 		JTextArea textArea_38 = new JTextArea();

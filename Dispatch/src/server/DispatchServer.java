@@ -262,8 +262,8 @@ public class DispatchServer extends JFrame {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
-		//setUpGUI();
-		new server.CompleteClient(this.hash_clubs,this.histories);
+//		//setUpGUI();
+//		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 	
 	public DispatchServer(int port, SaveFile save) {
@@ -293,8 +293,8 @@ public class DispatchServer extends JFrame {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
-		//setUpGUI();
-		new server.CompleteClient(this.hash_clubs,this.histories);
+//		//setUpGUI();
+//		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 
 	public static void attachShutDownHook() {

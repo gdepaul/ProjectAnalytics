@@ -28,7 +28,7 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException {
 		executeOn.initialCashDrop(club, initialCash, initialTickets, initialWristbands, location);
-		executeOn.addTransaction(this);
+		//executeOn.addTransaction(this);
 	}
 
 }

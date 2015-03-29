@@ -19,7 +19,6 @@
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="View.Panel_Scheduler"/>
 <fullyQualifiedTypeName name="View.Panel_CICO"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="model.dispatch.AddObjectDispatch"/>
 <fullyQualifiedTypeName name="model.dispatchObject.AddActiveClub"/>
 <fullyQualifiedTypeName name="View.Panel_Dispatch.AvailableListener"/>
@@ -44,4 +43,9 @@
 <fullyQualifiedTypeName name="java.awt.ScrollPane"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="View.Panel_Scheduler.RemoveCashierListener"/>
+<fullyQualifiedTypeName name="View.Panel_CICO.WristbandMultiplierListener"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="View.Panel_CICO.ClubSpinnerListener"/>
+<fullyQualifiedTypeName name="View.Panel_CICO.LocationSpinnerListener"/>
 </qualifiedTypeNameHistroy>
