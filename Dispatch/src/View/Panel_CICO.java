@@ -114,6 +114,14 @@ public class Panel_CICO extends JPanel{
 	//private JSpinner spinner_clubSelection;
 	private JSpinner spinner_clubSelection_1;
 	
+	// Wristband multiplier spinner
+	private JSpinner spinner_wbValue;
+	private int wristbandMultiplier;
+	
+	// Location spinner
+	private JSpinner spinner_locations;
+	private String location;
+	
 	JButton btn_initialCashDrop;
 	
 	//Listeners
@@ -121,10 +129,13 @@ public class Panel_CICO extends JPanel{
 	private EndValsChangedListener endValsChangedListener;
 	private RevenueChangedListener revenueChangedListener;
 	private ConfirmInitialDropListener confirmInitialDropListener;
+	private WristbandMultiplierListener wristbandMultiplierListener;
+	private LocationSpinnerListener locationSpinnerListener;
 	
 	//Initial values
 	private String clubSelected;
 	private Club actualClub;
+	
 	
 	
 
@@ -137,9 +148,19 @@ public class Panel_CICO extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				String startTotal = textArea_startTotal.getText().substring(1);
-				output.writeObject(new InitialCashDrop(clientName, actualClub.getClubName(), (float) Float.parseFloat(startTotal)));
-				JOptionPane.showMessageDialog(getParent(), "Initial Cash Drop logged for " + actualClub.getClubName()+ " for " + Float.parseFloat(startTotal));
+				//LOCATION is already set as private instance variable, changes with spinner.
+				float startTotal = (float) Float.parseFloat(textArea_startTotal.getText().substring(1));
+				int initialTickets = (Integer.parseInt(textField_fullSheetsIn.getText().toString()) * 40)+
+									(Integer.parseInt(textField_halfSheetsIn.getText().toString()) * 20)+
+										(Integer.parseInt(textField_singleTicketsIn.getText().toString()) * 20);
+				int initialWristbands = Integer.parseInt(textField_wristbandsIn.getText());
+				
+				
+				output.writeObject(new InitialCashDrop(clientName, actualClub.getClubName(), startTotal, initialTickets, initialWristbands, location));
+				
+				JOptionPane.showMessageDialog(getParent(), "Initial Cash Drop logged for " + actualClub.getClubName()+ " for " + startTotal);
+				
+				
 			} catch (NumberFormatException | IOException e) {
 				JOptionPane.showMessageDialog(getParent(), "Number format exception from ConfirmInitialDropListener");
 				e.printStackTrace();
@@ -737,6 +758,8 @@ public class Panel_CICO extends JPanel{
 			
 			//Get wristband multiplier
 			
+			//Calculate final wristband sales
+			
 			//Update Cash Calculations
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
@@ -747,6 +770,31 @@ public class Panel_CICO extends JPanel{
 			
 		}
 	}
+	
+	/**
+	 * 	Wristband Multiplier Spinner Listener
+	 */
+	private class WristbandMultiplierListener implements ChangeListener{
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
+			wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
+		}
+
+	}
+	
+	/**
+	 *  Location Spinner Listener
+	 */
+	private class LocationSpinnerListener implements ChangeListener{
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
+			location = spinner_locations.getValue().toString();
+		}
+		
+	}
+	
 	/**
 	 * This clears all the fields. Should run when the cashier changes only
 	 */
@@ -816,6 +864,7 @@ public class Panel_CICO extends JPanel{
 		endValsChangedListener = new EndValsChangedListener();
 		confirmInitialDropListener = new ConfirmInitialDropListener();
 		revenueChangedListener = new RevenueChangedListener();
+		wristbandMultiplierListener = new WristbandMultiplierListener();
 		setLayout(null);
 		
 		JTextArea txtrCashOut = new JTextArea();
@@ -1569,8 +1618,9 @@ public class Panel_CICO extends JPanel{
 		
 		ArrayList<String> locationsArray = getLocations();
 		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
-		JSpinner spinner_locations = new JSpinner(locationsModel);
+		spinner_locations = new JSpinner(locationsModel);
 		spinner_locations.setBounds(87, 69, 162, 33);
+		location = spinner_locations.getValue().toString();
 		add(spinner_locations);
 		
 		textArea_issuedWristbands = new JTextArea();
@@ -1818,8 +1868,10 @@ public class Panel_CICO extends JPanel{
 		wbValueArray.add("$30");
 		wbValueArray.add("$20");
 		SpinnerListModel wbValueModel = new SpinnerListModel(wbValueArray);
-		JSpinner spinner_wbValue = new JSpinner(wbValueModel);
+		spinner_wbValue = new JSpinner(wbValueModel);
 		spinner_wbValue.setBounds(530, 637, 41, 20);
+		spinner_wbValue.addChangeListener(wristbandMultiplierListener);
+		wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
 		add(spinner_wbValue);
 		
 		JLabel lblWristbandSales = new JLabel("= Wristband Sales:");

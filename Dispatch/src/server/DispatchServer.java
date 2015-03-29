@@ -371,9 +371,12 @@ public class DispatchServer extends JFrame {
 		else
 			throw new NullClubException(club + "does not exist");
 	}
-	public void initialCashDrop(String club, float drop) throws NullClubException{
+	public void initialCashDrop(String club, float drop, int initialTickets, int initialWristbands, String location) throws NullClubException{
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).setInitialCashDrop(drop);
+			hash_clubs.get(club).setInitialTickets(initialTickets);
+			hash_clubs.get(club).setInitialWristbands(initialWristbands);
+			hash_clubs.get(club).setLocation(location);
 			Out.print("Initial cash drop for " + club + ":" + hash_clubs.get(club).getInitialCashDrop());
 		}
 		else
