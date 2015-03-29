@@ -13,14 +13,16 @@ public class DispatchAll  extends Dispatch<DispatchServer>  {
 	private int changeDrops;
 	private int fullSheets;
 	private int halfSheets;
+	private int singleTickets;
 
 	public DispatchAll(String source, String club, int cashDrops, int changeDrops,
-			int fullSheets, int halfSheets) {
+			int fullSheets, int halfSheets, int singleTickets) {
 		super(source,club);
 		this.cashDrops = cashDrops;
 		this.changeDrops = changeDrops;
 		this.fullSheets = fullSheets;
 		this.halfSheets = halfSheets;
+		this.singleTickets = singleTickets;
 	}
 
 	
@@ -34,7 +36,7 @@ public class DispatchAll  extends Dispatch<DispatchServer>  {
 
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException {
-		executeOn.dispatchAll(this.club, this.cashDrops, this.changeDrops, this.fullSheets, this.halfSheets);
+		executeOn.dispatchAll(this.club, this.cashDrops, this.changeDrops, this.fullSheets, this.halfSheets, this.singleTickets);
 	}
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");

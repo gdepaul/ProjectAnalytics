@@ -208,7 +208,7 @@ public class Panel_Dispatch extends JPanel {
 						}
 					}else if (actionSelected.compareTo("TicketDrop")==0){
 						try {
-							output.writeObject(new TicketDrop(clientName, clubSelected, 1, 1));	//Right now, drops 50 single tickets. Ask about implementation.
+							output.writeObject(new TicketDrop(clientName, clubSelected, 1, 1, 1));	//Right now, drops 50 single tickets. Ask about implementation.
 																										//Ebitie said they're worth $.50 cents
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
