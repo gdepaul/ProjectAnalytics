@@ -131,6 +131,7 @@ public class Panel_CICO extends JPanel{
 	private ConfirmInitialDropListener confirmInitialDropListener;
 	private WristbandMultiplierListener wristbandMultiplierListener;
 	private LocationSpinnerListener locationSpinnerListener;
+	private ClubSpinnerListener clubSpinnerListener;
 	
 	//Initial values
 	private String clubSelected;
@@ -619,7 +620,7 @@ public class Panel_CICO extends JPanel{
 		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
 		spinner_clubSelection_1 = new JSpinner(clubsModel);
 		spinner_clubSelection_1.setBounds(147, 23, 252, 40);
-		spinner_clubSelection_1.addChangeListener(new ClubSpinnerListener());
+		spinner_clubSelection_1.addChangeListener(clubSpinnerListener);
 		add(spinner_clubSelection_1);
 		
 		if (clubsArray.contains(clubSelected)){
@@ -740,10 +741,14 @@ public class Panel_CICO extends JPanel{
 			// ...if it's there, show that value as startTotal
 			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
-			//Update location spinner value and location
-			spinner_locations.setValue(actualClub.getLocation());
-			location = spinner_locations.getValue().toString();
-			
+			//Update location spinner value and location if present
+			if (actualClub.getLocation().compareTo("(Unassigned)")!=0){
+				spinner_locations.setValue(actualClub.getLocation());
+				spinner_locations.setEnabled(false);
+				location = spinner_locations.getValue().toString();
+			} else{
+				spinner_locations.setEnabled(true);
+			}
 			//Update textAreas
 			
 			//Update initial ticket values
@@ -760,14 +765,17 @@ public class Panel_CICO extends JPanel{
 			textArea_unsoldWristbands.setText("0");
 			textArea_soldWristbands.setText("" + actualClub.getInitialWristbands()+actualClub.getWristbands());
 			
-			//Get wristband multiplier
+			//Get wristband multiplier, calculate final wristband sales
+			textArea_wristbandSales.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier));
 			
-			//Calculate final wristband sales
+			//Expected Revenue
+			textArea_expectedRevenue.setText("$" + formatDecimal(((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f) + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier)  ));
 			
 			//Update Cash Calculations
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
+			//Collected
 			textArea_endTotalCalc.setText("");
 			textArea_finalTotal.setText(formatDecimal(actualClub.getCashdrops()*800-actualClub.getInitialCashDrop()));
 			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
@@ -869,6 +877,8 @@ public class Panel_CICO extends JPanel{
 		confirmInitialDropListener = new ConfirmInitialDropListener();
 		revenueChangedListener = new RevenueChangedListener();
 		wristbandMultiplierListener = new WristbandMultiplierListener();
+		clubSpinnerListener = new ClubSpinnerListener();
+		locationSpinnerListener = new LocationSpinnerListener();
 		setLayout(null);
 		
 		JTextArea txtrCashOut = new JTextArea();
@@ -1624,6 +1634,7 @@ public class Panel_CICO extends JPanel{
 		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
 		spinner_locations = new JSpinner(locationsModel);
 		spinner_locations.setBounds(87, 69, 162, 33);
+		spinner_locations.addChangeListener(locationSpinnerListener);
 		location = spinner_locations.getValue().toString();
 		add(spinner_locations);
 		
