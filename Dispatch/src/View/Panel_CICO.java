@@ -725,12 +725,17 @@ public class Panel_CICO extends JPanel{
 			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
 			//Update tickets values
 			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
-			textArea_unsoldTickets.setText("" );
+			textArea_unsoldTickets.setText("0" );
 			textArea_soldTickets.setText("" + actualClub.getInitialTickets()+actualClub.getTickets());	// = initial+issued-(unsold tickets, but unsold tickets cleared)
 			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f));
 			
 			//Update wristband values
+			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
 			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			textArea_unsoldWristbands.setText("0");
+			textArea_soldWristbands.setText("" + actualClub.getInitialWristbands()+actualClub.getWristbands());
+			
+			//Get wristband multiplier
 			
 			//Update Cash Calculations
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");

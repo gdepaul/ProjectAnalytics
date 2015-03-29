@@ -9,22 +9,29 @@ import exceptions.*;
 
 public class TicketDrop extends Dispatch<DispatchServer>  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2538709215261306074L;
+
 	private String type; 
 	
 	private int num_fulls;
 	private int num_halves;
 	private int num_singles;
+	private int num_wristbands;
 	
-	public TicketDrop(String source, String club, int num_fulls, int num_halves, int num_singles) {
+	public TicketDrop(String source, String club, int num_fulls, int num_halves, int num_singles, int num_wristbands) {
 		super(source, club);
 		this.num_fulls=num_fulls;
 		this.num_halves=num_halves;
 		this.num_singles=num_singles;
+		this.num_wristbands=num_wristbands;
 	}
 
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException, IllegalTicketOperation {
-		executeOn.ticketDrop(this.club, num_fulls, num_halves, num_singles);
+		executeOn.ticketDrop(this.club, num_fulls, num_halves, num_singles, num_wristbands);
 	}
 	
 	public String getName() { return this.club; }
