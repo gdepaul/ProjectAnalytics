@@ -473,10 +473,10 @@ public class Panel_Dispatch extends JPanel {
 		}
 		
 		if (clubs.size()==0){
-			clubs.add("(No clubs!)");
+			clubs.add("(No cashiers!)");
 			
 		} else{
-			clubs.remove("(No clubs!)");
+			clubs.remove("(No cashiers!)");
 		}
 		
 		return clubs;

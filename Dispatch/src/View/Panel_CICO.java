@@ -110,6 +110,10 @@ public class Panel_CICO extends JPanel{
 	private JTextArea textArea_initialWristbands;
 	private JTextArea textArea_unsoldWristbands;
 	private JTextArea textArea_wristbandSales;
+	private JTextArea textArea_fullSheetsOut;
+	private JTextArea textArea_halfSheetsOut;
+	private JTextArea textArea_singleTicketsOut;
+	private JTextArea textArea_wristbandsOut;
 	
 	//private JSpinner spinner_clubSelection;
 	private JSpinner spinner_clubSelection_1;
@@ -562,9 +566,120 @@ public class Panel_CICO extends JPanel{
 				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of hundreds!");
 				    }
 			 	}
-			 	
+			 //^^^endTotal calculated, add ups all the cash textAreas on cash out side
+			 
+			 //Now, we manage the data we got from the server
+			
+			//Makes sure that our actualClub is updated to match with the server's
+			actualClub = findActualClub(clubSelected);
+			
+			//Update textAreas
+			
+			//Update initial ticket values
+			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
+			//Update tickets values
+			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
+			
+			//Calculate unsold tickets
+			int unsoldTickets = 0;
+			
+			if(textField_fullSheetsUnsold.getText().compareTo("")==0){
+		 		textField_fullSheetsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int fullSheets = (int) (Integer.parseInt(textField_fullSheetsUnsold.getText())*40); 
+			        unsoldTickets += fullSheets;
+			        textArea_fullSheetsOut.setText("" + fullSheets);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold full sheets!");
+			    }
+		 	}
+			if(textField_halfSheetsUnsold.getText().compareTo("")==0){
+		 		textField_halfSheetsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int halfSheets = (int) (Integer.parseInt(textField_halfSheetsUnsold.getText())*20); 
+			        unsoldTickets += halfSheets;
+			        textArea_halfSheetsOut.setText("" + halfSheets);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold half sheets!");
+			    }
+		 	}
+			if(textField_singleTicketsUnsold.getText().compareTo("")==0){
+		 		textField_singleTicketsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int singleTickets = (int) (Integer.parseInt(textField_singleTicketsUnsold.getText())); 
+			        unsoldTickets += singleTickets;
+			        textArea_singleTicketsOut.setText("" + singleTickets);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold single tickets!");
+			    }
+		 	}
+			
+			textArea_unsoldTickets.setText("" + unsoldTickets);
+			
+			textArea_soldTickets.setText("" + (actualClub.getInitialTickets()
+												+actualClub.getTickets()
+												-unsoldTickets));	// = initial+issued-(unsold tickets)
+			
+
+			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f));
+			
+			//Update wristband values
+			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			
+			//DON'T FORGET TO DO WRISTBANDS TOO!!!
+			int unsoldWristbands = 0;
+			if(textField_wristbandsUnsold.getText().compareTo("")==0){
+		 		textField_wristbandsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int wristbands = (int) (Integer.parseInt(textField_wristbandsUnsold.getText())); 
+			        unsoldWristbands += wristbands ;
+			        textArea_unsoldWristbands.setText("" + wristbands);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold wristbands!");
+			    }
+		 	}
+			
+			textArea_unsoldWristbands.setText(""+unsoldWristbands);
+			textArea_soldWristbands.setText("" + (actualClub.getInitialWristbands()
+													+actualClub.getWristbands()
+													-unsoldWristbands));
+			
+			//makes sure wrisbandMultiplier is correct.
+			wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
+			
+			//Get wristband multiplier, calculate final wristband sales
+			textArea_wristbandSales.setText("$" + ((actualClub.getInitialWristbands()
+													+actualClub.getWristbands()
+													-unsoldWristbands) * wristbandMultiplier));
+			
+			//textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f));
+			
+			//Expected Revenue
+			textArea_expectedRevenue.setText("$" + formatDecimal(((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f) 
+													+ ((actualClub.getInitialWristbands()
+															+actualClub.getWristbands()
+															-unsoldWristbands) * wristbandMultiplier)  ));
+			
+	
+			//Update Cash Calculations
+			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			
+			//Collected Cash Calculations
 			textArea_endTotal.setText("$" + formatDecimal(endTotal));
 			textArea_endTotalCalc.setText("$" + formatDecimal(endTotal));
+			textArea_finalTotal.setText(formatDecimal(
+										actualClub.getCashdrops()*800
+										-actualClub.getInitialCashDrop()
+										+endTotal
+										));
+			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
 			
 			if (textArea_endTotalCalc.getText().compareTo("")!=0){
 				textArea_finalTotal.setText("$"+
@@ -605,9 +720,9 @@ public class Panel_CICO extends JPanel{
 			}
 		}
 		if (clubs.size()==0){
-			clubs.add("(No clubs!)");
+			clubs.add("(No cashiers!)");
 		} else{
-			clubs.remove("(No clubs!)");
+			clubs.remove("(No cashiers!)");
 		}
 		return clubs;
 	}
@@ -629,29 +744,109 @@ public class Panel_CICO extends JPanel{
 		spinner_clubSelection_1.addChangeListener(clubSpinnerListener);
 		add(spinner_clubSelection_1);
 		
+		this.repaint();
+		
 		if (clubsArray.contains(clubSelected)){
-			spinner_clubSelection_1.setValue(clubSelected);
 			
-			//Update tickets value
-			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
-			
-			//Update 
-			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			spinner_clubSelection_1.setValue(clubSelected);		//resets value to club client was working on
+			actualClub = findActualClub(clubSelected);			//changes actual club to reflect changed values from server
 			
 			// ...if it's there, show that value as startTotal
-			//textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
+			//Update location spinner value and location if present
+			if (actualClub.getLocation().compareTo("(Unassigned)")!=0){
+				spinner_locations.setValue(actualClub.getLocation());
+				spinner_locations.setEnabled(false);
+				location = spinner_locations.getValue().toString();
+			} else{
+				spinner_locations.setEnabled(true);
+			}
 			
 			//Update textAreas
+			
+			//Update initial ticket values
+			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
+			//Update tickets values
+			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
+			textArea_unsoldTickets.setText("0" );
+			textArea_soldTickets.setText("" + (actualClub.getInitialTickets()+actualClub.getTickets()));	// = initial+issued-(unsold tickets, but unsold tickets cleared)
+			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f));
+			
+			//Update wristband values
+			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			textArea_unsoldWristbands.setText("0");
+			textArea_soldWristbands.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()));
+			
+			//Get wristband multiplier, calculate final wristband sales
+			textArea_wristbandSales.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier));
+			
+			//Expected Revenue
+			textArea_expectedRevenue.setText("$" + formatDecimal(((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f) + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier)  ));
+			
+			//Update Cash Calculations
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
-			//update actualClub to reflect version received from server
-			actualClub = findActualClub(clubSelected);
-		}else{
-			clubSelected = spinner_clubSelection_1.getValue().toString();
+			//Collected
+			textArea_endTotalCalc.setText("");
+			textArea_finalTotal.setText(formatDecimal(actualClub.getCashdrops()*800-actualClub.getInitialCashDrop()));
+			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
-			actualClub = findActualClub(clubSelected);
-//			clearFields();
+//			//Update tickets value
+//			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
+//			
+//			//Update 
+//			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+//			
+//			// ...if it's there, show that value as startTotal
+//			//textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+//			
+//			//update actualClub to reflect version received from server
+//			actualClub = findActualClub(clubSelected);
+//			
+//			//Update textAreas
+//			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+//			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			
+		}else{
+			clubSelected = spinner_clubSelection_1.getValue().toString();	//if clubSelected doesn't exist anymore, set to first value in new spinner
+			actualClub = findActualClub(clubSelected);						//updates actual club to reflect changes made on it from server
+			
+			//Update textAreas
+			
+			//Update initial ticket values
+			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
+			//Update tickets values
+			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
+			textArea_unsoldTickets.setText("0" );
+			textArea_soldTickets.setText("" + (actualClub.getInitialTickets()+actualClub.getTickets()));	// = initial+issued-(unsold tickets, but unsold tickets cleared)
+			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f));
+			
+			//Update wristband values
+			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			textArea_unsoldWristbands.setText("0");
+			textArea_soldWristbands.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()));
+			
+			//Get wristband multiplier, calculate final wristband sales
+			textArea_wristbandSales.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier));
+			
+			//Expected Revenue
+			textArea_expectedRevenue.setText("$" + formatDecimal(((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f) + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier)  ));
+			
+			//Update Cash Calculations
+			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			
+			//Collected
+			textArea_endTotalCalc.setText("");
+			textArea_finalTotal.setText(formatDecimal(actualClub.getCashdrops()*800-actualClub.getInitialCashDrop()));
+			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
+			
+//			clearFields();	//haha, don't clear fields or you'll piss off tellers!
 		}
 		
 
@@ -703,7 +898,6 @@ public class Panel_CICO extends JPanel{
 			
 			spinner_locations.setEnabled(true);
 		}
-		this.repaint();
 	}
 	
 	/**
@@ -780,14 +974,14 @@ public class Panel_CICO extends JPanel{
 			//Update tickets values
 			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
 			textArea_unsoldTickets.setText("0" );
-			textArea_soldTickets.setText("" + actualClub.getInitialTickets()+actualClub.getTickets());	// = initial+issued-(unsold tickets, but unsold tickets cleared)
+			textArea_soldTickets.setText("" + (actualClub.getInitialTickets()+actualClub.getTickets()));	// = initial+issued-(unsold tickets, but unsold tickets cleared)
 			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets())*0.50f));
 			
 			//Update wristband values
 			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
 			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
 			textArea_unsoldWristbands.setText("0");
-			textArea_soldWristbands.setText("" + actualClub.getInitialWristbands()+actualClub.getWristbands());
+			textArea_soldWristbands.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()));
 			
 			//Get wristband multiplier, calculate final wristband sales
 			textArea_wristbandSales.setText("" + (actualClub.getInitialWristbands()+actualClub.getWristbands()*wristbandMultiplier));
@@ -815,6 +1009,38 @@ public class Panel_CICO extends JPanel{
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
 			wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
+			
+			//Update wristband values
+			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			
+			//DON'T FORGET TO DO WRISTBANDS TOO!!!
+			int unsoldWristbands = 0;
+			if(textField_wristbandsUnsold.getText().compareTo("")==0){
+		 		textField_wristbandsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int wristbands = (int) (Integer.parseInt(textField_wristbandsUnsold.getText())); 
+			        unsoldWristbands += wristbands ;
+			        textArea_unsoldWristbands.setText("" + wristbands);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold wristbands!");
+			    }
+		 	}
+			
+			textArea_unsoldWristbands.setText(""+unsoldWristbands);
+			textArea_soldWristbands.setText("" + (actualClub.getInitialWristbands()
+													+actualClub.getWristbands()
+													-unsoldWristbands));
+			
+			//makes sure wrisbandMultiplier is correct.
+			wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
+			
+			//Get wristband multiplier, calculate final wristband sales
+			textArea_wristbandSales.setText("$" + ((actualClub.getInitialWristbands()
+													+actualClub.getWristbands()
+													-unsoldWristbands) * wristbandMultiplier));
+			
 		}
 
 	}
@@ -880,6 +1106,11 @@ public class Panel_CICO extends JPanel{
 		textArea_fiftiesOut.setText("$0.00");
 		textArea_hundredsIn.setText("$0.00");
 		textArea_hundredsOut.setText("$0.00");
+		
+		textField_fullSheetsUnsold.setText("0");
+		textField_halfSheetsUnsold.setText("0");
+		textField_singleTicketsUnsold.setText("0");
+		textField_wristbandsUnsold.setText("0");
 		
 		
 		//Calculation Fields
@@ -1614,19 +1845,19 @@ public class Panel_CICO extends JPanel{
 		textField_fullSheetsUnsold = new JTextField();
 		textField_fullSheetsUnsold.setBounds(346, 502, 31, 22);
 		textField_fullSheetsUnsold.setColumns(10);
-		textField_fullSheetsUnsold.addActionListener(revenueChangedListener);
+		textField_fullSheetsUnsold.addActionListener(endValsChangedListener);
 		add(textField_fullSheetsUnsold);
 		
 		textField_halfSheetsUnsold = new JTextField();
 		textField_halfSheetsUnsold.setBounds(346, 535, 31, 22);
 		textField_halfSheetsUnsold.setColumns(10);
-		textField_halfSheetsUnsold.addActionListener(revenueChangedListener);
+		textField_halfSheetsUnsold.addActionListener(endValsChangedListener);
 		add(textField_halfSheetsUnsold);
 		
 		textField_singleTicketsUnsold = new JTextField();
 		textField_singleTicketsUnsold.setBounds(346, 568, 31, 22);
 		textField_singleTicketsUnsold.setColumns(10);
-		textField_singleTicketsUnsold.addActionListener(revenueChangedListener);
+		textField_singleTicketsUnsold.addActionListener(endValsChangedListener);
 		add(textField_singleTicketsUnsold);
 		
 		textArea_soldTickets = new JTextArea();
@@ -1671,7 +1902,7 @@ public class Panel_CICO extends JPanel{
 		textField_wristbandsUnsold = new JTextField();
 		textField_wristbandsUnsold.setBounds(346, 601, 31, 22);
 		textField_wristbandsUnsold.setColumns(10);
-		textField_wristbandsUnsold.addActionListener(revenueChangedListener);
+		textField_wristbandsUnsold.addActionListener(endValsChangedListener);
 		add(textField_wristbandsUnsold);
 		
 		textField_fullSheetsIn = new JTextField();
@@ -1786,28 +2017,28 @@ public class Panel_CICO extends JPanel{
 		textArea_wristbandsin.setBounds(160, 601, 31, 22);
 		add(textArea_wristbandsin);
 		
-		JTextArea textArea_fullSheetsOut = new JTextArea();
+		textArea_fullSheetsOut = new JTextArea();
 		textArea_fullSheetsOut.setText("0");
 		textArea_fullSheetsOut.setEditable(false);
 		textArea_fullSheetsOut.setBackground(SystemColor.menu);
 		textArea_fullSheetsOut.setBounds(409, 502, 67, 22);
 		add(textArea_fullSheetsOut);
 		
-		JTextArea textArea_halfSheetsOut = new JTextArea();
+		textArea_halfSheetsOut = new JTextArea();
 		textArea_halfSheetsOut.setText("0");
 		textArea_halfSheetsOut.setEditable(false);
 		textArea_halfSheetsOut.setBackground(SystemColor.menu);
 		textArea_halfSheetsOut.setBounds(409, 535, 67, 22);
 		add(textArea_halfSheetsOut);
 		
-		JTextArea textArea_singleTicketsOut = new JTextArea();
+		textArea_singleTicketsOut = new JTextArea();
 		textArea_singleTicketsOut.setText("0");
 		textArea_singleTicketsOut.setEditable(false);
 		textArea_singleTicketsOut.setBackground(SystemColor.menu);
 		textArea_singleTicketsOut.setBounds(409, 568, 67, 22);
 		add(textArea_singleTicketsOut);
 		
-		JTextArea textArea_wristbandsOut = new JTextArea();
+		textArea_wristbandsOut = new JTextArea();
 		textArea_wristbandsOut.setText("0");
 		textArea_wristbandsOut.setEditable(false);
 		textArea_wristbandsOut.setBackground(SystemColor.menu);
