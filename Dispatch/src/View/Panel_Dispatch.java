@@ -181,10 +181,6 @@ public class Panel_Dispatch extends JPanel {
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JOptionPane.showMessageDialog(getParent(), "Dispatch Button!\n"+
-														"Field Supe: " + DFSSelected + "\n" +
-														"Club: " + clubSelected + "\n" +
-														"ActionSelected: " + actionSelected);
 				
 				// Process actionSelected on Club
 				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
