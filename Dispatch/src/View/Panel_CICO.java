@@ -1491,19 +1491,19 @@ public class Panel_CICO extends JPanel{
 		add(textField_singleTicketsUnsold);
 		
 		textArea_soldTickets = new JTextArea();
-		textArea_soldTickets.setBounds(695, 403, 59, 22);
+		textArea_soldTickets.setBounds(699, 403, 61, 22);
 		textArea_soldTickets.setEditable(false);
 		add(textArea_soldTickets);
 		
 		textArea_expectedRevenue = new JTextArea();
 		textArea_expectedRevenue.setBounds(672, 728, 102, 22);
-		textArea_expectedRevenue.setBackground(SystemColor.control);
+		textArea_expectedRevenue.setBackground(Color.WHITE);
 		textArea_expectedRevenue.setEditable(false);
 		add(textArea_expectedRevenue);
 		
 		textArea_issuedTickets = new JTextArea();
-		textArea_issuedTickets.setBounds(683, 337, 100, 22);
-		textArea_issuedTickets.setBackground(SystemColor.control);
+		textArea_issuedTickets.setBounds(699, 337, 61, 22);
+		textArea_issuedTickets.setBackground(Color.WHITE);
 		textArea_issuedTickets.setEditable(false);
 		add(textArea_issuedTickets);
 		
@@ -1512,7 +1512,7 @@ public class Panel_CICO extends JPanel{
 		add(lblNewLabel);
 		
 		textArea_soldWristbands = new JTextArea();
-		textArea_soldWristbands.setBounds(695, 600, 59, 22);
+		textArea_soldWristbands.setBounds(699, 600, 61, 22);
 		add(textArea_soldWristbands);
 		
 		ArrayList<String> locationsArray = getLocations();
@@ -1522,8 +1522,8 @@ public class Panel_CICO extends JPanel{
 		add(spinner_locations);
 		
 		textArea_issuedWristbands = new JTextArea();
-		textArea_issuedWristbands.setBounds(683, 534, 100, 22);
-		textArea_issuedWristbands.setBackground(SystemColor.control);
+		textArea_issuedWristbands.setBounds(699, 534, 61, 22);
+		textArea_issuedWristbands.setBackground(Color.WHITE);
 		textArea_issuedWristbands.setEditable(false);
 		add(textArea_issuedWristbands);
 		
@@ -1773,6 +1773,38 @@ public class Panel_CICO extends JPanel{
 		JLabel lblWristbandSales = new JLabel("= Wristband Sales:");
 		lblWristbandSales.setBounds(577, 635, 112, 27);
 		add(lblWristbandSales);
+		
+		JTextArea textArea_initialtickets = new JTextArea();
+		textArea_initialtickets.setEditable(false);
+		textArea_initialtickets.setBounds(699, 304, 61, 22);
+		add(textArea_initialtickets);
+		
+		JTextArea textArea_unsoldTickets = new JTextArea();
+		textArea_unsoldTickets.setEditable(false);
+		textArea_unsoldTickets.setBounds(699, 370, 61, 22);
+		add(textArea_unsoldTickets);
+		
+		JTextArea textArea_ticketSales = new JTextArea();
+		textArea_ticketSales.setEditable(false);
+		textArea_ticketSales.setBounds(699, 436, 61, 22);
+		add(textArea_ticketSales);
+		
+		JTextArea textArea_initialWristbands = new JTextArea();
+		textArea_initialWristbands.setEditable(false);
+		textArea_initialWristbands.setBounds(699, 501, 61, 22);
+		add(textArea_initialWristbands);
+		
+		JTextArea textArea_unsoldWristbands = new JTextArea();
+		textArea_unsoldWristbands.setEditable(false);
+		textArea_unsoldWristbands.setBackground(Color.WHITE);
+		textArea_unsoldWristbands.setBounds(699, 567, 61, 22);
+		add(textArea_unsoldWristbands);
+		
+		JTextArea textArea_wristbandSales = new JTextArea();
+		textArea_wristbandSales.setEditable(false);
+		textArea_wristbandSales.setBackground(Color.WHITE);
+		textArea_wristbandSales.setBounds(699, 635, 61, 22);
+		add(textArea_wristbandSales);
 	}
 	
 	private ArrayList<String> getLocations() {

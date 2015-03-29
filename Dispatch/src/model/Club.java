@@ -47,6 +47,12 @@ public class Club implements Serializable {
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
+	/**
+	 * 			SHOULD DEPRECATE THIS
+	 * @param clubName
+	 * @param money
+	 * @param tickets
+	 */
 	public Club(String clubName, int money, int tickets){
 		this.clubName = clubName;
 		this.balance = money;
@@ -135,14 +141,6 @@ public class Club implements Serializable {
 		balance -= less_money;
 	}
 	
-	public void addTickets(int more_tickets){
-		tickets += more_tickets;
-	}
-	
-	public void subtractTickets(int less_tickets){
-		tickets -=less_tickets;
-	}
-	
 	public String getClubName() {
 		return clubName;
 	}
@@ -151,14 +149,24 @@ public class Club implements Serializable {
 		return balance;
 	}
 
+	
 	public int getTickets() {
-		return tickets;
+		return getFullsheets()*40 + getHalfsheets()*20 + getSingletickets();
+	}
+	
+	public void printTickets() {
+		System.out.println("Tickets for " + getClubName() + "\n" +
+							"    Full Sheets: " + getFullsheets() + "\n"+
+							"    Half Sheets: " + getHalfsheets() + "\n"+
+							"    Single tickets: " + getSingletickets() + "\n"+
+							"       TOTAL TICKETS: " + getTickets());		
 	}
 	
 	public void putChangeDrop(int amount) { this.changedrops += amount; }
 	public void putCashDrop(int amount)   { this.cashdrops   += amount; }
 	public void putFullSheet(int amount)  { this.fullsheets  += amount; }
 	public void putHalfSheet(int amount)  { this.halfsheets  += amount; }
+	public void putSingleTickets(int amount) {	this.singletickets+= amount;}
 	
 	public String printTransactions() {
 		String out="";
@@ -167,4 +175,6 @@ public class Club implements Serializable {
 		}
 		return out;
 	}
+
+
 }

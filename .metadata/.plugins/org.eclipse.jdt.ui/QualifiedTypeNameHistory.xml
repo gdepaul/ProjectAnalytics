@@ -41,4 +41,7 @@
 <fullyQualifiedTypeName name="model.dispatchObject.InitialCashBox"/>
 <fullyQualifiedTypeName name="model.dispatch.AddFieldSupe"/>
 <fullyQualifiedTypeName name="model.dispatch.AddActiveClub"/>
+<fullyQualifiedTypeName name="java.awt.ScrollPane"/>
+<fullyQualifiedTypeName name="java.awt.GridLayout"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 </qualifiedTypeNameHistroy>

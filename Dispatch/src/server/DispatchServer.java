@@ -388,10 +388,11 @@ public class DispatchServer extends JFrame {
 			throw new NullClubException(club + "does not exist");
 	}
 
-	public void ticketDrop(String club, int num_full, int num_half) throws NullClubException {
+	public void ticketDrop(String club, int num_full, int num_half, int num_singles) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putFullSheet(num_full);
 			hash_clubs.get(club).putHalfSheet(num_half);
+			hash_clubs.get(club).putSingleTickets(num_singles);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
@@ -452,12 +453,12 @@ public class DispatchServer extends JFrame {
 	 * @throws NullClubException 
 	 */
 	public void dispatchAll(String club, int cashDrops, int changeDrops,
-			int fullSheets, int halfSheets) throws NullClubException {
+			int fullSheets, int halfSheets, int singleTickets) throws NullClubException {
 		if(cashDrops != 0) 
 			this.cashDrop(club, cashDrops);
 		if(changeDrops != 0)
 			this.changeDrop(club, changeDrops);
-		this.ticketDrop(club, fullSheets, halfSheets);
+		this.ticketDrop(club, fullSheets, halfSheets, singleTickets);
 	}
 
 
