@@ -740,6 +740,10 @@ public class Panel_CICO extends JPanel{
 			// ...if it's there, show that value as startTotal
 			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 			
+			//Update location spinner value and location
+			spinner_locations.setValue(actualClub.getLocation());
+			location = spinner_locations.getValue().toString();
+			
 			//Update textAreas
 			
 			//Update initial ticket values

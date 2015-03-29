@@ -53,6 +53,10 @@ public class Club implements Serializable {
 		this.location = location;
 	}
 	
+	public String getLocation(){
+		return location;
+	}
+	
 	//Initial Cash Drop can be different for each club, but should not be
 	//changed after it was made except to fix an administrative error.
 	public float getInitialCashDrop(){
