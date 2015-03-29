@@ -83,7 +83,6 @@ public class CompleteClient extends JFrame{
 		
 		String host = "LOCALHOST";
 		String port = "9001";
-		
 		userName = JOptionPane.showInputDialog("User name:");
 		
 		System.out.println("host: " + host + "\n" + 
@@ -137,6 +136,13 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new AddActiveClub(userName,"Menace to Sobriety",0,0));	
 //			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good",0,0));
 //			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
+			
+			out.writeObject(new AddActiveClub(userName,"Club0",0,0));
+			out.writeObject(new AddActiveClub(userName,"Club1",0,0));
+			out.writeObject(new AddActiveClub(userName,"Club2",0,0));
+			out.writeObject(new AddActiveClub(userName,"Club3",0,0));	
+			out.writeObject(new AddActiveClub(userName,"Club4",0,0));
+			out.writeObject(new AddActiveClub(userName,"Club5",0,0));
 //			
 			new Thread(new ServerHandler()).start();
 			
@@ -179,7 +185,6 @@ public class CompleteClient extends JFrame{
 //	 * @param messages	the current chat log
 //	 */
 //	public void update(List<PaintObject> objects) {
-//		// TODO Auto-generated method stub
 //		window_dispatch.update(objects);
 //	}
 	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
