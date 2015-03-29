@@ -262,8 +262,8 @@ public class DispatchServer extends JFrame {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
-		//setUpGUI();
-		new server.CompleteClient(this.hash_clubs,this.histories);
+//		//setUpGUI();
+//		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 	
 	public DispatchServer(int port, SaveFile save) {
@@ -293,8 +293,8 @@ public class DispatchServer extends JFrame {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
-		//setUpGUI();
-		new server.CompleteClient(this.hash_clubs,this.histories);
+//		//setUpGUI();
+//		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 
 	public static void attachShutDownHook() {
@@ -371,9 +371,12 @@ public class DispatchServer extends JFrame {
 		else
 			throw new NullClubException(club + "does not exist");
 	}
-	public void initialCashDrop(String club, float drop) throws NullClubException{
+	public void initialCashDrop(String club, float drop, int initialTickets, int initialWristbands, String location) throws NullClubException{
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).setInitialCashDrop(drop);
+			hash_clubs.get(club).setInitialTickets(initialTickets);
+			hash_clubs.get(club).setInitialWristbands(initialWristbands);
+			hash_clubs.get(club).setLocation(location);
 			Out.print("Initial cash drop for " + club + ":" + hash_clubs.get(club).getInitialCashDrop());
 		}
 		else
@@ -388,10 +391,12 @@ public class DispatchServer extends JFrame {
 			throw new NullClubException(club + "does not exist");
 	}
 
-	public void ticketDrop(String club, int num_full, int num_half) throws NullClubException {
+	public void ticketDrop(String club, int num_full, int num_half, int num_singles, int num_wristbands) throws NullClubException {
 		if(hash_clubs.containsKey(club)) {
 			hash_clubs.get(club).putFullSheet(num_full);
 			hash_clubs.get(club).putHalfSheet(num_half);
+			hash_clubs.get(club).putSingleTickets(num_singles);
+			hash_clubs.get(club).putWristbands(num_wristbands);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
@@ -449,15 +454,16 @@ public class DispatchServer extends JFrame {
 	 * @param changeDrops
 	 * @param fullSheets
 	 * @param halfSheets
+	 * @param wristbands 
 	 * @throws NullClubException 
 	 */
 	public void dispatchAll(String club, int cashDrops, int changeDrops,
-			int fullSheets, int halfSheets) throws NullClubException {
+			int fullSheets, int halfSheets, int singleTickets, int wristbands) throws NullClubException {
 		if(cashDrops != 0) 
 			this.cashDrop(club, cashDrops);
 		if(changeDrops != 0)
 			this.changeDrop(club, changeDrops);
-		this.ticketDrop(club, fullSheets, halfSheets);
+		this.ticketDrop(club, fullSheets, halfSheets, singleTickets, wristbands);
 	}
 
 

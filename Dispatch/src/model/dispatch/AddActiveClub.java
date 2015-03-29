@@ -13,9 +13,9 @@ public class AddActiveClub extends Dispatch<DispatchServer> {
 		super(source);
 		this.club = newClub;
 	}
-	public AddActiveClub(String source, String clubname, int startingcash , int startingtickets) {
+	public AddActiveClub(String source, String clubname) {
 		super(source);
-		this.club= new Club(clubname,startingcash,startingtickets);		
+		this.club= new Club(clubname);		
 	}
 
 	@Override

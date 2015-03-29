@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -13,17 +14,13 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import model.Club;
-import model.dispatch.AddActiveClub;
-import model.dispatch.AddFieldSupe;
-import model.dispatch.CashDrop;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
-import model.dispatch.DispatchFieldSupe;
-import model.dispatch.InitialCashDrop;
-import model.dispatch.UpdateDispatch;
+import View.Panel_ADMIN;
 import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
@@ -34,9 +31,14 @@ public class CompleteClient extends JFrame{
 	private JPanel panel_scheduler;
 	private JPanel panel_CICO;
 	private JPanel panel_dispatch;
+	private JPanel panel_ADMIN;
 	private List<Club> activeClubs;
 	private List<String> availableFS;
 	private	List<String> dispatchedFS;
+	private JScrollPane scrollPane_scheduler;
+	private JScrollPane scrollPane_CICO;
+	private JScrollPane scrollPane_dispatch;
+	private JScrollPane scrollPane_ADMIN;
 	
 	private String userName; // user name of the client
 	
@@ -124,7 +126,7 @@ public class CompleteClient extends JFrame{
 				}
 			});
 			setupGUI();
-			
+//			
 //			out.writeObject(new AddFieldSupe(userName, "Russell Leeves"));
 //			out.writeObject(new AddFieldSupe(userName, "Polly Ester"));
 //			out.writeObject(new AddFieldSupe(userName, "Emma Royds"));
@@ -162,19 +164,45 @@ public class CompleteClient extends JFrame{
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout() );
-		getContentPane().add(topPanel);
+
+		
 		
 		// Create tab pages here
 		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_scheduler.setPreferredSize(new Dimension(800, 800));
 		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_CICO.setPreferredSize(new Dimension(800, 1000));
 		panel_dispatch = new Panel_Dispatch(userName, out, activeClubs, availableFS, dispatchedFS);
+		panel_dispatch.setPreferredSize(new Dimension(800, 800));
+		
+		
+		// Create Scroll panels for each tab page (or else we lose tabs!) Hopefully updates work normally....
+		scrollPane_scheduler = new JScrollPane(panel_scheduler);
+		scrollPane_CICO = new JScrollPane(panel_CICO);
+		scrollPane_dispatch = new JScrollPane(panel_dispatch);
 		
 		// Create the tabbed pane
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Scheduler", panel_scheduler);
-		tabbedPane.addTab("Cash In/Cash Out", panel_CICO);
-		tabbedPane.addTab("Dispatch", panel_dispatch);
+		tabbedPane.addTab("Scheduler", scrollPane_scheduler);
+		tabbedPane.addTab("Cash In/Cash Out", scrollPane_CICO);
+		tabbedPane.addTab("Dispatch", scrollPane_dispatch);
+		
+				// If userName is "ADMIN", add admin panel
+		if (userName.equals("ADMIN")){
+			panel_ADMIN = new Panel_ADMIN(userName, out, activeClubs, availableFS, dispatchedFS);
+			panel_ADMIN.setPreferredSize(new Dimension(800,800));
+			scrollPane_ADMIN = new JScrollPane(panel_ADMIN);
+			tabbedPane.addTab("ADMIN", scrollPane_ADMIN);
+		}
+		
 		topPanel.add( tabbedPane, BorderLayout.CENTER);
+		
+		
+
+		
+		// Finally add topPanel
+		getContentPane().add(topPanel);
+		
 		
 		this.setVisible(true);		
 	}	
@@ -204,11 +232,12 @@ public class CompleteClient extends JFrame{
 		}
 		System.out.println("========================");
 		
-		this.repaint();
 		
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_CICO) panel_CICO).UpdateLists(clubs, availableFS, dispatchedFS);
+		
+		this.repaint();
 		
 //		private List<Club> activeClubs;
 //		private List<String> availableFS;

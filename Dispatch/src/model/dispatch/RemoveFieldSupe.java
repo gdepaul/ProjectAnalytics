@@ -8,6 +8,10 @@ import exceptions.DuplicateFieldSupeException;
 import exceptions.NullFieldSupeException;
 
 public class RemoveFieldSupe extends Dispatch<DispatchServer> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6271368255268207017L;
 	private String name;
 	
 	public RemoveFieldSupe(String source, String name) {

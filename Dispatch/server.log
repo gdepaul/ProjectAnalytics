@@ -7530,197 +7530,318 @@ Mar 26 2015 18:34:42: Change Drop for Seal Walked Into A
 Mar 26 2015 18:36:54: Client Kris disconnecting
 Mar 26 2015 18:36:55: Client Jones disconnecting
 Mar 26 2015 18:36:56: Client Jensen disconnecting
-Mar 27 2015 21:03:55: Server started on port 9001
-Mar 27 2015 21:04:21: Server started on port 9001
-Mar 27 2015 21:04:42: Server started on port 9001
-Mar 27 2015 21:07:38: Server started on port 9001
-Mar 27 2015 21:08:08: Server started on port 9001
-Mar 27 2015 21:08:56: Server started on port 9001
-Mar 27 2015 21:12:47: Server started on port 9001
-Mar 27 2015 21:12:53: New Client bob connected
-Mar 27 2015 21:13:45: Client bob disconnecting
-Mar 27 2015 22:03:01: Server started on port 9001
-Mar 27 2015 22:03:01: New Client Server Admin connected
-Mar 27 2015 22:05:03: Client Server Admin disconnecting
-Mar 27 2015 22:06:35: Server started on port 9001
-Mar 27 2015 22:06:35: New Client Server Admin connected
-Mar 27 2015 22:06:38: Client Server Admin disconnecting
-Mar 27 2015 23:22:57: Server started on port 9001
-Mar 27 2015 23:22:57: New Client Server Admin connected
-Mar 27 2015 23:23:01: Client Server Admin disconnecting
-Mar 27 2015 23:27:00: Server started on port 9001
-Mar 27 2015 23:27:00: New Client Server Admin connected
-Mar 27 2015 23:27:04: Client Server Admin disconnecting
-Mar 27 2015 23:27:43: Server started on port 9001
-Mar 27 2015 23:36:13: Server started on port 9001
-Mar 27 2015 23:38:49: Server started on port 9001
-Mar 27 2015 23:39:08: Server started on port 9001
-Mar 27 2015 23:42:45: Server started on port 9001
-Mar 27 2015 23:43:51: Server started on port 9001
-Mar 27 2015 23:45:44: Server started on port 9001
-Mar 27 2015 23:45:59: Server started on port 9001
-Mar 27 2015 23:51:07: Server started on port 9001
-Mar 27 2015 23:51:15: New Client Bobby connected
-Mar 27 2015 23:51:52: New Client BoobyJoe connected
-Mar 27 2015 23:52:27: Client BoobyJoe disconnecting
-Mar 27 2015 23:52:51: Server started on port 9001
-Mar 27 2015 23:52:58: New Client popl connected
-Mar 27 2015 23:59:44: Server started on port 9001
-Mar 27 2015 23:59:52: New Client asdfg connected
-Mar 28 2015 00:03:20: Server started on port 9001
-Mar 28 2015 00:03:24: New Client 468 connected
-Mar 28 2015 00:03:58: Client 468 disconnecting
-Mar 28 2015 00:04:07: Server started on port 9001
-Mar 28 2015 00:04:12: New Client kjndfg connected
-Mar 28 2015 00:05:00: Server started on port 9001
-Mar 28 2015 00:05:05: New Client dsaf connected
-Mar 28 2015 00:07:33: Server started on port 9001
-Mar 28 2015 00:07:46: Server started on port 9001
-Mar 28 2015 00:08:09: Server started on port 9001
-Mar 28 2015 00:08:18: Server started on port 9001
-Mar 28 2015 00:08:24: Server started on port 9001
-Mar 28 2015 00:08:32: Server started on port 9001
-Mar 28 2015 00:08:39: Server started on port 9001
-Mar 28 2015 00:10:55: Server started on port 9001
-Mar 28 2015 00:11:05: New Client asdf connected
-Mar 28 2015 00:12:29: Server started on port 9001
-Mar 28 2015 00:12:32: New Client asdf connected
-Mar 28 2015 00:13:50: Client asdf disconnecting
-Mar 28 2015 00:14:22: Server started on port 9001
-Mar 28 2015 00:14:28: New Client sdf connected
-Mar 28 2015 00:14:56: Client sdf disconnecting
-Mar 28 2015 00:15:03: Server started on port 9001
-Mar 28 2015 00:15:08: New Client asdf connected
-Mar 28 2015 00:16:41: Client asdf disconnecting
-Mar 28 2015 00:16:46: Server started on port 9001
-Mar 28 2015 00:16:50: New Client adfg connected
-Mar 28 2015 00:22:32: Client adfg disconnecting
-Mar 28 2015 00:22:36: Server started on port 9001
-Mar 28 2015 00:22:46: New Client zdg connected
-Mar 28 2015 00:24:09: Server started on port 9001
-Mar 28 2015 00:24:13: New Client sdf connected
-Mar 28 2015 00:25:04: Server started on port 9001
-Mar 28 2015 00:25:14: New Client adsgf connected
-Mar 28 2015 00:26:38: Server started on port 9001
-Mar 28 2015 00:26:43: New Client adf connected
-Mar 28 2015 00:27:49: Server started on port 9001
-Mar 28 2015 00:27:53: New Client dazfg connected
-Mar 28 2015 00:28:38: Server started on port 9001
-Mar 28 2015 00:28:41: New Client asdfh connected
-Mar 28 2015 00:29:10: Server started on port 9001
-Mar 28 2015 00:29:14: New Client asdfh connected
-Mar 28 2015 00:29:40: Client asdfh disconnecting
-Mar 28 2015 00:30:30: Server started on port 9001
-Mar 28 2015 00:30:34: New Client sadf connected
-Mar 28 2015 00:30:56: Client sadf disconnecting
-Mar 28 2015 00:31:55: Server started on port 9001
-Mar 28 2015 00:32:00: New Client asdfgh connected
-Mar 28 2015 00:32:19: Server started on port 9001
-Mar 28 2015 00:32:25: New Client bobt connected
-Mar 28 2015 00:32:44: Server started on port 9001
-Mar 28 2015 00:32:48: New Client lop connected
-Mar 28 2015 00:33:06: Client lop disconnecting
-Mar 28 2015 00:33:27: Server started on port 9001
-Mar 28 2015 00:33:33: New Client bobyuip connected
-Mar 28 2015 00:33:52: Client bobyuip disconnecting
-Mar 28 2015 00:34:33: Server started on port 9001
-Mar 28 2015 00:34:37: New Client zxcvbnm connected
-Mar 28 2015 00:35:53: Server started on port 9001
-Mar 28 2015 00:35:58: New Client bnh connected
-Mar 28 2015 00:36:41: Client bnh disconnecting
-Mar 28 2015 00:51:15: Server started on port 9001
-Mar 28 2015 00:51:19: New Client dsazfh connected
-Mar 28 2015 01:04:16: Server started on port 9001
-Mar 28 2015 01:04:20: New Client 12345 connected
-Mar 28 2015 01:07:30: Server started on port 9001
-Mar 28 2015 01:07:34: New Client bgh connected
-Mar 28 2015 01:07:52: Client bgh disconnecting
-Mar 28 2015 01:15:41: Server started on port 9001
-Mar 28 2015 01:15:48: New Client mom connected
-Mar 28 2015 01:16:07: Client mom disconnecting
-Mar 28 2015 01:16:47: Server started on port 9001
-Mar 28 2015 01:16:54: New Client 123456 connected
-Mar 28 2015 01:18:09: Server started on port 9001
-Mar 28 2015 01:18:13: New Client 56498416 connected
-Mar 28 2015 01:18:31: Client 56498416 disconnecting
-Mar 28 2015 01:19:23: Server started on port 9001
-Mar 28 2015 01:19:28: New Client sdahgfj connected
-Mar 28 2015 01:19:59: Server started on port 9001
-Mar 28 2015 01:20:03: New Client zxcvbnhgfds connected
-Mar 28 2015 01:25:33: Server started on port 9001
-Mar 28 2015 01:25:39: New Client sadhgfj connected
-Mar 28 2015 01:26:48: Server started on port 9001
-Mar 28 2015 01:26:52: New Client bght connected
-Mar 28 2015 01:28:14: Server started on port 9001
-Mar 28 2015 01:28:20: New Client lnzdfjn connected
-Mar 28 2015 01:30:11: Server started on port 9001
-Mar 28 2015 01:30:14: New Client dsahg connected
-Mar 28 2015 01:30:42: Server started on port 9001
-Mar 28 2015 01:30:46: New Client dsagf connected
-Mar 28 2015 01:31:08: Client dsagf disconnecting
-Mar 28 2015 01:31:14: Server started on port 9001
-Mar 28 2015 01:31:18: New Client wertyuio connected
-Mar 28 2015 01:31:42: Client wertyuio disconnecting
-Mar 28 2015 01:31:55: Server started on port 9001
-Mar 28 2015 01:32:01: New Client qwertyuiuytrew connected
-Mar 28 2015 01:32:55: Server started on port 9001
-Mar 28 2015 01:32:59: New Client asdfgh connected
-Mar 28 2015 01:33:38: Client asdfgh disconnecting
-Mar 28 2015 01:33:42: Server started on port 9001
-Mar 28 2015 01:33:50: New Client zxcvfe connected
-Mar 28 2015 01:39:10: Server started on port 9001
-Mar 28 2015 01:39:15: New Client sdfghj connected
-Mar 28 2015 01:40:11: Server started on port 9001
-Mar 28 2015 01:40:17: New Client 123453 connected
-Mar 28 2015 01:40:37: Client 123453 disconnecting
-Mar 28 2015 01:48:57: Server started on port 9001
-Mar 28 2015 01:49:02: New Client 12345 connected
-Mar 28 2015 01:49:59: Change Drop for Club1
-Mar 28 2015 01:50:01: Change Drop for Club1
-Mar 28 2015 01:50:03: Change Drop for Club1
-Mar 28 2015 01:50:20: Client 12345 disconnecting
-Mar 28 2015 01:53:16: Server started on port 9001
-Mar 28 2015 01:53:21: New Client 123456787654321 connected
-Mar 28 2015 01:53:51: Change Drop for Club1
-Mar 28 2015 01:53:57: Initial cash drop for Club1:0.0
-Mar 28 2015 01:54:56: Server started on port 9001
-Mar 28 2015 01:55:04: New Client 2345676531 connected
-Mar 28 2015 01:55:38: Change Drop for Club1
-Mar 28 2015 01:56:02: Client 2345676531 disconnecting
-Mar 28 2015 01:57:09: Server started on port 9001
-Mar 28 2015 01:57:13: New Client sdhgjkkfd connected
-Mar 28 2015 01:57:22: Change Drop for Club1
-Mar 28 2015 02:03:51: Server started on port 9001
-Mar 28 2015 02:04:09: Server started on port 9001
-Mar 28 2015 02:11:36: Server started on port 9001
-Mar 28 2015 02:11:42: New Client dfghgf connected
-Mar 28 2015 02:12:11: Client dfghgf disconnecting
-Mar 28 2015 02:12:57: Server started on port 9001
-Mar 28 2015 02:13:03: New Client dfghjhg connected
-Mar 28 2015 02:13:13: Change Drop for Club1
-Mar 28 2015 02:13:21: Client dfghjhg disconnecting
-Mar 28 2015 02:13:57: Server started on port 9001
-Mar 28 2015 02:14:02: New Client dfghgfd connected
-Mar 28 2015 02:14:16: Client dfghgfd disconnecting
-Mar 28 2015 02:19:03: Server started on port 9001
-Mar 28 2015 02:19:11: New Client sdfghgfds connected
-Mar 28 2015 02:19:26: Client sdfghgfds disconnecting
-Mar 28 2015 02:21:03: Server started on port 9001
-Mar 28 2015 02:21:15: New Client 343 connected
-Mar 28 2015 02:21:42: Client 343 disconnecting
-Mar 28 2015 02:22:34: Server started on port 9001
-Mar 28 2015 02:22:39: New Client asdf connected
-Mar 28 2015 02:22:53: Client asdf disconnecting
-Mar 28 2015 02:33:09: Server started on port 9001
-Mar 28 2015 02:33:09: New Client Server Admin connected
-Mar 28 2015 02:34:11: Server started on port 9001
-Mar 28 2015 02:34:11: New Client Server Admin connected
-Mar 28 2015 02:36:31: Server started on port 9001
-Mar 28 2015 02:36:31: New Client Server Admin connected
-Mar 28 2015 02:36:40: Client Server Admin disconnecting
-Mar 28 2015 02:37:37: Server started on port 9001
-Mar 28 2015 02:37:37: New Client Server Admin connected
-Mar 28 2015 02:37:48: Client Server Admin disconnecting
-Mar 28 2015 02:41:51: Server started on port 9001
-Mar 28 2015 02:41:51: New Client Server Admin connected
-Mar 28 2015 02:42:04: Client Server Admin disconnecting
+Mar 26 2015 19:59:27: Server started on port 9001
+Mar 26 2015 19:59:39: New Client Pollywog connected
+Mar 26 2015 19:59:51: Client Pollywog disconnecting
+Mar 26 2015 20:34:25: New Client Kris connected
+Mar 26 2015 20:37:54: Initial cash drop for Seal Walked Into A:24.0
+Mar 26 2015 20:39:03: Initial cash drop for Sad Clown Awareness:150.0
+Mar 26 2015 20:42:13: Client Kris disconnecting
+Mar 27 2015 10:13:03: Server started on port 9001
+Mar 27 2015 10:13:32: New Client Kris connected
+Mar 27 2015 10:22:27: Client Kris disconnecting
+Mar 27 2015 10:22:34: New Client Kris connected
+Mar 27 2015 10:22:51: New Client Ebite connected
+Mar 27 2015 10:23:39: Change Drop for Seal Walked Into A
+Mar 27 2015 10:27:40: Initial cash drop for Seal Walked Into A:193.0
+Mar 27 2015 10:28:03: Saving clubs to disk!
+Mar 27 2015 10:37:11: Change Drop for Jerry Mander
+Mar 27 2015 10:43:03: Saving clubs to disk!
+Mar 27 2015 10:47:14: Client Kris disconnecting
+Mar 27 2015 10:47:15: Client Ebite disconnecting
+Mar 27 2015 10:47:57: New Client Batman connected
+Mar 27 2015 10:48:04: New Client Superman connected
+Mar 27 2015 10:58:03: Saving clubs to disk!
+Mar 27 2015 11:13:03: Saving clubs to disk!
+Mar 27 2015 11:15:54: Client Superman disconnecting
+Mar 28 2015 09:13:32: Server started on port 9001
+Mar 28 2015 09:13:32: New Client Server Admin connected
+Mar 28 2015 09:13:41: Client Server Admin disconnecting
+Mar 28 2015 09:13:56: Server started on port 9001
+Mar 28 2015 09:13:56: New Client Server Admin connected
+Mar 28 2015 09:14:00: Client Server Admin disconnecting
+Mar 28 2015 09:14:09: Server started on port 9001
+Mar 28 2015 09:14:09: New Client Server Admin connected
+Mar 28 2015 09:14:27: New Client Kris connected
+Mar 28 2015 09:15:16: Client Kris disconnecting
+Mar 28 2015 09:17:12: New Client Kris connected
+Mar 28 2015 09:17:36: Client Kris disconnecting
+Mar 28 2015 09:21:59: New Client Kris connected
+Mar 28 2015 09:22:19: Client Kris disconnecting
+Mar 28 2015 09:22:57: New Client Kris connected
+Mar 28 2015 09:23:12: Client Kris disconnecting
+Mar 28 2015 09:26:35: New Client Kris connected
+Mar 28 2015 09:29:09: Saving clubs to disk!
+Mar 28 2015 09:37:47: New Client James connected
+Mar 28 2015 09:38:57: Client Kris disconnecting
+Mar 28 2015 09:44:09: Saving clubs to disk!
+Mar 28 2015 09:47:28: New Client Kris connected
+Mar 28 2015 09:51:55: Client Kris disconnecting
+Mar 28 2015 09:52:02: New Client Kris connected
+Mar 28 2015 09:54:15: Client Kris disconnecting
+Mar 28 2015 09:54:37: New Client Kris connected
+Mar 28 2015 09:54:46: Client Kris disconnecting
+Mar 28 2015 09:55:30: New Client Kris connected
+Mar 28 2015 09:55:43: Client Kris disconnecting
+Mar 28 2015 09:59:09: Saving clubs to disk!
+Mar 28 2015 09:59:45: Client Server Admin disconnecting
+Mar 28 2015 10:00:43: Server started on port 9001
+Mar 28 2015 10:00:43: New Client Server Admin connected
+Mar 28 2015 10:00:49: New Client Kris connected
+Mar 28 2015 10:05:33: Client Kris disconnecting
+Mar 28 2015 10:05:36: New Client Kris connected
+Mar 28 2015 10:05:51: Client Kris disconnecting
+Mar 28 2015 10:11:56: New Client Kristoffer connected
+Mar 28 2015 10:12:10: Client Kristoffer disconnecting
+Mar 28 2015 10:12:20: New Client Kris connected
+Mar 28 2015 10:12:33: New Client Krle connected
+Mar 28 2015 10:15:12: Client Krle disconnecting
+Mar 28 2015 10:15:12: Client Kris disconnecting
+Mar 28 2015 10:15:43: Saving clubs to disk!
+Mar 28 2015 10:30:43: Saving clubs to disk!
+Mar 28 2015 10:45:43: Saving clubs to disk!
+Mar 28 2015 11:03:32: Server started on port 9001
+Mar 28 2015 11:04:35: Server started on port 9001
+Mar 28 2015 11:04:35: New Client Server Admin connected
+Mar 28 2015 11:04:44: New Client Kris connected
+Mar 28 2015 11:19:35: Saving clubs to disk!
+Mar 28 2015 11:20:51: Client Kris disconnecting
+Mar 28 2015 11:20:59: Client Server Admin disconnecting
+Mar 28 2015 13:25:52: Server started on port 9001
+Mar 28 2015 13:25:52: New Client Server Admin connected
+Mar 28 2015 13:26:01: New Client ADMIN connected
+Mar 28 2015 13:26:09: New Client Not ADMIN connected
+Mar 28 2015 13:26:11: Client Not ADMIN disconnecting
+Mar 28 2015 13:26:14: Client ADMIN disconnecting
+Mar 28 2015 13:37:25: Client Server Admin disconnecting
+Mar 28 2015 19:19:09: Server started on port 9001
+Mar 28 2015 19:19:09: New Client Server Admin connected
+Mar 28 2015 19:19:26: New Client Kris connected
+Mar 28 2015 19:20:28: Client Kris disconnecting
+Mar 28 2015 19:20:35: New Client Lovett connected
+Mar 28 2015 19:20:58: Client Lovett disconnecting
+Mar 28 2015 19:30:19: Client Server Admin disconnecting
+Mar 28 2015 19:30:50: Server started on port 9001
+Mar 28 2015 19:30:50: New Client Server Admin connected
+Mar 28 2015 19:31:19: New Client Kris Cabulong connected
+Mar 28 2015 19:31:58: Client Kris Cabulong disconnecting
+Mar 28 2015 19:32:20: New Client Lyle connected
+Mar 28 2015 19:39:18: Client Lyle disconnecting
+Mar 28 2015 19:39:19: Client Server Admin disconnecting
+Mar 28 2015 19:41:44: Server started on port 9001
+Mar 28 2015 19:41:44: New Client Server Admin connected
+Mar 28 2015 19:41:51: New Client Kris connected
+Mar 28 2015 19:41:58: New Client ADMIN connected
+Mar 28 2015 19:44:15: Change Drop for Blue Gills
+Mar 28 2015 19:50:10: Client ADMIN disconnecting
+Mar 28 2015 19:50:17: Client Kris disconnecting
+Mar 28 2015 19:50:26: New Client Kris connected
+Mar 28 2015 19:51:38: New Client Lyle connected
+Mar 28 2015 19:51:47: New Client ADMIN connected
+Mar 28 2015 19:52:03: Client ADMIN disconnecting
+Mar 28 2015 19:52:29: Client Lyle disconnecting
+Mar 28 2015 19:53:00: Server started on port 9001
+Mar 28 2015 19:54:09: Server started on port 9001
+Mar 28 2015 19:54:09: New Client Server Admin connected
+Mar 28 2015 19:54:15: New Client ADMIN connected
+Mar 28 2015 19:54:21: New Client Kris connected
+Mar 28 2015 19:56:16: Change Drop for Gerry Manders
+Mar 28 2015 19:58:46: New Client Ferris connected
+Mar 28 2015 20:01:29: Client Ferris disconnecting
+Mar 28 2015 20:01:34: Client Kris disconnecting
+Mar 28 2015 20:02:01: Client ADMIN disconnecting
+Mar 28 2015 20:07:15: Server started on port 9001
+Mar 28 2015 20:07:31: Server started on port 9001
+Mar 28 2015 20:07:31: New Client Server Admin connected
+Mar 28 2015 20:09:07: Server started on port 9001
+Mar 28 2015 20:09:07: New Client Server Admin connected
+Mar 28 2015 20:09:27: New Client Kris connected
+Mar 28 2015 20:09:39: New Client Lyle connected
+Mar 28 2015 20:10:43: Change Drop for SaltLickers
+Mar 28 2015 20:11:25: Initial cash drop for SaltLickers:180.0
+Mar 28 2015 20:14:57: Server started on port 9001
+Mar 28 2015 20:14:57: New Client Server Admin connected
+Mar 28 2015 20:15:29: New Client Kris connected
+Mar 28 2015 20:15:37: New Client Lyle connected
+Mar 28 2015 20:16:38: Change Drop for Uptown Girl
+Mar 28 2015 20:21:19: Client Lyle disconnecting
+Mar 28 2015 20:21:21: Client Kris disconnecting
+Mar 28 2015 20:21:26: New Client Mackenzie connected
+Mar 28 2015 20:21:37: Client Mackenzie disconnecting
+Mar 28 2015 20:24:23: New Client Kris connected
+Mar 28 2015 20:25:10: Client Kris disconnecting
+Mar 28 2015 20:29:57: Saving clubs to disk!
+Mar 28 2015 20:44:57: Saving clubs to disk!
+Mar 28 2015 20:59:57: Saving clubs to disk!
+Mar 28 2015 21:00:09: New Client Kris connected
+Mar 28 2015 21:00:23: Client Kris disconnecting
+Mar 28 2015 21:00:57: New Client ADMIN connected
+Mar 28 2015 21:01:33: Client ADMIN disconnecting
+Mar 28 2015 21:07:29: New Client Kris connected
+Mar 28 2015 21:08:18: Client Kris disconnecting
+Mar 28 2015 21:14:57: Saving clubs to disk!
+Mar 28 2015 21:29:57: Saving clubs to disk!
+Mar 28 2015 22:04:02: Saving clubs to disk!
+Mar 28 2015 22:06:06: Client Server Admin disconnecting
+Mar 28 2015 23:59:53: Server started on port 9001
+Mar 28 2015 23:59:53: New Client Server Admin connected
+Mar 29 2015 00:00:01: New Client Kris connected
+Mar 29 2015 00:00:09: New Client James connected
+Mar 29 2015 00:02:57: Client James disconnecting
+Mar 29 2015 00:02:59: Client Kris disconnecting
+Mar 29 2015 00:03:09: New Client Grant connected
+Mar 29 2015 00:03:16: New Client Rick connected
+Mar 29 2015 00:03:32: Client Rick disconnecting
+Mar 29 2015 00:03:33: Client Grant disconnecting
+Mar 29 2015 00:03:40: New Client Harris connected
+Mar 29 2015 00:04:00: Change Drop for Camp Wildcat
+Mar 29 2015 00:04:25: Client Harris disconnecting
+Mar 29 2015 00:06:25: New Client Kris connected
+Mar 29 2015 00:06:36: Client Kris disconnecting
+Mar 29 2015 00:07:58: New Client Lovel connected
+Mar 29 2015 00:08:07: Client Lovel disconnecting
+Mar 29 2015 00:08:17: New Client Kyle connected
+Mar 29 2015 00:08:33: Client Kyle disconnecting
+Mar 29 2015 00:10:02: New Client James connected
+Mar 29 2015 00:10:07: Client James disconnecting
+Mar 29 2015 00:11:24: New Client Kris connected
+Mar 29 2015 00:11:29: Client Kris disconnecting
+Mar 29 2015 00:12:16: New Client ker connected
+Mar 29 2015 00:12:21: Client ker disconnecting
+Mar 29 2015 00:13:22: New Client Kri connected
+Mar 29 2015 00:13:28: Client Kri disconnecting
+Mar 29 2015 00:14:43: New Client Kris connected
+Mar 29 2015 00:14:46: Client Kris disconnecting
+Mar 29 2015 00:14:53: Saving clubs to disk!
+Mar 29 2015 00:17:00: New Client Kris connected
+Mar 29 2015 00:17:11: Client Kris disconnecting
+Mar 29 2015 00:17:24: New Client Kris connected
+Mar 29 2015 00:17:30: New Client Harold connected
+Mar 29 2015 00:18:01: Client Harold disconnecting
+Mar 29 2015 00:18:04: Client Kris disconnecting
+Mar 29 2015 00:21:28: New Client Kris connected
+Mar 29 2015 00:21:33: Client Kris disconnecting
+Mar 29 2015 00:21:41: New Client Kris connected
+Mar 29 2015 00:21:52: Client Kris disconnecting
+Mar 29 2015 00:22:19: New Client Kris connected
+Mar 29 2015 00:22:26: Client Kris disconnecting
+Mar 29 2015 00:22:47: New Client Kris connected
+Mar 29 2015 00:22:52: Client Kris disconnecting
+Mar 29 2015 00:23:11: New Client Kris connected
+Mar 29 2015 00:23:16: Client Kris disconnecting
+Mar 29 2015 00:23:34: New Client Kris connected
+Mar 29 2015 00:23:41: Client Kris disconnecting
+Mar 29 2015 00:23:51: New Client Kris connected
+Mar 29 2015 00:26:28: New Client James connected
+Mar 29 2015 00:26:40: Client Kris disconnecting
+Mar 29 2015 00:26:46: New Client Kris connected
+Mar 29 2015 00:27:57: Initial cash drop for Thames Rhymers:0.0
+Mar 29 2015 00:29:28: Client James disconnecting
+Mar 29 2015 00:29:38: New Client James connected
+Mar 29 2015 00:29:53: Saving clubs to disk!
+Mar 29 2015 00:30:05: Initial cash drop for Thames Rhymers:440.0
+Mar 29 2015 00:30:35: New Client Polly connected
+Mar 29 2015 00:32:06: Client Polly disconnecting
+Mar 29 2015 00:32:12: New Client Wiggins connected
+Mar 29 2015 00:32:36: New Client Polly connected
+Mar 29 2015 00:33:24: Initial cash drop for Camp Wildcat:0.0
+Mar 29 2015 00:34:41: Initial cash drop for Greasy Jobs:243.0
+Mar 29 2015 00:35:29: New Client Lyle connected
+Mar 29 2015 00:35:51: Client Lyle disconnecting
+Mar 29 2015 00:36:12: New Client Ike connected
+Mar 29 2015 00:37:00: Client Ike disconnecting
+Mar 29 2015 00:44:55: Server started on port 9001
+Mar 29 2015 00:44:55: New Client Server Admin connected
+Mar 29 2015 00:45:06: New Client Kris connected
+Mar 29 2015 00:45:22: New Client Joseph connected
+Mar 29 2015 00:49:00: Client Joseph disconnecting
+Mar 29 2015 00:49:03: Client Kris disconnecting
+Mar 29 2015 00:49:07: New Client Kris connected
+Mar 29 2015 00:49:15: New Client Joseph connected
+Mar 29 2015 00:50:29: Initial cash drop for Camp Wildcat:324.0
+Mar 29 2015 00:56:20: Client Joseph disconnecting
+Mar 29 2015 00:56:40: New Client Joseph connected
+Mar 29 2015 00:57:21: Initial cash drop for Rotoscopers:188.41
+Mar 29 2015 00:59:54: New Client Lol connected
+Mar 29 2015 00:59:55: Saving clubs to disk!
+Mar 29 2015 01:03:19: Initial cash drop for Yurt dwellers:376.82
+Mar 29 2015 01:05:06: Server started on port 9001
+Mar 29 2015 01:05:36: Server started on port 9001
+Mar 29 2015 01:05:45: New Client Kris connected
+Mar 29 2015 01:05:49: New Client Kyle connected
+Mar 29 2015 01:07:36: Initial cash drop for Yurts:376.82
+Mar 29 2015 01:11:26: Server started on port 9001
+Mar 29 2015 01:11:41: Server started on port 9001
+Mar 29 2015 01:11:52: New Client Kris connected
+Mar 29 2015 01:12:38: Initial cash drop for Athabaska:188.82
+Mar 29 2015 01:13:43: Initial cash drop for Jameson:165.26
+Mar 29 2015 01:14:33: New Client Poly connected
+Mar 29 2015 01:15:01: Initial cash drop for Archipelago:0.3
+Mar 29 2015 01:20:45: Client Poly disconnecting
+Mar 29 2015 01:20:47: Client Kris disconnecting
+Mar 29 2015 01:21:11: New Client Hoour connected
+Mar 29 2015 01:22:50: Client Hoour disconnecting
+Mar 29 2015 01:26:41: Saving clubs to disk!
+Mar 29 2015 01:36:46: Server started on port 9001
+Mar 29 2015 01:36:54: New Client Kris connected
+Mar 29 2015 01:37:37: Initial cash drop for Hogan's Heroes:4.04
+Mar 29 2015 01:39:22: New Client Kyle connected
+Mar 29 2015 01:39:42: Initial cash drop for Pokey Pals:0.0
+Mar 29 2015 01:40:50: Initial cash drop for Polka Dots:52.67
+Mar 29 2015 01:42:12: New Client Karyn connected
+Mar 29 2015 01:42:41: New Client Josiah connected
+Mar 29 2015 01:43:04: Client Josiah disconnecting
+Mar 29 2015 01:43:14: Client Karyn disconnecting
+Mar 29 2015 01:43:16: Client Kyle disconnecting
+Mar 29 2015 01:43:17: Client Kris disconnecting
+Mar 29 2015 11:33:56: Server started on port 9001
+Mar 29 2015 11:34:07: New Client Kris connected
+Mar 29 2015 11:34:15: New Client ADMIN connected
+Mar 29 2015 11:41:04: Initial cash drop for Camp Wildcat:269.65
+Mar 29 2015 11:43:34: Change Drop for Camp Wildcat
+Mar 29 2015 11:44:28: Change Drop for Camp Wildcat
+Mar 29 2015 11:45:27: Client ADMIN disconnecting
+Mar 29 2015 11:45:29: Client Kris disconnecting
+Mar 29 2015 11:48:56: Saving clubs to disk!
+Mar 29 2015 12:03:56: Saving clubs to disk!
+Mar 29 2015 12:18:56: Saving clubs to disk!
+Mar 29 2015 12:33:56: Saving clubs to disk!
+Mar 29 2015 12:41:12: New Client Kris connected
+Mar 29 2015 12:48:56: Saving clubs to disk!
+Mar 29 2015 12:54:40: New Client Arthur connected
+Mar 29 2015 12:56:54: New Client Gagnepain connected
+Mar 29 2015 12:57:02: Client Gagnepain disconnecting
+Mar 29 2015 12:59:00: New Client Loki connected
+Mar 29 2015 12:59:38: Client Loki disconnecting
+Mar 29 2015 12:59:40: Client Arthur disconnecting
+Mar 29 2015 12:59:48: New Client Loki connected
+Mar 29 2015 13:02:51: Client Loki disconnecting
+Mar 29 2015 13:02:54: Client Kris disconnecting
+Mar 29 2015 13:02:57: New Client Kris connected
+Mar 29 2015 13:03:56: Saving clubs to disk!
+Mar 29 2015 13:11:31: Client Kris disconnecting
+Mar 29 2015 13:11:36: New Client Kris connected
+Mar 29 2015 13:12:40: Client Kris disconnecting
+Mar 29 2015 13:12:43: New Client Kris connected
+Mar 29 2015 13:14:25: Client Kris disconnecting
+Mar 29 2015 13:14:31: New Client Loki connected
+Mar 29 2015 13:18:56: Saving clubs to disk!
+Mar 29 2015 13:24:52: Client Loki disconnecting
+Mar 29 2015 13:33:56: Saving clubs to disk!
+Mar 29 2015 13:48:45: New Client Kris connected
+Mar 29 2015 13:48:56: Saving clubs to disk!
+Mar 29 2015 13:50:37: Initial cash drop for Saving Leeches:150.0
+Mar 29 2015 13:59:09: Client Kris disconnecting
+Mar 29 2015 13:59:15: New Client Kris connected
+Mar 29 2015 13:59:43: Initial cash drop for Grown Clowns:224.04
+Mar 29 2015 14:03:56: Saving clubs to disk!
+Mar 29 2015 14:18:56: Saving clubs to disk!
+Mar 29 2015 14:33:56: Saving clubs to disk!
+Mar 29 2015 15:20:25: New Client Lyle connected
+Mar 29 2015 15:21:19: Saving clubs to disk!
+Mar 29 2015 15:21:59: New Client Jeremy connected
+Mar 29 2015 15:25:44: New Client James connected
+Mar 29 2015 15:26:25: Client James disconnecting
+Mar 29 2015 15:26:26: Client Jeremy disconnecting
+Mar 29 2015 15:27:35: Client Lyle disconnecting
+Mar 29 2015 15:27:38: Client Kris disconnecting

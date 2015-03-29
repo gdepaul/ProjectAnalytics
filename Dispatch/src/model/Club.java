@@ -19,47 +19,31 @@ public class Club implements Serializable {
 	private String clubName;
 	private float balance;
 	private float initialCashDrop;
-	private int tickets;
+	private int initialTickets;
 	private int changedrops;
 	private int cashdrops;
 	private int fullsheets;
 	private int halfsheets;
 	private int singletickets;
 	private int wristbands;
+	private int initialWristbands;
 	private String location;
 	private List<Dispatch<DispatchServer>> transactions;
 	
 	public Club(String clubName){
 		this.clubName = clubName;
 		this.balance = 0;
-		this.tickets = 0;
 		this.onField = true;
 		
 		this.initialCashDrop = 0;
+		this.initialTickets = 0;
 		this.changedrops = 0;
 		this.cashdrops = 0;
 		this.fullsheets = 0;
 		this.halfsheets = 0;
 		this.singletickets = 0;
 		this.wristbands = 0;
-		this.location = "(Unassigned)";
-		
-		transactions = new ArrayList<Dispatch<DispatchServer>>();
-	}
-	
-	public Club(String clubName, int money, int tickets){
-		this.clubName = clubName;
-		this.balance = money;
-		this.tickets = tickets;
-		this.onField = true;
-		
-		this.initialCashDrop = 0;
-		this.changedrops = 0;
-		this.cashdrops = 0;
-		this.fullsheets = 0;
-		this.halfsheets = 0;
-		this.singletickets = 0;
-		this.wristbands = 0;
+		this.initialWristbands = 0;
 		this.location = "(Unassigned)";
 		
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
@@ -67,6 +51,10 @@ public class Club implements Serializable {
 	
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+	public String getLocation(){
+		return location;
 	}
 	
 	//Initial Cash Drop can be different for each club, but should not be
@@ -77,6 +65,14 @@ public class Club implements Serializable {
 	
 	public void setInitialCashDrop(float drop){
 		initialCashDrop = drop;
+	}
+	
+	public void setInitialTickets(int drop){
+		initialTickets = drop;
+	}
+	
+	public void setInitialWristbands(int drop){
+		initialWristbands = drop;
 	}
 	
 	public int getChangedrops() {
@@ -135,14 +131,6 @@ public class Club implements Serializable {
 		balance -= less_money;
 	}
 	
-	public void addTickets(int more_tickets){
-		tickets += more_tickets;
-	}
-	
-	public void subtractTickets(int less_tickets){
-		tickets -=less_tickets;
-	}
-	
 	public String getClubName() {
 		return clubName;
 	}
@@ -151,14 +139,24 @@ public class Club implements Serializable {
 		return balance;
 	}
 
+	
 	public int getTickets() {
-		return tickets;
+		return getFullsheets()*40 + getHalfsheets()*20 + getSingletickets();
+	}
+	
+	public void printTickets() {
+		System.out.println("Tickets for " + getClubName() + "\n" +
+							"    Full Sheets: " + getFullsheets() + "\n"+
+							"    Half Sheets: " + getHalfsheets() + "\n"+
+							"    Single tickets: " + getSingletickets() + "\n"+
+							"       TOTAL TICKETS: " + getTickets());		
 	}
 	
 	public void putChangeDrop(int amount) { this.changedrops += amount; }
 	public void putCashDrop(int amount)   { this.cashdrops   += amount; }
 	public void putFullSheet(int amount)  { this.fullsheets  += amount; }
 	public void putHalfSheet(int amount)  { this.halfsheets  += amount; }
+	public void putSingleTickets(int amount) {	this.singletickets+= amount;}
 	
 	public String printTransactions() {
 		String out="";
@@ -167,4 +165,18 @@ public class Club implements Serializable {
 		}
 		return out;
 	}
+
+	public int getInitialTickets() {
+		return initialTickets;
+	}
+	
+	public int getInitialWristbands(){
+		return initialWristbands;
+	}
+
+	public void putWristbands(int num_wristbands) {
+		wristbands+=num_wristbands;
+	}
+
+
 }

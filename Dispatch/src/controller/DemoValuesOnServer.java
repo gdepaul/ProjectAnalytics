@@ -28,7 +28,7 @@ import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
 
-public class DemoValuesOnServer extends JFrame{
+public class DemoValuesOnServer extends CompleteClient{
 	
 	private JTabbedPane tabbedPane;
 	private JPanel panel_scheduler;
@@ -131,12 +131,12 @@ public class DemoValuesOnServer extends JFrame{
 			out.writeObject(new AddFieldSupe(userName, "Emma Royds"));
 			out.writeObject(new AddFieldSupe(userName, "Mike Easter"));
 			out.writeObject(new AddFieldSupe(userName, "Jasmine Rice"));
-			out.writeObject(new AddActiveClub(userName,"United Loners",0,0));
-			out.writeObject(new AddActiveClub(userName,"Sad Clown Awareness",0,0));
-			out.writeObject(new AddActiveClub(userName,"Tequila Mockingbird",0,0));
-			out.writeObject(new AddActiveClub(userName,"Menace to Sobriety",0,0));	
-			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good",0,0));
-			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
+			out.writeObject(new AddActiveClub(userName,"United Loners"));
+			out.writeObject(new AddActiveClub(userName,"Sad Clown Awareness"));
+			out.writeObject(new AddActiveClub(userName,"Tequila Mockingbird"));
+			out.writeObject(new AddActiveClub(userName,"Menace to Sobriety"));	
+			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good"));
+			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A"));
 			
 			new Thread(new ServerHandler()).start();
 			
