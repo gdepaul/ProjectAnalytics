@@ -346,12 +346,6 @@ public class Panel_Dispatch extends JPanel {
 		textArea_action.setText("    Action:");
 		add(textArea_action);
 		
-		JTextArea textArea_timeIn = new JTextArea();
-		textArea_timeIn.setBackground(SystemColor.control);
-		textArea_timeIn.setBounds(35, 211, 100, 28);
-		textArea_timeIn.setText("   Time in:");
-		add(textArea_timeIn);
-		
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
 		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
 		spinner_fieldSupes = new JSpinner(fieldSupeModel);
@@ -368,7 +362,7 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_clubs);
 		clubSelected = spinner_clubs.getValue().toString();
 		
-		String[] actionArray = {"CashDrop", "ChangeDrop", "InitialCashBox", "TicketDrop","Dispatch"};
+		String[] actionArray = {"InitialCashBox","Dispatch"};
 		SpinnerListModel actionModel = new SpinnerListModel(actionArray);		
 		spinner_action = new JSpinner(actionModel);
 		spinner_action.setBounds(163, 162, 157, 20);
@@ -376,11 +370,6 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_action);
 		spinner_action.setValue("Dispatch");
 		actionSelected = spinner_action.getValue().toString();
-		
-		JTextField textField_timeIn = new JTextField();
-		textField_timeIn.setBounds(163, 195, 157, 20);
-		add(textField_timeIn);
-		textField_timeIn.setColumns(10);
 		
 		/*
 		 * 	DISPATCH BUTTON AND LISTENER
