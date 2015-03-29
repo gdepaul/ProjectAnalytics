@@ -255,6 +255,7 @@ public class Panel_Scheduler extends JPanel{
 		SpinnerListModel RoleModel = new SpinnerListModel(RoleArray);	//~LOL~
 		spinner_roles = new JSpinner(RoleModel);
 		spinner_roles.setBounds(190, 175, 154, 20);
+		spinner_roles.setValue("Cashier");
 		add(spinner_roles);
 		
 		JButton btnAddEmp = new JButton("Add Employee");

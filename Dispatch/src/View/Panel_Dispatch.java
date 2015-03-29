@@ -1,5 +1,8 @@
 package View;
 
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -22,15 +25,11 @@ import javax.swing.event.ChangeListener;
 import model.Club;
 import model.dispatch.CashDrop;
 import model.dispatch.ChangeDrop;
+import model.dispatch.DispatchAll;
 import model.dispatch.DispatchFieldSupe;
 import model.dispatch.FreeFieldSupe;
-import model.dispatch.TicketDrop;
 import model.dispatch.InitialCashDrop;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import java.awt.SystemColor;
+import model.dispatch.TicketDrop;
 
 public class Panel_Dispatch extends JPanel {
 	/**
@@ -186,15 +185,76 @@ public class Panel_Dispatch extends JPanel {
 														"Field Supe: " + DFSSelected + "\n" +
 														"Club: " + clubSelected + "\n" +
 														"ActionSelected: " + actionSelected);
-			//Dispatch field supe
-			try {
-				output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 				
 				// Process actionSelected on Club
 				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
-					if (actionSelected.compareTo("CashDrop")==0){
+					if (actionSelected.compareTo("Dispatch")==0){
+						int addCashDrops=0;
+						int addChangeDrops=0;
+						int addFullSheets=0;
+						int addHalfSheets=0;
+						int addSingleTickets=0;
+						
+						JTextField tf_cashDrops = new JTextField();
+						JTextField tf_changeDrops = new JTextField();
+						JTextField tf_addFullSheets = new JTextField();
+						JTextField tf_addHalfSheets = new JTextField();
+						JTextField tf_addSingletickets = new JTextField();
+						
+						Object[] getDispatch = {
+								"Cash Drops:", tf_cashDrops,
+								"Change Drops:", tf_changeDrops,
+								"Full Sheets:", tf_addFullSheets,
+								"Half Sheets:", tf_addHalfSheets,
+								"Single Tickets", tf_addSingletickets
+								};
+						
+						int option = JOptionPane.showConfirmDialog(getParent(), getDispatch, "Enter all dispatch values", JOptionPane.OK_CANCEL_OPTION);
+						
+						if (option==JOptionPane.OK_OPTION){
+							try{
+							addCashDrops = Integer.parseInt(tf_cashDrops.getText());
+							addChangeDrops = Integer.parseInt(tf_changeDrops.getText());
+							addFullSheets = Integer.parseInt(tf_addFullSheets.getText());
+							addHalfSheets = Integer.parseInt(tf_addHalfSheets.getText());
+							addSingleTickets =Integer.parseInt(tf_addSingletickets.getText());
+							
+							if ( addCashDrops>=0 && 
+									addChangeDrops>=0 &&
+									addFullSheets>=0 &&
+									addHalfSheets>=0 &&
+									addSingleTickets>=0){
+								JOptionPane.showMessageDialog(getParent(), "Dispatch All!\n"+
+									"Cash Drops: " + addCashDrops + "\n" +
+									"Change Drops: " + addChangeDrops + "\n" +
+									"Full Sheets: " + addFullSheets + "\n" +
+									"Half Sheets: " + addHalfSheets + "\n" +
+									"Single Tickets: " + addSingleTickets);
+								
+								//Execute
+								output.writeObject(new DispatchAll(clientName, clubSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets));
+								//Dispatch field supe
+								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+								
+							}else{
+								JOptionPane.showMessageDialog(getParent(), "Negative values not permitted.)");
+							}
+							
+							} catch (NumberFormatException e){
+								JOptionPane.showMessageDialog(getParent(), "Enter valid number values please!\n(Number Format Exception)");
+								e.printStackTrace();
+							} catch (IOException e) {
+								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 248");
+								e.printStackTrace();
+							}
+						}
+						
+
+					}
+					else if (actionSelected.compareTo("CashDrop")==0){
 						try {
 							output.writeObject(new CashDrop(clientName, clubSelected, 1)); //NEED TO MAKE CHANGEABLE
+							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -202,6 +262,7 @@ public class Panel_Dispatch extends JPanel {
 					}else if (actionSelected.compareTo("ChangeDrop")==0){
 						try {
 							output.writeObject(new ChangeDrop(clientName, clubSelected, 1)); //NEED TO MAKE CHANGEABLE
+							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -209,7 +270,7 @@ public class Panel_Dispatch extends JPanel {
 					}else if (actionSelected.compareTo("TicketDrop")==0){
 						try {
 							output.writeObject(new TicketDrop(clientName, clubSelected, 1, 1, 1));	//Right now, drops 50 single tickets. Ask about implementation.
-																										//Ebitie said they're worth $.50 cents
+							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected)); 	//Ebitie said they're worth $.50 cents
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -217,16 +278,13 @@ public class Panel_Dispatch extends JPanel {
 					}else if (actionSelected.compareTo("InitialCashBox")==0){
 						try {
 							output.writeObject(new InitialCashDrop(clientName, clubSelected, 0));
+							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 						}catch(IOException e){
 							//TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
 			
 		}
@@ -310,12 +368,13 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_clubs);
 		clubSelected = spinner_clubs.getValue().toString();
 		
-		String[] actionArray = {"CashDrop", "ChangeDrop", "InitialCashBox", "TicketDrop"};
+		String[] actionArray = {"CashDrop", "ChangeDrop", "InitialCashBox", "TicketDrop","Dispatch"};
 		SpinnerListModel actionModel = new SpinnerListModel(actionArray);		
 		spinner_action = new JSpinner(actionModel);
 		spinner_action.setBounds(163, 162, 157, 20);
 		spinner_action.addChangeListener(new ActionSpinnerListener());
 		add(spinner_action);
+		spinner_action.setValue("Dispatch");
 		actionSelected = spinner_action.getValue().toString();
 		
 		JTextField textField_timeIn = new JTextField();

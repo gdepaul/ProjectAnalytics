@@ -96,7 +96,7 @@ public class Panel_CICO extends JPanel{
 	
 	
 	
-	private JSpinner spinner_clubSelection;
+	//private JSpinner spinner_clubSelection;
 	private JSpinner spinner_clubSelection_1;
 	
 	JButton btn_initialCashDrop;
@@ -564,7 +564,7 @@ public class Panel_CICO extends JPanel{
 			spinner_clubSelection_1.setValue(clubSelected);
 			
 			//Update tickets value
-			textArea_issuedTickets.setText("" + (actualClub.getFullsheets()*40 + actualClub.getHalfsheets()*20));
+			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
 			
 			//Update 
 			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
@@ -577,9 +577,9 @@ public class Panel_CICO extends JPanel{
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
 			
 		}else{
-			if (clubSelected.compareTo("(No clubs!)")!=0){
-				JOptionPane.showMessageDialog(getParent(), "The cashier you were working on (" + clubSelected + ") was removed from the active list!");
-			}
+//			if (clubSelected.compareTo("(No clubs!)")!=0){
+//				JOptionPane.showMessageDialog(getParent(), "The cashier you were working on (" + clubSelected + ") was removed from the active list!");
+//			}
 			clubSelected = spinner_clubSelection_1.getValue().toString();
 			
 			actualClub = findActualClub(clubSelected);
@@ -622,12 +622,15 @@ public class Panel_CICO extends JPanel{
 		this.repaint();
 	}
 	private Club findActualClub(String clubSelected2) {
-		for(Club club : activeClubs){
-			if (clubSelected.compareTo(club.getClubName())==0){
-				return club;
+		
+		if (activeClubs!=null){
+			for(Club club : activeClubs){
+				if (clubSelected.compareTo(club.getClubName())==0){
+					return club;
+				}
 			}
 		}
-		return null;
+		return new Club("Dummy club");
 	}
 	/**
 	 *  Creates an ArrayList<String> from the activeClubs list
@@ -656,7 +659,7 @@ public class Panel_CICO extends JPanel{
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
 			clearFields();
-			clubSelected = spinner_clubSelection.getValue().toString();
+			clubSelected = spinner_clubSelection_1.getValue().toString();
 			actualClub = findActualClub(clubSelected);
 			//if the club already has an initial cashdrop, turn off button and text fields...
 			
@@ -701,7 +704,7 @@ public class Panel_CICO extends JPanel{
 			//Update textAreas
 			
 			//Update tickets value
-			textArea_issuedTickets.setText("" + (actualClub.getFullsheets()*40 + actualClub.getHalfsheets()*20));
+			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
 			
 			//Update 
 			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
@@ -1400,7 +1403,7 @@ public class Panel_CICO extends JPanel{
 		textArea_endTotal.setBackground(Color.WHITE);
 		add(textArea_endTotal);
 		
-		spinner_clubSelection = new JSpinner();
+		//spinner_clubSelection = new JSpinner();
 		
 		ArrayList<String> clubsArray = getClubs();
 		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
@@ -1409,6 +1412,7 @@ public class Panel_CICO extends JPanel{
 		spinner_clubSelection_1.addChangeListener(new ClubSpinnerListener());
 		add(spinner_clubSelection_1);
 		clubSelected = spinner_clubSelection_1.getValue().toString();
+		actualClub = findActualClub(clubSelected);
 		
 		JTextArea txtrBooth = new JTextArea();
 		txtrBooth.setBounds(10, 31, 121, 27);
