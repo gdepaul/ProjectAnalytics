@@ -57,21 +57,12 @@ public class DispatchServer extends JFrame {
 	private ServerSocket socket;
 	private HashMap<String, FieldSupervisor> field_sups;
 	private List<String> list_clubs;
-	private List<String> availableFS;
-	private List<String> dispatchedFS;
-	private HashMap<String, Club> hash_clubs;
-	
+	private HashMap<String, Club> activeClubs;
+	private HashMap<String, Club> inactiveClubs;
 	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private Map<String, ObjectInputStream> inputs;
 	private Map<String, ObjectOutputStream> outputs;
-	
-//--GUI Instance Variables
-	private JTabbedPane tabbedPane;
-	private JPanel panel_scheduler;
-	private JPanel panel_CICO;
-	private JPanel panel_dispatch;
-	private JPanel panel_history;
-	
+		
 	/**
 	 * AutoSaver
 	 * 
@@ -97,7 +88,7 @@ public class DispatchServer extends JFrame {
 					TimeUnit.MINUTES.sleep(15);
 					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
-					SER.backup(new SaveFile(hash_clubs,availableFS,dispatchedFS,histories));
+					SER.backup(new SaveFile(activeClubs,activeClubs,field_sups,histories));
 				} catch(InterruptedException ie) { Out.error(ie.getMessage());} 
 			}
 		}
@@ -136,8 +127,8 @@ public class DispatchServer extends JFrame {
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
 						try {
 							dispatch.execute(DispatchServer.this); // execute the command on the server
-							if(dispatch instanceof CashDrop || dispatch instanceof ChangeDrop || dispatch instanceof TicketDrop || dispatch instanceof DispatchAll) {
-								hash_clubs.get(dispatch.getClub()).addTransaction(dispatch);
+							if(dispatch instanceof InitialCashDrop || dispatch instanceof CashDrop || dispatch instanceof ChangeDrop || dispatch instanceof TicketDrop || dispatch instanceof DispatchAll) {
+								activeClubs.get(dispatch.getClub()).addTransaction(dispatch);
 							}
 						} catch(DuplicateClubException dce) {
 							Out.error("Client " + dispatch.getSource() + " tried to add a duplicate club");
@@ -241,14 +232,10 @@ public class DispatchServer extends JFrame {
 			
 			// setup lists for clubs, field supervisors
 			list_clubs = new ArrayList<String>();
-			availableFS = new ArrayList<String>();
-			dispatchedFS = new ArrayList<String>();
-			
-		
 			
 			this.field_sups = new HashMap<String, FieldSupervisor>();
-			hash_clubs = new HashMap<String, Club>();
-			
+			activeClubs = new HashMap<String, Club>();
+			inactiveClubs = new HashMap<String, Club>();
 			Out.print("Server started on port " + port);
 			//System.out.println("Server started on port " + port);
 
@@ -262,8 +249,6 @@ public class DispatchServer extends JFrame {
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
 		}
-//		//setUpGUI();
-//		new server.CompleteClient(this.hash_clubs,this.histories);
 	}
 	
 	public DispatchServer(int port, SaveFile save) {
@@ -271,10 +256,11 @@ public class DispatchServer extends JFrame {
 		try{
 			socket = new ServerSocket(port); // create a new server
 		//--Load saved objects
-			hash_clubs = save.getClubs();
-			list_clubs = new ArrayList<String>(hash_clubs.keySet());
-			availableFS = save.getAvailableFS();
-			dispatchedFS = save.getDispatchedFS();
+			activeClubs = save.getClubs();
+			inactiveClubs = save.getInactiveClubs();
+			list_clubs = new ArrayList<String>(activeClubs.keySet());
+			field_sups = save.getFieldSupervisors();
+			histories = save.getHistory();
 
 		//--Set up ins/outs
 			inputs = new ConcurrentHashMap<String, ObjectInputStream>();
@@ -292,9 +278,7 @@ public class DispatchServer extends JFrame {
 			Out.error("Error creating server:");
 			//System.err.println("Error creating server:");
 			e.printStackTrace();
-		}
-//		//setUpGUI();
-//		new server.CompleteClient(this.hash_clubs,this.histories);
+		}	
 	}
 
 	public static void attachShutDownHook() {
@@ -314,16 +298,17 @@ public class DispatchServer extends JFrame {
 //SERVER COMMANDS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void addClub(Club newClub) throws DuplicateClubException {
-		if(hash_clubs.containsKey(newClub.getClubName())) {
+		if(activeClubs.containsKey(newClub.getClubName())) {
 			throw new DuplicateClubException(newClub.getClubName() + " already exists! Cannot add " + newClub.getClubName());
 		} 
 		list_clubs.add(newClub.getClubName());
-		hash_clubs.put(newClub.getClubName(), newClub);	
+		activeClubs.put(newClub.getClubName(), newClub);	
 	}
 	public void removeClub(String name) {
-		if(hash_clubs.containsKey(name)) {
+		if(activeClubs.containsKey(name)) {
+			inactiveClubs.put(name, activeClubs.get(name));
 			list_clubs.remove(name); 
-			hash_clubs.remove(name);
+			activeClubs.remove(name);
 		}
 	}
 	/**
@@ -365,26 +350,27 @@ public class DispatchServer extends JFrame {
 	}
 	
 	public void cashDrop(String club, int amount) throws NullClubException {
-		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).putCashDrop(amount);
+		if(activeClubs.containsKey(club)) {
+			activeClubs.get(club).putCashDrop(amount);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
 	}
 	public void initialCashDrop(String club, float drop, int initialTickets, int initialWristbands, String location) throws NullClubException{
-		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).setInitialCashDrop(drop);
-			hash_clubs.get(club).setInitialTickets(initialTickets);
-			hash_clubs.get(club).setInitialWristbands(initialWristbands);
-			hash_clubs.get(club).setLocation(location);
-			Out.print("Initial cash drop for " + club + ":" + hash_clubs.get(club).getInitialCashDrop());
+		if(activeClubs.containsKey(club)) {
+			activeClubs.get(club).setInitialCashDrop(drop);
+			activeClubs.get(club).setInitialTickets(initialTickets);
+			activeClubs.get(club).setInitialWristbands(initialWristbands);
+			activeClubs.get(club).setLocation(location);
+			Out.print("Initial cash drop for " + club + ":" + activeClubs.get(club).getInitialCashDrop());
+			
 		}
 		else
 			throw new NullClubException(club + "does not exist");
 	}
 	public void changeDrop(String club, int amount) throws NullClubException {
-		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).putChangeDrop(amount);
+		if(activeClubs.containsKey(club)) {
+			activeClubs.get(club).putChangeDrop(amount);
 			Out.print("Change Drop for " + club);
 		}
 		else
@@ -392,17 +378,17 @@ public class DispatchServer extends JFrame {
 	}
 
 	public void ticketDrop(String club, int num_full, int num_half, int num_singles, int num_wristbands) throws NullClubException {
-		if(hash_clubs.containsKey(club)) {
-			hash_clubs.get(club).putFullSheet(num_full);
-			hash_clubs.get(club).putHalfSheet(num_half);
-			hash_clubs.get(club).putSingleTickets(num_singles);
-			hash_clubs.get(club).putWristbands(num_wristbands);
+		if(activeClubs.containsKey(club)) {
+			activeClubs.get(club).putFullSheet(num_full);
+			activeClubs.get(club).putHalfSheet(num_half);
+			activeClubs.get(club).putSingleTickets(num_singles);
+			activeClubs.get(club).putWristbands(num_wristbands);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
 	}
 	public void addTransaction(Dispatch<DispatchServer> transaction) {
-		this.hash_clubs.get(transaction.getClub()).addTransaction(transaction);
+		this.activeClubs.get(transaction.getClub()).addTransaction(transaction);
 	}
 	
 	/**
@@ -423,9 +409,9 @@ public class DispatchServer extends JFrame {
 	 */
 	public void updateClients(){
 		//System.err.println("Updating Clients");
-		List<Club> clubs = new ArrayList<Club>(hash_clubs.values());
-		List<String> availableFieldSupervisors = new ArrayList();
-		List<String> dispatchedFieldSupervisors = new ArrayList();
+		List<Club> clubs = new ArrayList<Club>(activeClubs.values());
+		List<String> availableFieldSupervisors = new ArrayList<String>();
+		List<String> dispatchedFieldSupervisors = new ArrayList<String>();
 
 		for(FieldSupervisor fs : this.field_sups.values()) {
 			if(!fs.isDispatched())
@@ -481,32 +467,7 @@ public class DispatchServer extends JFrame {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
-/* ********************** GUI METHODS ********************** */ 	
-	private void setUpGUI() {
-		System.err.println("Setting up GUI");
-		setTitle("Spring Fling 2015 Server");
-		setSize(800,800);
-		setBackground(Color.gray);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		
-		JPanel topPanel = new JPanel();
-		topPanel.setLayout(new BorderLayout());
-		getContentPane().add(topPanel);
-		
-		//this.panel_history = new ServerPanel_Histories(this.hash_clubs,this.histories);
-				
-		// Create the tabbed pane
-		tabbedPane = new JTabbedPane();
-		//tabbedPane.addTab("Scheduler", panel_scheduler);
-		//tabbedPane.addTab("Cash In/Cash Out", panel_CICO);
-		//tabbedPane.addTab("Dispatch", panel_dispatch);
-		tabbedPane.addTab("History",panel_history);
-		topPanel.add( tabbedPane, BorderLayout.CENTER);
-		
-		this.setVisible(true);		
-	}
-	
+
 	public static void main(String[] args) {
 		int port = 9001;
 		attachShutDownHook();
