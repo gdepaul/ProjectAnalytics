@@ -24,6 +24,7 @@ import model.Club;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchAll;
 import model.dispatch.DispatchFieldSupe;
+import model.dispatch.InitialCashDrop;
 
 public class Panel_ADMIN extends JPanel{
 	/**
@@ -196,7 +197,10 @@ public class Panel_ADMIN extends JPanel{
 								clubSelected, addCashDrops, addChangeDrops,
 								addFullSheets, addHalfSheets, addSingleTickets,
 								addWristbands));
-						((DispatchAll)selectedTrans).undoDispatch();
+						if(selectedTrans instanceof DispatchAll)
+							((DispatchAll)selectedTrans).undoDispatch();
+						else if(selectedTrans instanceof InitialCashDrop)
+							((InitialCashDrop)selectedTrans).undoDispatch();
 						output.writeObject(selectedTrans);
 					} else {
 						JOptionPane.showMessageDialog(getParent(),

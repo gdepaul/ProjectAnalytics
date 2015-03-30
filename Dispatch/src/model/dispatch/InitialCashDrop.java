@@ -30,5 +30,10 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 		executeOn.initialCashDrop(club, initialCash, initialTickets, initialWristbands, location);
 		//executeOn.addTransaction(this);
 	}
+	public void undoDispatch() {
+		this.initialCash *= -1;
+		this.initialTickets *= -1;
+		this.initialWristbands *= -1;
+	}
 
 }
