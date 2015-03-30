@@ -15,8 +15,7 @@ public class UndoLastDispatch extends Dispatch<DispatchServer> {
 
 	@Override
 	public void execute(DispatchServer executeOn) {
-		executeOn.undoLast(getSource());
-		
+		executeOn.undoLast(getSource());	
 	}
 
 }

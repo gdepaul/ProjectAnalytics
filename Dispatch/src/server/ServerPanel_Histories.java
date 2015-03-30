@@ -23,7 +23,6 @@ import javax.swing.JButton;
 
 public class ServerPanel_Histories extends JPanel {
 	private HashMap<String, Club> clubs;
-	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private ObjectOutputStream output;
 //--GUI Variables
 	JComboBox<String> comboBox;
@@ -34,7 +33,6 @@ public class ServerPanel_Histories extends JPanel {
 	
 	public ServerPanel_Histories(HashMap<String, Club> clubs, Map<String, Deque<Dispatch<DispatchServer>>> histories, ObjectOutputStream out) {
 		this.clubs = clubs;
-		this.histories = histories;
 		this.output = output;
 		
 		this.setSize(800, 800);
@@ -93,7 +91,6 @@ public class ServerPanel_Histories extends JPanel {
 	}
 	public void updatePanel(HashMap<String, Club> clubs, Map<String, Deque<Dispatch<DispatchServer>>> histories) {
 		this.clubs = clubs;
-		this.histories = histories;
 		updateComboBox();
 		updateHistoryBox();
 		this.repaint();

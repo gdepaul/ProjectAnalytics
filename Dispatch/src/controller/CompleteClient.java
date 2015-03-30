@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import model.Club;
+import model.dispatch.AddActiveClub;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
 import View.Panel_ADMIN;
@@ -139,12 +140,12 @@ public class CompleteClient extends JFrame{
 //			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good",0,0));
 //			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
 			
-			out.writeObject(new AddActiveClub(userName,"Club0",0,0));
-			out.writeObject(new AddActiveClub(userName,"Club1",0,0));
-			out.writeObject(new AddActiveClub(userName,"Club2",0,0));
-			out.writeObject(new AddActiveClub(userName,"Club3",0,0));	
-			out.writeObject(new AddActiveClub(userName,"Club4",0,0));
-			out.writeObject(new AddActiveClub(userName,"Club5",0,0));
+			out.writeObject(new AddActiveClub(userName,"Club0"));
+			out.writeObject(new AddActiveClub(userName,"Club1"));
+			out.writeObject(new AddActiveClub(userName,"Club2"));
+			out.writeObject(new AddActiveClub(userName,"Club3"));	
+			out.writeObject(new AddActiveClub(userName,"Club4"));
+			out.writeObject(new AddActiveClub(userName,"Club5"));
 //			
 			new Thread(new ServerHandler()).start();
 			
@@ -236,6 +237,7 @@ public class CompleteClient extends JFrame{
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_CICO) panel_CICO).UpdateLists(clubs, availableFS, dispatchedFS);
+		((Panel_ADMIN) panel_ADMIN).UpdateLists(clubs);
 		
 		this.repaint();
 		

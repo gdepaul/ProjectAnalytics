@@ -27,15 +27,6 @@ public class DispatchAll  extends Dispatch<DispatchServer>  {
 		this.wristbands = addWristbands;
 	}
 
-	
-	
-	
-	
-//	public DispatchAll(String source, String club, int ) {
-//		super(source,club);
-//		this.amount = amount;
-//	}
-
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException {
 		executeOn.dispatchAll(this.club, this.cashDrops, this.changeDrops, this.fullSheets, this.halfSheets, this.singleTickets, this.wristbands);
@@ -53,5 +44,13 @@ public class DispatchAll  extends Dispatch<DispatchServer>  {
 				+ "      # of Half Sheets: " + this.halfSheets
 				+ "      # of Single tickets: " + this.singleTickets
 				+ "      # of Wristbands: " +this.wristbands;
+	}
+	public void undoDispatch() {
+		this.cashDrops *= -1;
+		this.changeDrops *= -1;
+		this.fullSheets *= -1;
+		this.halfSheets *= -1;
+		this.singleTickets *= -1;
+		this.wristbands *= -1;
 	}
 }
