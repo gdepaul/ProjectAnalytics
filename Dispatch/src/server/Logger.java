@@ -32,6 +32,16 @@ public class Logger {
 
 	}
 
+	public void close() {
+		try {
+			FOUT.flush();
+			FOUT.close();
+			FERR.flush();
+			FERR.close();
+		} catch (IOException e) {
+			// e.printStackTrace();
+		}
+	}
 	public void error(String out) {
 		if(DEBUG) { System.err.println(out); }
 		Date date = new Date();
