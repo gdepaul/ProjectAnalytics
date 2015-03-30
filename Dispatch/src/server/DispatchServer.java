@@ -20,6 +20,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
@@ -51,9 +52,7 @@ import exceptions.*;
 public class DispatchServer extends JFrame {
 	private static final long serialVersionUID = -4034798597118847005L;
 	
-	private String username = "Server";
-	
-	private Logger Out;
+	private static Logger Out;
 	private ServerSocket socket;
 	private HashMap<String, FieldSupervisor> field_sups;
 	private List<String> list_clubs;
@@ -62,6 +61,8 @@ public class DispatchServer extends JFrame {
 	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private Map<String, ObjectInputStream> inputs;
 	private Map<String, ObjectOutputStream> outputs;
+	
+	private List<Date> dispatchCommandTimes;
 		
 	/**
 	 * AutoSaver
@@ -155,6 +156,7 @@ public class DispatchServer extends JFrame {
 							ObjectOutputStream clientOut = outputs.get(dispatch.getSource());
 							clientOut.writeObject(nce);
 						} finally {
+							dispatchCommandTimes.add(new Date());
 							updateClients();
 						}
 					if (!(dispatch instanceof UndoLastDispatch)) // undo commands can't be undone
@@ -232,8 +234,8 @@ public class DispatchServer extends JFrame {
 			
 			// setup lists for clubs, field supervisors
 			list_clubs = new ArrayList<String>();
-			
-			this.field_sups = new HashMap<String, FieldSupervisor>();
+			dispatchCommandTimes = new ArrayList<Date>();
+			field_sups = new HashMap<String, FieldSupervisor>();
 			activeClubs = new HashMap<String, Club>();
 			inactiveClubs = new HashMap<String, Club>();
 			Out.print("Server started on port " + port);
@@ -288,6 +290,7 @@ public class DispatchServer extends JFrame {
 				System.out.println("Inside Add Shutdown Hook");
 				try {
 					Files.deleteIfExists(Paths.get("server.lock"));
+					Out.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -458,8 +461,7 @@ public class DispatchServer extends JFrame {
 	 * @param source	user to disconnect
 	 */
 	public void disconnect(String source) {
-		Out.print("Client " + source + " disconnecting");
-		//System.out.printf("Client \'%s\' disconnecting\n", source);
+		Out.print("Client " + source + " disconnected");
 		try{
 			inputs.remove(source).close();
 			outputs.remove(source).close();
