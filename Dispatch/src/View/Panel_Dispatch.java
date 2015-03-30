@@ -184,6 +184,16 @@ public class Panel_Dispatch extends JPanel {
 				
 				// Process actionSelected on Club
 				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
+					if (actionSelected.compareTo("InitialCashBox")==0){
+						//DFSSelected;clubSelected;
+						//Dispatch field supe
+						try {
+							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+						} catch (IOException e) {
+							JOptionPane.showMessageDialog(getParent(), "IO Exception Line 193");
+							e.printStackTrace();
+						}
+					}
 					if (actionSelected.compareTo("Dispatch")==0){
 						int addCashDrops=0;
 						int addChangeDrops=0;
@@ -252,7 +262,7 @@ public class Panel_Dispatch extends JPanel {
 								JOptionPane.showMessageDialog(getParent(), "Enter valid number values please!\n(Number Format Exception)");
 								e.printStackTrace();
 							} catch (IOException e) {
-								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 248");
+								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 265");
 								e.printStackTrace();
 							}
 						}
