@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -19,11 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import server.DispatchServer;
-import server.ServerPanel_Histories.ClubListener;
 import model.Club;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchAll;
-import model.dispatch.DispatchFieldSupe;
 import model.dispatch.InitialCashDrop;
 
 public class Panel_ADMIN extends JPanel{
@@ -141,7 +136,7 @@ public class Panel_ADMIN extends JPanel{
 			int addHalfSheets = 0;
 			int addSingleTickets = 0;
 			int addWristbands = 0;
-
+			
 			JTextField tf_cashDrops = new JTextField();
 			tf_cashDrops.setText("0");
 			JTextField tf_changeDrops = new JTextField();
@@ -154,12 +149,14 @@ public class Panel_ADMIN extends JPanel{
 			tf_addSingletickets.setText("0");
 			JTextField tf_addWristbands = new JTextField();
 			tf_addWristbands.setText("0");
-
+			JTextField tf_location = new JTextField();
+			if(selectedTrans instanceof DispatchAll)
+				tf_location.setEnabled(false);
 			Object[] getDispatch = { "Cash Drops:", tf_cashDrops,
 					"Change Drops:", tf_changeDrops, "Full Sheets:",
 					tf_addFullSheets, "Half Sheets:", tf_addHalfSheets,
 					"Single Tickets:", tf_addSingletickets, "Wristbands:",
-					tf_addWristbands };
+					tf_addWristbands, "Location:",tf_location };
 
 			int option = JOptionPane.showConfirmDialog(getParent(),
 					getDispatch, "Enter all dispatch values",
@@ -193,14 +190,17 @@ public class Panel_ADMIN extends JPanel{
 										+ "Wristbands: " + addWristbands);
 
 						// Execute
-						output.writeObject(new DispatchAll(clientName,
-								clubSelected, addCashDrops, addChangeDrops,
-								addFullSheets, addHalfSheets, addSingleTickets,
-								addWristbands));
-						if(selectedTrans instanceof DispatchAll)
+						
+						if(selectedTrans instanceof DispatchAll) {
 							((DispatchAll)selectedTrans).undoDispatch();
-						else if(selectedTrans instanceof InitialCashDrop)
+							output.writeObject(new DispatchAll(clientName,
+									clubSelected, addCashDrops, addChangeDrops,
+									addFullSheets, addHalfSheets, addSingleTickets,
+									addWristbands));
+						}
+						else if(selectedTrans instanceof InitialCashDrop) {
 							((InitialCashDrop)selectedTrans).undoDispatch();
+						}
 						output.writeObject(selectedTrans);
 					} else {
 						JOptionPane.showMessageDialog(getParent(),

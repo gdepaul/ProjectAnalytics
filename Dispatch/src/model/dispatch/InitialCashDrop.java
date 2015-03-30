@@ -23,6 +23,13 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 		this.initialWristbands = initialWristbands;
 		this.location = location;
 	}
+	public InitialCashDrop(String source, String club, float drop, int initialTickets, int initialWristbands) {
+		super(source);
+		this.club = club;
+		this.initialCash = drop;
+		this.initialTickets = initialTickets;
+		this.initialWristbands = initialWristbands;
+	}
 	
 
 	@Override
