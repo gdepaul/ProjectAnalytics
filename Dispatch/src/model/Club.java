@@ -33,6 +33,7 @@ public class Club implements Serializable {
 	private int tickets_sold;
 	private int wristbands_sold;
 	private float misc_credits_promos;
+	private boolean on_credit_terminal;
 	
 	public Club(String clubName){
 		this.clubName = clubName;
