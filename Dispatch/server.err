@@ -1,0 +1,892 @@
+Mar 20 2015 17:16:01: Error updating clients
+Mar 20 2015 17:17:33: Error updating clients
+Mar 20 2015 22:43:43: Error creating server:
+Mar 21 2015 13:31:52: Error creating server:
+Mar 21 2015 13:35:11: Error updating clients
+Mar 21 2015 13:35:37: Error updating clients
+Mar 21 2015 13:35:54: Error updating clients
+Mar 21 2015 13:35:54: Error updating clients
+Mar 21 2015 13:37:32: Error updating clients
+Mar 21 2015 13:39:38: Client Bill tried to add a duplicate Field Supervior
+Mar 21 2015 13:39:38: Error updating clients
+Mar 21 2015 13:39:52: Error updating clients
+Mar 21 2015 13:40:04: Error updating clients
+Mar 21 2015 13:40:20: Error updating clients
+Mar 21 2015 13:40:34: Error updating clients
+Mar 21 2015 13:40:34: Error updating clients
+Mar 21 2015 13:40:49: Client James tried to add a duplicate Field Supervior
+Mar 21 2015 13:40:49: Error updating clients
+Mar 21 2015 13:41:31: Error updating clients
+Mar 21 2015 13:41:42: Error updating clients
+Mar 21 2015 13:41:42: Error updating clients
+Mar 21 2015 13:42:15: Error updating clients
+Mar 21 2015 13:42:16: Error updating clients
+Mar 21 2015 13:42:19: Error updating clients
+Mar 21 2015 13:42:34: Error creating server:
+Mar 21 2015 13:44:29: Error creating server:
+Mar 21 2015 13:46:05: Error creating server:
+Mar 21 2015 13:48:00: Error updating clients
+Mar 21 2015 13:48:00: Error updating clients
+Mar 21 2015 13:50:37: Error updating clients
+Mar 21 2015 13:50:37: Error updating clients
+<<<<<<< HEAD
+Mar 21 2015 13:55:17: Error creating server:
+Mar 21 2015 14:20:26: Error creating server:
+Mar 21 2015 14:27:54: Error creating server:
+Mar 21 2015 14:30:56: Error creating server:
+Mar 21 2015 14:44:32: Error creating server:
+Mar 21 2015 14:51:20: Error creating server:
+Mar 21 2015 14:54:39: Error creating server:
+Mar 21 2015 14:57:53: Client Peter tried to add a duplicate Field Supervior
+Mar 21 2015 15:01:32: Error creating server:
+Mar 21 2015 15:16:18: Error creating server:
+Mar 21 2015 15:17:36: Error creating server:
+Mar 21 2015 15:18:44: Error creating server:
+Mar 21 2015 15:24:37: Error creating server:
+Mar 21 2015 15:35:23: Error creating server:
+Mar 21 2015 15:52:05: Error creating server:
+Mar 21 2015 15:53:36: Error creating server:
+Mar 21 2015 17:30:01: Error creating server:
+=======
+>>>>>>> 1737587156277e2e2cf60a03429d96485834c9ff
+Mar 21 2015 17:56:48: Error creating server:
+Mar 21 2015 18:03:11: Error creating server:
+Mar 21 2015 18:08:55: Error creating server:
+Mar 21 2015 18:12:49: Error creating server:
+Mar 21 2015 18:13:53: Error creating server:
+Mar 21 2015 18:15:02: Error creating server:
+Mar 21 2015 18:16:47: Error creating server:
+Mar 21 2015 18:19:13: Error creating server:
+Mar 21 2015 18:26:49: Error creating server:
+Mar 21 2015 18:28:36: Error creating server:
+Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
+Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
+Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
+Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
+Mar 21 2015 18:29:31: Client 2 tried to add a duplicate Field Supervior
+Mar 21 2015 18:31:48: Error creating server:
+Mar 21 2015 18:33:38: Error creating server:
+Mar 21 2015 18:35:44: Error creating server:
+Mar 21 2015 18:37:45: Error creating server:
+Mar 21 2015 18:39:58: Error creating server:
+Mar 21 2015 18:41:02: Error creating server:
+Mar 21 2015 18:45:01: Error creating server:
+Mar 21 2015 19:46:34: Client James tried to add a duplicate Field Supervior
+Mar 21 2015 19:46:54: Error updating clients
+Mar 21 2015 19:47:01: Error updating clients
+Mar 21 2015 19:47:06: Error updating clients
+Mar 21 2015 19:47:12: Error updating clients
+Mar 21 2015 19:54:02: Error updating clients
+Mar 21 2015 19:54:02: Error updating clients
+Mar 21 2015 19:54:23: Error updating clients
+Mar 21 2015 19:54:23: Error updating clients
+Mar 21 2015 19:58:52: Error updating clients
+Mar 21 2015 19:58:52: Error updating clients
+Mar 21 2015 20:15:28: Error updating clients
+Mar 21 2015 20:15:32: Error updating clients
+Mar 21 2015 20:15:43: Error updating clients
+Mar 21 2015 20:30:22: Error updating clients
+Mar 21 2015 20:30:29: Error updating clients
+Mar 21 2015 20:30:37: Error updating clients
+Mar 21 2015 20:31:03: Error updating clients
+Mar 21 2015 20:31:05: Error updating clients
+Mar 21 2015 20:34:44: Error updating clients
+Mar 21 2015 20:35:13: Error updating clients
+Mar 21 2015 20:38:48: Error updating clients
+Mar 21 2015 20:38:53: Error updating clients
+Mar 21 2015 20:39:24: Error updating clients
+Mar 21 2015 20:39:30: Error updating clients
+Mar 21 2015 20:39:55: Error updating clients
+Mar 21 2015 20:39:59: Error updating clients
+Mar 21 2015 20:40:00: Error updating clients
+Mar 21 2015 20:41:15: Error updating clients
+Mar 21 2015 20:41:20: Error updating clients
+Mar 21 2015 20:41:27: Error updating clients
+Mar 21 2015 20:41:32: Error updating clients
+Mar 21 2015 20:41:35: Client Wrench tried to free Field Supe that is not dispatched
+Mar 21 2015 20:41:35: Error updating clients
+Mar 21 2015 20:41:43: Client Wrench tried to free Field Supe that is not dispatched
+Mar 21 2015 20:41:43: Error updating clients
+Mar 21 2015 20:41:53: Error updating clients
+Mar 21 2015 20:41:56: Error updating clients
+Mar 21 2015 20:41:58: Client Wrench tried to dispatch a Field Supe that does not exist.
+Mar 21 2015 20:41:58: Error updating clients
+Mar 21 2015 20:42:06: Client Wrench tried to dispatch a Field Supe that does not exist.
+Mar 21 2015 20:42:06: Error updating clients
+Mar 21 2015 20:56:20: Error updating clients
+Mar 21 2015 22:13:25: Client Kris tried to free Field Supe that is not dispatched
+Mar 21 2015 22:13:38: Client Kris tried to operate on Club (No clubs!)does not exist which does not exist
+Mar 21 2015 22:13:42: Client Kris tried to operate on Club (No clubs!)does not exist which does not exist
+Mar 21 2015 22:14:29: Client Kris tried to operate on Club (No clubs!)does not exist which does not exist
+Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
+Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
+Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
+Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
+Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
+Mar 22 2015 10:10:04: Client Samwise tried to add a duplicate club
+Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
+Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
+Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
+Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
+Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
+Mar 22 2015 12:01:14: Client Kris tried to add a duplicate club
+Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
+Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
+Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
+Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
+Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
+Mar 22 2015 12:02:27: Client Kris tried to add a duplicate club
+Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
+Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
+Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
+Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
+Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
+Mar 22 2015 12:06:21: Client Tyler tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:18:59: Client Kris tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:25:34: Client James tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 13:37:43: Client Pollux tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 14:17:56: Client 456 tried to add a duplicate club
+Mar 22 2015 15:30:01: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:30:01: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:30:02: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:30:03: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:30:04: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:30:06: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:30:10: Client 4568 tried to add a duplicate Field Supervior
+Mar 22 2015 15:37:19: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:38:54: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:38:56: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:40:46: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:40:47: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:49:26: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:49:28: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:49:29: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:49:30: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:56:34: Client 4562 tried to add a duplicate club
+Mar 22 2015 15:57:30: Client 4562 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:57:31: Client 4562 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 15:57:32: Client 4562 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:00:10: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:00:12: Client 4568 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:00:21: Client 45684712385 tried to add a duplicate club
+Mar 22 2015 16:03:48: Client 45618 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:03:55: Client 45618 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:03:56: Client 45618 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:03:56: Client 45618 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:05:13: Client 456841 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:05:14: Client 456841 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:05:15: Client 456841 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:05:16: Client 456841 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 16:17:51: Client James tried to add a duplicate club
+Mar 22 2015 17:32:43: Client 452 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:32:44: Client 452 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:32:45: Client 452 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:32:45: Client 452 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:40:05: Client 4561 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:40:07: Client 4561 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:40:07: Client 4561 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 17:40:08: Client 4561 tried to dispatch a Field Supe that does not exist.
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:13:48: Client Nick tried to add a duplicate club
+Mar 22 2015 18:24:03: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:24:03: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:24:03: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:24:03: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:24:03: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:24:03: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:24:04: Client ByOurPowersCombined tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:26:24: Client IAmCaptainPlanet tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:31:02: Client Cavendish III tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:35:18: Client Noam Chomsky tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 18:38:36: Client Jameson tried to add a duplicate club
+Mar 22 2015 19:16:33: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:33: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:34: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:34: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:34: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:34: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:34: Client Nick tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:16:59: Client Lyle tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:30:39: Client Troy tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:40:53: Client Nick tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:41:03: Client Craig tried to add a duplicate club
+Mar 22 2015 19:48:12: Client Nick tried to remove a Field Supe currently dispatched.
+Mar 22 2015 19:56:12: Client Kris tried to remove a Field Supe currently dispatched.
+Mar 22 2015 19:56:35: Client Kris tried to remove a Field Supe currently dispatched.
+Mar 22 2015 19:58:19: Client Craig tried to remove a Field Supe currently dispatched.
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:06:32: Client Kris tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:15:19: Client Nick tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:32:38: Client Kris tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 22 2015 20:35:35: Client Krls tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:36:39: Client James tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 14:56:57: Client Bill tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:07:54: Client James tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:08:13: Client Kris tried to add a duplicate club
+Mar 23 2015 15:36:03: Error updating clients
+Mar 23 2015 15:39:52: Error updating clients
+Mar 23 2015 15:39:52: Error updating clients
+Mar 23 2015 15:40:57: Error updating clients
+Mar 23 2015 15:40:57: Error updating clients
+Mar 23 2015 15:40:57: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:14: Error updating clients
+Mar 23 2015 15:48:54: Error updating clients
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:05: Client RICK tried to add a duplicate club
+Mar 23 2015 15:49:05: Error updating clients
+Mar 23 2015 15:49:32: Error updating clients
+Mar 23 2015 15:54:43: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:54:44: Client Harrison tried to add a duplicate club
+Mar 23 2015 15:54:44: Error updating clients
+Mar 23 2015 15:55:06: Error updating clients
+Mar 23 2015 15:55:18: Error updating clients
+Mar 23 2015 15:55:35: Error updating clients
+Mar 23 2015 15:55:36: Error updating clients
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 15:58:25: Client Justine tried to add a duplicate club
+Mar 23 2015 15:58:25: Error updating clients
+Mar 23 2015 16:01:18: Error updating clients
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:29: Client James tried to add a duplicate club
+Mar 23 2015 16:01:29: Error updating clients
+Mar 23 2015 16:01:34: Error updating clients
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 24 2015 15:06:37: Client Barry tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 13:45:57: Client Lyle tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:51:33: Client James tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:53:55: Client Kyle tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:55:48: Client Jenner tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 14:57:31: Client James tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:37:45: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:38:40: Client Kris tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:40:54: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:43:47: Client James tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 17:46:50: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:45: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate Field Supervior
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate Field Supervior
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate Field Supervior
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate Field Supervior
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate Field Supervior
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:26:46: Client Kris tried to add a duplicate club
+Mar 26 2015 18:26:46: Error updating clients
+Mar 26 2015 18:27:24: Error updating clients
+Mar 26 2015 18:27:30: Error updating clients
+Mar 26 2015 18:27:35: Error updating clients
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate Field Supervior
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate Field Supervior
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate Field Supervior
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate Field Supervior
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate Field Supervior
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate club
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate club
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate club
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate club
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate club
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:45: Client Jensen tried to add a duplicate club
+Mar 26 2015 18:27:45: Error updating clients
+Mar 26 2015 18:27:56: Error updating clients
+Mar 26 2015 18:28:06: Error updating clients
+Mar 26 2015 18:28:11: Error updating clients
+Mar 26 2015 18:28:15: Error updating clients
+Mar 26 2015 18:28:32: Error updating clients
+Mar 26 2015 18:28:32: Error updating clients
+Mar 26 2015 18:28:59: Error updating clients
+Mar 26 2015 18:28:59: Error updating clients
+Mar 26 2015 18:29:11: Error updating clients
+Mar 26 2015 18:29:11: Error updating clients
+Mar 26 2015 18:29:29: Error updating clients
+Mar 26 2015 18:29:29: Error updating clients
+Mar 26 2015 18:32:44: Error updating clients
+Mar 26 2015 18:32:44: Error updating clients
+Mar 26 2015 18:32:50: Error updating clients
+Mar 26 2015 18:32:50: Error updating clients
+Mar 26 2015 18:32:54: Error updating clients
+Mar 26 2015 18:32:57: Error updating clients
+Mar 26 2015 18:32:59: Error updating clients
+Mar 26 2015 18:33:00: Error updating clients
+Mar 26 2015 18:33:02: Error updating clients
+Mar 26 2015 18:33:05: Error updating clients
+Mar 26 2015 18:33:55: Error updating clients
+Mar 26 2015 18:34:42: Error updating clients
+Mar 26 2015 18:34:42: Error updating clients
+Mar 26 2015 18:34:46: Error updating clients
+Mar 26 2015 18:34:46: Error updating clients
+Mar 26 2015 18:36:54: Error updating clients
+Mar 26 2015 18:36:55: Error updating clients
+Mar 26 2015 18:36:56: Error updating clients
+Mar 28 2015 09:38:57: Error updating clients
+Mar 28 2015 09:47:28: Error updating clients
+Mar 28 2015 09:47:41: Error updating clients
+Mar 28 2015 09:48:12: Error updating clients
+Mar 28 2015 09:48:17: Error updating clients
+Mar 28 2015 09:48:22: Error updating clients
+Mar 28 2015 09:48:25: Error updating clients
+Mar 28 2015 09:48:28: Error updating clients
+Mar 28 2015 09:48:32: Error updating clients
+Mar 28 2015 09:48:35: Error updating clients
+Mar 28 2015 09:48:37: Error updating clients
+Mar 28 2015 09:48:41: Error updating clients
+Mar 28 2015 09:48:48: Error updating clients
+Mar 28 2015 09:49:03: Error updating clients
+Mar 28 2015 09:49:13: Error updating clients
+Mar 28 2015 09:49:24: Error updating clients
+Mar 28 2015 09:49:29: Error updating clients
+Mar 28 2015 09:49:32: Error updating clients
+Mar 28 2015 09:49:35: Error updating clients
+Mar 28 2015 09:51:55: Error updating clients
+Mar 28 2015 09:52:02: Error updating clients
+Mar 28 2015 09:54:15: Error updating clients
+Mar 28 2015 09:54:37: Error updating clients
+Mar 28 2015 09:54:46: Error updating clients
+Mar 28 2015 09:55:30: Error updating clients
+Mar 28 2015 09:55:43: Error updating clients
+Mar 28 2015 09:59:45: Error updating clients
+Mar 28 2015 19:31:46: Client Kris Cabulong tried to dispatch a Field Supe that does not exist.
+Mar 28 2015 19:31:48: Client Kris Cabulong tried to dispatch a Field Supe that does not exist.
+Mar 28 2015 19:31:54: Client Kris Cabulong tried to dispatch a Field Supe that does not exist.
+Mar 28 2015 19:51:38: Error updating clients
+Mar 28 2015 19:51:47: Error updating clients
+Mar 28 2015 19:52:03: Error updating clients
+Mar 28 2015 19:52:29: Error updating clients
+Mar 29 2015 00:29:28: Error updating clients
+Mar 29 2015 00:29:38: Error updating clients
+Mar 29 2015 00:30:05: Error updating clients
+Mar 29 2015 00:30:35: Error updating clients
+Mar 29 2015 00:32:06: Error updating clients
+Mar 29 2015 00:32:06: Error updating clients
+Mar 29 2015 00:32:12: Error updating clients
+Mar 29 2015 00:32:12: Error updating clients
+Mar 29 2015 00:32:36: Error updating clients
+Mar 29 2015 00:32:36: Error updating clients
+Mar 29 2015 00:33:24: Error updating clients
+Mar 29 2015 00:33:24: Error updating clients
+Mar 29 2015 00:34:41: Error updating clients
+Mar 29 2015 00:34:41: Error updating clients
+Mar 29 2015 00:35:29: Error updating clients
+Mar 29 2015 00:35:29: Error updating clients
+Mar 29 2015 00:35:29: Error updating clients
+Mar 29 2015 00:35:29: Error updating clients
+Mar 29 2015 00:35:51: Error updating clients
+Mar 29 2015 00:35:51: Error updating clients
+Mar 29 2015 00:35:51: Error updating clients
+Mar 29 2015 00:35:51: Error updating clients
+Mar 29 2015 00:36:12: Error updating clients
+Mar 29 2015 00:36:12: Error updating clients
+Mar 29 2015 00:36:12: Error updating clients
+Mar 29 2015 00:36:12: Error updating clients
+Mar 29 2015 00:37:00: Error updating clients
+Mar 29 2015 00:37:00: Error updating clients
+Mar 29 2015 00:37:00: Error updating clients
+Mar 29 2015 00:37:00: Error updating clients
+Mar 29 2015 00:56:40: Error updating clients
+Mar 29 2015 00:57:21: Error updating clients
+Mar 29 2015 00:59:54: Error updating clients
+Mar 29 2015 01:00:26: Error updating clients
+Mar 29 2015 01:00:41: Error updating clients
+Mar 29 2015 01:01:52: Error updating clients
+Mar 29 2015 01:01:52: Error updating clients
+Mar 29 2015 01:02:40: Error updating clients
+Mar 29 2015 01:02:51: Error updating clients
+Mar 29 2015 01:03:19: Error updating clients
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:16: Client asdf tried to add a duplicate club
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:16: Client asdf tried to add a duplicate club
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:16: Client asdf tried to add a duplicate club
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:16: Client asdf tried to add a duplicate club
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:16: Client asdf tried to add a duplicate club
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:16: Client asdf tried to add a duplicate club
+Mar 29 2015 15:59:16: Error updating clients
+Mar 29 2015 15:59:18: Error updating clients
+Mar 29 2015 16:00:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:00:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:00:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:00:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:00:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:00:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:32: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:32: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:32: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:32: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:32: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:32: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:01:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:46: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:46: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:46: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:46: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:46: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:02:46: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:03:45: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:04:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:26: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:49: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:49: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:49: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:49: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:49: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:05:49: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:06:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:06:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:06:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:06:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:06:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:06:09: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:01: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:01: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:01: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:01: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:01: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:01: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:16: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:16: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:16: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:16: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:16: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:16: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:27: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:37: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:37: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:37: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:37: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:37: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:07:37: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:16:43: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:16:43: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:16:43: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:16:43: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:16:43: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:16:43: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:33: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:33: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:33: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:33: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:33: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:17:33: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:05: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:28: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:28: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:28: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:28: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:28: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:18:28: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:12: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:12: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:12: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:12: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:12: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:12: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:51: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:51: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:51: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:51: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:51: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:19:51: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:21:29: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:21:29: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:21:29: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:21:29: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:21:29: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:21:29: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:23:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:23:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:23:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:23:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:23:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:23:11: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:24:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:24:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:24:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:24:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:24:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:24:22: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:26:58: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:26:58: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:26:58: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:26:58: Client ADMIN tried to add a duplicate club
+Mar 29 2015 16:26:58: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:08:50: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:08:50: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:08:50: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:08:50: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:08:50: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:08:50: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:26:48: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:26:48: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:26:48: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:26:48: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:26:48: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:26:48: Client ADMIN tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:06: Client dsfgh tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:06: Client dsfgh tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:06: Client dsfgh tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:06: Client dsfgh tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:06: Client dsfgh tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:06: Client dsfgh tried to add a duplicate club
+Mar 29 2015 17:27:06: Error updating clients
+Mar 29 2015 17:27:09: Error updating clients
+Mar 29 2015 19:49:41: Client ADMIN tried to add a duplicate club
+Mar 29 2015 19:49:41: Client ADMIN tried to add a duplicate club
+Mar 29 2015 19:49:41: Client ADMIN tried to add a duplicate club
+Mar 29 2015 19:49:41: Client ADMIN tried to add a duplicate club
+Mar 29 2015 19:49:41: Client ADMIN tried to add a duplicate club
+Mar 29 2015 19:49:41: Client ADMIN tried to add a duplicate club

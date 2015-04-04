@@ -58,6 +58,7 @@ public class DispatchServer extends JFrame {
 	private List<String> list_clubs;
 	private HashMap<String, Club> activeClubs;
 	private HashMap<String, Club> inactiveClubs;
+	private HashMap<String, Booth> booths;
 	private Map<String, Deque<Dispatch<DispatchServer>>> histories;
 	private Map<String, ObjectInputStream> inputs;
 	private Map<String, ObjectOutputStream> outputs;
@@ -469,7 +470,6 @@ public class DispatchServer extends JFrame {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
-
 	public static void main(String[] args) {
 		int port = 9001;
 		attachShutDownHook();

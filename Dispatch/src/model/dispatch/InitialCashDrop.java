@@ -42,5 +42,4 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 		this.initialTickets *= -1;
 		this.initialWristbands *= -1;
 	}
-
 }
