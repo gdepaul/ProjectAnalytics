@@ -29,6 +29,11 @@ public class Club implements Serializable {
 	private String location;
 	private List<Dispatch<DispatchServer>> transactions;
 	
+	private float collected_revenue;
+	private int tickets_sold;
+	private int wristbands_sold;
+	private float misc_credits_promos;
+	
 	public Club(String clubName){
 		this.clubName = clubName;
 		this.balance = 0;
@@ -76,7 +81,7 @@ public class Club implements Serializable {
 	public int getInitialWristbands() { return initialWristbands; }	
 	public List<Dispatch<DispatchServer>> getTransactions() { return this.transactions;	}
 	
-	public void checkout() {
+	public void checkout(float collectedcash, int unsold_tickets, int unsold_wristbands, float misc_credits_promotions) {
 		
 	}
 	
