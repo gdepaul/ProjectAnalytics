@@ -15,7 +15,6 @@ import model.dispatchObject.DispatchObject;
 public class Club implements Serializable {
 
 	private static final long serialVersionUID = 6552795683175716091L;
-	private boolean onField;
 	private String clubName;
 	private float balance;
 	private float initialCashDrop;
@@ -33,8 +32,6 @@ public class Club implements Serializable {
 	public Club(String clubName){
 		this.clubName = clubName;
 		this.balance = 0;
-		this.onField = true;
-		
 		this.initialCashDrop = 0;
 		this.initialTickets = 0;
 		this.changedrops = 0;
@@ -49,58 +46,40 @@ public class Club implements Serializable {
 		transactions = new ArrayList<Dispatch<DispatchServer>>();
 	}
 	
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocation(String location)   { this.location = location; }
+	public float getInitialCashDrop()          { return initialCashDrop; }
+	public void setInitialCashDrop(float drop) { initialCashDrop = drop; }	
+	public void setInitialTickets(int drop)    { initialTickets = drop; }	
+	public void setInitialWristbands(int drop) { initialWristbands = drop; }
+	
+	public void addMoney(int more_money) 		{ balance += more_money; }
+	public void subtractMoney(int less_money) 	{ balance -= less_money; }
+	public void addTransaction(Dispatch<DispatchServer> dispatch) { transactions.add(dispatch); }
+	public void putChangeDrop(int amount) { this.changedrops += amount; }
+	public void putCashDrop(int amount)   { this.cashdrops   += amount; }
+	public void putFullSheet(int amount)  { this.fullsheets  += amount; }
+	public void putHalfSheet(int amount)  { this.halfsheets  += amount; }
+	public void putSingleTickets(int amount) {	this.singletickets+= amount;}
+	public void putWristbands(int num_wristbands) { wristbands+=num_wristbands; }
+	
+	public String getLocation()   { return location; }
+	public int getChangedrops()   { return changedrops; }
+	public int getCashdrops()     { return cashdrops; }
+	public int getFullsheets()    { return fullsheets; }
+	public int getHalfsheets()    { return halfsheets; }
+	public int getSingletickets() { return singletickets; }
+	public int getWristbands()    { return wristbands; }
+	public String getClubName()   { return clubName; }
+	public float getBalance()     { return balance; }
+	public int getTickets()       { return getFullsheets()*40 + getHalfsheets()*20 + getSingletickets(); }
+	public int getInitialTickets(){ return initialTickets; }
+	public int getInitialWristbands() { return initialWristbands; }	
+	public List<Dispatch<DispatchServer>> getTransactions() { return this.transactions;	}
+	
+	public void checkout() {
+		
 	}
 	
-	public String getLocation(){
-		return location;
-	}
-	
-	//Initial Cash Drop can be different for each club, but should not be
-	//changed after it was made except to fix an administrative error.
-	public float getInitialCashDrop(){
-		return initialCashDrop;
-	}
-	
-	public void setInitialCashDrop(float drop){
-		initialCashDrop = drop;
-	}
-	
-	public void setInitialTickets(int drop){
-		initialTickets = drop;
-	}
-	
-	public void setInitialWristbands(int drop){
-		initialWristbands = drop;
-	}
-	
-	public int getChangedrops() {
-		return changedrops;
-	}
-
-	public int getCashdrops() {
-		return cashdrops;
-	}
-
-	public int getFullsheets() {
-		return fullsheets;
-	}
-
-	public int getHalfsheets() {
-		return halfsheets;
-	}
-
-	public int getSingletickets() {
-		return singletickets;
-	}
-
-	public int getWristbands() {
-		return wristbands;
-	}
-
-	// This will later be used to return a list of all transactions for this club
-	// Currently, this pulls from transactions, but that variable isn't being populated yet in the server. 3/21/2015
 	public String totalTransactions(){
 		String printTransactions = "";
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); //2014/08/06 15:59:48\
@@ -115,35 +94,6 @@ public class Club implements Serializable {
 		} else
 		return printTransactions;
 	}
-	
-	public void addTransaction(Dispatch<DispatchServer> dispatch){
-		//System.err.println("Adding transaction: " + dispatch);
-		transactions.add(dispatch);
-	}
-	public List<Dispatch<DispatchServer>> getTransactions() {
-		return this.transactions;
-	}
-	public void addMoney(int more_money){
-		balance += more_money;
-	}
-	
-	public void subtractMoney(int less_money){
-		balance -= less_money;
-	}
-	
-	public String getClubName() {
-		return clubName;
-	}
-
-	public float getBalance() {
-		return balance;
-	}
-
-	
-	public int getTickets() {
-		return getFullsheets()*40 + getHalfsheets()*20 + getSingletickets();
-	}
-	
 	public void printTickets() {
 		System.out.println("Tickets for " + getClubName() + "\n" +
 							"    Full Sheets: " + getFullsheets() + "\n"+
@@ -151,13 +101,6 @@ public class Club implements Serializable {
 							"    Single tickets: " + getSingletickets() + "\n"+
 							"       TOTAL TICKETS: " + getTickets());		
 	}
-	
-	public void putChangeDrop(int amount) { this.changedrops += amount; }
-	public void putCashDrop(int amount)   { this.cashdrops   += amount; }
-	public void putFullSheet(int amount)  { this.fullsheets  += amount; }
-	public void putHalfSheet(int amount)  { this.halfsheets  += amount; }
-	public void putSingleTickets(int amount) {	this.singletickets+= amount;}
-	
 	public String printTransactions() {
 		String out="";
 		for(Dispatch d : this.transactions) {
@@ -165,18 +108,4 @@ public class Club implements Serializable {
 		}
 		return out;
 	}
-
-	public int getInitialTickets() {
-		return initialTickets;
-	}
-	
-	public int getInitialWristbands(){
-		return initialWristbands;
-	}
-
-	public void putWristbands(int num_wristbands) {
-		wristbands+=num_wristbands;
-	}
-
-
 }
