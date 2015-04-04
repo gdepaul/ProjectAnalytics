@@ -14,11 +14,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Deque;
@@ -276,7 +279,7 @@ public class DispatchServer extends JFrame {
 			
 			Out.print("Server started on port " + port);
 			
-			printServerState();
+			//printServerState();
 			//System.out.println("Server started on port " + port);
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
@@ -327,13 +330,7 @@ public class DispatchServer extends JFrame {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //SERVER COMMANDS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-	private void printServerState() {
-		System.out.println("Field Supervisors:\n\t" + this.field_sups);
-		System.out.println("Active Clubs:\n\t" + this.activeClubs);
-		System.out.println("Inactive Clubs:\n\t" + this.inactiveClubs);
-		System.out.println("Booths:\n\t" + this.booths);
-		System.out.println("Clients:\n\t" + this.inputs.keySet());
-	}
+	
 	public void saveState() {
 		System.out.println("saveState() Executed");
 		Serializer SER = new Serializer("backups");
@@ -508,6 +505,36 @@ public class DispatchServer extends JFrame {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
+	private void printServerState() {
+		System.out.println("Field Supervisors:\n\t" + this.field_sups);
+		System.out.println("Active Clubs:\n\t" + this.activeClubs);
+		System.out.println("Inactive Clubs:\n\t" + this.inactiveClubs);
+		System.out.println("Booths:\n\t" + this.booths);
+		System.out.println("Clients:\n\t" + this.inputs.keySet());
+	}
+	private void export() {
+		String directory = "exports/";
+		DateFormat dateFormat = new SimpleDateFormat("MMdd-HHmmss");
+		Date date = new Date(); 
+		
+		String filename = "exports_" + dateFormat.format(date) + ".xls"; 
+		try {
+			PrintWriter writer = new PrintWriter(directory+"/"+filename, "UTF-8");
+			writer.println("Active Cashiers:");
+			for(Club ac : this.activeClubs.values()) {
+				writer.println(ac.getClubName() + "\tTickets Sold: " + ac.getTickets());
+			}
+			writer.println("Inactive Cashiers:");
+			for(Club ac : this.inactiveClubs.values()) {
+				writer.println(ac.getClubName() + "\tTickets Sold: " + ac.getTickets());
+			}
+			writer.close();
+		} catch(Exception e) {
+			System.err.println("Error exporting");
+			e.printStackTrace();
+		}		
+	}
+	
 	public static void main(String[] args) {
 		int port = 9001;
 		attachShutDownHook();
