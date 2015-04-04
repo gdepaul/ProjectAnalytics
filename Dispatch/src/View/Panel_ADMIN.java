@@ -16,10 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import server.DispatchServer;
+import server.Serializer;
 import model.Club;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchAll;
 import model.dispatch.InitialCashDrop;
+import model.dispatch.SaveCommand;
 
 public class Panel_ADMIN extends JPanel{
 	/**
@@ -63,6 +65,11 @@ public class Panel_ADMIN extends JPanel{
 		btnUpdateCommand.setBounds(605, 685, 150, 23);
 		btnUpdateCommand.addActionListener(new AlterListener());
 		add(btnUpdateCommand);
+		
+		JButton save = new JButton("Save State");
+		save.setBounds(10, 11, 150, 23);
+		save.addActionListener(new SaveListener());
+		add(save);
 	}
 	private void updateComboBox() {
 		remove(comboBox);
@@ -226,5 +233,14 @@ public class Panel_ADMIN extends JPanel{
 			updateHistoryBox();
 			repaint();
 		}		
+	}
+	public class SaveListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				output.writeObject(new SaveCommand(clientName));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
