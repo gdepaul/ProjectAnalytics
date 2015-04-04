@@ -90,7 +90,7 @@ public class DispatchServer extends JFrame {
 					TimeUnit.MINUTES.sleep(15);
 					//System.out.println("Save");
 					Out.print("Saving clubs to disk!");			
-					SER.backup(new SaveFile(activeClubs,activeClubs,field_sups,histories));
+					SER.backup(new SaveFile(activeClubs,activeClubs,field_sups,histories,booths));
 				} catch(InterruptedException ie) { Out.error(ie.getMessage());} 
 			}
 		}
@@ -125,6 +125,7 @@ public class DispatchServer extends JFrame {
 				try{
 					Object ob = input.readObject();
 					if (ob instanceof Dispatch<?>){
+						System.err.println(ob.getClass());
 						@SuppressWarnings("unchecked")
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
 						try {
@@ -239,6 +240,8 @@ public class DispatchServer extends JFrame {
 			field_sups = new HashMap<String, FieldSupervisor>();
 			activeClubs = new HashMap<String, Club>();
 			inactiveClubs = new HashMap<String, Club>();
+			booths = new HashMap<String,Booth>();
+			setUpBooths();
 			Out.print("Server started on port " + port);
 			//System.out.println("Server started on port " + port);
 
@@ -264,6 +267,7 @@ public class DispatchServer extends JFrame {
 			list_clubs = new ArrayList<String>(activeClubs.keySet());
 			field_sups = save.getFieldSupervisors();
 			histories = save.getHistory();
+			booths = save.getBooths();
 
 		//--Set up ins/outs
 			inputs = new ConcurrentHashMap<String, ObjectInputStream>();
@@ -271,6 +275,8 @@ public class DispatchServer extends JFrame {
 			
 			
 			Out.print("Server started on port " + port);
+			
+			printServerState();
 			//System.out.println("Server started on port " + port);
 			// begin accepting clients
 			new Thread(new ClientAccepter()).start();
@@ -298,9 +304,41 @@ public class DispatchServer extends JFrame {
 			}
 		});
 	}
+	private void setUpBooths() {
+		this.booths.put("Castle 1", new Booth("Castle 1"));
+		this.booths.put("Castle 2", new Booth("Castle 2"));
+		this.booths.put("Castle 3", new Booth("Castle 3"));
+		this.booths.put("Castle 4", new Booth("Castle 4"));
+		
+		this.booths.put("Cottage 1", new Booth("Cottage 1"));
+		this.booths.put("Cottage 2", new Booth("Cottage 2"));
+		this.booths.put("Cottage 3", new Booth("Cottage 3"));
+		this.booths.put("Cottage 4", new Booth("Cottage 4"));
+		
+		this.booths.put("Wonderland", new Booth("Wonderland"));
+		this.booths.put("Wishing Well", new Booth("Wishing Well"));
+		this.booths.put("Pride Rock", new Booth("Pride Rock"));
+		this.booths.put("Palace", new Booth("Palace"));
+		this.booths.put("Enchanted Forest", new Booth("Enchanted Forest"));
+		this.booths.put("Swamp", new Booth("Swamp"));
+		this.booths.put("Woods", new Booth("Woods"));
+		this.booths.put("Beanstalk", new Booth("Beanstalk"));
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //SERVER COMMANDS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+	private void printServerState() {
+		System.out.println("Field Supervisors:\n\t" + this.field_sups);
+		System.out.println("Active Clubs:\n\t" + this.activeClubs);
+		System.out.println("Inactive Clubs:\n\t" + this.inactiveClubs);
+		System.out.println("Booths:\n\t" + this.booths);
+		System.out.println("Clients:\n\t" + this.inputs.keySet());
+	}
+	public void saveState() {
+		System.out.println("saveState() Executed");
+		Serializer SER = new Serializer("backups");
+		SER.backup(new SaveFile(activeClubs,activeClubs,field_sups,histories,booths));
+	}
 	public void addClub(Club newClub) throws DuplicateClubException {
 		if(activeClubs.containsKey(newClub.getClubName())) {
 			throw new DuplicateClubException(newClub.getClubName() + " already exists! Cannot add " + newClub.getClubName());
