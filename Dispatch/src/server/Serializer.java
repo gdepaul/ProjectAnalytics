@@ -64,8 +64,8 @@ public class Serializer {
 				return null;
 			}
 			catch(Exception e) {
-				System.err.println("Error saving");
-				//e.printStackTrace();
+				System.err.println("Error loading savefile");
+				e.printStackTrace();
 			}
 			return sf;
 	}
