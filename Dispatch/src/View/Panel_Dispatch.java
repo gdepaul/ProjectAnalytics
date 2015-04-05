@@ -23,13 +23,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.Club;
-import model.dispatch.CashDrop;
-import model.dispatch.ChangeDrop;
 import model.dispatch.DispatchAll;
 import model.dispatch.DispatchFieldSupe;
 import model.dispatch.FreeFieldSupe;
-import model.dispatch.InitialCashDrop;
-import model.dispatch.TicketDrop;
 
 public class Panel_Dispatch extends JPanel {
 	/**
@@ -52,12 +48,16 @@ public class Panel_Dispatch extends JPanel {
 	
 
 	//for spinner values
-	private String clubSelected;
+	private String cashierSelected;
 	private String actionSelected;
 	private String DFSSelected;
 	private String dispatchedSelected;
 	
-	//for available selected
+	//Selected values to reset during updates
+	private String DFSSelectedReset;
+	private String cashierSelectedReset;
+	private String actionSelectedReset;
+	private String dispatchedSelectedReset;
 	
 	/**
 	 *  UpdateLists method
@@ -76,7 +76,14 @@ public class Panel_Dispatch extends JPanel {
 		spinner_fieldSupes.setBounds(163, 96, 157, 20);
 		spinner_fieldSupes.addChangeListener(new AFSSpinnerListener());
 		add(spinner_fieldSupes);
-		DFSSelected = spinner_fieldSupes.getValue().toString();
+		
+		if (fieldSupesArray.contains(DFSSelectedReset)){
+			spinner_fieldSupes.setValue(DFSSelectedReset);
+		} else {
+			DFSSelected = spinner_fieldSupes.getValue().toString();
+			DFSSelectedReset = DFSSelected;
+		}
+		
 		
 		//Remove, update, replace spinner_clubs
 		remove(spinner_clubs);
@@ -86,7 +93,13 @@ public class Panel_Dispatch extends JPanel {
 		spinner_clubs.setBounds(163, 127, 157, 20);
 		spinner_clubs.addChangeListener(new ClubSpinnerListener());
 		add(spinner_clubs);
-		clubSelected = spinner_clubs.getValue().toString();
+		
+		if (clubsArray.contains(cashierSelectedReset)){
+			spinner_clubs.setValue(cashierSelectedReset);
+		}else {
+		cashierSelected = spinner_clubs.getValue().toString();
+		cashierSelectedReset = cashierSelected;
+		}
 		
 		//Remove, update, replace spinner_freeUp
 		remove(spinner_freeUp);
@@ -96,7 +109,13 @@ public class Panel_Dispatch extends JPanel {
 		spinner_freeUp.setBounds(163, 446, 147, 22);
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
 		add(spinner_freeUp);
+		
+		if (dispatchedArray.contains(dispatchedSelectedReset)){
+			spinner_freeUp.setValue(dispatchedSelectedReset);
+		} else{
 		dispatchedSelected = spinner_freeUp.getValue().toString();
+		dispatchedSelectedReset = dispatchedSelected;
+		}
 		
 		//Remove, update, replace scrollPane_availableFS
 		remove(scrollPane_availableFS);
@@ -120,6 +139,7 @@ public class Panel_Dispatch extends JPanel {
 		scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
 		add(scrollPane_dispatchedFS);
 		
+		spinner_action.setValue(actionSelectedReset);
 	}
 	
 	/**
@@ -130,6 +150,7 @@ public class Panel_Dispatch extends JPanel {
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
 			dispatchedSelected = spinner_freeUp.getValue().toString();
+			dispatchedSelectedReset = dispatchedSelected;
 		}
 		
 	}
@@ -143,7 +164,7 @@ public class Panel_Dispatch extends JPanel {
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			DFSSelected = spinner_fieldSupes.getValue().toString();
-			
+			DFSSelectedReset = DFSSelected;
 		}
 		
 	}
@@ -155,7 +176,8 @@ public class Panel_Dispatch extends JPanel {
 
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
-			clubSelected = spinner_clubs.getValue().toString();
+			cashierSelected = spinner_clubs.getValue().toString();
+			cashierSelectedReset = cashierSelected;
 		}
 		
 	}
@@ -168,7 +190,7 @@ public class Panel_Dispatch extends JPanel {
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
 			actionSelected = spinner_action.getValue().toString();
-			
+			actionSelectedReset = actionSelected;
 		}
 		
 	}
@@ -241,7 +263,7 @@ public class Panel_Dispatch extends JPanel {
 									addSingleTickets>=0 &&
 									addWristbands>=0){
 								JOptionPane.showMessageDialog(getParent(), "Dispatching "+DFSSelected + "\n" +
-																			"to " + clubSelected + "!\n" + 
+																			"to " + cashierSelected + "!\n" + 
 									"Cash Drops: " + addCashDrops + "\n" +
 									"Change Drops: " + addChangeDrops + "\n" +
 									"Full Sheets: " + addFullSheets + "\n" +
@@ -250,7 +272,7 @@ public class Panel_Dispatch extends JPanel {
 									"Wristbands: " + addWristbands);
 								
 								//Execute
-								output.writeObject(new DispatchAll(clientName, clubSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets, addWristbands));
+								output.writeObject(new DispatchAll(clientName, cashierSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets, addWristbands));
 								//Dispatch field supe
 								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 								
@@ -280,8 +302,7 @@ public class Panel_Dispatch extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JOptionPane.showMessageDialog(getParent(), "Make FS Available Button!\n" +
-														"dispatchedSelected: " + dispatchedSelected);
+			JOptionPane.showMessageDialog(getParent(), "" +dispatchedSelected + " returned to active list.");
 			try {
 				output.writeObject(new FreeFieldSupe(clientName, dispatchedSelected));
 			}catch(IOException e){
@@ -308,6 +329,10 @@ public class Panel_Dispatch extends JPanel {
 		availableFS = availableFS2;
 		dispatchedFS = dispatchedFS2;
 		
+		DFSSelectedReset = "(no value)";
+		cashierSelectedReset = "(no value)";
+		actionSelectedReset = "(no value)";
+		dispatchedSelectedReset = "(no value)";
 		
 		setLayout(null);
 		
@@ -343,7 +368,7 @@ public class Panel_Dispatch extends JPanel {
 		spinner_clubs.setBounds(163, 127, 157, 20);
 		spinner_clubs.addChangeListener(new ClubSpinnerListener());
 		add(spinner_clubs);
-		clubSelected = spinner_clubs.getValue().toString();
+		cashierSelected = spinner_clubs.getValue().toString();
 		
 		String[] actionArray = {"InitialCashBox","Dispatch"};
 		SpinnerListModel actionModel = new SpinnerListModel(actionArray);		
@@ -425,6 +450,7 @@ public class Panel_Dispatch extends JPanel {
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
 		add(spinner_freeUp);
 		dispatchedSelected = spinner_freeUp.getValue().toString();
+		dispatchedSelectedReset = dispatchedSelected;
 		
 	}
 
