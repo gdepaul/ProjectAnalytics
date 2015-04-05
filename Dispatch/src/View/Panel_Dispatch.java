@@ -209,11 +209,15 @@ public class Panel_Dispatch extends JPanel {
 					if (actionSelected.compareTo("InitialCashBox")==0){
 						//DFSSelected;clubSelected;
 						//Dispatch field supe
-						try {
-							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-						} catch (IOException e) {
-							JOptionPane.showMessageDialog(getParent(), "IO Exception Line 193");
-							e.printStackTrace();
+						int dialogButton = JOptionPane.OK_OPTION;
+						int option = JOptionPane.showConfirmDialog(null, "Send " + DFSSelected + " with " + clientName +" for initial drop delivery?","Confirm?",dialogButton);
+						if (option==JOptionPane.OK_OPTION){
+							try {
+								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+							} catch (IOException e) {
+								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 193");
+								e.printStackTrace();
+							}
 						}
 					}
 					if (actionSelected.compareTo("Dispatch")==0){
