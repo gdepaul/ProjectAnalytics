@@ -1,6 +1,5 @@
 # Compiled Source #
 Dispatch/bin/
+Dispatch/backups/
 *.class
 *.metadata/
-
-Dispatch/backups/
