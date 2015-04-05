@@ -218,6 +218,8 @@ public class Panel_Dispatch extends JPanel {
 								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 193");
 								e.printStackTrace();
 							}
+						} else {
+							JOptionPane.showMessageDialog(getParent(), "Initial Cash drop delivery canceled.");
 						}
 					}
 					if (actionSelected.compareTo("Dispatch")==0){
@@ -281,7 +283,7 @@ public class Panel_Dispatch extends JPanel {
 								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 								
 							}else{
-								JOptionPane.showMessageDialog(getParent(), "Negative values not permitted.)");
+								JOptionPane.showMessageDialog(getParent(), "Negative values not permitted.");
 							}
 							
 							} catch (NumberFormatException e){
