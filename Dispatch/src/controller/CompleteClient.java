@@ -46,6 +46,7 @@ public class CompleteClient extends JFrame{
 	private Socket server; // connection to server
 	private ObjectOutputStream out; // output stream
 	private ObjectInputStream in; // input stream
+	private boolean exitThread;
 	
 	/************* Server Handler Private Class *****************/
 	// Reads commands from the server and executes them 
@@ -63,7 +64,7 @@ public class CompleteClient extends JFrame{
 						command.execute(CompleteClient.this);
 					}	
 				} catch (Exception e) {
-					e.printStackTrace();
+				//	e.printStackTrace();
 				} //this will block if no object written
 			}
 		}
@@ -172,7 +173,7 @@ public class CompleteClient extends JFrame{
 		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_scheduler.setPreferredSize(new Dimension(800, 800));
 		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
-		panel_CICO.setPreferredSize(new Dimension(800, 800));
+		panel_CICO.setPreferredSize(new Dimension(800, 900));
 		panel_dispatch = new Panel_Dispatch(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_dispatch.setPreferredSize(new Dimension(800, 800));
 		
