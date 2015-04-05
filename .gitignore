@@ -3,3 +3,4 @@ Dispatch/bin/
 Dispatch/backups/
 *.class
 *.metadata/
+.metadata
