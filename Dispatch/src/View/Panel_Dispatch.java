@@ -317,11 +317,11 @@ public class Panel_Dispatch extends JPanel {
 		textArea_fieldSupe.setText("Field supe:");
 		add(textArea_fieldSupe);
 		
-		JTextArea textArea_club = new JTextArea();
-		textArea_club.setBackground(SystemColor.control);
-		textArea_club.setBounds(35, 133, 100, 28);
-		textArea_club.setText("      Club:");
-		add(textArea_club);
+		JTextArea txtrCashier = new JTextArea();
+		txtrCashier.setBackground(SystemColor.control);
+		txtrCashier.setBounds(35, 133, 100, 28);
+		txtrCashier.setText("   Cashier:");
+		add(txtrCashier);
 		
 		JTextArea textArea_action = new JTextArea();
 		textArea_action.setBackground(SystemColor.control);
