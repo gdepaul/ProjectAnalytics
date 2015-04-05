@@ -490,6 +490,29 @@ public class DispatchServer extends JFrame {
 			this.changeDrop(club, changeDrops);
 		this.ticketDrop(club, fullSheets, halfSheets, singleTickets, wristbands);
 	}
+	/**
+	 * 
+	 * @param club
+	 * @param collected_revenue
+	 * @param tickets_sold
+	 * @param wristbands_sold
+	 * @param misc_credits_promos
+	 * @param on_credit_terminal
+	 * @throws NullClubException 
+	 */
+	public void checkout(String club, float collected_revenue,
+			int tickets_sold, int wristbands_sold, float misc_credits_promos,
+			boolean on_credit_terminal) throws NullClubException {
+		if(activeClubs.containsKey(club)) {
+			activeClubs.get(club).setCollected_revenue(collected_revenue);
+			activeClubs.get(club).setTickets_sold(tickets_sold);
+			activeClubs.get(club).setWristbands_sold(wristbands_sold);
+			activeClubs.get(club).setMisc_credits_promos(misc_credits_promos);
+			activeClubs.get(club).setOn_credit_terminal(on_credit_terminal);
+		}
+		else
+			throw new NullClubException(club + "does not exist");
+	}
 
 
 	/**
@@ -568,5 +591,7 @@ public class DispatchServer extends JFrame {
 			new DispatchServer(port);
 		}
 	}
+
+
 
 }

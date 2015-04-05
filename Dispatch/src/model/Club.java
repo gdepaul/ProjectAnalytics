@@ -29,6 +29,45 @@ public class Club implements Serializable {
 	private String location;
 	private List<Dispatch<DispatchServer>> transactions;
 	
+	public float getCollected_revenue() {
+		return collected_revenue;
+	}
+
+	public void setCollected_revenue(float collected_revenue) {
+		this.collected_revenue = collected_revenue;
+	}
+
+	public int getTickets_sold() {
+		return tickets_sold;
+	}
+
+	public void setTickets_sold(int tickets_sold) {
+		this.tickets_sold = tickets_sold;
+	}
+
+	public int getWristbands_sold() {
+		return wristbands_sold;
+	}
+
+	public void setWristbands_sold(int wristbands_sold) {
+		this.wristbands_sold = wristbands_sold;
+	}
+
+	public float getMisc_credits_promos() {
+		return misc_credits_promos;
+	}
+
+	public void setMisc_credits_promos(float misc_credits_promos) {
+		this.misc_credits_promos = misc_credits_promos;
+	}
+
+	public boolean isOn_credit_terminal() {
+		return on_credit_terminal;
+	}
+
+	public void setOn_credit_terminal(boolean on_credit_terminal) {
+		this.on_credit_terminal = on_credit_terminal;
+	}
 	private float collected_revenue;
 	private int tickets_sold;
 	private int wristbands_sold;
@@ -114,4 +153,6 @@ public class Club implements Serializable {
 		}
 		return out;
 	}
+
+
 }
