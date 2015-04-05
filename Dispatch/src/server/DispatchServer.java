@@ -128,7 +128,7 @@ public class DispatchServer extends JFrame {
 				try{
 					Object ob = input.readObject();
 					if (ob instanceof Dispatch<?>){
-						System.err.println(ob.getClass());
+						//System.err.println(ob.getClass());
 						@SuppressWarnings("unchecked")
 						Dispatch<DispatchServer> dispatch = (Dispatch<DispatchServer>)ob; // cast the object // grab a command off the queue
 						try {
@@ -253,6 +253,8 @@ public class DispatchServer extends JFrame {
 			new Thread(new AutoSaver()).start();
 		} catch(BindException be) {
 			System.err.println("A server is already using that port.  Try another port");
+			System.exit(1);
+			be.printStackTrace();
 		} catch(Exception e){
 			Out.error("Error creating server:");
 			//System.err.println("Error creating server:");
@@ -297,7 +299,7 @@ public class DispatchServer extends JFrame {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
-				System.out.println("Inside Add Shutdown Hook");
+				//System.out.println("Inside Add Shutdown Hook");
 				try {
 					Files.deleteIfExists(Paths.get("server.lock"));
 					Out.close();
@@ -332,7 +334,7 @@ public class DispatchServer extends JFrame {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void saveState() {
-		System.out.println("saveState() Executed");
+		//System.out.println("saveState() Executed");
 		Serializer SER = new Serializer("backups");
 		SER.backup(new SaveFile(activeClubs,activeClubs,field_sups,histories,booths));
 	}
@@ -559,7 +561,7 @@ public class DispatchServer extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		int port = 9001;
+		int port = 9002;
 		attachShutDownHook();
 	//--Check if Server is already running
 		try {
@@ -567,6 +569,7 @@ public class DispatchServer extends JFrame {
 			ignored.close();
 		} catch(Exception ioe) {
 			System.err.println("Socket is in use. Try another port");
+			ioe.printStackTrace();
 			System.exit(1);
 		}
 	//--If not, check to make sure lock file is gone

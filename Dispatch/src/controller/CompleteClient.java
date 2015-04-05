@@ -86,7 +86,7 @@ public class CompleteClient extends JFrame{
 //		String port = JOptionPane.showInputDialog("Host port:");
 		
 		String host = "LOCALHOST";
-		String port = "9001";
+		String port = "9002";
 		userName = JOptionPane.showInputDialog("User name:");
 		
 		System.out.println("host: " + host + "\n" + 
