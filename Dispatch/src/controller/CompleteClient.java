@@ -172,7 +172,7 @@ public class CompleteClient extends JFrame{
 		panel_scheduler = new Panel_Scheduler(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_scheduler.setPreferredSize(new Dimension(800, 800));
 		panel_CICO = new Panel_CICO(userName, out, activeClubs, availableFS, dispatchedFS);
-		panel_CICO.setPreferredSize(new Dimension(800, 1000));
+		panel_CICO.setPreferredSize(new Dimension(800, 800));
 		panel_dispatch = new Panel_Dispatch(userName, out, activeClubs, availableFS, dispatchedFS);
 		panel_dispatch.setPreferredSize(new Dimension(800, 800));
 		
@@ -237,7 +237,10 @@ public class CompleteClient extends JFrame{
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_CICO) panel_CICO).UpdateLists(clubs, availableFS, dispatchedFS);
-		((Panel_ADMIN) panel_ADMIN).UpdateLists(clubs);
+		if (userName.equals("ADMIN")){
+			((Panel_ADMIN) panel_ADMIN).UpdateLists(clubs);
+		}
+		
 		
 		this.repaint();
 		

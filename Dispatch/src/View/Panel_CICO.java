@@ -13,16 +13,18 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.Club;
 import model.dispatch.InitialCashDrop;
-import model.dispatch.RemoveFieldSupe;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -997,6 +999,11 @@ public class Panel_CICO extends JPanel{
 
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
+			
+			JScrollPane scrollpane = (JScrollPane) getParent().getParent();
+			 final JScrollBar vertical = scrollpane.getVerticalScrollBar();
+		        final int value = vertical.getValue();
+
 			clearFields();
 			clubSelected = spinner_clubSelection_1.getValue().toString();
 			actualClub = findActualClub(clubSelected);
@@ -1087,6 +1094,14 @@ public class Panel_CICO extends JPanel{
 			textArea_endTotalCalc.setText("");
 			textArea_finalTotal.setText(formatDecimal(actualClub.getCashdrops()*800-actualClub.getInitialCashDrop()));
 			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
+			SwingUtilities.invokeLater(new Runnable()
+	        {
+	            public void run()
+	            {
+	                vertical.setValue( value );
+	            }
+	        });
 			
 		}
 	}
