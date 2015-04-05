@@ -1,9 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class FieldSupervisor {
+public class FieldSupervisor implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7173499165790925141L;
+
 	private static DateFormat formatter; 
 	
 	private String name;
