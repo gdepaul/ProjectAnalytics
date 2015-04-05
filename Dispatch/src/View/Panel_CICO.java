@@ -1030,6 +1030,8 @@ public class Panel_CICO extends JPanel{
 				textField_singleTicketsIn.setEnabled(false);
 				textField_wristbandsIn.setEnabled(false);
 				
+				// ...if it's there, show that value as startTotal
+				textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 				
 			} else{ // else, make sure, they're on...
 				btn_initialCashDrop.setEnabled(true);
@@ -1046,15 +1048,23 @@ public class Panel_CICO extends JPanel{
 				textField_fiftiesIn.setEnabled(true);
 				textField_hundredsIn.setEnabled(true);
 				
+				//setDefault $150 initial cashdrop
+				textField_hundredsIn.setText("1");
+				textField_fiftiesIn.setText("1");
+				
+				
 				//ticket calculations
 				textField_fullSheetsIn.setEnabled(true);
 				textField_halfSheetsIn.setEnabled(true);
 				textField_singleTicketsIn.setEnabled(true);
 				textField_wristbandsIn.setEnabled(true);
+				
+				// ...if it's there, show that value as startTotal
+				textArea_startTotal.setText("$150.00");
+				
 			}
 			
-			// ...if it's there, show that value as startTotal
-			textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
 			
 			//Update location spinner value and location if present
 			if (actualClub.getLocation().compareTo("(Unassigned)")!=0){
@@ -1065,6 +1075,9 @@ public class Panel_CICO extends JPanel{
 				spinner_locations.setEnabled(true);
 			}
 			//Update textAreas
+			
+			
+			
 			
 			//Update initial ticket values
 			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
