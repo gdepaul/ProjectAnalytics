@@ -179,9 +179,12 @@ public class CompleteClient extends JFrame{
 		
 		// Create Scroll panels for each tab page (or else we lose tabs!) Hopefully updates work normally....
 		scrollPane_scheduler = new JScrollPane(panel_scheduler);
+			scrollPane_scheduler.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane_CICO = new JScrollPane(panel_CICO);
+			scrollPane_CICO.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane_dispatch = new JScrollPane(panel_dispatch);
-		
+			scrollPane_dispatch.getVerticalScrollBar().setUnitIncrement(16);
+			
 		// Create the tabbed pane
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Scheduler", scrollPane_scheduler);
