@@ -37,7 +37,7 @@ public class DispatchAll  extends Dispatch<DispatchServer>  {
 		return "DispatchAllTypes:     "
 				+ format.format(date) 
 				+"     Source: " + this.getSource() 
-				+ "     Club: " + this.club 
+				+ "     Cashier: " + this.club 
 				+ "      # of Cash Drops: " + this.cashDrops  
 				+ "      # of Change Drops: " + this.changeDrops  
 				+ "      # of Full Sheets: " + this.fullSheets 

@@ -49,6 +49,6 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 	public String toString() {
 		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
 		Date date = new Date();
-		return "Intial Cash Drop:     "+ format.format(date) +"     Source: " + this.getSource() + "     Club: " + this.club + "     Initial Cash: " + this.initialCash + "     Initial Tickets: " + this.initialTickets + "     Initial Wristbands:" + this.initialWristbands;
+		return "Intial Cash Drop:     "+ format.format(date) +"     Source: " + this.getSource() + "     Cashier: " + this.club + "     Initial Cash: " + this.initialCash + "     Initial Tickets: " + this.initialTickets + "     Initial Wristbands:" + this.initialWristbands +"     Location:" + this.location;
 	}
 }
