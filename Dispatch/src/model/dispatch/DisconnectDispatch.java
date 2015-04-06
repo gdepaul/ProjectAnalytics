@@ -11,13 +11,11 @@ public class DisconnectDispatch extends Dispatch<DispatchServer> {
 
 	public DisconnectDispatch(String source) {
 		super(source);
-		// TODO Auto-generated constructor stub
 	}
 
 
 	@Override
 	public void execute(DispatchServer executeOn) {
-		// TODO Auto-generated method stub
 		executeOn.disconnect(this.getSource());
 	}
 }
