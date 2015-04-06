@@ -548,15 +548,15 @@ public class DispatchServer extends JFrame {
 		String filename = "exports_" + dateFormat.format(date) + ".xls"; 
 		try {
 			PrintWriter writer = new PrintWriter(filename, "UTF-8");
-			writer.println("Active Cashier\tTickets Sold");
+			writer.println("Active Cashier\tTickets Sold\tWristbands Sold\tMisc Credits & Promos\tCredit Terminal");
 			for(Club ac : this.activeClubs.values()) {
-				writer.println(ac.getClubName() + "\t" + ac.getTickets());
+				writer.println(ac.getClubName() + "\t" + ac.getTickets_sold() + "\t" + ac.getWristbands_sold() + "\t" + ac.getMisc_credits_promos() + "\t" + ac.isOn_credit_terminal());
 			}
-			writer.println("Inactive Cashiers\tTickets Sold");
+			writer.println("Inactive Cashiers\tTickets Sold\tMisc Credits & Promos\tWristbands Sold");
 			for(Club ac : this.inactiveClubs.values()) {
-				writer.println(ac.getClubName() + "\t" + ac.getTickets());
+				writer.println(ac.getClubName() + "\t" + ac.getTickets_sold() + "\t" + ac.getWristbands_sold() + "\t" + ac.getMisc_credits_promos() + "\t" + ac.isOn_credit_terminal());
 			}
-			writer.println("Booth Locations\tExpected Revenue");
+			writer.println("Booth Locations\tCurrent Expected Revenue");
 			for(Booth b : this.booths.values()) {
 				writer.println(b.getName() + "\t" + b.getEarnings());
 			}
