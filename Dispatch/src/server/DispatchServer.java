@@ -333,19 +333,19 @@ public class DispatchServer extends JFrame {
 //SERVER COMMANDS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public void saveState() {
+	public synchronized void saveState() {
 		//System.out.println("saveState() Executed");
 		Serializer SER = new Serializer("backups");
 		SER.backup(new SaveFile(activeClubs,activeClubs,field_sups,histories,booths));
 	}
-	public void addClub(Club newClub) throws DuplicateClubException {
+	public synchronized void addClub(Club newClub) throws DuplicateClubException {
 		if(activeClubs.containsKey(newClub.getClubName())) {
 			throw new DuplicateClubException(newClub.getClubName() + " already exists! Cannot add " + newClub.getClubName());
 		} 
 		list_clubs.add(newClub.getClubName());
 		activeClubs.put(newClub.getClubName(), newClub);	
 	}
-	public void removeClub(String name) {
+	public synchronized void removeClub(String name) {
 		if(activeClubs.containsKey(name)) {
 			inactiveClubs.put(name, activeClubs.get(name));
 			list_clubs.remove(name); 
@@ -356,7 +356,7 @@ public class DispatchServer extends JFrame {
 	 * @param fs Name of Field Supervisor to Add
 	 * @throws DuplicateFieldSupeException
 	 */
-	public void addFieldSupe(String fs) throws DuplicateFieldSupeException {
+	public synchronized void addFieldSupe(String fs) throws DuplicateFieldSupeException {
 		if(this.field_sups.containsKey(fs)) {
 			throw new DuplicateFieldSupeException(fs + " is already a Field Supervisor!");
 		}
@@ -366,7 +366,7 @@ public class DispatchServer extends JFrame {
 	 * @param fs
 	 * @throws DeployedException
 	 */
-	public void removeFieldSupe(String fs) throws DeployedException, NullFieldSupeException {
+	public synchronized void removeFieldSupe(String fs) throws DeployedException, NullFieldSupeException {
 		if(this.field_sups.get(fs).isDispatched())
 			throw new DeployedException(fs + " is currently dispatched and cannot be removed.");
 		if(!this.field_sups.containsKey(fs))
@@ -374,7 +374,7 @@ public class DispatchServer extends JFrame {
 		this.field_sups.remove(fs);
 	}
 
-	public void dispatchFieldSupe(String fs) throws NullFieldSupeException, DeployedException {
+	public synchronized void dispatchFieldSupe(String fs) throws NullFieldSupeException, DeployedException {
 		if(!this.field_sups.containsKey(fs))
 			throw new NullFieldSupeException(fs + " does not exist in the system as Field Supervisor.");
 		if(this.field_sups.get(fs).isDispatched())
@@ -382,7 +382,7 @@ public class DispatchServer extends JFrame {
 		this.field_sups.get(fs).dispatch();
 	}
 
-	public void freeFieldSupe(String fs) throws NotDispatchedException, NullFieldSupeException {
+	public synchronized void freeFieldSupe(String fs) throws NotDispatchedException, NullFieldSupeException {
 		if(!this.field_sups.containsKey(fs))
 			throw new NullFieldSupeException(fs + " does not exist in the system as a Field Supervisor.");
 		if(!this.field_sups.get(fs).isDispatched())
@@ -390,14 +390,14 @@ public class DispatchServer extends JFrame {
 		this.field_sups.get(fs).free();
 	}
 	
-	public void cashDrop(String club, int amount) throws NullClubException {
+	public synchronized void cashDrop(String club, int amount) throws NullClubException {
 		if(activeClubs.containsKey(club)) {
 			activeClubs.get(club).putCashDrop(amount);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
 	}
-	public void initialCashDrop(String club, float drop, int initialTickets, int initialWristbands, String location) throws NullClubException{
+	public synchronized void initialCashDrop(String club, float drop, int initialTickets, int initialWristbands, String location) throws NullClubException{
 		if(activeClubs.containsKey(club)) {
 			activeClubs.get(club).setInitialCashDrop(drop);
 			activeClubs.get(club).setInitialTickets(initialTickets);
@@ -409,7 +409,7 @@ public class DispatchServer extends JFrame {
 		else
 			throw new NullClubException(club + "does not exist");
 	}
-	public void changeDrop(String club, int amount) throws NullClubException {
+	public synchronized void changeDrop(String club, int amount) throws NullClubException {
 		if(activeClubs.containsKey(club)) {
 			activeClubs.get(club).putChangeDrop(amount);
 			Out.print("Change Drop for " + club);
@@ -418,7 +418,7 @@ public class DispatchServer extends JFrame {
 			throw new NullClubException(club + "does not exist");
 	}
 
-	public void ticketDrop(String club, int num_full, int num_half, int num_singles, int num_wristbands) throws NullClubException {
+	public synchronized void ticketDrop(String club, int num_full, int num_half, int num_singles, int num_wristbands) throws NullClubException {
 		if(activeClubs.containsKey(club)) {
 			activeClubs.get(club).putFullSheet(num_full);
 			activeClubs.get(club).putHalfSheet(num_half);
@@ -437,7 +437,7 @@ public class DispatchServer extends JFrame {
 	 * 
 	 * @param clientName name of the client whose command should be undone
 	 */
-	public void undoLast(String clientName) {
+	public synchronized void undoLast(String clientName) {
 		Deque<Dispatch<DispatchServer>> commands = histories.get(clientName);
 		if (commands.isEmpty())
 			return;
@@ -448,7 +448,7 @@ public class DispatchServer extends JFrame {
 	 *	This method updates all connected clients with the current list of
 	 *	clubs, available field supervisors, and dispatched field supervisors
 	 */
-	public void updateClients(){
+	public synchronized void updateClients(){
 		//System.err.println("Updating Clients");
 		List<Club> clubs = new ArrayList<Club>(activeClubs.values());
 		List<String> availableFieldSupervisors = new ArrayList<String>();
@@ -484,7 +484,7 @@ public class DispatchServer extends JFrame {
 	 * @param wristbands 
 	 * @throws NullClubException 
 	 */
-	public void dispatchAll(String club, int cashDrops, int changeDrops,
+	public synchronized void dispatchAll(String club, int cashDrops, int changeDrops,
 			int fullSheets, int halfSheets, int singleTickets, int wristbands) throws NullClubException {
 		if(cashDrops != 0) 
 			this.cashDrop(club, cashDrops);
@@ -502,7 +502,7 @@ public class DispatchServer extends JFrame {
 	 * @param on_credit_terminal
 	 * @throws NullClubException 
 	 */
-	public void checkout(String club, float collected_revenue, int tickets_sold, int wristbands_sold, float misc_credits_promos, boolean on_credit_terminal) throws NullClubException {
+	public synchronized void checkout(String club, float collected_revenue, int tickets_sold, int wristbands_sold, float misc_credits_promos, boolean on_credit_terminal) throws NullClubException {
 		if(activeClubs.containsKey(club)) {
 			activeClubs.get(club).setCollected_revenue(collected_revenue);
 			activeClubs.get(club).setTickets_sold(tickets_sold);
@@ -524,7 +524,7 @@ public class DispatchServer extends JFrame {
 	 *  Disconnects a connected user
 	 * @param source	user to disconnect
 	 */
-	public void disconnect(String source) {
+	public synchronized void disconnect(String source) {
 		Out.print("Client " + source + " disconnected");
 		try{
 			inputs.remove(source).close();
@@ -533,14 +533,14 @@ public class DispatchServer extends JFrame {
 		}
 		catch(Exception e){ e.printStackTrace();}
 	}
-	private void printServerState() {
+	private synchronized void printServerState() {
 		System.out.println("Field Supervisors:\n\t" + this.field_sups);
 		System.out.println("Active Clubs:\n\t" + this.activeClubs);
 		System.out.println("Inactive Clubs:\n\t" + this.inactiveClubs);
 		System.out.println("Booths:\n\t" + this.booths);
 		System.out.println("Clients:\n\t" + this.inputs.keySet());
 	}
-	public void export() {
+	public synchronized void export() {
 		String directory = "exports/";
 		DateFormat dateFormat = new SimpleDateFormat("MMdd-HHmmss");
 		Date date = new Date(); 
