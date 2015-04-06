@@ -61,7 +61,6 @@ public class Panel_ADMIN extends JPanel{
 		clubHistory = new JList<Dispatch<DispatchServer>>();
 		clubHistory.setBounds(10, 45, 745, 615);
 		add(clubHistory);
-		
 		JButton btnUpdateCommand = new JButton("Update Command");
 		btnUpdateCommand.setBounds(605, 685, 150, 23);
 		btnUpdateCommand.addActionListener(new AlterListener());
@@ -92,20 +91,17 @@ public class Panel_ADMIN extends JPanel{
 	}
 	public void updateHistoryBox() {
 		String clubName = (String)this.comboBox.getSelectedItem();
-		System.err.println((String)this.comboBox.getSelectedItem());
+		//System.err.println((String)this.comboBox.getSelectedItem());
 		
 		List<Dispatch<DispatchServer>> transactions = new ArrayList<Dispatch<DispatchServer>>();
+		
 		if(clubName != null) {
 			for(Club c : clubs) {
 				if(c.getClubName().equals(clubName))
 					transactions = c.getTransactions();
 			}
 		}
-		for (Dispatch<DispatchServer> d : transactions) {
-			System.out.println(d);
-		}
-		System.out.println("------------------");
-		
+	
 		remove(clubHistory);
 		this.listModel = new DefaultListModel<Dispatch<DispatchServer>>();
 		for (Dispatch<DispatchServer> d : transactions) {
