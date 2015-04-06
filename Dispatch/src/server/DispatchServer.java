@@ -170,8 +170,8 @@ public class DispatchServer extends JFrame {
 				}
 				catch(Exception e){
 					if(!(e instanceof java.net.SocketException)) {
-						e.printStackTrace();
 						System.err.println("In Client Handler:");
+						e.printStackTrace();
 					}
 					break;
 				}
@@ -502,18 +502,21 @@ public class DispatchServer extends JFrame {
 	 * @param on_credit_terminal
 	 * @throws NullClubException 
 	 */
-	public void checkout(String club, float collected_revenue,
-			int tickets_sold, int wristbands_sold, float misc_credits_promos,
-			boolean on_credit_terminal) throws NullClubException {
+	public void checkout(String club, float collected_revenue, int tickets_sold, int wristbands_sold, float misc_credits_promos, boolean on_credit_terminal) throws NullClubException {
 		if(activeClubs.containsKey(club)) {
 			activeClubs.get(club).setCollected_revenue(collected_revenue);
 			activeClubs.get(club).setTickets_sold(tickets_sold);
 			activeClubs.get(club).setWristbands_sold(wristbands_sold);
 			activeClubs.get(club).setMisc_credits_promos(misc_credits_promos);
 			activeClubs.get(club).setOn_credit_terminal(on_credit_terminal);
+			float expected_rev = activeClubs.get(club).checkout();
+			String location = activeClubs.get(club).getLocation();
+			booths.get(location).addEarnings(expected_rev);
 		}
 		else
 			throw new NullClubException(club + "does not exist");
+		
+// Collected Revenue = CashDrop*800 + CollectedCash 
 	}
 
 
@@ -537,21 +540,25 @@ public class DispatchServer extends JFrame {
 		System.out.println("Booths:\n\t" + this.booths);
 		System.out.println("Clients:\n\t" + this.inputs.keySet());
 	}
-	private void export() {
+	public void export() {
 		String directory = "exports/";
 		DateFormat dateFormat = new SimpleDateFormat("MMdd-HHmmss");
 		Date date = new Date(); 
 		
 		String filename = "exports_" + dateFormat.format(date) + ".xls"; 
 		try {
-			PrintWriter writer = new PrintWriter(directory+"/"+filename, "UTF-8");
-			writer.println("Active Cashiers:");
+			PrintWriter writer = new PrintWriter(filename, "UTF-8");
+			writer.println("Active Cashier\tTickets Sold");
 			for(Club ac : this.activeClubs.values()) {
-				writer.println(ac.getClubName() + "\tTickets Sold: " + ac.getTickets());
+				writer.println(ac.getClubName() + "\t" + ac.getTickets());
 			}
-			writer.println("Inactive Cashiers:");
+			writer.println("Inactive Cashiers\tTickets Sold");
 			for(Club ac : this.inactiveClubs.values()) {
-				writer.println(ac.getClubName() + "\tTickets Sold: " + ac.getTickets());
+				writer.println(ac.getClubName() + "\t" + ac.getTickets());
+			}
+			writer.println("Booth Locations\tExpected Revenue");
+			for(Booth b : this.booths.values()) {
+				writer.println(b.getName() + "\t" + b.getEarnings());
 			}
 			writer.close();
 		} catch(Exception e) {
@@ -561,7 +568,7 @@ public class DispatchServer extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		int port = 9002;
+		int port = 9004;
 		attachShutDownHook();
 	//--Check if Server is already running
 		try {
