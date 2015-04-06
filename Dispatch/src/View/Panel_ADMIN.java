@@ -88,6 +88,7 @@ public class Panel_ADMIN extends JPanel{
 			comboBox.addItem(club.getClubName());
 		}
 		add(comboBox);
+		repaint();
 	}
 	public void updateHistoryBox() {
 		String clubName = (String)this.comboBox.getSelectedItem();
@@ -113,6 +114,7 @@ public class Panel_ADMIN extends JPanel{
 		clubHistory = new JList<Dispatch<DispatchServer>>(listModel);
 		clubHistory.setBounds(10, 45, 745, 625);
 		add(clubHistory);
+		repaint();
 	}
 	public void UpdateLists(List<Club> clubs) {
 		this.clubs = clubs;
