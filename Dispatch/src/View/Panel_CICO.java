@@ -127,7 +127,11 @@ public class Panel_CICO extends JPanel{
 	private JSpinner spinner_locations;
 	private String location;
 	
-	JButton btn_initialCashDrop;
+	private JTextArea textArea_expectedEndingCash;
+	private JTextField textField_credits;
+	private JTextArea textArea_differences;
+	
+	private JButton btn_initialCashDrop;
 	
 	//Listeners
 	private StartValsChangedListener startValsChangedListener;
@@ -136,6 +140,7 @@ public class Panel_CICO extends JPanel{
 	private WristbandMultiplierListener wristbandMultiplierListener;
 	private LocationSpinnerListener locationSpinnerListener;
 	private ClubSpinnerListener clubSpinnerListener;
+	private ConfirmCheckOutCashierListener confirmCheckOutCashierListener;
 	
 	//Initial values
 	private String clubSelected;
@@ -143,7 +148,19 @@ public class Panel_CICO extends JPanel{
 	
 	
 	
+	/**
+	 *  Listener for the cashier checkout button
+	 */
+	public class ConfirmCheckOutCashierListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
 	
 	/**
 	 * Listener for the initial cash drop button
@@ -771,8 +788,7 @@ public class Panel_CICO extends JPanel{
 													+ ((actualClub.getInitialWristbands()
 															+actualClub.getWristbands()
 															-unsoldWristbands) * wristbandMultiplier)  ));
-			
-	
+		
 			//Update Cash Calculations
 			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
 			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
@@ -800,6 +816,32 @@ public class Panel_CICO extends JPanel{
 						(formatDecimal(actualClub.getCashdrops()*800)));
 			}
 			
+
+			//get credits
+			float credits = 0;
+			if(textField_credits.getText().compareTo("")==0){
+		 		textField_credits.setText("0");
+		 	}else{
+				try { 
+					credits = (float) Float.parseFloat(textField_credits.getText());
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid value for credits!");
+			    }
+		 	}
+			float expectedEnding =( 	((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f) 
+										+ ((actualClub.getInitialWristbands()
+												+actualClub.getWristbands()
+												-unsoldWristbands) * wristbandMultiplier) )
+												- 
+												credits;
+			textArea_expectedEndingCash.setText("$" +formatDecimal(expectedEnding));	// expected revenue - credits
+			
+			float balance = (actualClub.getCashdrops()*800
+					+endTotal - actualClub.getInitialCashDrop()) - expectedEnding;
+			textArea_differences.setText("$" +formatDecimal(balance));			// collected - expected revenue - credits
+			
+			
+			//redline();
 		}
 	}
 	
@@ -1252,6 +1294,7 @@ public class Panel_CICO extends JPanel{
 		startValsChangedListener = new StartValsChangedListener();
 		endValsChangedListener = new EndValsChangedListener();
 		confirmInitialDropListener = new ConfirmInitialDropListener();
+		confirmCheckOutCashierListener = new ConfirmCheckOutCashierListener();
 		wristbandMultiplierListener = new WristbandMultiplierListener();
 		clubSpinnerListener = new ClubSpinnerListener();
 		locationSpinnerListener = new LocationSpinnerListener();
@@ -2188,7 +2231,7 @@ public class Panel_CICO extends JPanel{
 		add(textArea_startTotal2);
 		
 		JLabel lblUnsoldFullSheets = new JLabel("Unsold Full Sheets");
-		lblUnsoldFullSheets.setBounds(211, 502, 100, 22);
+		lblUnsoldFullSheets.setBounds(201, 502, 110, 22);
 		add(lblUnsoldFullSheets);
 		
 		JLabel lblUnsoldHalfSheets = new JLabel(" Unsold Half Sheets");
@@ -2228,7 +2271,7 @@ public class Panel_CICO extends JPanel{
 		add(lblUnsoldWristbands);
 		
 		JLabel lblexpectedRevenue = new JLabel("Ticket Sales + Wristband Sales = EXPECTED REVENUE:");
-		lblexpectedRevenue.setBounds(362, 692, 285, 27);
+		lblexpectedRevenue.setBounds(336, 692, 311, 27);
 		add(lblexpectedRevenue);
 		
 		JLabel lblTicketsSold = new JLabel("  = Tickets Sold:");
@@ -2244,11 +2287,11 @@ public class Panel_CICO extends JPanel{
 		add(lblWristbandsSold);
 		
 		JLabel lblNewLabel_5 = new JLabel("INITIAL CASH =");
-		lblNewLabel_5.setBounds(10, 634, 81, 27);
+		lblNewLabel_5.setBounds(10, 634, 100, 27);
 		add(lblNewLabel_5);
 		
 		JLabel lblCollectedCash = new JLabel("COLLECTED CASH =");
-		lblCollectedCash.setBounds(227, 636, 109, 22);
+		lblCollectedCash.setBounds(208, 636, 128, 22);
 		add(lblCollectedCash);
 		
 		JLabel lblX_2 = new JLabel("X");
@@ -2302,20 +2345,14 @@ public class Panel_CICO extends JPanel{
 		add(textArea_wristbandSales);
 		
 		JLabel lblFridayWristbandsAre = new JLabel("*Friday, wristbands are $30, Sunday, they're $20");
-		lblFridayWristbandsAre.setBounds(499, 668, 261, 14);
+		lblFridayWristbandsAre.setBounds(460, 668, 300, 14);
 		add(lblFridayWristbandsAre);
 		
 		JLabel lblMiscellaneousCredits = new JLabel("- Miscellaneous Credits and Promotions:");
-		lblMiscellaneousCredits.setBounds(428, 731, 219, 14);
+		lblMiscellaneousCredits.setBounds(409, 731, 238, 14);
 		add(lblMiscellaneousCredits);
 		
-		JTextArea textArea_credits = new JTextArea();
-		textArea_credits.setEditable(false);
-		textArea_credits.setBackground(Color.WHITE);
-		textArea_credits.setBounds(658, 726, 102, 22);
-		add(textArea_credits);
-		
-		JTextArea textArea_expectedEndingCash = new JTextArea();
+		textArea_expectedEndingCash = new JTextArea();
 		textArea_expectedEndingCash.setEditable(false);
 		textArea_expectedEndingCash.setBackground(Color.WHITE);
 		textArea_expectedEndingCash.setBounds(658, 765, 102, 22);
@@ -2326,10 +2363,10 @@ public class Panel_CICO extends JPanel{
 		add(lblExpectedEnding);
 		
 		JLabel lblCollectedRevenue = new JLabel("COLLECTED REVENUE - EXPECTED ENDING CASH = DIFFERENCES: ");
-		lblCollectedRevenue.setBounds(315, 810, 332, 14);
+		lblCollectedRevenue.setBounds(262, 810, 385, 14);
 		add(lblCollectedRevenue);
 		
-		JTextArea textArea_differences = new JTextArea();
+		textArea_differences = new JTextArea();
 		textArea_differences.setEditable(false);
 		textArea_differences.setBackground(Color.WHITE);
 		textArea_differences.setBounds(657, 805, 102, 22);
@@ -2338,6 +2375,17 @@ public class Panel_CICO extends JPanel{
 		JLabel lblCashDrops = new JLabel("Cash Drops");
 		lblCashDrops.setBounds(500, 144, 67, 14);
 		add(lblCashDrops);
+		
+		JButton btnCheckOutCashier = new JButton("CONFIRM CHECK OUT VALUES AND REMOVE CASHIER FROM ACTIVE LIST");
+		btnCheckOutCashier.setBounds(315, 835, 445, 40);
+		btnCheckOutCashier.addActionListener(confirmCheckOutCashierListener);
+		add(btnCheckOutCashier);
+		
+		textField_credits = new JTextField();
+		textField_credits.setColumns(10);
+		textField_credits.setBounds(657, 726, 103, 22);
+		textField_credits.addActionListener(endValsChangedListener);
+		add(textField_credits);
 	}
 	
 	private ArrayList<String> getLocations() {
