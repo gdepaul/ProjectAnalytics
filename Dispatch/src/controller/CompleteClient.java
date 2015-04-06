@@ -242,7 +242,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_CICO) panel_CICO).UpdateLists(clubs, availableFS, dispatchedFS);
-		if (userName.equals("ADMIN")){
+		if (userName.equals("ADMIN") || userName.equals("JJYOUNG")){
 			((Panel_ADMIN) panel_ADMIN).UpdateLists(clubs);
 		}
 		
