@@ -1,5 +1,9 @@
 package model.dispatch;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import server.DispatchServer;
 import exceptions.NullClubException;
 
@@ -16,7 +20,7 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 	private String location;
 	
 	public InitialCashDrop(String source, String club, float drop, int initialTickets, int initialWristbands, String location) {
-		super(source);
+		super(source,club);
 		this.club = club;
 		this.initialCash = drop;
 		this.initialTickets = initialTickets;
@@ -24,7 +28,7 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 		this.location = location;
 	}
 	public InitialCashDrop(String source, String club, float drop, int initialTickets, int initialWristbands) {
-		super(source);
+		super(source,club);
 		this.club = club;
 		this.initialCash = drop;
 		this.initialTickets = initialTickets;
@@ -41,5 +45,10 @@ public class InitialCashDrop extends Dispatch<DispatchServer>{
 		this.initialCash *= -1;
 		this.initialTickets *= -1;
 		this.initialWristbands *= -1;
+	}
+	public String toString() {
+		DateFormat format = new SimpleDateFormat("MMM dd YYYY HH:mm:ss");
+		Date date = new Date();
+		return "Intial Cash Drop:     "+ format.format(date) +"     Source: " + this.getSource() + "     Club: " + this.club + "     Initial Cash: " + this.initialCash + "     Initial Tickets: " + this.initialTickets + "     Initial Wristbands:" + this.initialWristbands;
 	}
 }
