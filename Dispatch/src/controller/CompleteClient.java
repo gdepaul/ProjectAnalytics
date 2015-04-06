@@ -9,7 +9,11 @@ import java.awt.event.WindowStateListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -18,10 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import model.Booth;
 import model.Club;
 import model.dispatch.AddActiveClub;
 import model.dispatch.DisconnectDispatch;
 import model.dispatch.Dispatch;
+import model.dispatch.DispatchAll;
 import View.Panel_ADMIN;
 import View.Panel_CICO;
 import View.Panel_Dispatch;
@@ -143,6 +149,8 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 //			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
 //			
 //			out.writeObject(new AddActiveClub(userName,"Club0"));
+//			for(int i = 0; i < 5; i++)
+//				out.writeObject(new DispatchAll(userName,"Club0",i,i,i,i,i,i));
 //			out.writeObject(new AddActiveClub(userName,"Club1"));
 //			out.writeObject(new AddActiveClub(userName,"Club2"));
 //			out.writeObject(new AddActiveClub(userName,"Club3"));	
@@ -253,6 +261,20 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 //		private	List<String> dispatchedFS;
 		
 		
+	}
+	public void saveExport(String fileContents) {
+		DateFormat dateFormat = new SimpleDateFormat("MMdd-HHmm");
+		Date date = new Date(); 
+		
+		String filename = "ServerExportState_" + dateFormat.format(date) + ".xls"; 
+		try {
+			PrintWriter writer = new PrintWriter(filename, "UTF-8");
+			writer.print(fileContents);
+			writer.close();
+		} catch(Exception e) {
+			System.err.println("Error exporting");
+			e.printStackTrace();
+		}		
 	}
 	// Main method in order to run the client
 	public static void main(String[] args){
