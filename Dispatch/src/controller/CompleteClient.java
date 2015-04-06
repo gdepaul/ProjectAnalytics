@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,7 +27,7 @@ import View.Panel_CICO;
 import View.Panel_Dispatch;
 import View.Panel_Scheduler;
 
-public class CompleteClient extends JFrame{
+public class CompleteClient extends JFrame implements WindowStateListener {
 	
 	private JTabbedPane tabbedPane;
 	private JPanel panel_scheduler;
@@ -86,7 +87,7 @@ public class CompleteClient extends JFrame{
 //		String port = JOptionPane.showInputDialog("Host port:");
 		
 		String host = "LOCALHOST";
-		String port = "9002";
+		String port = "9004";
 		userName = JOptionPane.showInputDialog("User name:");
 		
 		System.out.println("host: " + host + "\n" + 
@@ -158,7 +159,7 @@ public class CompleteClient extends JFrame{
 	
 	// Create the gui in the client once signed in
 	private void setupGUI() {
-		
+		addWindowStateListener(this);
 		setTitle("SpringFlingSoft 2015 - User: " + userName);
 		setSize(800,800);
 		setBackground(Color.gray);
@@ -166,7 +167,6 @@ public class CompleteClient extends JFrame{
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout() );
-
 		
 		
 		// Create tab pages here
@@ -209,7 +209,7 @@ public class CompleteClient extends JFrame{
 		getContentPane().add(topPanel);
 		
 		
-		this.setVisible(true);		
+		this.setVisible(true);	
 	}	
 		
 //	/**
@@ -225,10 +225,11 @@ public class CompleteClient extends JFrame{
 		this.availableFS = availableFS;
 		this.dispatchedFS = dispatchedFS;
 		
+		/*	
 		System.out.println(clubs);
 		System.out.println(availableFS);
 		System.out.println(dispatchedFS);
-		
+
 		for(Club c: clubs) {
 			System.out.println(c.getClubName() + "\n" +
 					"InitialCashDrop: "+ c.getInitialCashDrop()+
@@ -236,7 +237,7 @@ public class CompleteClient extends JFrame{
 					"ChangeDrops: " + c.getChangedrops());
 		}
 		System.out.println("========================");
-		
+		*/
 		
 		((Panel_Scheduler) panel_scheduler).UpdateLists(clubs, availableFS, dispatchedFS);
 		((Panel_Dispatch) panel_dispatch).UpdateLists(clubs, availableFS, dispatchedFS);
@@ -257,6 +258,17 @@ public class CompleteClient extends JFrame{
 	// Main method in order to run the client
 	public static void main(String[] args){
 		new CompleteClient();
+	}
+
+	@Override
+	public void windowStateChanged(WindowEvent arg0) {
+		if(arg0.getNewState() == WindowEvent.WINDOW_CLOSED || arg0.getNewState() == WindowEvent.WINDOW_CLOSING) {
+			try {
+				this.out.writeObject(new DisconnectDispatch(userName));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}	
 	
 	
