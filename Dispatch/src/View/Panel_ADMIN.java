@@ -20,6 +20,7 @@ import server.Serializer;
 import model.Club;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchAll;
+import model.dispatch.ExportCommand;
 import model.dispatch.InitialCashDrop;
 import model.dispatch.SaveCommand;
 
@@ -70,6 +71,11 @@ public class Panel_ADMIN extends JPanel{
 		save.setBounds(10, 11, 150, 23);
 		save.addActionListener(new SaveListener());
 		add(save);
+		
+		JButton export = new JButton("Export State");
+		export.setBounds(170, 11, 150, 23);
+		export.addActionListener(new ExportListener());
+		add(export);
 	}
 	private void updateComboBox() {
 		remove(comboBox);
@@ -240,6 +246,15 @@ public class Panel_ADMIN extends JPanel{
 				output.writeObject(new SaveCommand(clientName));
 			} catch (IOException e) {
 				e.printStackTrace();
+			}
+		}
+	}
+	public class ExportListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				output.writeObject(new ExportCommand(clientName));
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
 			}
 		}
 	}
