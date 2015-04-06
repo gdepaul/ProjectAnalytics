@@ -3,6 +3,7 @@ package View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,12 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import server.DispatchServer;
 import server.Serializer;
+import model.Booth;
 import model.Club;
 import model.dispatch.Dispatch;
 import model.dispatch.DispatchAll;
@@ -38,7 +41,7 @@ public class Panel_ADMIN extends JPanel{
 	JComboBox<String> comboBox;
 	JList<Dispatch<DispatchServer>> clubHistory;
 	DefaultListModel<Dispatch<DispatchServer>> listModel;
-	
+	JScrollPane scroll;
 	public Panel_ADMIN(String userName, ObjectOutputStream out, List<Club> activeClubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.clubs = activeClubs;
 		this.output = out;
@@ -56,11 +59,13 @@ public class Panel_ADMIN extends JPanel{
 				comboBox.addItem(club.getClubName());
 			}
 		}
-		this.listModel = new DefaultListModel<Dispatch<DispatchServer>>();
+		
+		this.listModel = new DefaultListModel<Dispatch<DispatchServer>>();		
+		clubHistory = new JList<Dispatch<DispatchServer>>(listModel);
+		scroll = new JScrollPane(clubHistory);
+		scroll.setBounds(10,45,745,615);
+		add(scroll);	
 
-		clubHistory = new JList<Dispatch<DispatchServer>>();
-		clubHistory.setBounds(10, 45, 745, 615);
-		add(clubHistory);
 		JButton btnUpdateCommand = new JButton("Update Command");
 		btnUpdateCommand.setBounds(605, 685, 150, 23);
 		btnUpdateCommand.addActionListener(new AlterListener());
@@ -100,16 +105,18 @@ public class Panel_ADMIN extends JPanel{
 				if(c.getClubName().equals(clubName))
 					transactions = c.getTransactions();
 			}
-		}
-	
-		remove(clubHistory);
-		this.listModel = new DefaultListModel<Dispatch<DispatchServer>>();
+		}	
+		remove(scroll);
+		listModel = new DefaultListModel<Dispatch<DispatchServer>>();
 		for (Dispatch<DispatchServer> d : transactions) {
 			listModel.addElement(d);
 		}
-		clubHistory = new JList<Dispatch<DispatchServer>>(listModel);
-		clubHistory.setBounds(10, 45, 745, 625);
-		add(clubHistory);
+
+		JList<Dispatch<DispatchServer>> clubH = new JList<Dispatch<DispatchServer>>(listModel);
+		scroll = new JScrollPane(clubH);
+		scroll.setBounds(10,45,745,615);
+		add(scroll); 				
+
 		repaint();
 	}
 	public void UpdateLists(List<Club> clubs) {
@@ -119,17 +126,15 @@ public class Panel_ADMIN extends JPanel{
 		this.repaint();
 	}
 	private class AlterListener implements ActionListener {
+		@SuppressWarnings("unchecked")
 		public void actionPerformed(ActionEvent arg0) {
-			if(clubHistory.getSelectedValue() == null)
+			if(((JList<Dispatch<DispatchServer>>)scroll.getViewport().getView()).getSelectedValue() == null)
 				return;
-			System.out.println("Selected Valued: " + clubHistory.getSelectedValue());
-			System.out.println("Club: " + clubHistory.getSelectedValue().getClub());
-			System.out.println("-----------------");
 			int answer = JOptionPane.showConfirmDialog(null,"Do you want to undo this command?","WARNING", JOptionPane.YES_NO_OPTION);
 			if(answer == JOptionPane.YES_OPTION) {
 				//TODO: Send undo command through Output
 				System.err.println("Admin wants to alter");
-				Dispatch<DispatchServer> selectedTrans = clubHistory.getSelectedValue();
+				Dispatch<DispatchServer> selectedTrans = ((Dispatch<DispatchServer>)((JList)scroll.getViewport().getView()).getSelectedValue());
 				System.out.println("SELECTED: " + selectedTrans);
 				getNewValues(selectedTrans);
 			}
@@ -138,9 +143,9 @@ public class Panel_ADMIN extends JPanel{
 			else
 				System.err.println("Some other value " + answer);
 		}
+		private void undoDispatch(DispatchAll dispatch) {
+			String clubSelected = dispatch.getClub();
 
-		private void getNewValues(Dispatch<DispatchServer> selectedTrans) {
-			String clubSelected = selectedTrans.getClub();
 			int addCashDrops = 0;
 			int addChangeDrops = 0;
 			int addFullSheets = 0;
@@ -160,20 +165,18 @@ public class Panel_ADMIN extends JPanel{
 			tf_addSingletickets.setText("0");
 			JTextField tf_addWristbands = new JTextField();
 			tf_addWristbands.setText("0");
-			JTextField tf_location = new JTextField();
-			if(selectedTrans instanceof DispatchAll)
-				tf_location.setEnabled(false);
 			Object[] getDispatch = { "Cash Drops:", tf_cashDrops,
 					"Change Drops:", tf_changeDrops, "Full Sheets:",
 					tf_addFullSheets, "Half Sheets:", tf_addHalfSheets,
 					"Single Tickets:", tf_addSingletickets, "Wristbands:",
-					tf_addWristbands, "Location:",tf_location };
+					tf_addWristbands};
 
 			int option = JOptionPane.showConfirmDialog(getParent(),
 					getDispatch, "Enter all dispatch values",
 					JOptionPane.OK_CANCEL_OPTION);
 
 			if (option == JOptionPane.OK_OPTION) {
+				
 				try {
 					addCashDrops = Integer.parseInt(tf_cashDrops.getText());
 					addChangeDrops = Integer.parseInt(tf_changeDrops.getText());
@@ -202,17 +205,75 @@ public class Panel_ADMIN extends JPanel{
 
 						// Execute
 						
-						if(selectedTrans instanceof DispatchAll) {
-							((DispatchAll)selectedTrans).undoDispatch();
-							output.writeObject(new DispatchAll(clientName,
-									clubSelected, addCashDrops, addChangeDrops,
-									addFullSheets, addHalfSheets, addSingleTickets,
-									addWristbands));
-						}
-						else if(selectedTrans instanceof InitialCashDrop) {
-							((InitialCashDrop)selectedTrans).undoDispatch();
-						}
-						output.writeObject(selectedTrans);
+							((DispatchAll)dispatch).undoDispatch();
+						output.writeObject(new DispatchAll(clientName,clubSelected, addCashDrops, addChangeDrops,addFullSheets, addHalfSheets, addSingleTickets,addWristbands));
+						System.out.println(dispatch);
+						output.writeObject(dispatch);
+					} else {
+						JOptionPane.showMessageDialog(getParent(),
+								"Negative values not permitted.)");
+					}
+
+				} catch (NumberFormatException e) {
+					JOptionPane
+							.showMessageDialog(getParent(),
+									"Enter valid number values please!\n(Number Format Exception)");
+					e.printStackTrace();
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(getParent(),
+							"IO Exception");
+					e.printStackTrace();
+				}
+			}
+		}
+		private void undoDispatch(InitialCashDrop initial) {
+			String clubSelected = initial.getClub();
+			System.err.println("INITIAL CASH DROP: NOT IMPLEMENTED");
+			float initialCash = 0.0f;
+			int initialTickets = 0;
+			int initialWristbands = 0;
+			String locale = "";
+			JTextField cash = new JTextField();
+			cash.setText("0");
+			JTextField tix = new JTextField();
+			tix.setText("0");
+			JTextField wrist = new JTextField();
+			wrist.setText("0");
+			
+			JComboBox<String> location = new JComboBox<String>();
+			location.addItem("Castle 1");
+			location.addItem("Castle 2");
+			location.addItem("Castle 3");
+			location.addItem("Castle 4");
+			location.addItem("Cottage 1");
+			location.addItem("Cottage 2");
+			location.addItem("Cottage 3");
+			location.addItem("Cottage 4");
+			location.addItem("Wonderland");
+			location.addItem("Wishing Well");
+			location.addItem("Pride Rock");
+			location.addItem("Palace");
+			location.addItem("Enchanted Forest");
+			location.addItem("Swamp");
+			location.addItem("Woods");
+			location.addItem("Beanstalk");
+			
+			Object[] getDispatch = { "Initial Cash:", cash, "Intial Tickets:", tix, "Initial Wristbands", wrist, "Location:",location };
+
+			int option = JOptionPane.showConfirmDialog(getParent(), getDispatch, "Enter new Initial Cash Drop values", JOptionPane.OK_CANCEL_OPTION);
+
+			if (option == JOptionPane.OK_OPTION) {
+				
+				try {
+					initialCash = Float.parseFloat(cash.getText()) - 0.000f;
+					initialTickets = Integer.parseInt(tix.getText());
+					initialWristbands = Integer.parseInt(wrist.getText());
+					locale = (String)location.getSelectedItem();
+										
+					if (initialCash >= 0 && initialTickets >= 0 && initialWristbands >= 0) {
+						initial.undoDispatch();
+						output.writeObject(new InitialCashDrop(clientName,clubSelected,initialCash,initialTickets,initialWristbands));
+						output.writeObject(initial);
 					} else {
 						JOptionPane.showMessageDialog(getParent(),
 								"Negative values not permitted.)");
@@ -230,6 +291,14 @@ public class Panel_ADMIN extends JPanel{
 				}
 			}
 
+		}
+		private void getNewValues(Dispatch<DispatchServer> selectedTrans) {
+			if(selectedTrans instanceof DispatchAll) {
+				undoDispatch((DispatchAll)selectedTrans);
+			}
+			else if(selectedTrans instanceof InitialCashDrop) {
+				undoDispatch((InitialCashDrop)selectedTrans);
+			}
 		}
 	}
 	public class ClubListener implements ActionListener {
