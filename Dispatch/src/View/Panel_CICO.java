@@ -24,7 +24,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.Club;
+import model.dispatch.CheckOutDispatch;
 import model.dispatch.InitialCashDrop;
+
+import javax.swing.JCheckBox;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -155,7 +158,361 @@ public class Panel_CICO extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			// First, everything that's in end vals listener. I'll clean this up later, put it all in a method. For now,
+			// tons of redundant code.
+			
+			float endTotal = 0;
+			
+			//Let's start adding this up...
+			 	if(textField_penniesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_penniesOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float penniesValue = (float) (Float.parseFloat(textField_penniesOut.getText())*.01); 
+				        endTotal += penniesValue;
+				        textArea_penniesOut.setText("$" +formatDecimal(penniesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of pennies!");
+				    }
+			 	}
+			 	
+			 	if(textField_nickelsOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_nickelsOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float nickelsValue = (float) (Float.parseFloat(textField_nickelsOut.getText())*.05); 
+				        endTotal += nickelsValue;
+				        textArea_nickelsOut.setText("$" +formatDecimal(nickelsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of nickels!");
+				    }
+			 	}
+			 	
+			 	if(textField_dimesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_dimesOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float dimesValue = (float) (Float.parseFloat(textField_dimesOut.getText())*.10); 
+				        endTotal += dimesValue;
+				        textArea_dimesOut.setText("$" +formatDecimal(dimesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of dimes!");
+				    }
+			 	}
+			 	
+			 	if(textField_quartersOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_quartersOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float quartersValue = (float) (Float.parseFloat(textField_quartersOut.getText())*.25); 
+				        endTotal += quartersValue;
+				        textArea_quartersOut.setText("$" +formatDecimal(quartersValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of quarters!");
+				    }
+			 	}
+			 	
+			 	if(textField_dollarsOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_dollarsOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float dollarsValue = (float) (Float.parseFloat(textField_dollarsOut.getText())*1.00); 
+				        endTotal += dollarsValue;
+				        textArea_dollarsOut.setText("$" +formatDecimal(dollarsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of single dollars!");
+				    }
+			 	}
+			 	
+			 	if(textField_twosOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_twosOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float twosValue = (float) (Float.parseFloat(textField_twosOut.getText())*2.00); 
+				        endTotal += twosValue;
+				        textArea_twosOut.setText("$" +formatDecimal(twosValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of twos!");
+				    }
+			 	}
+			 	
+			 	if(textField_fivesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_fivesOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float fivesValue = (float) (Float.parseFloat(textField_fivesOut.getText())*5.00); 
+				        endTotal += fivesValue;
+				        textArea_fivesOut.setText("$" +formatDecimal(fivesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of fives!");
+				    }
+			 	}
+			 	
+			 	if(textField_tensOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_tensOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float tensValue = (float) (Float.parseFloat(textField_tensOut.getText())*10.00); 
+				        endTotal += tensValue;
+				        textArea_tensOut.setText("$" +formatDecimal(tensValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of tens!");
+				    }
+			 	}
+			 	
+			 	if(textField_twentiesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_twentiesOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float twentiesValue = (float) (Float.parseFloat(textField_twentiesOut.getText())*20.00); 
+				        endTotal += twentiesValue;
+				        textArea_twentiesOut.setText("$" +formatDecimal(twentiesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of twenties!");
+				    }
+			 	}
+			 	
+			 	if(textField_fiftiesOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_fiftiesOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float fiftiesValue = (float) (Float.parseFloat(textField_fiftiesOut.getText())*50.00); 
+				        endTotal += fiftiesValue;
+				        textArea_fiftiesOut.setText("$" +formatDecimal(fiftiesValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of fifties!");
+				    }
+			 	}
+			 	
+			 	if(textField_hundredsOut.getText().compareTo("")==0){
+			 		endTotal += 0;
+			 		textArea_hundredsOut.setText("$0.00");
+			 	}else{
+					try { 
+				        float hundredsValue = (float) (Float.parseFloat(textField_hundredsOut.getText())*100.00); 
+				        endTotal += hundredsValue;
+				        textArea_hundredsOut.setText("$" +formatDecimal(hundredsValue));
+				    } catch(NumberFormatException e) { 
+				    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of hundreds!");
+				    }
+			 	}
+			 //^^^endTotal calculated, add ups all the cash textAreas on cash out side
+			 
+			 //Now, we manage the data we got from the server
+			
+			//Makes sure that our actualClub is updated to match with the server's
+			actualClub = findActualClub(clubSelected);
+			
+			//Update textAreas
+			
+			//Update initial ticket values
+			textArea_initialtickets.setText("" + (actualClub.getInitialTickets()));
+			//Update tickets values
+			textArea_issuedTickets.setText("" + (actualClub.getTickets()));
+			
+			//Calculate unsold tickets
+			int unsoldTickets = 0;
+			
+			if(textField_fullSheetsUnsold.getText().compareTo("")==0){
+		 		textField_fullSheetsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int fullSheets = (int) (Integer.parseInt(textField_fullSheetsUnsold.getText())*40); 
+			        unsoldTickets += fullSheets;
+			        textArea_fullSheetsOut.setText("" + fullSheets);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold full sheets!");
+			    }
+		 	}
+			if(textField_halfSheetsUnsold.getText().compareTo("")==0){
+		 		textField_halfSheetsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int halfSheets = (int) (Integer.parseInt(textField_halfSheetsUnsold.getText())*20); 
+			        unsoldTickets += halfSheets;
+			        textArea_halfSheetsOut.setText("" + halfSheets);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold half sheets!");
+			    }
+		 	}
+			if(textField_singleTicketsUnsold.getText().compareTo("")==0){
+		 		textField_singleTicketsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int singleTickets = (int) (Integer.parseInt(textField_singleTicketsUnsold.getText())); 
+			        unsoldTickets += singleTickets;
+			        textArea_singleTicketsOut.setText("" + singleTickets);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold single tickets!");
+			    }
+		 	}
+			
+			textArea_unsoldTickets.setText("" + unsoldTickets);
+			
+			textArea_soldTickets.setText("" + (actualClub.getInitialTickets()
+												+actualClub.getTickets()
+												-unsoldTickets));	// = initial+issued-(unsold tickets)
+			
+
+			textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f));
+			
+			//Update wristband values
+			textArea_initialWristbands.setText("" + actualClub.getInitialWristbands());
+			textArea_issuedWristbands.setText("" + (actualClub.getWristbands()));
+			
+			//DON'T FORGET TO DO WRISTBANDS TOO!!!
+			int unsoldWristbands = 0;
+			if(textField_wristbandsUnsold.getText().compareTo("")==0){
+		 		textField_wristbandsUnsold.setText("0");
+		 	}else{
+				try { 
+			        int wristbands = (int) (Integer.parseInt(textField_wristbandsUnsold.getText())); 
+			        unsoldWristbands += wristbands ;
+			        textArea_unsoldWristbands.setText("" + wristbands);
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid number of unsold wristbands!");
+			    }
+		 	}
+			
+			textArea_unsoldWristbands.setText(""+unsoldWristbands);
+			textArea_soldWristbands.setText("" + (actualClub.getInitialWristbands()
+													+actualClub.getWristbands()
+													-unsoldWristbands));
+			
+			//makes sure wrisbandMultiplier is correct.
+			wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
+			
+			//Get wristband multiplier, calculate final wristband sales
+			textArea_wristbandSales.setText("$" + ((actualClub.getInitialWristbands()
+													+actualClub.getWristbands()
+													-unsoldWristbands) * wristbandMultiplier));
+			
+			//textArea_ticketSales.setText("$" + formatDecimal((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f));
+			
+			//Expected Revenue
+			textArea_expectedRevenue.setText("$" + formatDecimal(((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f) 
+													+ ((actualClub.getInitialWristbands()
+															+actualClub.getWristbands()
+															-unsoldWristbands) * wristbandMultiplier)  ));
+		
+			//Update Cash Calculations
+			textArea_cashDrops.setText(actualClub.getCashdrops() + "");
+			textArea_cashDropsBy800.setText("$" + formatDecimal(actualClub.getCashdrops()*800));
+			
+			//Collected Cash Calculations
+			textArea_endTotal.setText("$" + formatDecimal(endTotal));
+			textArea_endTotalCalc.setText("$" + formatDecimal(endTotal));
+			textArea_finalTotal.setText(formatDecimal(
+										actualClub.getCashdrops()*800
+										-actualClub.getInitialCashDrop()
+										+endTotal
+										));
+			textArea_startTotal2.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
+			
+			
+			if (textArea_endTotalCalc.getText().compareTo("")!=0){
+				textArea_finalTotal.setText("$"+
+							(formatDecimal(actualClub.getCashdrops()*800
+									+endTotal - actualClub.getInitialCashDrop())	
+							));
+				
+	
+			}else{
+				textArea_finalTotal.setText(""+
+						(formatDecimal(actualClub.getCashdrops()*800)));
+			}
+			
+
+			//get credits
+			float credits = 0;
+			if(textField_credits.getText().compareTo("")==0){
+		 		textField_credits.setText("0");
+		 	}else{
+				try { 
+					credits = (float) Float.parseFloat(textField_credits.getText());
+			    } catch(NumberFormatException e) { 
+			    	JOptionPane.showMessageDialog(getParent(), "Please enter a valid value for credits!");
+			    }
+		 	}
+			float expectedEnding =( 	((actualClub.getInitialTickets()+actualClub.getTickets()-unsoldTickets)*0.50f) 
+										+ ((actualClub.getInitialWristbands()
+												+actualClub.getWristbands()
+												-unsoldWristbands) * wristbandMultiplier) )
+												- 
+												credits;
+			textArea_expectedEndingCash.setText("$" +formatDecimal(expectedEnding));	// expected revenue - credits
+			
+			float balance = (actualClub.getCashdrops()*800
+					+endTotal - actualClub.getInitialCashDrop()) - expectedEnding;
+			textArea_differences.setText("$" +formatDecimal(balance));			// collected - expected revenue - credits
+			
+			
+			
+			/*
+			public CheckOutDispatch(String source, String club,
+					float collected_revenue, int tickets_sold, int wristbands_sold,
+					float misc_credits_promos, boolean on_credit_terminal) {
+				super(source);
+				this.club = club;
+				this.collected_revenue = collected_revenue;
+				this.tickets_sold = tickets_sold;
+				this.wristbands_sold = wristbands_sold;
+				this.misc_credits_promos = misc_credits_promos;
+				this.on_credit_terminal = on_credit_terminal;
+			}
+			*/
+			
+			try {
+				float collected_revenue = actualClub.getCashdrops()*800 + endTotal - actualClub.getInitialCashDrop();
+				int tickets_sold = actualClub.getInitialTickets()
+										+actualClub.getTickets()
+										-unsoldTickets;
+				int wristbands_sold = actualClub.getInitialWristbands()
+										+actualClub.getWristbands()
+										-unsoldWristbands;
+				float misc_credits = credits;
+				boolean on_terminal = false;		//RIGHT NOW IT DEFAULTS TO FALSE, NOT SURE IF CRED TERMINAL DETERMINED AT DROP OR AT CHECKOUT
+				
+				int response = JOptionPane.showConfirmDialog(null, "Confirm cashier turn-in for " + actualClub.getClubName()+ " for \n" + 
+																		"Collected Revenue: "+  collected_revenue + "\n"
+																		+"Tickets Sold: " + tickets_sold + "\n"
+																		+"Wristbands Sold: " + wristbands_sold + "\n"
+																		+"Misc. Credits: " + misc_credits + "\n"
+																		+"On credit terminal: " + on_terminal, 
+						"Confirm", 
+						JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(getParent(), "Action Canceled,  values not logged");
+				} else if (response == JOptionPane.YES_OPTION) {
+				
+					try {
+						output.writeObject(new CheckOutDispatch(clientName, actualClub.getClubName(), collected_revenue, tickets_sold, 
+																								wristbands_sold, misc_credits, on_terminal));
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(getParent(), "Could not send cashier turn-in to server! (Dispatch.View.Panel_CICO: 177)");
+						e.printStackTrace();
+					}
+		
+					JOptionPane.showMessageDialog(getParent(), "Initial cashier turn-in sent to server");
+				} else if (response == JOptionPane.CLOSED_OPTION) {
+				System.out.println("JOptionPane closed");
+				}
+			
+			}catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(getParent(), "Number format exception from ConfirmCheckoutCashierListener");
+				e.printStackTrace();
+			}
 			
 		}
 		
@@ -1456,14 +1813,6 @@ public class Panel_CICO extends JPanel{
 		textArea_startTotal.setBackground(Color.WHITE);
 		add(textArea_startTotal);
 		
-		JTextArea txtrFinishHere = new JTextArea();
-		txtrFinishHere.setBounds(263, 73, 100, 22);
-		txtrFinishHere.setText("FINISH HERE ");
-		txtrFinishHere.setEditable(false);
-		txtrFinishHere.setColumns(10);
-		txtrFinishHere.setBackground(SystemColor.menu);
-		add(txtrFinishHere);
-		
 		JTextArea txtrCashIn = new JTextArea();
 		txtrCashIn.setBounds(263, 106, 100, 22);
 		txtrCashIn.setText("Cash In:");
@@ -2386,6 +2735,10 @@ public class Panel_CICO extends JPanel{
 		textField_credits.setBounds(657, 726, 103, 22);
 		textField_credits.addActionListener(endValsChangedListener);
 		add(textField_credits);
+		
+		JCheckBox chckbx_creditTerminal = new JCheckBox("Check if cashier is on a credit terminal");
+		chckbx_creditTerminal.setBounds(285, 74, 267, 23);
+		add(chckbx_creditTerminal);
 	}
 	
 	private ArrayList<String> getLocations() {

@@ -42,10 +42,11 @@
 <fullyQualifiedTypeName name="model.dispatch.AddActiveClub"/>
 <fullyQualifiedTypeName name="java.awt.ScrollPane"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
-<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 <fullyQualifiedTypeName name="View.Panel_Scheduler.RemoveCashierListener"/>
 <fullyQualifiedTypeName name="View.Panel_CICO.WristbandMultiplierListener"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="View.Panel_CICO.ClubSpinnerListener"/>
 <fullyQualifiedTypeName name="View.Panel_CICO.LocationSpinnerListener"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="View.Panel_CICO.ConfirmCheckOutCashierListener"/>
 </qualifiedTypeNameHistroy>
