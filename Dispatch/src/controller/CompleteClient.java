@@ -141,13 +141,13 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 //			out.writeObject(new AddActiveClub(userName,"Menace to Sobriety",0,0));	
 //			out.writeObject(new AddActiveClub(userName,"Kids Who Can't Read Good",0,0));
 //			out.writeObject(new AddActiveClub(userName,"Seal Walked Into A",0,0));
-			
-			out.writeObject(new AddActiveClub(userName,"Club0"));
-			out.writeObject(new AddActiveClub(userName,"Club1"));
-			out.writeObject(new AddActiveClub(userName,"Club2"));
-			out.writeObject(new AddActiveClub(userName,"Club3"));	
-			out.writeObject(new AddActiveClub(userName,"Club4"));
-			out.writeObject(new AddActiveClub(userName,"Club5"));
+//			
+//			out.writeObject(new AddActiveClub(userName,"Club0"));
+//			out.writeObject(new AddActiveClub(userName,"Club1"));
+//			out.writeObject(new AddActiveClub(userName,"Club2"));
+//			out.writeObject(new AddActiveClub(userName,"Club3"));	
+//			out.writeObject(new AddActiveClub(userName,"Club4"));
+//			out.writeObject(new AddActiveClub(userName,"Club5"));
 //			
 			new Thread(new ServerHandler()).start();
 			

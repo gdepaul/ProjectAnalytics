@@ -3,8 +3,8 @@ package model.dispatch;
 import server.DispatchServer;
 import exceptions.NullClubException;
 
-public class CheckOutDispatch extends Dispatch<DispatchServer>{
-	
+public class CheckOutDispatch extends Dispatch<DispatchServer> {
+
 	public CheckOutDispatch(String source, String club,
 			float collected_revenue, int tickets_sold, int wristbands_sold,
 			float misc_credits_promos, boolean on_credit_terminal) {
@@ -16,7 +16,7 @@ public class CheckOutDispatch extends Dispatch<DispatchServer>{
 		this.misc_credits_promos = misc_credits_promos;
 		this.on_credit_terminal = on_credit_terminal;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -27,16 +27,16 @@ public class CheckOutDispatch extends Dispatch<DispatchServer>{
 	private int wristbands_sold;
 	private float misc_credits_promos;
 	private boolean on_credit_terminal;
-	
-	
 
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException {
-		executeOn.checkout(club, collected_revenue, tickets_sold, wristbands_sold, misc_credits_promos, on_credit_terminal);
-		//executeOn.addTransaction(this);
+		executeOn.checkout(club, collected_revenue, tickets_sold,
+				wristbands_sold, misc_credits_promos, on_credit_terminal);
+		// executeOn.addTransaction(this);
 	}
+
 	public void undoDispatch() {
-		//Not sure if this is implemented as expected by server
+		// Not sure if this is implemented as expected by server
 		this.collected_revenue = 0;
 		this.tickets_sold = 0;
 		this.wristbands_sold = 0;
