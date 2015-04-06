@@ -15,6 +15,6 @@ public class ExportCommand  extends Dispatch<DispatchServer> {
 
 	@Override
 	public void execute(DispatchServer executeOn) throws NullClubException {
-		executeOn.export();
+		executeOn.export(this.getSource());
 	}
 }
