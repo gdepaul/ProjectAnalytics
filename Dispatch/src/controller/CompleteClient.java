@@ -193,7 +193,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 		tabbedPane.addTab("Dispatch", scrollPane_dispatch);
 		
 				// If userName is "ADMIN", add admin panel
-		if (userName.equals("ADMIN")){
+		if (userName.equals("ADMIN") || userName.equalsIgnoreCase("JJYOUNG")){
 			panel_ADMIN = new Panel_ADMIN(userName, out, activeClubs, availableFS, dispatchedFS);
 			panel_ADMIN.setPreferredSize(new Dimension(800,800));
 			scrollPane_ADMIN = new JScrollPane(panel_ADMIN);
