@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import server.DispatchServer;
@@ -28,51 +30,16 @@ public class Club implements Serializable {
 	private int initialWristbands;
 	private String location;
 	private List<Dispatch<DispatchServer>> transactions;
-	
-	public float getCollected_revenue() {
-		return collected_revenue;
-	}
-
-	public void setCollected_revenue(float collected_revenue) {
-		this.collected_revenue = collected_revenue;
-	}
-
-	public int getTickets_sold() {
-		return tickets_sold;
-	}
-
-	public void setTickets_sold(int tickets_sold) {
-		this.tickets_sold = tickets_sold;
-	}
-
-	public int getWristbands_sold() {
-		return wristbands_sold;
-	}
-
-	public void setWristbands_sold(int wristbands_sold) {
-		this.wristbands_sold = wristbands_sold;
-	}
-
-	public float getMisc_credits_promos() {
-		return misc_credits_promos;
-	}
-
-	public void setMisc_credits_promos(float misc_credits_promos) {
-		this.misc_credits_promos = misc_credits_promos;
-	}
-
-	public boolean isOn_credit_terminal() {
-		return on_credit_terminal;
-	}
-
-	public void setOn_credit_terminal(boolean on_credit_terminal) {
-		this.on_credit_terminal = on_credit_terminal;
-	}
+	private int wristbandPrice = 0;
+//--Checkout values
+	private float expected_ending_cash;
+	private float expected_revenue;
 	private float collected_revenue;
 	private int tickets_sold;
 	private int wristbands_sold;
 	private float misc_credits_promos;
 	private boolean on_credit_terminal;
+	private float diff;
 	
 	public Club(String clubName){
 		this.clubName = clubName;
@@ -106,7 +73,12 @@ public class Club implements Serializable {
 	public void putHalfSheet(int amount)  { this.halfsheets  += amount; }
 	public void putSingleTickets(int amount) {	this.singletickets+= amount;}
 	public void putWristbands(int num_wristbands) { wristbands+=num_wristbands; }
-	
+	public void setCollected_revenue(float collected_revenue) { this.collected_revenue = collected_revenue; }
+	public void setTickets_sold(int tickets_sold) { this.tickets_sold = tickets_sold; }
+	public void setWristbands_sold(int wristbands_sold) { this.wristbands_sold = wristbands_sold; }
+	public void setMisc_credits_promos(float misc_credits_promos) { this.misc_credits_promos = misc_credits_promos; }
+	public void setOn_credit_terminal(boolean on_credit_terminal) { this.on_credit_terminal = on_credit_terminal; }
+
 	public String getLocation()   { return location; }
 	public int getChangedrops()   { return changedrops; }
 	public int getCashdrops()     { return cashdrops; }
@@ -120,9 +92,32 @@ public class Club implements Serializable {
 	public int getInitialTickets(){ return initialTickets; }
 	public int getInitialWristbands() { return initialWristbands; }	
 	public List<Dispatch<DispatchServer>> getTransactions() { return this.transactions;	}
+	public boolean isOn_credit_terminal() { return on_credit_terminal; }
+	public float getCollected_revenue() { return collected_revenue; }
+	public int getTickets_sold() { return tickets_sold; }
+	public int getWristbands_sold() { return wristbands_sold; }
+	public float getMisc_credits_promos() { return misc_credits_promos; }
+	public float getDifference() { return this.diff; }
+	public float getExpectedEndingCash() { return this.expected_ending_cash; }
+	public float getExpectedRevenue() { return this.expected_revenue; }
 	
-	public void checkout(float collectedcash, int unsold_tickets, int unsold_wristbands, float misc_credits_promotions) {
-		
+	
+	public float checkout() {
+		Calendar cal = new GregorianCalendar();
+		if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			System.out.println("YES TODAY IS SUNDAY!");
+		}
+		if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)
+			wristbandPrice = 30;
+		else if(cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+			wristbandPrice = 20;
+		this.expected_revenue = (this.tickets_sold*.50f) + (this.wristbands_sold*this.wristbandPrice);
+		this.expected_ending_cash = this.expected_revenue - this.misc_credits_promos;
+		calculateDiff();
+		return this.expected_ending_cash;
+	}
+	private void calculateDiff() {
+		this.diff = this.collected_revenue - this.expected_ending_cash;
 	}
 	
 	public String totalTransactions(){
