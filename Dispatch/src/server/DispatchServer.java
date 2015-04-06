@@ -540,27 +540,28 @@ public class DispatchServer extends JFrame {
 		System.out.println("Booths:\n\t" + this.booths);
 		System.out.println("Clients:\n\t" + this.inputs.keySet());
 	}
-	public synchronized void export() {
+	public synchronized void export(String client) {
 		String directory = "exports/";
 		DateFormat dateFormat = new SimpleDateFormat("MMdd-HHmmss");
 		Date date = new Date(); 
 		
-		String filename = "exports_" + dateFormat.format(date) + ".xls"; 
+		String filename = "exports_" + dateFormat.format(date) + ".xls";
+		String fileContents = "";
 		try {
 			PrintWriter writer = new PrintWriter(filename, "UTF-8");
-			writer.println("Active Cashier\tTickets Sold\tWristbands Sold\tMisc Credits & Promos\tCredit Terminal");
-			for(Club ac : this.activeClubs.values()) {
-				writer.println(ac.getClubName() + "\t" + ac.getTickets_sold() + "\t" + ac.getWristbands_sold() + "\t" + ac.getMisc_credits_promos() + "\t" + ac.isOn_credit_terminal());
-			}
-			writer.println("Inactive Cashiers\tTickets Sold\tMisc Credits & Promos\tWristbands Sold");
+			
+			fileContents += "Inactive Cashiers\tTickets Sold\tMisc Credits & Promos\tWristbands Sold" + "\n";
 			for(Club ac : this.inactiveClubs.values()) {
-				writer.println(ac.getClubName() + "\t" + ac.getTickets_sold() + "\t" + ac.getWristbands_sold() + "\t" + ac.getMisc_credits_promos() + "\t" + ac.isOn_credit_terminal());
+				fileContents += ac.getClubName() + "\t" + ac.getTickets_sold() + "\t" + ac.getWristbands_sold() + "\t" + ac.getMisc_credits_promos() + "\t" + ac.isOn_credit_terminal() + "\n";
 			}
-			writer.println("Booth Locations\tCurrent Expected Revenue");
+			fileContents += "Booth Locations\tCurrent Expected Revenue" + "\n";
 			for(Booth b : this.booths.values()) {
-				writer.println(b.getName() + "\t" + b.getEarnings());
+				fileContents += b.getName() + "\t" + b.getEarnings() + "\n";
 			}
+			writer.print(fileContents);
 			writer.close();
+			System.out.print(fileContents);
+			this.outputs.get(client).writeObject(new ExportedFile("Server",fileContents));
 		} catch(Exception e) {
 			System.err.println("Error exporting");
 			e.printStackTrace();
