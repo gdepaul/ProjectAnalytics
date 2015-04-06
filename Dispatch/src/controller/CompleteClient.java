@@ -61,7 +61,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 					Object obj = in.readObject();
 					if(obj instanceof Dispatch<?>) { // See if we have a valid command
 						Dispatch<CompleteClient> command = (Dispatch<CompleteClient>)obj;
-						System.out.println("Update from server: " + command.getSource());
+						//System.out.println("Update from server: " + command.getSource());
 						command.execute(CompleteClient.this);
 					}	
 				} catch (Exception e) {
@@ -159,7 +159,6 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 	
 	// Create the gui in the client once signed in
 	private void setupGUI() {
-		addWindowStateListener(this);
 		setTitle("SpringFlingSoft 2015 - User: " + userName);
 		setSize(800,800);
 		setBackground(Color.gray);
@@ -193,7 +192,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 		tabbedPane.addTab("Dispatch", scrollPane_dispatch);
 		
 				// If userName is "ADMIN", add admin panel
-		if (userName.equals("ADMIN") || userName.equalsIgnoreCase("JJYOUNG")){
+		if (userName.equals("ADMIN") || userName.equals("JJYOUNG")){
 			panel_ADMIN = new Panel_ADMIN(userName, out, activeClubs, availableFS, dispatchedFS);
 			panel_ADMIN.setPreferredSize(new Dimension(800,800));
 			scrollPane_ADMIN = new JScrollPane(panel_ADMIN);
@@ -208,7 +207,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 		// Finally add topPanel
 		getContentPane().add(topPanel);
 		
-		
+		addWindowStateListener(this);
 		this.setVisible(true);	
 	}	
 		
