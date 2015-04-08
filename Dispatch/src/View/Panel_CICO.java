@@ -680,7 +680,7 @@ public class Panel_CICO extends JPanel{
 				float startTotalf = (float) Float.parseFloat(textArea_startTotal.getText().substring(1));
 				int initialTickets = (Integer.parseInt(textField_fullSheetsIn.getText().toString()) * 40)+
 									(Integer.parseInt(textField_halfSheetsIn.getText().toString()) * 20)+
-										(Integer.parseInt(textField_singleTicketsIn.getText().toString()) * 20);
+										(Integer.parseInt(textField_singleTicketsIn.getText().toString()));
 				int initialWristbands = Integer.parseInt(textField_wristbandsIn.getText());
 				location = spinner_locations.getValue().toString();
 				
