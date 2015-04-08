@@ -2739,6 +2739,8 @@ public class Panel_CICO extends JPanel{
 		JCheckBox chckbx_creditTerminal = new JCheckBox("Check if cashier is on a credit terminal");
 		chckbx_creditTerminal.setBounds(285, 74, 267, 23);
 		add(chckbx_creditTerminal);
+		chckbx_creditTerminal.setVisible(false);
+		chckbx_creditTerminal.setEnabled(false);
 	}
 	
 	private ArrayList<String> getLocations() {

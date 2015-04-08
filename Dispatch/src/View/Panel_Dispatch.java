@@ -3,6 +3,8 @@ package View;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -124,6 +126,22 @@ public class Panel_Dispatch extends JPanel {
 			availFS.addElement(supe);
 		}
 		JList<String> availableFSList = new JList<String>(availFS);
+		availableFSList.addMouseListener(new MouseAdapter() {
+		    @SuppressWarnings("unchecked")
+			public void mouseClicked(MouseEvent evt) {
+		        JList<String> list = (JList<String>)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		            if (index >= 0) {
+		                Object o = list.getModel().getElementAt(index);
+		                //System.out.println("Double-clicked on: " + o.toString());
+		                spinner_fieldSupes.setValue(o.toString());
+		              }
+		        }
+		    }
+		});
 		scrollPane_availableFS = new JScrollPane(availableFSList);
 		scrollPane_availableFS.setBounds(342, 94, 309, 236);
 		add(scrollPane_availableFS);
@@ -135,6 +153,22 @@ public class Panel_Dispatch extends JPanel {
 			dispatchedFS.addElement(supe);
 		}
 		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
+		dispatchedFSList.addMouseListener(new MouseAdapter() {
+		    @SuppressWarnings("unchecked")
+			public void mouseClicked(MouseEvent evt) {
+		        JList<String> list = (JList<String>)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		            if (index >= 0) {
+		                Object o = list.getModel().getElementAt(index);
+		                //System.out.println("Double-clicked on: " + o.toString());
+		                spinner_freeUp.setValue(o.toString());
+		              }
+		        }
+		    }
+		});
 		scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
 		scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
 		add(scrollPane_dispatchedFS);
@@ -407,6 +441,22 @@ public class Panel_Dispatch extends JPanel {
 			availFS.addElement(supe);
 		}
 		JList<String> availableFSList = new JList<String>(availFS);
+		availableFSList.addMouseListener(new MouseAdapter() {
+		    @SuppressWarnings("unchecked")
+			public void mouseClicked(MouseEvent evt) {
+		        JList<String> list = (JList<String>)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		            if (index >= 0) {
+		                Object o = list.getModel().getElementAt(index);
+		                //System.out.println("Double-clicked on: " + o.toString());
+		                spinner_fieldSupes.setValue(o.toString());
+		              }
+		        }
+		    }
+		});
 		scrollPane_availableFS = new JScrollPane(availableFSList);
 		scrollPane_availableFS.setBounds(342, 94, 309, 236);
 		add(scrollPane_availableFS);
@@ -417,6 +467,22 @@ public class Panel_Dispatch extends JPanel {
 			dispatchedFS.addElement(supe);
 		}
 		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
+		dispatchedFSList.addMouseListener(new MouseAdapter() {
+		    @SuppressWarnings("unchecked")
+			public void mouseClicked(MouseEvent evt) {
+		        JList<String> list = (JList<String>)evt.getSource();
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		            if (index >= 0) {
+		                Object o = list.getModel().getElementAt(index);
+		                //System.out.println("Double-clicked on: " + o.toString());
+		                spinner_freeUp.setValue(o.toString());
+		              }
+		        }
+		    }
+		});
 		scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
 		scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
 		add(scrollPane_dispatchedFS);
