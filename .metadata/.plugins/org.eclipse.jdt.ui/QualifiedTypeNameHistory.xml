@@ -49,4 +49,7 @@
 <fullyQualifiedTypeName name="View.Panel_CICO.LocationSpinnerListener"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 <fullyQualifiedTypeName name="View.Panel_CICO.ConfirmCheckOutCashierListener"/>
+<fullyQualifiedTypeName name="model.dispatch.CheckOutDispatch"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 </qualifiedTypeNameHistroy>

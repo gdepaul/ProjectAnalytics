@@ -89,11 +89,11 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 		// Open connection to server
 //		// ask the user for a host, port, and user name
 		
-//		String host = JOptionPane.showInputDialog("Host address:");
-//		String port = JOptionPane.showInputDialog("Host port:");
+		String host = JOptionPane.showInputDialog("Host address:");
+		String port = JOptionPane.showInputDialog("Host port:");
 		
-		String host = "LOCALHOST";
-		String port = "9004";
+//		String host = "LOCALHOST";
+//		String port = "9004";
 		userName = JOptionPane.showInputDialog("User name:");
 		
 		System.out.println("host: " + host + "\n" + 
