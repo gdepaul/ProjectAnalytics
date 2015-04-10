@@ -155,7 +155,9 @@ public class Panel_Scheduler extends JPanel{
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
 			addEmployee = textField_name.getText();
+			
 			String action = spinner_roles.getValue().toString();
 			
 			if (action.compareTo("Field Supervisor")==0){
@@ -188,31 +190,45 @@ public class Panel_Scheduler extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			removeFieldSupe = spinner_removeFS.getValue().toString();
-//			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
-//														"removeEmployee: " + removeFieldSupe);
-			int response = JOptionPane.showConfirmDialog(null, "Do you want to remove " + 
-					removeFieldSupe + 
-					" from the active list of field supervisor teams?", 
-					"Confirm", 
-					JOptionPane.YES_NO_OPTION, 
-					JOptionPane.QUESTION_MESSAGE);
-			if (response == JOptionPane.NO_OPTION) {
-			JOptionPane.showMessageDialog(getParent(), "Remove Field Supervisor team Action Canceled");
-			} else if (response == JOptionPane.YES_OPTION) {
+			String check = spinner_removeFS.getValue().toString();
 			
-				try {
-					output.writeObject(new RemoveFieldSupe(clientName, removeFieldSupe));
-				} catch (IOException e) {
-					JOptionPane.showMessageDialog(getParent(), "Could not send remove to server! (224)");
-					e.printStackTrace();
-				}
-	
-				JOptionPane.showMessageDialog(getParent(), removeFieldSupe + "removed from active field supervisor teams.");
-			} else if (response == JOptionPane.CLOSED_OPTION) {
-			System.out.println("JOptionPane closed");
+			if (!availableFS.contains(check) && (!dispatchedFS.contains(check))){
+				JOptionPane.showMessageDialog(getParent(), "'"+check+"' does not exist! Remove field supervisor action canceled!");
+			} 
+			else if(!availableFS.contains(check) && (dispatchedFS.contains(check)) ){
+				JOptionPane.showMessageDialog(getParent(), "'"+check+"' is still dispatched! Remove field supervisor action canceled!");
+				
 			}
-			
+			else if (availableFS.contains(check)){
+				removeFieldSupe = check;
+				
+	//			this.activeCashiers = cashiers;
+	//			this.availableFS = available;
+	//			this.dispatchedFS = dispatched;
+	//			JOptionPane.showMessageDialog(getParent(), "Remove Employee Button!\n"+
+	//														"removeEmployee: " + removeFieldSupe);
+				int response = JOptionPane.showConfirmDialog(null, "Do you want to remove " + 
+						removeFieldSupe + 
+						" from the active list of field supervisor teams?", 
+						"Confirm", 
+						JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(getParent(), "Remove Field Supervisor team Action Canceled");
+				} else if (response == JOptionPane.YES_OPTION) {
+				
+					try {
+						output.writeObject(new RemoveFieldSupe(clientName, removeFieldSupe));
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(getParent(), "Could not send remove to server! (224)");
+						e.printStackTrace();
+					}
+		
+					JOptionPane.showMessageDialog(getParent(), removeFieldSupe + "removed from active field supervisor teams.");
+				} else if (response == JOptionPane.CLOSED_OPTION) {
+				System.out.println("JOptionPane closed");
+				}
+			}
 		}
 	}
 	
@@ -223,6 +239,7 @@ public class Panel_Scheduler extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
 			removeCashier = spinner_removeCashier.getValue().toString();
 			int response = JOptionPane.showConfirmDialog(null, "Do you want to remove " + 
 																		removeCashier + 

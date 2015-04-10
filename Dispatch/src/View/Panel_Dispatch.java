@@ -244,7 +244,7 @@ public class Panel_Dispatch extends JPanel {
 						//DFSSelected;clubSelected;
 						//Dispatch field supe
 						int dialogButton = JOptionPane.OK_OPTION;
-						int option = JOptionPane.showConfirmDialog(null, "Send " + DFSSelected + " with " + clientName +" for initial drop delivery?","Confirm?",dialogButton);
+						int option = JOptionPane.showConfirmDialog(null, "Send " + DFSSelected + " with " + cashierSelected +" for initial drop delivery?","Confirm?",dialogButton);
 						if (option==JOptionPane.OK_OPTION){
 							try {
 								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));

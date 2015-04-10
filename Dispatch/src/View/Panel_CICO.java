@@ -26,6 +26,7 @@ import javax.swing.event.ChangeListener;
 import model.Club;
 import model.dispatch.CheckOutDispatch;
 import model.dispatch.InitialCashDrop;
+import model.dispatch.RemoveClub;
 
 import javax.swing.JCheckBox;
 
@@ -499,6 +500,7 @@ public class Panel_CICO extends JPanel{
 					try {
 						output.writeObject(new CheckOutDispatch(clientName, actualClub.getClubName(), collected_revenue, tickets_sold, 
 																								wristbands_sold, misc_credits, on_terminal));
+						output.writeObject(new RemoveClub(clientName, actualClub.getClubName()));
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(getParent(), "Could not send cashier turn-in to server! (Dispatch.View.Panel_CICO: 177)");
 						e.printStackTrace();
@@ -1401,7 +1403,9 @@ public class Panel_CICO extends JPanel{
 			
 			JScrollPane scrollpane = (JScrollPane) getParent().getParent();
 			 final JScrollBar vertical = scrollpane.getVerticalScrollBar();
-		        final int value = vertical.getValue();
+			 final JScrollBar horizontal = scrollpane.getHorizontalScrollBar();
+		        final int vertValue = vertical.getValue();
+		        final int horizValue = horizontal.getValue();
 
 			clearFields();
 			clubSelected = spinner_clubSelection_1.getValue().toString();
@@ -1511,7 +1515,8 @@ public class Panel_CICO extends JPanel{
 	        {
 	            public void run()
 	            {
-	                vertical.setValue( value );
+	                vertical.setValue( vertValue );
+	                horizontal.setValue(horizValue);
 	            }
 	        });
 			

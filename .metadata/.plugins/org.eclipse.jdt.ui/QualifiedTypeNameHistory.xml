@@ -52,4 +52,5 @@
 <fullyQualifiedTypeName name="model.dispatch.CheckOutDispatch"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
+<fullyQualifiedTypeName name="model.dispatch.RemoveClub"/>
 </qualifiedTypeNameHistroy>
