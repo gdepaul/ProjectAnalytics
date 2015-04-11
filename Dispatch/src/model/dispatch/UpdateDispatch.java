@@ -1,7 +1,9 @@
 package model.dispatch;
 
+import java.util.HashMap;
 import java.util.List;
 
+import model.Booth;
 import model.Club;
 import controller.CompleteClient;
 

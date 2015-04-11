@@ -24,10 +24,10 @@ import javax.swing.JTabbedPane;
 
 import model.Booth;
 import model.Club;
-import model.dispatch.AddActiveClub;
-import model.dispatch.DisconnectDispatch;
-import model.dispatch.Dispatch;
-import model.dispatch.DispatchAll;
+import model.dispatch.*;
+
+import java.util.HashMap;
+
 import View.Panel_ADMIN;
 import View.Panel_CICO;
 import View.Panel_Dispatch;
@@ -40,6 +40,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 	private JPanel panel_CICO;
 	private JPanel panel_dispatch;
 	private JPanel panel_ADMIN;
+	private HashMap<String, Booth> booths;
 	private List<Club> activeClubs;
 	private List<String> availableFS;
 	private	List<String> dispatchedFS;
@@ -230,8 +231,7 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 	public void update(List<Club> clubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.activeClubs = clubs;
 		this.availableFS = availableFS;
-		this.dispatchedFS = dispatchedFS;
-		
+		this.dispatchedFS = dispatchedFS;		
 		/*	
 		System.out.println(clubs);
 		System.out.println(availableFS);

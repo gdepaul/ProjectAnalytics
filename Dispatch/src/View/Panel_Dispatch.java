@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -25,6 +26,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.Club;
+import model.Booth;
 import model.dispatch.DispatchAll;
 import model.dispatch.DispatchFieldSupe;
 import model.dispatch.FreeFieldSupe;
@@ -42,7 +44,6 @@ public class Panel_Dispatch extends JPanel {
 	
 	//Widgets
 	private JSpinner spinner_fieldSupes;
-	private JSpinner spinner_clubs;
 	private JSpinner spinner_action;
 	private JSpinner spinner_freeUp;
 	private JScrollPane scrollPane_availableFS;
@@ -87,21 +88,7 @@ public class Panel_Dispatch extends JPanel {
 		}
 		
 		
-		//Remove, update, replace spinner_clubs
-		remove(spinner_clubs);
-		ArrayList<String> clubsArray = getClubs();
-		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
-		spinner_clubs = new JSpinner(clubsModel);
-		spinner_clubs.setBounds(163, 127, 157, 20);
-		spinner_clubs.addChangeListener(new ClubSpinnerListener());
-		add(spinner_clubs);
-		
-		if (clubsArray.contains(cashierSelectedReset)){
-			spinner_clubs.setValue(cashierSelectedReset);
-		}else {
-		cashierSelected = spinner_clubs.getValue().toString();
-		cashierSelectedReset = cashierSelected;
-		}
+
 		
 		//Remove, update, replace spinner_freeUp
 		remove(spinner_freeUp);
@@ -204,19 +191,6 @@ public class Panel_Dispatch extends JPanel {
 	}
 	
 	/**
-	 * ClubSelected Spinner Listener
-	 */
-	private class ClubSpinnerListener implements ChangeListener{
-
-		@Override
-		public void stateChanged(ChangeEvent arg0) {
-			cashierSelected = spinner_clubs.getValue().toString();
-			cashierSelectedReset = cashierSelected;
-		}
-		
-	}
-	
-	/**
 	 * ActionSpinner Listener
 	 */
 	private class ActionSpinnerListener implements ChangeListener{
@@ -240,94 +214,11 @@ public class Panel_Dispatch extends JPanel {
 				
 				// Process actionSelected on Club
 				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
-					if (actionSelected.compareTo("InitialCashBox")==0){
-						//DFSSelected;clubSelected;
-						//Dispatch field supe
-						int dialogButton = JOptionPane.OK_OPTION;
-						int option = JOptionPane.showConfirmDialog(null, "Send " + DFSSelected + " with " + cashierSelected +" for initial drop delivery?","Confirm?",dialogButton);
-						if (option==JOptionPane.OK_OPTION){
-							try {
-								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-							} catch (IOException e) {
-								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 193");
-								e.printStackTrace();
-							}
-						} else {
-							JOptionPane.showMessageDialog(getParent(), "Initial Cash drop delivery canceled.");
-						}
-					}
-					if (actionSelected.compareTo("Dispatch")==0){
-						int addCashDrops=0;
-						int addChangeDrops=0;
-						int addFullSheets=0;
-						int addHalfSheets=0;
-						int addSingleTickets=0;
-						int addWristbands=0;
-						
-						JTextField tf_cashDrops = new JTextField();
-							tf_cashDrops.setText("0");
-						JTextField tf_changeDrops = new JTextField();
-							tf_changeDrops.setText("0");
-						JTextField tf_addFullSheets = new JTextField();
-							tf_addFullSheets.setText("0");
-						JTextField tf_addHalfSheets = new JTextField();
-							tf_addHalfSheets.setText("0");
-						JTextField tf_addSingletickets = new JTextField();
-							tf_addSingletickets.setText("0");
-						JTextField tf_addWristbands = new JTextField();
-							tf_addWristbands.setText("0");
-						
-						Object[] getDispatch = {
-								"Cash Drops:", tf_cashDrops,
-								"Change Drops:", tf_changeDrops,
-								"Full Sheets:", tf_addFullSheets,
-								"Half Sheets:", tf_addHalfSheets,
-								"Single Tickets:", tf_addSingletickets,
-								"Wristbands:", tf_addWristbands
-								};
-						
-						int option = JOptionPane.showConfirmDialog(getParent(), getDispatch, "Enter all dispatch values", JOptionPane.OK_CANCEL_OPTION);
-						
-						if (option==JOptionPane.OK_OPTION){
-							try{
-							addCashDrops = Integer.parseInt(tf_cashDrops.getText());
-							addChangeDrops = Integer.parseInt(tf_changeDrops.getText());
-							addFullSheets = Integer.parseInt(tf_addFullSheets.getText());
-							addHalfSheets = Integer.parseInt(tf_addHalfSheets.getText());
-							addSingleTickets = Integer.parseInt(tf_addSingletickets.getText());
-							addWristbands = Integer.parseInt(tf_addWristbands.getText());
-							if ( addCashDrops>=0 && 
-									addChangeDrops>=0 &&
-									addFullSheets>=0 &&
-									addHalfSheets>=0 &&
-									addSingleTickets>=0 &&
-									addWristbands>=0){
-								JOptionPane.showMessageDialog(getParent(), "Dispatching "+DFSSelected + "\n" +
-																			"to " + cashierSelected + "!\n" + 
-									"Cash Drops: " + addCashDrops + "\n" +
-									"Change Drops: " + addChangeDrops + "\n" +
-									"Full Sheets: " + addFullSheets + "\n" +
-									"Half Sheets: " + addHalfSheets + "\n" +
-									"Single Tickets: " + addSingleTickets + "\n" +
-									"Wristbands: " + addWristbands);
-								
-								//Execute
-								output.writeObject(new DispatchAll(clientName, cashierSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets, addWristbands));
-								//Dispatch field supe
-								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-								
-							}else{
-								JOptionPane.showMessageDialog(getParent(), "Negative values not permitted.");
-							}
-							
-							} catch (NumberFormatException e){
-								JOptionPane.showMessageDialog(getParent(), "Enter valid number values please!\n(Number Format Exception)");
-								e.printStackTrace();
-							} catch (IOException e) {
-								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 265");
-								e.printStackTrace();
-							}
-						}
+					try {
+						output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			
@@ -342,7 +233,7 @@ public class Panel_Dispatch extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			JOptionPane.showMessageDialog(getParent(), "" +dispatchedSelected + " returned to active list.");
+			//JOptionPane.showMessageDialog(getParent(), "" +dispatchedSelected + " returned to active list.");
 			try {
 				output.writeObject(new FreeFieldSupe(clientName, dispatchedSelected));
 			}catch(IOException e){
@@ -367,8 +258,7 @@ public class Panel_Dispatch extends JPanel {
 		this.output = out;
 		activeClubs = activeClubs2;
 		availableFS = availableFS2;
-		dispatchedFS = dispatchedFS2;
-		
+		dispatchedFS = dispatchedFS2;		
 		DFSSelectedReset = "(no value)";
 		cashierSelectedReset = "(no value)";
 		actionSelectedReset = "(no value)";
@@ -385,13 +275,15 @@ public class Panel_Dispatch extends JPanel {
 		JTextArea txtrCashier = new JTextArea();
 		txtrCashier.setBackground(SystemColor.control);
 		txtrCashier.setBounds(35, 133, 100, 28);
-		txtrCashier.setText("   Cashier:");
+		txtrCashier.setText("   Booth:");
+		txtrCashier.setVisible(false);
 		add(txtrCashier);
 		
 		JTextArea textArea_action = new JTextArea();
 		textArea_action.setBackground(SystemColor.control);
 		textArea_action.setBounds(35, 172, 100, 28);
 		textArea_action.setText("    Action:");
+		textArea_action.setVisible(false);
 		add(textArea_action);
 		
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
@@ -402,21 +294,16 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_fieldSupes);
 		DFSSelected = spinner_fieldSupes.getValue().toString();
 		
-		ArrayList<String> clubsArray = getClubs();
-		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
-		spinner_clubs = new JSpinner(clubsModel);
-		spinner_clubs.setBounds(163, 127, 157, 20);
-		spinner_clubs.addChangeListener(new ClubSpinnerListener());
-		add(spinner_clubs);
-		cashierSelected = spinner_clubs.getValue().toString();
+
 		
-		String[] actionArray = {"InitialCashBox","Dispatch"};
+		String[] actionArray = {"InitialCashBox","Dispatch", "Other"};
 		SpinnerListModel actionModel = new SpinnerListModel(actionArray);		
 		spinner_action = new JSpinner(actionModel);
 		spinner_action.setBounds(163, 162, 157, 20);
 		spinner_action.addChangeListener(new ActionSpinnerListener());
 		add(spinner_action);
 		spinner_action.setValue("Dispatch");
+		spinner_action.setVisible(false);
 		actionSelected = spinner_action.getValue().toString();
 		
 		/*
@@ -427,7 +314,7 @@ public class Panel_Dispatch extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnDispatch.setBounds(35, 260, 285, 70);
+		btnDispatch.setBounds(35, 133, 285, 70);
 		add(btnDispatch);
 		
 		DispatchListener dispatchListener = new DispatchListener();
@@ -491,7 +378,7 @@ public class Panel_Dispatch extends JPanel {
 		 * 	MAKE AVAILABLE BUTTON AND LISTENER
 		 */
 		JButton btnMakeAvailable = new JButton("Make Available");
-		btnMakeAvailable.setBounds(35, 524, 277, 44);
+		btnMakeAvailable.setBounds(35, 524, 277, 70);
 		add(btnMakeAvailable);
 		
 		AvailableListener availableListener = new AvailableListener();

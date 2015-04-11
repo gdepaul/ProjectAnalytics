@@ -25,6 +25,8 @@ import javax.swing.event.ChangeListener;
 
 import model.Club;
 import model.dispatch.CheckOutDispatch;
+import model.dispatch.DispatchAll;
+import model.dispatch.DispatchFieldSupe;
 import model.dispatch.InitialCashDrop;
 import model.dispatch.RemoveClub;
 
@@ -137,6 +139,8 @@ public class Panel_CICO extends JPanel{
 	
 	private JButton btn_initialCashDrop;
 	
+	private JButton btn_drops;
+	
 	//Listeners
 	private StartValsChangedListener startValsChangedListener;
 	private EndValsChangedListener endValsChangedListener;
@@ -150,8 +154,94 @@ public class Panel_CICO extends JPanel{
 	private String clubSelected;
 	private Club actualClub;
 	
-	
-	
+	/**
+	 *	DispatchButton Listener
+	 *
+	 */
+	private class DispatchListener implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+				
+				// Process actionSelected on Club
+				if (clubSelected.compareTo("")!=0){
+
+						int addCashDrops=0;
+						int addChangeDrops=0;
+						int addFullSheets=0;
+						int addHalfSheets=0;
+						int addSingleTickets=0;
+						int addWristbands=0;
+						
+						JTextField tf_cashDrops = new JTextField();
+							tf_cashDrops.setText("0");
+						JTextField tf_changeDrops = new JTextField();
+							tf_changeDrops.setText("0");
+						JTextField tf_addFullSheets = new JTextField();
+							tf_addFullSheets.setText("0");
+						JTextField tf_addHalfSheets = new JTextField();
+							tf_addHalfSheets.setText("0");
+						JTextField tf_addSingletickets = new JTextField();
+							tf_addSingletickets.setText("0");
+						JTextField tf_addWristbands = new JTextField();
+							tf_addWristbands.setText("0");
+						
+						Object[] getDispatch = {
+								"Cash Drops:", tf_cashDrops,
+								"Change Drops:", tf_changeDrops,
+								"Full Sheets:", tf_addFullSheets,
+								"Half Sheets:", tf_addHalfSheets,
+								"Single Tickets:", tf_addSingletickets,
+								"Wristbands:", tf_addWristbands
+								};
+						
+						int option = JOptionPane.showConfirmDialog(getParent(), getDispatch, "Enter all dispatch values", JOptionPane.OK_CANCEL_OPTION);
+						
+						if (option==JOptionPane.OK_OPTION){
+							try{
+							addCashDrops = Integer.parseInt(tf_cashDrops.getText());
+							addChangeDrops = Integer.parseInt(tf_changeDrops.getText());
+							addFullSheets = Integer.parseInt(tf_addFullSheets.getText());
+							addHalfSheets = Integer.parseInt(tf_addHalfSheets.getText());
+							addSingleTickets = Integer.parseInt(tf_addSingletickets.getText());
+							addWristbands = Integer.parseInt(tf_addWristbands.getText());
+							if ( addCashDrops>=0 && 
+									addChangeDrops>=0 &&
+									addFullSheets>=0 &&
+									addHalfSheets>=0 &&
+									addSingleTickets>=0 &&
+									addWristbands>=0){
+								JOptionPane.showMessageDialog(getParent(), "Adding Cash Drop Ticket/ Field Support Form values" +
+																			"to " + clubSelected + "!\n" + 
+									"Cash Drops: " + addCashDrops + "\n" +
+									"Change Drops: " + addChangeDrops + "\n" +
+									"Full Sheets: " + addFullSheets + "\n" +
+									"Half Sheets: " + addHalfSheets + "\n" +
+									"Single Tickets: " + addSingleTickets + "\n" +
+									"Wristbands: " + addWristbands);
+								
+								//Execute
+								output.writeObject(new DispatchAll(clientName, clubSelected, addCashDrops, addChangeDrops, addFullSheets, addHalfSheets, addSingleTickets, addWristbands));
+								//Dispatch field supe
+							//	output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+								
+							}else{
+								JOptionPane.showMessageDialog(getParent(), "Negative values not permitted.");
+							}
+							
+							} catch (NumberFormatException e){
+								JOptionPane.showMessageDialog(getParent(), "Enter valid number values please!\n(Number Format Exception)");
+								e.printStackTrace();
+							} catch (Exception e) {
+								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 265");
+								e.printStackTrace();
+							}
+						}
+					
+				}
+			
+		}
+	}
 	/**
 	 *  Listener for the cashier checkout button
 	 */
@@ -1346,6 +1436,7 @@ public class Panel_CICO extends JPanel{
 		//if the club already has an initial cashdrop, turn off button and text fields...
 		
 		if (actualClub.getInitialCashDrop() !=0.0){
+			btn_drops.setEnabled(true);
 			btn_initialCashDrop.setEnabled(false);
 			btn_initialCashDrop.setText("INITIAL CASH DROP DELIVERED!");
 			textField_penniesIn.setEnabled(false);
@@ -1413,6 +1504,7 @@ public class Panel_CICO extends JPanel{
 			//if the club already has an initial cashdrop, turn off button and text fields...
 			
 			if (actualClub.getInitialCashDrop()!=0.0){
+				btn_drops.setEnabled(true);
 				btn_initialCashDrop.setEnabled(false);
 				btn_initialCashDrop.setText("INITIAL CASH DROP DELIVERED!");
 				textField_penniesIn.setEnabled(false);
@@ -1437,6 +1529,7 @@ public class Panel_CICO extends JPanel{
 				textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 				
 			} else{ // else, make sure, they're on...
+				btn_drops.setEnabled(false);
 				btn_initialCashDrop.setEnabled(true);
 				btn_initialCashDrop.setText("CONFIRM INITIAL CASH DROP");
 				textField_penniesIn.setEnabled(true);
@@ -1901,6 +1994,12 @@ public class Panel_CICO extends JPanel{
 		textArea_11.setEditable(false);
 		textArea_11.setBackground(SystemColor.menu);
 		add(textArea_11);
+		
+		btn_drops = new JButton("Add Drop to Cashier");
+		btn_drops.setEnabled(false);
+		btn_drops.setBounds(410,23,150,40);
+		btn_drops.addActionListener(new DispatchListener());
+		add(btn_drops);
 		
 		btn_initialCashDrop = new JButton("CONFIRM INITIAL CASH/TICKET DROP");
 		btn_initialCashDrop.setBounds(10, 685, 252, 40);
