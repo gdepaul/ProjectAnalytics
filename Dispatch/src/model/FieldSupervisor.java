@@ -16,6 +16,8 @@ public class FieldSupervisor implements Serializable {
 	private Date timein;
 	private Date timeout;
 	private boolean dispatched;
+	private String action;
+	private String location;
 	
 	public FieldSupervisor(String name) {
 		this.name = name;
@@ -39,7 +41,19 @@ public class FieldSupervisor implements Serializable {
 	
 	public String printTimeIn()  { return formatter.format(timein);  }
 	public String printTimeout() { return formatter.format(timeout); }
+
+	public void actionLocation(String actionSelected, String locationSelected) {
+		this.action = actionSelected;
+		this.location = locationSelected;
+	}
 	
+	public String getAction(){
+		return action;
+	}
+	
+	public String getLocation(){
+		return location;
+	}
 	
 }
 

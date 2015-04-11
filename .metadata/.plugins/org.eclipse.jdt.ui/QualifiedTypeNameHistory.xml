@@ -53,4 +53,7 @@
 <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="model.dispatch.RemoveClub"/>
+<fullyQualifiedTypeName name="model.Booth"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap"/>
 </qualifiedTypeNameHistroy>

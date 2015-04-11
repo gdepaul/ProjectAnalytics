@@ -14,22 +14,24 @@ import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.Club;
+import model.Booth;
+import model.dispatch.DispatchAll;
 import model.dispatch.DispatchFieldSupe;
 import model.dispatch.FreeFieldSupe;
 
-public class Panel_Dispatch extends JPanel {
+public class Panel_Dispatch_backup extends JPanel {
 	/**
 	 * 
 	 */
@@ -42,33 +44,24 @@ public class Panel_Dispatch extends JPanel {
 	
 	//Widgets
 	private JSpinner spinner_fieldSupes;
+	private JSpinner spinner_clubs;
+	private JSpinner spinner_action;
 	private JSpinner spinner_freeUp;
-	private JSpinner spinner_location;
 	private JScrollPane scrollPane_availableFS;
 	private JScrollPane scrollPane_dispatchedFS;
-	private JSpinner spinner_action;
 	
 
 	//for spinner values
 	private String cashierSelected;
-	//private String actionSelected;
+	private String actionSelected;
 	private String DFSSelected;
 	private String dispatchedSelected;
 	
 	//Selected values to reset during updates
 	private String DFSSelectedReset;
 	private String cashierSelectedReset;
-//	private String actionSelectedReset;
-	private String dispatchedSelectedReset;
-	private String locationSelected;
-	private String locationSelectedReset;
-	private String actionSelected;
 	private String actionSelectedReset;
-	
-	//Hashtables for hacky solution to keep track of where supes are and what they're doing
-	private HashMap<String, String> hash_fs_actions;
-	private HashMap<String, String> hash_fs_locations;
-	
+	private String dispatchedSelectedReset;
 	
 	/**
 	 *  UpdateLists method
@@ -95,6 +88,22 @@ public class Panel_Dispatch extends JPanel {
 			DFSSelectedReset = DFSSelected;
 		}
 		
+		
+		//Remove, update, replace spinner_clubs
+		remove(spinner_clubs);
+		ArrayList<String> clubsArray = getClubs();
+		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
+		spinner_clubs = new JSpinner(clubsModel);
+		spinner_clubs.setBounds(163, 127, 157, 20);
+		spinner_clubs.addChangeListener(new ClubSpinnerListener());
+		add(spinner_clubs);
+		
+		if (clubsArray.contains(cashierSelectedReset)){
+			spinner_clubs.setValue(cashierSelectedReset);
+		}else {
+		cashierSelected = spinner_clubs.getValue().toString();
+		cashierSelectedReset = cashierSelected;
+		}
 		
 		//Remove, update, replace spinner_freeUp
 		remove(spinner_freeUp);
@@ -141,35 +150,32 @@ public class Panel_Dispatch extends JPanel {
 		
 		//Remove, update, replace scrollPane_dispatchedFS
 		remove(scrollPane_dispatchedFS);
-		//Dispatched Field Supes list
-				DefaultListModel<String> dispatchedFS = new DefaultListModel<String>();
-				for (String supe: getDispatchedFieldSupes()){
-					dispatchedFS.addElement(supe + "***" + hash_fs_locations.get(supe)+ "***" + hash_fs_actions.get(supe));
-				}
-				JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
-				dispatchedFSList.addMouseListener(new MouseAdapter() {
-				    @SuppressWarnings("unchecked")
-					public void mouseClicked(MouseEvent evt) {
-				        JList<String> list = (JList<String>)evt.getSource();
-				        if (evt.getClickCount() == 2) {
+		DefaultListModel<String> dispatchedFS = new DefaultListModel<String>();
+		for (String supe: getDispatchedFieldSupes()){
+			dispatchedFS.addElement(supe);
+		}
+		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
+		dispatchedFSList.addMouseListener(new MouseAdapter() {
+		    @SuppressWarnings("unchecked")
+			public void mouseClicked(MouseEvent evt) {
+		        JList<String> list = (JList<String>)evt.getSource();
+		        if (evt.getClickCount() == 2) {
 
-				            // Double-click detected
-				            int index = list.locationToIndex(evt.getPoint());
-				            if (index >= 0) {
-				                Object o = list.getModel().getElementAt(index);
-				                //System.out.println("Double-clicked on: " + o.toString());
-				                spinner_freeUp.setValue(o.toString().substring(0, o.toString().indexOf("*")));
-				              }
-				        }
-				    }
-				});
-				scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
-				scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
-				add(scrollPane_dispatchedFS);
+		            // Double-click detected
+		            int index = list.locationToIndex(evt.getPoint());
+		            if (index >= 0) {
+		                Object o = list.getModel().getElementAt(index);
+		                //System.out.println("Double-clicked on: " + o.toString());
+		                spinner_freeUp.setValue(o.toString());
+		              }
+		        }
+		    }
+		});
+		scrollPane_dispatchedFS = new JScrollPane(dispatchedFSList);
+		scrollPane_dispatchedFS.setBounds(342, 388, 309, 311);
+		add(scrollPane_dispatchedFS);
 		
-		
-		
-		//spinner_action.setValue(actionSelectedReset);
+		spinner_action.setValue(actionSelectedReset);
 	}
 	
 	/**
@@ -199,20 +205,28 @@ public class Panel_Dispatch extends JPanel {
 		
 	}
 	
-	
-	
 	/**
-	 * All-purpose listener for setting values when changed
+	 * ClubSelected Spinner Listener
 	 */
-	private class defaultSpinnerListener implements ChangeListener{
+	private class ClubSpinnerListener implements ChangeListener{
 
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
-			
-			locationSelected = spinner_location.getValue().toString();
-			locationSelectedReset = locationSelected;
+			cashierSelected = spinner_clubs.getValue().toString();
+			cashierSelectedReset = cashierSelected;
+		}
+		
+	}
+	
+	/**
+	 * ActionSpinner Listener
+	 */
+	private class ActionSpinnerListener implements ChangeListener{
+
+		@Override
+		public void stateChanged(ChangeEvent arg0) {
 			actionSelected = spinner_action.getValue().toString();
-			actionSelectedReset = actionSelected;	
+			actionSelectedReset = actionSelected;
 		}
 		
 	}
@@ -228,18 +242,24 @@ public class Panel_Dispatch extends JPanel {
 				
 				// Process actionSelected on Club
 				if (DFSSelected.compareTo("(No Field Supervisors available)")!=0){
-					
-				int dispatch = JOptionPane.showConfirmDialog(getParent(), DFSSelected + " with " + actionSelected + " to " + locationSelected + "?", null, JOptionPane.OK_CANCEL_OPTION);
-				
-					if (dispatch==JOptionPane.OK_OPTION){
-						try {
-							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
-							hash_fs_actions.put(DFSSelected, actionSelected);
-							hash_fs_locations.put(DFSSelected, locationSelected);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+					if (actionSelected.compareTo("InitialCashBox")==0){
+						//DFSSelected;clubSelected;
+						//Dispatch field supe
+						int dialogButton = JOptionPane.OK_OPTION;
+						int option = JOptionPane.showConfirmDialog(null, "Send " + DFSSelected + " with " + cashierSelected +" for initial drop delivery?","Confirm?",dialogButton);
+						if (option==JOptionPane.OK_OPTION){
+							try {
+								output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+							} catch (IOException e) {
+								JOptionPane.showMessageDialog(getParent(), "IO Exception Line 193");
+								e.printStackTrace();
+							}
+						} else {
+							JOptionPane.showMessageDialog(getParent(), "Initial Cash drop delivery canceled.");
 						}
+					}
+					if (actionSelected.compareTo("Dispatch")==0){
+						output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
 					}
 				}
 			
@@ -254,12 +274,9 @@ public class Panel_Dispatch extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//JOptionPane.showMessageDialog(getParent(), "" +dispatchedSelected + " returned to active list.");
+			JOptionPane.showMessageDialog(getParent(), "" +dispatchedSelected + " returned to active list.");
 			try {
 				output.writeObject(new FreeFieldSupe(clientName, dispatchedSelected));
-				
-				hash_fs_actions.remove(dispatchedSelected);
-				hash_fs_locations.remove(dispatchedSelected);
 			}catch(IOException e){
 				e.printStackTrace();
 			}
@@ -288,10 +305,25 @@ public class Panel_Dispatch extends JPanel {
 		actionSelectedReset = "(no value)";
 		dispatchedSelectedReset = "(no value)";
 		
-		hash_fs_actions = new HashMap<String, String>();
-		hash_fs_locations = new HashMap<String, String>();
-		
 		setLayout(null);
+		
+		JTextArea textArea_fieldSupe = new JTextArea();
+		textArea_fieldSupe.setBackground(SystemColor.control);
+		textArea_fieldSupe.setBounds(35, 94, 100, 28);
+		textArea_fieldSupe.setText("Field supe:");
+		add(textArea_fieldSupe);
+		
+		JTextArea txtrCashier = new JTextArea();
+		txtrCashier.setBackground(SystemColor.control);
+		txtrCashier.setBounds(35, 133, 100, 28);
+		txtrCashier.setText("   Booth:");
+		add(txtrCashier);
+		
+		JTextArea textArea_action = new JTextArea();
+		textArea_action.setBackground(SystemColor.control);
+		textArea_action.setBounds(35, 172, 100, 28);
+		textArea_action.setText("    Action:");
+		add(textArea_action);
 		
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
 		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
@@ -301,10 +333,22 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_fieldSupes);
 		DFSSelected = spinner_fieldSupes.getValue().toString();
 		
-
+		ArrayList<String> clubsArray = getClubs();
+		SpinnerListModel clubsModel = new SpinnerListModel(clubsArray);
+		spinner_clubs = new JSpinner(clubsModel);
+		spinner_clubs.setBounds(163, 127, 157, 20);
+		spinner_clubs.addChangeListener(new ClubSpinnerListener());
+		add(spinner_clubs);
+		cashierSelected = spinner_clubs.getValue().toString();
 		
-//		String[] actionArray = {"InitialCashBox","Dispatch", "Other"};
-//		SpinnerListModel actionModel = new SpinnerListModel(actionArray);
+		String[] actionArray = {"InitialCashBox","Dispatch", "Other"};
+		SpinnerListModel actionModel = new SpinnerListModel(actionArray);		
+		spinner_action = new JSpinner(actionModel);
+		spinner_action.setBounds(163, 162, 157, 20);
+		spinner_action.addChangeListener(new ActionSpinnerListener());
+		add(spinner_action);
+		spinner_action.setValue("Dispatch");
+		actionSelected = spinner_action.getValue().toString();
 		
 		/*
 		 * 	DISPATCH BUTTON AND LISTENER
@@ -314,11 +358,12 @@ public class Panel_Dispatch extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnDispatch.setBounds(35, 204, 285, 70);
+		btnDispatch.setBounds(35, 260, 285, 70);
 		add(btnDispatch);
 		
 		DispatchListener dispatchListener = new DispatchListener();
 		btnDispatch.addActionListener(dispatchListener);
+		
 		
 		
 		//Available Field Supes list
@@ -350,7 +395,7 @@ public class Panel_Dispatch extends JPanel {
 		//Dispatched Field Supes list
 		DefaultListModel<String> dispatchedFS = new DefaultListModel<String>();
 		for (String supe: getDispatchedFieldSupes()){
-			dispatchedFS.addElement(supe + "***" + hash_fs_locations.get(supe)+ "***" + hash_fs_actions.get(supe));
+			dispatchedFS.addElement(supe);
 		}
 		JList<String> dispatchedFSList = new JList<String>(dispatchedFS);
 		dispatchedFSList.addMouseListener(new MouseAdapter() {
@@ -364,7 +409,7 @@ public class Panel_Dispatch extends JPanel {
 		            if (index >= 0) {
 		                Object o = list.getModel().getElementAt(index);
 		                //System.out.println("Double-clicked on: " + o.toString());
-		                spinner_freeUp.setValue(o.toString().substring(0, o.toString().indexOf("*")));
+		                spinner_freeUp.setValue(o.toString());
 		              }
 		        }
 		    }
@@ -377,7 +422,7 @@ public class Panel_Dispatch extends JPanel {
 		 * 	MAKE AVAILABLE BUTTON AND LISTENER
 		 */
 		JButton btnMakeAvailable = new JButton("Make Available");
-		btnMakeAvailable.setBounds(35, 524, 277, 70);
+		btnMakeAvailable.setBounds(35, 524, 277, 44);
 		add(btnMakeAvailable);
 		
 		AvailableListener availableListener = new AvailableListener();
@@ -407,34 +452,6 @@ public class Panel_Dispatch extends JPanel {
 		spinner_freeUp.setBounds(163, 446, 147, 22);
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
 		add(spinner_freeUp);
-		
-		ArrayList<String> locationsArray = getLocations();
-		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
-		spinner_location = new JSpinner(locationsModel);
-		spinner_location.setBounds(163, 127, 157, 20);
-		spinner_location.addChangeListener(new defaultSpinnerListener());
-		locationSelected = spinner_location.getValue().toString();
-		add(spinner_location);
-		
-		ArrayList<String> actionsArray = getActions();
-		SpinnerListModel actionsModel = new SpinnerListModel(actionsArray);
-		spinner_action = new JSpinner(actionsModel);
-		spinner_action.setBounds(163, 158, 157, 20);
-		spinner_action.addChangeListener(new defaultSpinnerListener());
-		actionSelected = spinner_action.getValue().toString();
-		add(spinner_action);
-		
-		JLabel lblNewLabel = new JLabel("Field Supervisor:");
-		lblNewLabel.setBounds(35, 99, 118, 14);
-		add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Location:");
-		lblNewLabel_1.setBounds(35, 130, 118, 14);
-		add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Action:");
-		lblNewLabel_2.setBounds(35, 161, 118, 14);
-		add(lblNewLabel_2);
 		dispatchedSelected = spinner_freeUp.getValue().toString();
 		dispatchedSelectedReset = dispatchedSelected;
 		
@@ -499,42 +516,6 @@ public class Panel_Dispatch extends JPanel {
 		
 		return clubs;
 	}
-	
-	private ArrayList<String> getActions(){
-		
-		ArrayList<String> actions = new ArrayList<String>();
-		actions.add("Jafar/Emergency");
-		actions.add("Alice/Cash Drop");
-		actions.add("Charming/Full Sheets");
-		actions.add("Bambi/Half Sheets");
-		actions.add("Aladdi/Single tickets");
-		actions.add("Belle/Wristbands");
-		actions.add("Mulan/Change1A");
-		actions.add("Simba/Change2B");
-		actions.add("Fiona/Change3C");
-		actions.add("Pinochio/FS or Question");
-		actions.add("Genie/Credit Card Q");
-		actions.add("Mushu/Field Supe Q");
-		return actions;
-	}
-	
-	private ArrayList<String> getLocations() {
-		ArrayList<String> locations = new ArrayList<String>();
-		locations.add("Castle 1");
-		locations.add("Castle 2");
-		locations.add("Castle 3");
-		locations.add("Castle 4");
-		locations.add("Cottage 1");
-		locations.add("Cottage 2");
-		locations.add("Cottage 3");
-		locations.add("Wonderland");
-		locations.add("Wishing Well");
-		locations.add("Pride Rock");
-		locations.add("Palace");
-		locations.add("Enchanted Forest");
-		locations.add("Swamp");
-		locations.add("Woods");
-		locations.add("Beanstalk");
-		return locations;
-	}
+
+
 }

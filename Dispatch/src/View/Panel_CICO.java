@@ -1529,7 +1529,7 @@ public class Panel_CICO extends JPanel{
 				textArea_startTotal.setText("$" + formatDecimal(actualClub.getInitialCashDrop()));
 				
 			} else{ // else, make sure, they're on...
-				btn_drops.setEnabled(false);
+				//btn_drops.setEnabled(false);			//Greg said that there may be occasions where a drop will need to be logged before the initial drop -kc
 				btn_initialCashDrop.setEnabled(true);
 				btn_initialCashDrop.setText("CONFIRM INITIAL CASH DROP");
 				textField_penniesIn.setEnabled(true);
@@ -1996,7 +1996,7 @@ public class Panel_CICO extends JPanel{
 		add(textArea_11);
 		
 		btn_drops = new JButton("Add Drop to Cashier");
-		btn_drops.setEnabled(false);
+		btn_drops.setEnabled(true);
 		btn_drops.setBounds(410,23,150,40);
 		btn_drops.addActionListener(new DispatchListener());
 		add(btn_drops);
