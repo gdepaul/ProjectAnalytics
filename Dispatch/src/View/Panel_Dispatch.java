@@ -82,7 +82,7 @@ public class Panel_Dispatch extends JPanel {
 		//Remove, update, replace spinner_fieldSupes
 		remove(spinner_fieldSupes);
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
-		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
+		RolloverSpinnerListModel fieldSupeModel = new RolloverSpinnerListModel(fieldSupesArray);
 		spinner_fieldSupes = new JSpinner(fieldSupeModel);
 		spinner_fieldSupes.setBounds(163, 96, 157, 20);
 		spinner_fieldSupes.addChangeListener(new AFSSpinnerListener());
@@ -99,7 +99,7 @@ public class Panel_Dispatch extends JPanel {
 		//Remove, update, replace spinner_freeUp
 		remove(spinner_freeUp);
 		ArrayList<String> dispatchedArray = getDispatchedFieldSupes();
-		SpinnerListModel dispatchedModel = new SpinnerListModel(dispatchedArray);
+		RolloverSpinnerListModel dispatchedModel = new RolloverSpinnerListModel(dispatchedArray);
 		spinner_freeUp = new JSpinner(dispatchedModel);
 		spinner_freeUp.setBounds(163, 446, 147, 22);
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
@@ -294,7 +294,7 @@ public class Panel_Dispatch extends JPanel {
 		setLayout(null);
 		
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
-		SpinnerListModel fieldSupeModel = new SpinnerListModel(fieldSupesArray);
+		RolloverSpinnerListModel fieldSupeModel = new RolloverSpinnerListModel(fieldSupesArray);
 		spinner_fieldSupes = new JSpinner(fieldSupeModel);
 		spinner_fieldSupes.setBounds(163, 96, 157, 20);
 		spinner_fieldSupes.addChangeListener(new AFSSpinnerListener());
@@ -402,14 +402,14 @@ public class Panel_Dispatch extends JPanel {
 		add(txtrFieldSupe);
 		
 		ArrayList<String> dispatchedArray = getDispatchedFieldSupes();
-		SpinnerListModel dispatchedModel = new SpinnerListModel(dispatchedArray);
+		RolloverSpinnerListModel dispatchedModel = new RolloverSpinnerListModel(dispatchedArray);
 		spinner_freeUp = new JSpinner(dispatchedModel);
 		spinner_freeUp.setBounds(163, 446, 147, 22);
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
 		add(spinner_freeUp);
 		
 		ArrayList<String> locationsArray = getLocations();
-		SpinnerListModel locationsModel = new SpinnerListModel(locationsArray);
+		RolloverSpinnerListModel locationsModel = new RolloverSpinnerListModel(locationsArray);
 		spinner_location = new JSpinner(locationsModel);
 		spinner_location.setBounds(163, 127, 157, 20);
 		spinner_location.addChangeListener(new defaultSpinnerListener());
@@ -417,7 +417,7 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_location);
 		
 		ArrayList<String> actionsArray = getActions();
-		SpinnerListModel actionsModel = new SpinnerListModel(actionsArray);
+		RolloverSpinnerListModel actionsModel = new RolloverSpinnerListModel(actionsArray);
 		spinner_action = new JSpinner(actionsModel);
 		spinner_action.setBounds(163, 158, 157, 20);
 		spinner_action.addChangeListener(new defaultSpinnerListener());
@@ -537,4 +537,33 @@ public class Panel_Dispatch extends JPanel {
 		locations.add("Beanstalk");
 		return locations;
 	}
+	
+	 public class RolloverSpinnerListModel extends SpinnerListModel {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4089704428973563804L;
+		public RolloverSpinnerListModel(List<String> values) {
+		      super(values);
+		   }
+		 public RolloverSpinnerListModel(Object[] values) {
+		      super(values);
+		   }
+		   public Object getNextValue() {
+		      Object returnValue = super.getNextValue();
+		      if (returnValue == null) {
+		         returnValue = getList().get(0);
+		      }
+		      return returnValue;
+		   }
+		 public Object getPreviousValue() {
+		      Object returnValue = super.getPreviousValue();
+		      if (returnValue == null) {
+		         List list = getList();
+		         returnValue = list.get(list.size() - 1);
+		      }
+		      return returnValue;
+		   }
+		}
 }
