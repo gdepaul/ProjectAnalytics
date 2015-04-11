@@ -132,7 +132,7 @@ public class Panel_Scheduler extends JPanel{
 		} else{
 			currentEmployees.removeElement("(No current employees)");
 		}
-		SpinnerListModel removeEmpModel = new SpinnerListModel(removeEmpArray);
+		RolloverSpinnerListModel removeEmpModel = new RolloverSpinnerListModel(removeEmpArray);
 		spinner_removeFS = new JSpinner(removeEmpModel);
 		spinner_removeFS.setBounds(181, 319, 154, 27);
 		add(spinner_removeFS);
@@ -140,7 +140,7 @@ public class Panel_Scheduler extends JPanel{
 		// Cheesy remove, reset, and replace remove cashier Spinner
 		remove(spinner_removeCashier);
 		ArrayList<String> removeCashierArray = getCashiers();
-		SpinnerListModel removeCashierModel = new SpinnerListModel(removeCashierArray);
+		RolloverSpinnerListModel removeCashierModel = new RolloverSpinnerListModel(removeCashierArray);
 		spinner_removeCashier = new JSpinner((removeCashierModel));
 		spinner_removeCashier.setBounds(181, 476, 154, 27);
 		add(spinner_removeCashier);
@@ -304,7 +304,7 @@ public class Panel_Scheduler extends JPanel{
 		setLayout(null);
 		
 		String[] RoleArray = {"Field Supervisor", "Cashier"};
-		SpinnerListModel RoleModel = new SpinnerListModel(RoleArray);	//~LOL~
+		RolloverSpinnerListModel RoleModel = new RolloverSpinnerListModel(RoleArray); //~LOL~
 		spinner_roles = new JSpinner(RoleModel);
 		spinner_roles.setBounds(190, 175, 154, 30);
 		spinner_roles.setValue("Cashier");
@@ -376,7 +376,7 @@ public class Panel_Scheduler extends JPanel{
 		add(spinner_removeFS);
 		
 		ArrayList<String> removeCashierArray = getCashiers();
-		SpinnerListModel removeCashierModel = new SpinnerListModel(removeCashierArray);
+		RolloverSpinnerListModel removeCashierModel = new RolloverSpinnerListModel(removeCashierArray);
 		spinner_removeCashier = new JSpinner((removeCashierModel));
 		spinner_removeCashier.setBounds(181, 476, 154, 27);
 		add(spinner_removeCashier);
@@ -406,6 +406,35 @@ public class Panel_Scheduler extends JPanel{
 		add(lblCashierToRemove);
 		
 	}
+	
+	 public class RolloverSpinnerListModel extends SpinnerListModel {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4089704428973563804L;
+		public RolloverSpinnerListModel(List<String> values) {
+		      super(values);
+		   }
+		 public RolloverSpinnerListModel(Object[] values) {
+		      super(values);
+		   }
+		   public Object getNextValue() {
+		      Object returnValue = super.getNextValue();
+		      if (returnValue == null) {
+		         returnValue = getList().get(0);
+		      }
+		      return returnValue;
+		   }
+		 public Object getPreviousValue() {
+		      Object returnValue = super.getPreviousValue();
+		      if (returnValue == null) {
+		         List list = getList();
+		         returnValue = list.get(list.size() - 1);
+		      }
+		      return returnValue;
+		   }
+		}
 	
 	private ArrayList<String> getCashiers() {
 		ArrayList<String> clubs = new ArrayList<>();
