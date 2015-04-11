@@ -259,7 +259,12 @@ public class Panel_Dispatch_backup extends JPanel {
 						}
 					}
 					if (actionSelected.compareTo("Dispatch")==0){
-						output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+						try {
+							output.writeObject(new DispatchFieldSupe(clientName, DFSSelected));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			
@@ -293,7 +298,7 @@ public class Panel_Dispatch_backup extends JPanel {
 	 * @param name		the client's name
 	 * @param output	the output stream to the server
 	 */
-	public Panel_Dispatch(String clientName, ObjectOutputStream out, List<Club> activeClubs2, List<String> availableFS2, List<String> dispatchedFS2) {
+	public Panel_Dispatch_backup(String clientName, ObjectOutputStream out, List<Club> activeClubs2, List<String> availableFS2, List<String> dispatchedFS2) {
 		
 		this.clientName = clientName;
 		this.output = out;

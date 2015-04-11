@@ -303,24 +303,10 @@ public class Panel_Scheduler extends JPanel{
 		
 		setLayout(null);
 		
-		JTextArea textArea_name = new JTextArea();
-		textArea_name.setBackground(SystemColor.control);
-		textArea_name.setBounds(71, 131, 100, 22);
-		textArea_name.setText("      Name:");
-		textArea_name.setEditable(false);
-		add(textArea_name);
-		
-		JTextArea textArea_role = new JTextArea();
-		textArea_role.setBackground(SystemColor.control);
-		textArea_role.setBounds(71, 175, 100, 22);
-		textArea_role.setText("      Role:");
-		textArea_role.setEditable(false);
-		add(textArea_role);
-		
 		String[] RoleArray = {"Field Supervisor", "Cashier"};
 		SpinnerListModel RoleModel = new SpinnerListModel(RoleArray);	//~LOL~
 		spinner_roles = new JSpinner(RoleModel);
-		spinner_roles.setBounds(190, 175, 154, 20);
+		spinner_roles.setBounds(190, 175, 154, 30);
 		spinner_roles.setValue("Cashier");
 		add(spinner_roles);
 		
@@ -330,7 +316,7 @@ public class Panel_Scheduler extends JPanel{
 		add(btnAddEmp);
 		
 		textField_name = new JTextField();
-		textField_name.setBounds(190, 133, 154, 20);
+		textField_name.setBounds(190, 133, 154, 31);
 		add(textField_name);
 		textField_name.setColumns(10);
 		
@@ -389,21 +375,6 @@ public class Panel_Scheduler extends JPanel{
 		spinner_removeFS.setBounds(181, 319, 154, 27);
 		add(spinner_removeFS);
 		
-		
-		JTextArea txtrName = new JTextArea();
-		txtrName.setBackground(SystemColor.control);
-		txtrName.setText("   Field Supe:");
-		txtrName.setBounds(46, 320, 125, 22);
-		txtrName.setEditable(false);
-		add(txtrName);
-		
-		JTextArea txtrCashier = new JTextArea();
-		txtrCashier.setText("   Cashier:");
-		txtrCashier.setEditable(false);
-		txtrCashier.setBackground(SystemColor.menu);
-		txtrCashier.setBounds(71, 474, 100, 22);
-		add(txtrCashier);
-		
 		ArrayList<String> removeCashierArray = getCashiers();
 		SpinnerListModel removeCashierModel = new SpinnerListModel(removeCashierArray);
 		spinner_removeCashier = new JSpinner((removeCashierModel));
@@ -417,6 +388,22 @@ public class Panel_Scheduler extends JPanel{
 		JLabel lblActiveCashiers = new JLabel("Active Cashiers:");
 		lblActiveCashiers.setBounds(372, 403, 125, 14);
 		add(lblActiveCashiers);
+		
+		JLabel lblName = new JLabel("Name:");
+		lblName.setBounds(71, 136, 46, 14);
+		add(lblName);
+		
+		JLabel lblRole = new JLabel("Role:");
+		lblRole.setBounds(71, 178, 46, 14);
+		add(lblRole);
+		
+		JLabel lblFieldSupeTo = new JLabel("Field Supe to Remove:");
+		lblFieldSupeTo.setBounds(31, 325, 140, 14);
+		add(lblFieldSupeTo);
+		
+		JLabel lblCashierToRemove = new JLabel("Cashier to Remove:");
+		lblCashierToRemove.setBounds(31, 482, 125, 14);
+		add(lblCashierToRemove);
 		
 	}
 	

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="controller.Dispatch"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="dispatchObject.DispatchObject"/>
-<fullyQualifiedTypeName name="model.dispatchObject.DispatchObject"/>
 <fullyQualifiedTypeName name="View.Window_dispatch"/>
 <fullyQualifiedTypeName name="model.dispatch.DisconnectDispatch"/>
 <fullyQualifiedTypeName name="model.dispatch.UndoLastDispatch"/>
@@ -22,7 +17,6 @@
 <fullyQualifiedTypeName name="model.dispatch.AddObjectDispatch"/>
 <fullyQualifiedTypeName name="model.dispatchObject.AddActiveClub"/>
 <fullyQualifiedTypeName name="View.Panel_Dispatch.AvailableListener"/>
-<fullyQualifiedTypeName name="javax.swing.event.ChangeListener"/>
 <fullyQualifiedTypeName name="View.Panel_Dispatch.ClubSpinnerListener"/>
 <fullyQualifiedTypeName name="View.Panel_Dispatch.ActionSpinnerListener"/>
 <fullyQualifiedTypeName name="View.Panel_Scheduler.AddEmpListener"/>
@@ -54,6 +48,16 @@
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="model.dispatch.RemoveClub"/>
 <fullyQualifiedTypeName name="model.Booth"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.swing.event.ChangeListener"/>
+<fullyQualifiedTypeName name="View.Panel_Dispatch.defaultSpinnerListener"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="java.awt.Component"/>
+<fullyQualifiedTypeName name="java.awt.FocusTraversalPolicy"/>
+<fullyQualifiedTypeName name="java.awt.Container"/>
+<fullyQualifiedTypeName name="View.Panel_Dispatch.RolloverSpinnerListModel"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager.LookAndFeelInfo"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager"/>
 </qualifiedTypeNameHistroy>

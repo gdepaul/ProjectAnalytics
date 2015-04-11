@@ -84,7 +84,7 @@ public class Panel_Dispatch extends JPanel {
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
 		RolloverSpinnerListModel fieldSupeModel = new RolloverSpinnerListModel(fieldSupesArray);
 		spinner_fieldSupes = new JSpinner(fieldSupeModel);
-		spinner_fieldSupes.setBounds(163, 96, 157, 20);
+		spinner_fieldSupes.setBounds(121, 96, 199, 36);
 		spinner_fieldSupes.addChangeListener(new AFSSpinnerListener());
 		add(spinner_fieldSupes);
 		
@@ -101,7 +101,7 @@ public class Panel_Dispatch extends JPanel {
 		ArrayList<String> dispatchedArray = getDispatchedFieldSupes();
 		RolloverSpinnerListModel dispatchedModel = new RolloverSpinnerListModel(dispatchedArray);
 		spinner_freeUp = new JSpinner(dispatchedModel);
-		spinner_freeUp.setBounds(163, 446, 147, 22);
+		spinner_freeUp.setBounds(121, 437, 199, 41);
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
 		add(spinner_freeUp);
 		
@@ -296,7 +296,7 @@ public class Panel_Dispatch extends JPanel {
 		ArrayList<String> fieldSupesArray = getAvailableFieldSupes();
 		RolloverSpinnerListModel fieldSupeModel = new RolloverSpinnerListModel(fieldSupesArray);
 		spinner_fieldSupes = new JSpinner(fieldSupeModel);
-		spinner_fieldSupes.setBounds(163, 96, 157, 20);
+		spinner_fieldSupes.setBounds(121, 96, 199, 36);
 		spinner_fieldSupes.addChangeListener(new AFSSpinnerListener());
 		add(spinner_fieldSupes);
 		DFSSelected = spinner_fieldSupes.getValue().toString();
@@ -314,7 +314,7 @@ public class Panel_Dispatch extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnDispatch.setBounds(35, 204, 285, 70);
+		btnDispatch.setBounds(10, 260, 310, 70);
 		add(btnDispatch);
 		
 		DispatchListener dispatchListener = new DispatchListener();
@@ -376,42 +376,24 @@ public class Panel_Dispatch extends JPanel {
 		/*
 		 * 	MAKE AVAILABLE BUTTON AND LISTENER
 		 */
-		JButton btnMakeAvailable = new JButton("Make Available");
-		btnMakeAvailable.setBounds(35, 524, 277, 70);
+		JButton btnMakeAvailable = new JButton("MAKE AVAILABLE");
+		btnMakeAvailable.setBounds(10, 524, 310, 70);
 		add(btnMakeAvailable);
 		
 		AvailableListener availableListener = new AvailableListener();
 		btnMakeAvailable.addActionListener(availableListener);
 		
-		JTextArea txtrAvailableFS = new JTextArea();
-		txtrAvailableFS.setBackground(SystemColor.control);
-		txtrAvailableFS.setText("Available Field Supervisors");
-		txtrAvailableFS.setBounds(384, 61, 228, 22);
-		add(txtrAvailableFS);
-		
-		JTextArea txtrDispatchedFS = new JTextArea();
-		txtrDispatchedFS.setBackground(SystemColor.control);
-		txtrDispatchedFS.setText("Dispatched Field Supervisors");
-		txtrDispatchedFS.setBounds(384, 355, 228, 22);
-		add(txtrDispatchedFS);
-		
-		JTextArea txtrFieldSupe = new JTextArea();
-		txtrFieldSupe.setBackground(SystemColor.control);
-		txtrFieldSupe.setText("Field supe:");
-		txtrFieldSupe.setBounds(35, 444, 100, 22);
-		add(txtrFieldSupe);
-		
 		ArrayList<String> dispatchedArray = getDispatchedFieldSupes();
 		RolloverSpinnerListModel dispatchedModel = new RolloverSpinnerListModel(dispatchedArray);
 		spinner_freeUp = new JSpinner(dispatchedModel);
-		spinner_freeUp.setBounds(163, 446, 147, 22);
+		spinner_freeUp.setBounds(121, 437, 199, 41);
 		spinner_freeUp.addChangeListener(new DispatchedSpinnerListener());
 		add(spinner_freeUp);
 		
 		ArrayList<String> locationsArray = getLocations();
 		RolloverSpinnerListModel locationsModel = new RolloverSpinnerListModel(locationsArray);
 		spinner_location = new JSpinner(locationsModel);
-		spinner_location.setBounds(163, 127, 157, 20);
+		spinner_location.setBounds(121, 148, 199, 36);
 		spinner_location.addChangeListener(new defaultSpinnerListener());
 		locationSelected = spinner_location.getValue().toString();
 		add(spinner_location);
@@ -419,22 +401,34 @@ public class Panel_Dispatch extends JPanel {
 		ArrayList<String> actionsArray = getActions();
 		RolloverSpinnerListModel actionsModel = new RolloverSpinnerListModel(actionsArray);
 		spinner_action = new JSpinner(actionsModel);
-		spinner_action.setBounds(163, 158, 157, 20);
+		spinner_action.setBounds(121, 195, 199, 35);
 		spinner_action.addChangeListener(new defaultSpinnerListener());
 		actionSelected = spinner_action.getValue().toString();
 		add(spinner_action);
 		
 		JLabel lblNewLabel = new JLabel("Field Supervisor:");
-		lblNewLabel.setBounds(35, 99, 118, 14);
+		lblNewLabel.setBounds(10, 109, 101, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Location:");
-		lblNewLabel_1.setBounds(35, 130, 118, 14);
+		lblNewLabel_1.setBounds(10, 159, 76, 14);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Action:");
-		lblNewLabel_2.setBounds(35, 161, 118, 14);
+		lblNewLabel_2.setBounds(10, 205, 118, 14);
 		add(lblNewLabel_2);
+		
+		JLabel lblAvailableFieldSupervisors = new JLabel("Available Field Supervisors");
+		lblAvailableFieldSupervisors.setBounds(381, 69, 215, 14);
+		add(lblAvailableFieldSupervisors);
+		
+		JLabel lblDispatchedFieldSupervisors = new JLabel("Dispatched Field Supervisors");
+		lblDispatchedFieldSupervisors.setBounds(381, 363, 215, 14);
+		add(lblDispatchedFieldSupervisors);
+		
+		JLabel lblFieldSupervisor = new JLabel("Field Supervisor:");
+		lblFieldSupervisor.setBounds(10, 450, 118, 14);
+		add(lblFieldSupervisor);
 		dispatchedSelected = spinner_freeUp.getValue().toString();
 		dispatchedSelectedReset = dispatchedSelected;
 		

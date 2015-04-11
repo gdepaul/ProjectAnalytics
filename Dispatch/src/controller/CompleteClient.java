@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import model.Booth;
 import model.Club;
@@ -168,6 +170,18 @@ public class CompleteClient extends JFrame implements WindowStateListener {
 	
 	// Create the gui in the client once signed in
 	private void setupGUI() {
+		
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		
 		setTitle("SpringFlingSoft 2015 - User: " + userName);
 		setSize(800,800);
 		setBackground(Color.gray);
