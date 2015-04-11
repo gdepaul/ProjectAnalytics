@@ -42,6 +42,9 @@ public class Panel_ADMIN extends JPanel{
 	JList<Dispatch<DispatchServer>> clubHistory;
 	DefaultListModel<Dispatch<DispatchServer>> listModel;
 	JScrollPane scroll;
+	JButton btnUpdateCommand;
+	JButton save;
+	JButton export;
 	public Panel_ADMIN(String userName, ObjectOutputStream out, List<Club> activeClubs, List<String> availableFS, List<String> dispatchedFS) {
 		this.clubs = activeClubs;
 		this.output = out;
@@ -66,17 +69,17 @@ public class Panel_ADMIN extends JPanel{
 		scroll.setBounds(10,45,745,615);
 		add(scroll);	
 
-		JButton btnUpdateCommand = new JButton("Update Command");
+		btnUpdateCommand = new JButton("Update Command");
 		btnUpdateCommand.setBounds(605, 685, 150, 23);
 		btnUpdateCommand.addActionListener(new AlterListener());
 		add(btnUpdateCommand);
 		
-		JButton save = new JButton("Save State");
+		save = new JButton("Save State");
 		save.setBounds(10, 11, 150, 23);
 		save.addActionListener(new SaveListener());
 		add(save);
 		
-		JButton export = new JButton("Export State");
+		export = new JButton("Export State");
 		export.setBounds(170, 11, 150, 23);
 		export.addActionListener(new ExportListener());
 		add(export);
@@ -94,7 +97,9 @@ public class Panel_ADMIN extends JPanel{
 		add(comboBox);
 		repaint();
 	}
+	//TODO
 	public void updateHistoryBox() {
+		this.removeAll();
 		String clubName = (String)this.comboBox.getSelectedItem();
 		//System.err.println((String)this.comboBox.getSelectedItem());
 		
@@ -106,18 +111,21 @@ public class Panel_ADMIN extends JPanel{
 					transactions = c.getTransactions();
 			}
 		}	
-		remove(scroll);
 		listModel = new DefaultListModel<Dispatch<DispatchServer>>();
 		for (Dispatch<DispatchServer> d : transactions) {
 			listModel.addElement(d);
+			System.err.println(d);
 		}
 
 		JList<Dispatch<DispatchServer>> clubH = new JList<Dispatch<DispatchServer>>(listModel);
 		scroll = new JScrollPane(clubH);
 		scroll.setBounds(10,45,745,615);
-		add(scroll); 				
-
-		repaint();
+		add(scroll); 	
+		add(this.comboBox);
+		add(btnUpdateCommand);
+		add(export);
+		add(save);
+		this.repaint();
 	}
 	public void UpdateLists(List<Club> clubs) {
 		this.clubs = clubs;
@@ -303,6 +311,7 @@ public class Panel_ADMIN extends JPanel{
 	}
 	public class ClubListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("CLUB BOX ACTIVATED");
 			updateHistoryBox();
 			repaint();
 		}		
@@ -311,6 +320,7 @@ public class Panel_ADMIN extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			try {
 				output.writeObject(new SaveCommand(clientName));
+				repaint();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

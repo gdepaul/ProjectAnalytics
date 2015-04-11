@@ -7,8 +7,6 @@ package server;
  */
 
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,7 +32,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
-import View.*;
 import model.*;
 import model.dispatch.*;
 import controller.CompleteClient;
