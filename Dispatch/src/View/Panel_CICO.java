@@ -33,6 +33,7 @@ import model.dispatch.CheckOutDispatch;
 import model.dispatch.DispatchAll;
 import model.dispatch.InitialCashDrop;
 import model.dispatch.RemoveClub;
+import javax.swing.SwingConstants;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -1904,7 +1905,7 @@ public class Panel_CICO extends JPanel{
 		
 		textArea_startTotal = new JTextArea();
 		textArea_startTotal.setEditable(false);
-		textArea_startTotal.setBounds(107, 635, 91, 27);
+		textArea_startTotal.setBounds(116, 635, 91, 27);
 		textArea_startTotal.setBackground(Color.WHITE);
 		add(textArea_startTotal);
 		
@@ -2168,7 +2169,7 @@ public class Panel_CICO extends JPanel{
 		add(textArea_quartersOut);
 		
 		textArea_dollarsOut = new JTextArea();
-		textArea_dollarsOut.setBounds(409, 271, 54, 22);
+		textArea_dollarsOut.setBounds(409, 271, 67, 22);
 		textArea_dollarsOut.setText("$0.00");
 		textArea_dollarsOut.setEditable(false);
 		textArea_dollarsOut.setBackground(SystemColor.menu);
@@ -2241,13 +2242,13 @@ public class Panel_CICO extends JPanel{
 		add(txtrBooth);
 		
 		textArea_endTotalCalc = new JTextArea();
-		textArea_endTotalCalc.setBounds(699, 172, 75, 27);
+		textArea_endTotalCalc.setBounds(699, 172, 61, 27);
 		textArea_endTotalCalc.setEditable(false);
 		textArea_endTotalCalc.setBackground(SystemColor.menu);
 		add(textArea_endTotalCalc);
 		
 		textArea_finalTotal = new JTextArea();
-		textArea_finalTotal.setBounds(683, 238, 91, 27);
+		textArea_finalTotal.setBounds(699, 238, 61, 27);
 		textArea_finalTotal.setEditable(false);
 		textArea_finalTotal.setBackground(SystemColor.menu);
 		add(textArea_finalTotal);
@@ -2412,18 +2413,22 @@ public class Panel_CICO extends JPanel{
 		add(textArea_wristbandsOut);
 		
 		JLabel lblFullSheetsX = new JLabel("Full Sheets");
+		lblFullSheetsX.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblFullSheetsX.setBounds(10, 502, 77, 22);
 		add(lblFullSheetsX);
 		
 		JLabel lblNewLabel_4 = new JLabel("Half Sheets");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4.setBounds(10, 535, 77, 22);
 		add(lblNewLabel_4);
 		
 		JLabel lblSinglesX = new JLabel("Single Tickets");
+		lblSinglesX.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSinglesX.setBounds(10, 569, 81, 22);
 		add(lblSinglesX);
 		
 		JLabel lblWristbandsX = new JLabel("Wristbands ");
+		lblWristbandsX.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblWristbandsX.setBounds(10, 602, 81, 22);
 		add(lblWristbandsX);
 		
@@ -2432,75 +2437,91 @@ public class Panel_CICO extends JPanel{
 		textArea_startTotal2 = new JTextArea();
 		textArea_startTotal2.setEditable(false);
 		textArea_startTotal2.setBackground(SystemColor.menu);
-		textArea_startTotal2.setBounds(699, 205, 75, 27);
+		textArea_startTotal2.setBounds(699, 205, 61, 27);
 		add(textArea_startTotal2);
 		
 		JLabel lblUnsoldFullSheets = new JLabel("Unsold Full Sheets");
-		lblUnsoldFullSheets.setBounds(201, 502, 110, 22);
+		lblUnsoldFullSheets.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUnsoldFullSheets.setBounds(220, 502, 110, 22);
 		add(lblUnsoldFullSheets);
 		
 		JLabel lblUnsoldHalfSheets = new JLabel(" Unsold Half Sheets");
-		lblUnsoldHalfSheets.setBounds(207, 535, 114, 22);
+		lblUnsoldHalfSheets.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUnsoldHalfSheets.setBounds(216, 535, 114, 22);
 		add(lblUnsoldHalfSheets);
 		
 		JLabel lblUnsoldSingleTickets = new JLabel("  Unsold Single Tickets");
+		lblUnsoldSingleTickets.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUnsoldSingleTickets.setBounds(201, 568, 129, 22);
 		add(lblUnsoldSingleTickets);
 		
 		JLabel lblUnsoldWristbandsX = new JLabel(" Unsold Wristbands");
+		lblUnsoldWristbandsX.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUnsoldWristbandsX.setBounds(207, 601, 123, 22);
 		add(lblUnsoldWristbandsX);
 		
 		JLabel lblInitialTickets = new JLabel("Initial Tickets:");
+		lblInitialTickets.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblInitialTickets.setBounds(577, 303, 112, 27);
 		add(lblInitialTickets);
 		
 		JLabel lblIssuedTickets = new JLabel("+ Issued Tickets:");
+		lblIssuedTickets.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIssuedTickets.setBounds(577, 336, 112, 27);
 		add(lblIssuedTickets);
 		
 		JLabel lblUnsoldTickets = new JLabel("- Unsold Tickets:");
+		lblUnsoldTickets.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUnsoldTickets.setBounds(577, 369, 112, 27);
 		add(lblUnsoldTickets);
 		
 		JLabel lblInitialWristbands = new JLabel("     Initial Wristbands:");
+		lblInitialWristbands.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblInitialWristbands.setBounds(548, 500, 141, 27);
 		add(lblInitialWristbands);
 		
 		JLabel lblIssuedWristbands = new JLabel("+ Issued Wristbands:");
+		lblIssuedWristbands.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblIssuedWristbands.setBounds(560, 533, 129, 27);
 		add(lblIssuedWristbands);
 		
 		JLabel lblUnsoldWristbands = new JLabel("- Unsold Wristbands:");
+		lblUnsoldWristbands.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblUnsoldWristbands.setBounds(560, 566, 129, 27);
 		add(lblUnsoldWristbands);
 		
 		JLabel lblexpectedRevenue = new JLabel("Ticket Sales + Wristband Sales = EXPECTED REVENUE:");
+		lblexpectedRevenue.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblexpectedRevenue.setBounds(296, 692, 351, 27);
 		add(lblexpectedRevenue);
 		
 		JLabel lblTicketsSold = new JLabel("  = Tickets Sold:");
+		lblTicketsSold.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTicketsSold.setBounds(577, 402, 112, 27);
 		add(lblTicketsSold);
 		
 		JLabel lblX_1 = new JLabel("X $0.50 = Ticket Sales :");
+		lblX_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblX_1.setBounds(548, 435, 141, 27);
 		add(lblX_1);
 		
 		JLabel lblWristbandsSold = new JLabel("= Wristbands Sold:");
+		lblWristbandsSold.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblWristbandsSold.setBounds(560, 599, 129, 27);
 		add(lblWristbandsSold);
 		
 		JLabel lblNewLabel_5 = new JLabel("INITIAL CASH =");
-		lblNewLabel_5.setBounds(10, 634, 100, 27);
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_5.setBounds(10, 634, 96, 27);
 		add(lblNewLabel_5);
 		
 		JLabel lblCollectedCash = new JLabel("COLLECTED CASH =");
-		lblCollectedCash.setBounds(208, 636, 128, 22);
+		lblCollectedCash.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCollectedCash.setBounds(217, 636, 119, 22);
 		add(lblCollectedCash);
 		
 		JLabel lblX_2 = new JLabel("X");
-		lblX_2.setBounds(474, 634, 12, 27);
+		lblX_2.setBounds(501, 634, 12, 27);
 		add(lblX_2);
 		
 		ArrayList<String> wbValueArray = new ArrayList<String>();
@@ -2508,13 +2529,14 @@ public class Panel_CICO extends JPanel{
 		wbValueArray.add("$20");
 		SpinnerListModel wbValueModel = new SpinnerListModel(wbValueArray);
 		spinner_wbValue = new JSpinner(wbValueModel);
-		spinner_wbValue.setBounds(496, 636, 64, 23);
+		spinner_wbValue.setBounds(523, 636, 54, 23);
 		spinner_wbValue.addChangeListener(wristbandMultiplierListener);
 		wristbandMultiplier = Integer.parseInt(spinner_wbValue.getValue().toString().substring(1));
 		add(spinner_wbValue);
 		
 		JLabel lblWristbandSales = new JLabel("= Wristband Sales:");
-		lblWristbandSales.setBounds(566, 634, 123, 27);
+		lblWristbandSales.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblWristbandSales.setBounds(577, 634, 112, 27);
 		add(lblWristbandSales);
 		
 		textArea_initialtickets = new JTextArea();
@@ -2554,6 +2576,7 @@ public class Panel_CICO extends JPanel{
 		add(lblFridayWristbandsAre);
 		
 		JLabel lblMiscellaneousCredits = new JLabel("- Miscellaneous Credits and Promotions:");
+		lblMiscellaneousCredits.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMiscellaneousCredits.setBounds(409, 731, 238, 14);
 		add(lblMiscellaneousCredits);
 		
@@ -2563,11 +2586,13 @@ public class Panel_CICO extends JPanel{
 		textArea_expectedEndingCash.setBounds(658, 765, 102, 22);
 		add(textArea_expectedEndingCash);
 		
-		JLabel lblExpectedEnding = new JLabel("= EXPECTED ENDING CASH");
+		JLabel lblExpectedEnding = new JLabel("= EXPECTED ENDING CASH:");
+		lblExpectedEnding.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblExpectedEnding.setBounds(474, 770, 173, 14);
 		add(lblExpectedEnding);
 		
 		JLabel lblCollectedRevenue = new JLabel("COLLECTED REVENUE - EXPECTED ENDING CASH = DIFFERENCES: ");
+		lblCollectedRevenue.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCollectedRevenue.setBounds(237, 810, 410, 14);
 		add(lblCollectedRevenue);
 		
@@ -2578,7 +2603,7 @@ public class Panel_CICO extends JPanel{
 		add(textArea_differences);
 		
 		JLabel lblCashDrops = new JLabel("Cash Drops");
-		lblCashDrops.setBounds(500, 144, 67, 14);
+		lblCashDrops.setBounds(510, 144, 67, 14);
 		add(lblCashDrops);
 		
 		JButton btnCheckOutCashier = new JButton("CONFIRM CHECK OUT VALUES AND REMOVE CASHIER FROM ACTIVE LIST");
@@ -2637,7 +2662,8 @@ public class Panel_CICO extends JPanel{
 	    order.add(textField_credits);
 	    
 	    JLabel lblCollectedRevenue_1 = new JLabel("= Collected Revenue:");
-	    lblCollectedRevenue_1.setBounds(514, 243, 159, 14);
+	    lblCollectedRevenue_1.setHorizontalAlignment(SwingConstants.RIGHT);
+	    lblCollectedRevenue_1.setBounds(530, 243, 159, 14);
 	    add(lblCollectedRevenue_1);
 	    
 	    JLabel lblCashIn = new JLabel("CASH IN");
@@ -2769,17 +2795,20 @@ public class Panel_CICO extends JPanel{
 	    add(label_29);
 	        
 	    JLabel lblX = new JLabel("x $800 =");
-	    lblX.setBounds(628, 144, 67, 14);
+	    lblX.setHorizontalAlignment(SwingConstants.RIGHT);
+	    lblX.setBounds(635, 144, 54, 14);
 	    add(lblX);
 	    newPolicy = new MyOwnFocusTraversalPolicy(order);
 	    this.setFocusTraversalPolicyProvider(true);
 	    
 	    JLabel lblCollectedCash_1 = new JLabel("Collected Cash:");
-	    lblCollectedCash_1.setBounds(531, 177, 91, 14);
+	    lblCollectedCash_1.setHorizontalAlignment(SwingConstants.RIGHT);
+	    lblCollectedCash_1.setBounds(598, 177, 91, 14);
 	    add(lblCollectedCash_1);
 	    
 	    JLabel lblNewLabel_1 = new JLabel("- Initial Cash: ");
-	    lblNewLabel_1.setBounds(541, 210, 77, 14);
+	    lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+	    lblNewLabel_1.setBounds(612, 210, 77, 14);
 	    add(lblNewLabel_1);
 	    this.setFocusTraversalPolicy(newPolicy);
 	}

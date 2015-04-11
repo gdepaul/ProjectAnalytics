@@ -28,6 +28,7 @@ import javax.swing.event.ChangeListener;
 import model.Club;
 import model.dispatch.DispatchFieldSupe;
 import model.dispatch.FreeFieldSupe;
+import javax.swing.SwingConstants;
 
 public class Panel_Dispatch extends JPanel {
 	/**
@@ -407,27 +408,33 @@ public class Panel_Dispatch extends JPanel {
 		add(spinner_action);
 		
 		JLabel lblNewLabel = new JLabel("Field Supervisor:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setBounds(10, 109, 101, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Location:");
-		lblNewLabel_1.setBounds(10, 159, 76, 14);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setBounds(35, 159, 76, 14);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Action:");
-		lblNewLabel_2.setBounds(10, 205, 118, 14);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_2.setBounds(35, 205, 76, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblAvailableFieldSupervisors = new JLabel("Available Field Supervisors");
-		lblAvailableFieldSupervisors.setBounds(381, 69, 215, 14);
+		lblAvailableFieldSupervisors.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAvailableFieldSupervisors.setBounds(342, 69, 309, 14);
 		add(lblAvailableFieldSupervisors);
 		
 		JLabel lblDispatchedFieldSupervisors = new JLabel("Dispatched Field Supervisors");
-		lblDispatchedFieldSupervisors.setBounds(381, 363, 215, 14);
+		lblDispatchedFieldSupervisors.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDispatchedFieldSupervisors.setBounds(342, 363, 309, 14);
 		add(lblDispatchedFieldSupervisors);
 		
 		JLabel lblFieldSupervisor = new JLabel("Field Supervisor:");
-		lblFieldSupervisor.setBounds(10, 450, 118, 14);
+		lblFieldSupervisor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblFieldSupervisor.setBounds(-7, 450, 118, 14);
 		add(lblFieldSupervisor);
 		dispatchedSelected = spinner_freeUp.getValue().toString();
 		dispatchedSelectedReset = dispatchedSelected;
