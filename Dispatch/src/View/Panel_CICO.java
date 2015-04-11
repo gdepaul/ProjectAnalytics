@@ -1,6 +1,9 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FocusTraversalPolicy;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +11,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,11 +31,8 @@ import javax.swing.event.ChangeListener;
 import model.Club;
 import model.dispatch.CheckOutDispatch;
 import model.dispatch.DispatchAll;
-import model.dispatch.DispatchFieldSupe;
 import model.dispatch.InitialCashDrop;
 import model.dispatch.RemoveClub;
-
-import javax.swing.JCheckBox;
 
 public class Panel_CICO extends JPanel{
 	/**
@@ -42,6 +44,8 @@ public class Panel_CICO extends JPanel{
 	private List<Club> activeClubs;
 	private List<String> availableFS;
 	private	List<String> dispatchedFS;
+	
+	static MyOwnFocusTraversalPolicy newPolicy;
 	
 	//WIDGETS
 	private JTextField textField_penniesIn;
@@ -2845,6 +2849,91 @@ public class Panel_CICO extends JPanel{
 		add(chckbx_creditTerminal);
 		chckbx_creditTerminal.setVisible(false);
 		chckbx_creditTerminal.setEnabled(false);
+		
+		
+	    Vector<Component> order = new Vector<Component>(22);
+	    order.add(textField_penniesIn);
+	    order.add(textField_nickelsIn);
+	    order.add(textField_dimesIn);
+	    order.add(textField_quartersIn);
+	    order.add(textField_dollarsIn);
+	    order.add(textField_twosIn);
+	    order.add(textField_fivesIn);
+	    order.add(textField_tensIn);
+	    order.add(textField_twentiesIn);
+	    order.add(textField_fiftiesIn);
+	    order.add(textField_hundredsIn);
+	    
+	    order.add(textField_fullSheetsIn);
+	    order.add(textField_halfSheetsIn);
+	    order.add(textField_singleTicketsIn);
+	    order.add(textField_wristbandsIn);
+	    
+	    order.add(textField_penniesOut);
+	    order.add(textField_nickelsOut);
+	    order.add(textField_dimesOut);
+	    order.add(textField_quartersOut);
+	    order.add(textField_dollarsOut);
+	    order.add(textField_twosOut);
+	    order.add(textField_fivesOut);
+	    order.add(textField_tensOut);
+	    order.add(textField_twentiesOut);
+	    order.add(textField_fiftiesOut);
+	    order.add(textField_hundredsOut);
+	    
+	    order.add(textField_fullSheetsUnsold);
+	    order.add(textField_halfSheetsUnsold);
+	    order.add(textField_singleTicketsUnsold);
+	    order.add(textField_wristbandsUnsold);
+	    
+	    order.add(textField_credits);
+	    newPolicy = new MyOwnFocusTraversalPolicy(order);
+	    this.setFocusTraversalPolicyProvider(true);
+	    this.setFocusTraversalPolicy(newPolicy);
+	}
+
+		
+	
+//    order.add(spinner_clubSelection_1);
+//    order.add(spinner_locations);
+//    order.add(textField_penniesIn);
+//    order.add(textField_nickelsIn);
+//    order.add(textField_dimesIn);
+//    order.add(textField_quartersIn);
+//    order.add(textField_dollarsIn);
+//	
+	
+	public class MyOwnFocusTraversalPolicy extends FocusTraversalPolicy{
+		 Vector<Component> order;
+	
+		public MyOwnFocusTraversalPolicy(Vector<Component> order) {
+			this.order = new Vector<Component>(order.size());
+			this.order.addAll(order);
+		}
+		public Component getComponentAfter(Container focusCycleRoot, Component aComponent){
+			int idx = (order.indexOf(aComponent) + 1) % order.size();
+			return order.get(idx);
+		}
+		
+		public Component getComponentBefore(Container focusCycleRoot, Component aComponent){
+			int idx = order.indexOf(aComponent) - 1;
+			if (idx < 0) {
+			   idx = order.size() - 1;
+			}
+			return order.get(idx);
+		}
+		
+		public Component getDefaultComponent(Container focusCycleRoot) {
+			return order.get(0);
+		}
+		
+		public Component getLastComponent(Container focusCycleRoot) {
+			return order.lastElement();
+		}
+		
+		public Component getFirstComponent(Container focusCycleRoot) {
+			return order.get(0);
+		}
 	}
 	
 	private ArrayList<String> getLocations() {
